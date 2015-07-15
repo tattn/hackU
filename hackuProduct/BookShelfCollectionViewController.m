@@ -10,17 +10,18 @@
 
 static NSString * const reuseIdentifier = @"BookShelfCell";
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (id)init {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(60, 60)];
     //flowLayout.itemSize = CGSizeMake(100, 100);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [self.collectionView setCollectionViewLayout:flowLayout];
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
-    [self.collectionView registerClass:[BookShelfCell class] forCellWithReuseIdentifier:@"BookShelfCell"];
+    return [super initWithCollectionViewLayout: flowLayout];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
+    self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
