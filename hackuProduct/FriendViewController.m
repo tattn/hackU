@@ -1,11 +1,18 @@
+//
+//  FriendViewController.m
+//  hackuProduct
+//
+//  Created by Kazusa Sakamoto on 2015/07/16.
+//  Copyright (c) 2015年 Kazusa Sakamoto. All rights reserved.
+//
 
-#import "FrendViewController.h"
+#import "FriendViewController.h"
 
-@interface FrendViewController ()
+@interface FriendViewController ()
 
 @end
 
-@implementation FrendViewController
+@implementation FriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,12 +33,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    return 0;
 }
 
 /*

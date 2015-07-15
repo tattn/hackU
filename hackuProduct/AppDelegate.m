@@ -2,7 +2,7 @@
 #import "AppDelegate.h"
 #import "BookShelfCollectionViewController.h"
 #import "TimelineViewController.h"
-#import "FrendViewController.h"
+#import "FriendViewController.h"
 #import "OtherViewController.h"
 
 @interface AppDelegate ()
@@ -19,7 +19,7 @@
     
     BookShelfCollectionViewController *bookShelfCollectionVC = [[BookShelfCollectionViewController alloc] init];
     TimelineViewController *timelineVC = [[TimelineViewController alloc] init];
-    FrendViewController *frendVC = [[FrendViewController alloc] init];
+    FriendViewController *friendVC = [[FriendViewController alloc] init];
     OtherViewController *otherVC = [[OtherViewController alloc] init];
     
     UIFont *tabFont = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
@@ -32,7 +32,7 @@
     
     [bookShelfCollectionVC setTitle:@"本棚"];
     [timelineVC setTitle:@"タイムライン"];
-    [frendVC setTitle:@"フレンド"];
+    [friendVC setTitle:@"フレンド"];
     [otherVC setTitle:@"その他"];
     
     [[UITabBar appearance] setBarTintColor:[UIColor orangeColor]];
@@ -43,7 +43,7 @@
     UINavigationController *secondNavi = [[UINavigationController alloc] initWithRootViewController:timelineVC];
     [viewControllers addObject:secondNavi];
     
-    UINavigationController *thirdNavi = [[UINavigationController alloc] initWithRootViewController:frendVC];
+    UINavigationController *thirdNavi = [[UINavigationController alloc] initWithRootViewController:friendVC];
     [viewControllers addObject:thirdNavi];
     
     UINavigationController *fourthNavi = [[UINavigationController alloc] initWithRootViewController:otherVC];

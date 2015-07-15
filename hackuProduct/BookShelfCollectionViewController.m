@@ -10,17 +10,17 @@
 
 static NSString * const reuseIdentifier = @"BookShelfCell";
 
+- (id)init {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(80, 110)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    return [super initWithCollectionViewLayout: flowLayout];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(60, 60)];
-    //flowLayout.itemSize = CGSizeMake(100, 100);
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [self.collectionView setCollectionViewLayout:flowLayout];
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
-    [self.collectionView registerClass:[BookShelfCell class] forCellWithReuseIdentifier:@"BookShelfCell"];
-    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,8 +60,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     }
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
-    //[self.collectionView registerClass:[UICollectionViewCell class]forCellWithReuseIdentifier:@"BookShelfCell"];
+    cell.backgroundColor = [UIColor brownColor];
     
     return cell;
 }
