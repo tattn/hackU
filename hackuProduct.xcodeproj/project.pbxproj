@@ -22,6 +22,8 @@
 		17B7B9E41B53D42D009A8752 /* OtherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9E21B53D42D009A8752 /* OtherViewController.xib */; };
 		17B7B9EA1B570D43009A8752 /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9E81B570D43009A8752 /* FriendViewController.m */; };
 		17B7B9EB1B570D43009A8752 /* FriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9E91B570D43009A8752 /* FriendViewController.xib */; };
+		17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */; };
+		17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		17B7B9E71B570D43009A8752 /* FriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendViewController.h; sourceTree = "<group>"; };
 		17B7B9E81B570D43009A8752 /* FriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendViewController.m; sourceTree = "<group>"; };
 		17B7B9E91B570D43009A8752 /* FriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendViewController.xib; sourceTree = "<group>"; };
+		17B7B9EC1B5922A2009A8752 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
+		17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +117,9 @@
 				17B7B9E71B570D43009A8752 /* FriendViewController.h */,
 				17B7B9E81B570D43009A8752 /* FriendViewController.m */,
 				17B7B9E91B570D43009A8752 /* FriendViewController.xib */,
+				17B7B9EC1B5922A2009A8752 /* FriendTableViewCell.h */,
+				17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */,
+				17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */,
 				17B7B9E01B53D42D009A8752 /* OtherViewController.h */,
 				17B7B9E11B53D42D009A8752 /* OtherViewController.m */,
 				17B7B9E21B53D42D009A8752 /* OtherViewController.xib */,
@@ -234,6 +242,7 @@
 				17B7B9EB1B570D43009A8752 /* FriendViewController.xib in Resources */,
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
 				17B7B9A51B52CA74009A8752 /* Images.xcassets in Resources */,
+				17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */,
 				17B7B9E41B53D42D009A8752 /* OtherViewController.xib in Resources */,
 				17B7B9DA1B53D3EF009A8752 /* TimelineViewController.xib in Resources */,
 				17B7B9D51B53D2E8009A8752 /* BookShelfCollectionViewController.xib in Resources */,
@@ -258,6 +267,7 @@
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				17B7B9E31B53D42D009A8752 /* OtherViewController.m in Sources */,
 				17B7B9D91B53D3EF009A8752 /* TimelineViewController.m in Sources */,
+				17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */,
 				17B7B99A1B52CA74009A8752 /* main.m in Sources */,
 				17B7B9EA1B570D43009A8752 /* FriendViewController.m in Sources */,
 				17B7B9D41B53D2E8009A8752 /* BookShelfCollectionViewController.m in Sources */,

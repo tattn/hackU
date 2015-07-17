@@ -12,8 +12,4 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    NSLog(@"bundleLoader waked");
-}
-
 @end
