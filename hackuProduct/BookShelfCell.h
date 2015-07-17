@@ -3,6 +3,7 @@
 
 @interface BookShelfCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *cellLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *bookImage;
+
 
 @end

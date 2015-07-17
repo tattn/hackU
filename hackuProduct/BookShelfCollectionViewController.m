@@ -60,7 +60,6 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     }
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor brownColor];
     
     return cell;
 }

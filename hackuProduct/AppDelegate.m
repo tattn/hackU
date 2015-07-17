@@ -35,8 +35,6 @@
     [friendVC setTitle:@"フレンド"];
     [otherVC setTitle:@"その他"];
     
-    [[UITabBar appearance] setBarTintColor:[UIColor orangeColor]];
-    
     UINavigationController *firstNavi = [[UINavigationController alloc] initWithRootViewController:bookShelfCollectionVC];
     [viewControllers addObject:firstNavi];
     
@@ -49,8 +47,9 @@
     UINavigationController *fourthNavi = [[UINavigationController alloc] initWithRootViewController:otherVC];
     [viewControllers addObject:fourthNavi];
     
-    [UINavigationBar appearance].barTintColor = [UIColor orangeColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0]];
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 

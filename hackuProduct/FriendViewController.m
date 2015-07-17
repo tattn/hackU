@@ -1,5 +1,6 @@
 
 #import "FriendViewController.h"
+#import "FriendTableViewCell.h"
 
 @interface FriendViewController ()
 
@@ -9,6 +10,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+    UINib *nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -22,18 +32,19 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 1;
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    
-    return cell;
+    // カスタムセルを取得してそのままリターン
+    return [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
 
 /*
 // Override to support conditional editing of the table view.
