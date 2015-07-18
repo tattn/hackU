@@ -22,7 +22,7 @@
     FriendViewController *friendVC = [[FriendViewController alloc] init];
     OtherViewController *otherVC = [[OtherViewController alloc] init];
     
-    UIFont *tabFont = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
+    UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
     
     NSDictionary *attributesNormal = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:[UIColor darkGrayColor]};
     [[UITabBarItem appearance] setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
@@ -50,7 +50,10 @@
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0]];
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [UINavigationBar appearance].titleTextAttributes = @{
+                                                         NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                         NSFontAttributeName: [UIFont fontWithName:@"HiraKakuProN-W6" size:20.0f],
+                                                         };
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     
