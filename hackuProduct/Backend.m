@@ -59,6 +59,11 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 #define MAKE_URL(fmt, ...) [NSString stringWithFormat:(fmt), __VA_ARGS__]
 #define BOOK_URL @"books"
 #define BOOKID_URL(bookId) MAKE_URL(BOOK_URL "/%d", (bookId))
+#define BOOKSHELF_URL @"bookshelves"
+#define BOOKSHELFID_URL(userId) MAKE_URL(BOOKSHELF_URL "/%d", (userId))
+#define BOOKSHELFIDID_URL(userId, bookId) MAKE_URL(BOOKSHELF_URL "/%d/%d", (userId), (bookId))
+
+// === [/books] Books API
 
 - (void)addBook:(NSString*)title option:(NSDictionary*)option callback:(CompletionBlock)callback {
     NSMutableDictionary *param = [@{@"title":title} mutableCopy];
@@ -84,5 +89,48 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 - (void)searchBook:(NSDictionary*)option callback:(CompletionBlock)callback {
     [self GET:BOOK_URL"/search" parameters:option DEFAULT_CALLBACK];
 }
+
+// === [/books] end
+
+// === [/bookshelves] Bookshelves API
+
+- (void)getBookshelf:(int)userId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self GET:BOOKSHELFID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)addBookToBookshelf:(int)userId bookId:(int)bookId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    NSMutableDictionary *param = [@{@"book_id":[NSNumber numberWithInt:bookId]} mutableCopy];
+    for (id key in [option keyEnumerator]) {
+        param[key] = [option valueForKey:key];
+    }
+    
+    [self GET:BOOKSHELFID_URL(userId) parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)updateBookshelf:(int)userId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self PUT:BOOKSHELFID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)deleteBookshelf:(int)userId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self DELETE:BOOKSHELFID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)getBookInBookshelf:(int)userId bookId:(int)bookId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self GET:BOOKSHELFIDID_URL(userId, bookId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)updateBookInBookshelf:(int)userId bookId:(int)bookId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self PUT:BOOKSHELFIDID_URL(userId, bookId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)deleteBookInBookshelf:(int)userId bookId:(int)bookId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self DELETE:BOOKSHELFIDID_URL(userId, bookId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)searchBookInBookshelf:(int)userId option:(NSDictionary*)option callback:(CompletionBlock)callback {
+    [self GET:BOOKSHELFID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+// === [/bookshelves] end
 
 @end
