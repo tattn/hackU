@@ -23,6 +23,17 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 #define DEFAULT_PARAM  option:(NSDictionary*)option callback:(CompletionBlock)callback
 #define DEFAULT_PARAM2        (NSDictionary*)option callback:(CompletionBlock)callback
 
+// === [/users] Users API
+- (void)addUser:(NSString*)email password:(NSString*)password firstname:(NSString*)firstname lastname:(NSString*)lastname DEFAULT_PARAM;
+- (void)getUser:(int)userId DEFAULT_PARAM;
+- (void)updateUser:(int)userId DEFAULT_PARAM;
+- (void)deleteUser:(int)userId DEFAULT_PARAM;
+// === [/users] end
+
+// === [/auth] Auth API
+- (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM;
+// === [/auth] end
+
 // === [/books] Books API
 - (void)addBook:(NSString*)title DEFAULT_PARAM;
 - (void)getBook:(int)bookId DEFAULT_PARAM;
