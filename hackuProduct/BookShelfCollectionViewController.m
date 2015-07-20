@@ -22,21 +22,21 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [super viewDidLoad];
     
     // WebAPI サンプル　要らなくなったら消して下さい
-    Backend *backend = [Backend shared];
-//    [backend getBook:1 callback:^(id json, NSError *error) {
-//    [backend addBook:@"はろー" option:@{} callback:^(id json, NSError *error) {
-//    [backend updateBook:20 option:@{@"title":@"ほげ"} callback:^(id json, NSError *error) {
-    [backend searchBook:@{@"title":@"ワンピース"} callback:^(id json, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-        else {
-            NSLog(@"JSON: %@", json);
-            
-//            searchBookで最初に見つかった本のタイトルを取得する方法
-//            NSLog(@"JSON: %@", json[@"books"][0][@"title"]);
-        }
-    }];
+//    Backend *backend = [Backend shared];
+//    [backend getBook:1 option:@{} callback:^(id json, NSError *error) {
+////    [backend addBook:@"はろー" option:@{} callback:^(id json, NSError *error) {
+////    [backend updateBook:20 option:@{@"title":@"ほげ"} callback:^(id json, NSError *error) {
+////    [backend searchBook:@{@"title":@"ワンピース"} callback:^(id json, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error: %@", error);
+//        }
+//        else {
+//            NSLog(@"JSON: %@", json);
+//            
+////            searchBookで最初に見つかった本のタイトルを取得する方法
+////            NSLog(@"JSON: %@", json[@"books"][0][@"title"]);
+//        }
+//    }];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
 }
