@@ -58,6 +58,7 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 // URL builders
 #define MAKE_URL(fmt, ...) [NSString stringWithFormat:(fmt), __VA_ARGS__]
 #define USER_URL @"users"
+#define USERID_URL(userId) MAKE_URL(USER_URL "/%d", (userId))
 #define BOOK_URL @"books"
 #define BOOKID_URL(bookId) MAKE_URL(BOOK_URL "/%d", (bookId))
 #define BOOKSHELF_URL @"bookshelves"
@@ -87,6 +88,27 @@ NSMutableDictionary *param = [(dict) mutableCopy];\
 #define BOOL2NS(b) [NSNumber numberWithBool:(b)]
 
 
+
+// === [/users] Users API
+
+- (void)addUser:(NSString*)email password:(NSString*)password firstname:(NSString*)firstname lastname:(NSString*)lastname DEFAULT_PARAM {
+    MAKE_PARAM((@{@"email":email, @"password":password, @"firstname":firstname, @"lastname":lastname }));
+    [self POST:USER_URL parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)getUser:(int)userId DEFAULT_PARAM {
+    [self GET:USERID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)updateUser:(int)userId DEFAULT_PARAM {
+    [self PUT:USERID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)deleteUser:(int)userId DEFAULT_PARAM {
+    [self DELETE:USERID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+// === [/users] end
 
 // === [/books] Books API
 
