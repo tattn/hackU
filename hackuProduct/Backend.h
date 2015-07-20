@@ -48,6 +48,28 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)deleteBorrow:(int)userId bookId:(int)bookId DEFAULT_PARAM;
 // === [/users/:user_id/borrow] end
 
+// === [/users/:user_id/blacklist] Blacklist API
+- (void)getBlacklist:(int)userId DEFAULT_PARAM;
+- (void)addBlacklist:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM;
+- (void)deleteBlacklist:(int)userId bookId:(int)bookId DEFAULT_PARAM;
+// === [/users/:user_id/blacklist] end
+
+// === [/users/:user_id/request] Request API
+- (void)getRequest:(int)userId DEFAULT_PARAM;
+- (void)addRequest:(int)userId bookId:(int)bookId senderId:(int)senderId DEFAULT_PARAM;
+- (void)replyRequest:(int)userId bookId:(int)bookId accepted:(bool)accepted DEFAULT_PARAM;
+- (void)deleteRequest:(int)userId bookId:(int)bookId DEFAULT_PARAM;
+// === [/users/:user_id/request] end
+
+// === [/users/:user_id/frined] Friend API
+- (void)getFriend:(int)userId DEFAULT_PARAM;
+- (void)addFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
+- (void)deleteFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
+- (void)getNewFriend:(int)userId DEFAULT_PARAM;
+- (void)allowNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
+- (void)rejectNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
+// === [/users/:user_id/frined] end
+
 #undef DEFAULT_PARAM
 #undef DEFAULT_PARAM2
 

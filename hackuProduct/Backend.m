@@ -65,6 +65,14 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 #define BOOKSHELFIDID_URL(userId, bookId) MAKE_URL(BOOKSHELF_URL "/%d/%d", (userId), (bookId))
 #define BORROW_URL(userId) MAKE_URL(USER_URL "/%d/borrow", (userId))
 #define BORROWID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/borrow/%d", (userId), (bookId))
+#define BLACKLIST_URL(userId) MAKE_URL(USER_URL "/%d/blacklist", (userId))
+#define BLACKLISTID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/blacklist/%d", (userId), (bookId))
+#define REQUEST_URL(userId) MAKE_URL(USER_URL "/%d/request", (userId))
+#define REQUESTID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/request/%d", (userId), (bookId))
+#define FRIEND_URL(userId) MAKE_URL(USER_URL "/%d/friend", (userId))
+#define FRIENDID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/%d", (userId), (friendId))
+#define FRIEND_NEW_URL(userId) MAKE_URL(USER_URL "/%d/friend/new", (userId))
+#define FRIEND_NEWID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/new/%d", (userId), (friendId))
 
 // Default parameters
 #define DEFAULT_PARAM  option:(NSDictionary*)option callback:(CompletionBlock)callback
@@ -76,6 +84,7 @@ NSMutableDictionary *param = [(dict) mutableCopy];\
 
 // Cast utilities
 #define INT2NS(val) [NSNumber numberWithInt:(val)]
+#define BOOL2NS(b) [NSNumber numberWithBool:(b)]
 
 
 
@@ -157,6 +166,75 @@ NSMutableDictionary *param = [(dict) mutableCopy];\
 }
 
 // === [/users/:user_id/borrow] end
+
+// === [/users/:user_id/blacklist] Blacklist API
+
+- (void)getBlacklist:(int)userId DEFAULT_PARAM {
+    [self GET:BLACKLIST_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)addBlacklist:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM {
+    MAKE_PARAM((@{@"book_id":INT2NS(bookId), @"lender_id":INT2NS(lenderId)}));
+    [self POST:BLACKLIST_URL(userId) parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)deleteBlacklist:(int)userId bookId:(int)bookId DEFAULT_PARAM {
+    [self DELETE:BLACKLISTID_URL(userId, bookId) parameters:option DEFAULT_CALLBACK];
+}
+
+// === [/users/:user_id/blacklist] end
+
+// === [/users/:user_id/request] Request API
+
+- (void)getRequest:(int)userId DEFAULT_PARAM {
+    [self GET:REQUEST_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)addRequest:(int)userId bookId:(int)bookId senderId:(int)senderId DEFAULT_PARAM {
+    MAKE_PARAM((@{@"book_id":INT2NS(bookId), @"sender_id":INT2NS(senderId)}));
+    [self POST:REQUEST_URL(userId) parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)replyRequest:(int)userId bookId:(int)bookId accepted:(bool)accepted DEFAULT_PARAM {
+    MAKE_PARAM((@{@"book_id":INT2NS(bookId), @"accepted":BOOL2NS(accepted)}));
+    [self PUT:REQUESTID_URL(userId, bookId) parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)deleteRequest:(int)userId bookId:(int)bookId DEFAULT_PARAM {
+    [self DELETE:REQUESTID_URL(userId, bookId) parameters:option DEFAULT_CALLBACK];
+}
+
+// === [/users/:user_id/request] end
+
+// === [/users/:user_id/frined] Friend API
+
+- (void)getFriend:(int)userId DEFAULT_PARAM {
+    [self GET:FRIEND_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)addFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+    MAKE_PARAM((@{@"friend_id":INT2NS(friendId)}));
+    [self POST:FRIEND_URL(userId) parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)deleteFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+    [self DELETE:FRIENDID_URL(userId, friendId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)getNewFriend:(int)userId DEFAULT_PARAM {
+    [self GET:FRIEND_NEW_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)allowNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+    [self PUT:FRIEND_NEWID_URL(userId, friendId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)rejectNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+    [self DELETE:FRIEND_NEWID_URL(userId, friendId) parameters:option DEFAULT_CALLBACK];
+}
+
+// === [/users/:user_id/frined] end
+
 
 
 @end
