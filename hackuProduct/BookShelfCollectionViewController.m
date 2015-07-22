@@ -2,6 +2,7 @@
 #import "BookShelfCollectionViewController.h"
 #import "BookShelfCell.h"
 #import "Backend.h"
+#import "LoginViewController.h"
 
 @interface BookShelfCollectionViewController ()
 
@@ -39,6 +40,14 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 //    }];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    
+    LoginViewController *loginVC = [LoginViewController new];
+    [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
+//    loginVC.delegate = self;
+    
+    [self presentViewController:loginVC animated:YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
