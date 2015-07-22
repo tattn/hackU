@@ -42,12 +42,10 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
     
+    // ログインテスト用
     LoginViewController *loginVC = [LoginViewController new];
     [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
-//    loginVC.delegate = self;
-    
     [self presentViewController:loginVC animated:YES completion:nil];
-    
 }
 
 - (void)didReceiveMemoryWarning {
