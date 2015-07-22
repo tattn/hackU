@@ -88,6 +88,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LoginLogo" width="273" height="50"/>
+        <image name="LoginLogo" width="328" height="48"/>
     </resources>
 </document>
