@@ -15,49 +15,56 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
     
-    BookShelfCollectionViewController *bookShelfCollectionVC = [[BookShelfCollectionViewController alloc] init];
-    TimelineViewController *timelineVC = [[TimelineViewController alloc] init];
-    FriendViewController *friendVC = [[FriendViewController alloc] init];
-    OtherViewController *otherVC = [[OtherViewController alloc] init];
+    // colors: 色をカスタマイズできると良さそう
+    UIColor *themeColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
+    UIColor *unfocusedColor = UIColor.grayColor;
+    UIColor *defaultFontColor = UIColor.whiteColor;
+    
+    TimelineViewController *timelineVC = [TimelineViewController new];
+    FriendViewController *friendVC = [FriendViewController new];
+    BookShelfCollectionViewController *bookShelfCollectionVC = [BookShelfCollectionViewController new];
+    OtherViewController *otherVC = [OtherViewController new];
+    OtherViewController *settingVC = [OtherViewController new];
     
     UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
     
-    NSDictionary *attributesNormal = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:[UIColor darkGrayColor]};
+    NSDictionary *attributesNormal = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:unfocusedColor};
     [[UITabBarItem appearance] setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
     
-    NSDictionary *selectedAttributes = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSDictionary *selectedAttributes = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:defaultFontColor};
     [[UITabBarItem appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
     
-    [bookShelfCollectionVC setTitle:@"本棚"];
-    [timelineVC setTitle:@"タイムライン"];
+    [timelineVC setTitle:@"ホーム"];
     [friendVC setTitle:@"フレンド"];
-    [otherVC setTitle:@"その他"];
+    [bookShelfCollectionVC setTitle:@"本棚"];
+    [otherVC setTitle:@"検索"];
+    [settingVC setTitle:@"設定"];
+    timelineVC.tabBarItem.image = [UIImage imageNamed:@"IconHome"];
+    friendVC.tabBarItem.image = [UIImage imageNamed:@"IconFriend"];
+    bookShelfCollectionVC.tabBarItem.image = [UIImage imageNamed:@"IconBookshelf"];
+    otherVC.tabBarItem.image = [UIImage imageNamed:@"IconSearch"];
+    settingVC.tabBarItem.image = [UIImage imageNamed:@"IconSettings"];
     
-    UINavigationController *firstNavi = [[UINavigationController alloc] initWithRootViewController:bookShelfCollectionVC];
-    [viewControllers addObject:firstNavi];
+    NSArray *viewControllers = @[
+        [[UINavigationController alloc] initWithRootViewController:timelineVC],
+        [[UINavigationController alloc] initWithRootViewController:friendVC],
+        [[UINavigationController alloc] initWithRootViewController:bookShelfCollectionVC],
+        [[UINavigationController alloc] initWithRootViewController:otherVC],
+        [[UINavigationController alloc] initWithRootViewController:settingVC],
+    ];
     
-    UINavigationController *secondNavi = [[UINavigationController alloc] initWithRootViewController:timelineVC];
-    [viewControllers addObject:secondNavi];
-    
-    UINavigationController *thirdNavi = [[UINavigationController alloc] initWithRootViewController:friendVC];
-    [viewControllers addObject:thirdNavi];
-    
-    UINavigationController *fourthNavi = [[UINavigationController alloc] initWithRootViewController:otherVC];
-    [viewControllers addObject:fourthNavi];
-    
-    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
-    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0]];
+    [UINavigationBar appearance].tintColor = defaultFontColor;
+    [UINavigationBar appearance].barTintColor = themeColor;
+    [[UITabBar appearance] setBarTintColor:themeColor];
+    [[UITabBar appearance] setTintColor:defaultFontColor];
     [UINavigationBar appearance].titleTextAttributes = @{
-                                                         NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                         NSFontAttributeName: [UIFont fontWithName:@"HiraKakuProN-W6" size:20.0f],
-                                                         };
+        NSForegroundColorAttributeName: defaultFontColor,
+        NSFontAttributeName: [UIFont fontWithName:@"HiraKakuProN-W6" size:20.0f],
+    };
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
     
-    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController = [UITabBarController new];
     [self.tabBarController setViewControllers:viewControllers];
     
     self.window.rootViewController = self.tabBarController;
