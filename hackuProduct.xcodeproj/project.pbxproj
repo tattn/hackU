@@ -33,6 +33,7 @@
 		4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C63851B5F746800AA233C /* LoginViewController.m */; };
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4AB78D231B59988D00B27BEC /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB78D221B59988D00B27BEC /* Backend.m */; };
+		4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */; };
 		AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		4A5C63881B5F752C00AA233C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4AB78D221B59988D00B27BEC /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		4AB78D241B5998A100B27BEC /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
+		4ADD13BC1B60B22D00A0D7B6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +172,7 @@
 				4A5C63851B5F746800AA233C /* LoginViewController.m */,
 				4A5C63871B5F748200AA233C /* LoginViewController.h */,
 				4A5C63881B5F752C00AA233C /* LoginViewController.xib */,
+				4ADD13BB1B60B22D00A0D7B6 /* SettingViewController */,
 			);
 			path = hackuProduct;
 			sourceTree = "<group>";
@@ -223,6 +227,15 @@
 				6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4ADD13BB1B60B22D00A0D7B6 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4ADD13BC1B60B22D00A0D7B6 /* SettingViewController.h */,
+				4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */,
+			);
+			path = SettingViewController;
 			sourceTree = "<group>";
 		};
 		C6225939FBED4FE41DCAD514 /* Pods */ = {
@@ -381,6 +394,7 @@
 			files = (
 				175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */,
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
+				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
 				17B7B9E31B53D42D009A8752 /* OtherViewController.m in Sources */,
 				17B7B9D91B53D3EF009A8752 /* TimelineViewController.m in Sources */,
 				17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */,
