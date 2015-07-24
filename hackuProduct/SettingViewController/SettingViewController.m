@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "LicenseViewController.h"
 #import "Backend.h"
 
 @interface SettingViewController ()
@@ -153,10 +154,12 @@ typedef NS_ENUM (NSUInteger, kMenu) {
     // Create the next view controller.
 //    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
-    // Pass the selected object to the new view controller.
     
-    // Push the view controller.
- //   [self.navigationController pushViewController:detailViewController animated:YES];
+    if (indexPath.section == 1 && indexPath.row == 3) {
+        LicenseViewController *vc = [LicenseViewController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
