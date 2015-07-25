@@ -53,17 +53,22 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)searchBookInBookshelf:(int)userId DEFAULT_PARAM;
 // === [/bookshelves] end
 
-// === [/users/:user_id/borrow] Borrow API
+// === [/my/borrow] Borrow API
 - (void)getBorrow:(int)userId DEFAULT_PARAM;
 - (void)addBorrow:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM;
-- (void)deleteBorrow:(int)userId bookId:(int)bookId DEFAULT_PARAM;
-// === [/users/:user_id/borrow] end
+- (void)deleteBorrow:(int)userId bookId:(int)bookId DEFAULT_PARAM __attribute__ ((deprecated));
+// === [/my/borrow] end
 
-// === [/users/:user_id/blacklist] Blacklist API
+// === [/my/lend] Lend API
+- (void)getLending: DEFAULT_PARAM2;
+- (void)deleteLending:(int)bookId DEFAULT_PARAM;
+// === [/my/lend] end
+
+// === [/my/blacklist] Blacklist API
 - (void)getBlacklist:(int)userId DEFAULT_PARAM;
 - (void)addBlacklist:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM;
 - (void)deleteBlacklist:(int)userId bookId:(int)bookId DEFAULT_PARAM;
-// === [/users/:user_id/blacklist] end
+// === [/my/blacklist] end
 
 // === [/users/:user_id/request] Request API
 - (void)getRequest:(int)userId DEFAULT_PARAM;

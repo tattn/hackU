@@ -67,10 +67,12 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 #define BOOKSHELF_URL @"bookshelves"
 #define BOOKSHELFID_URL(userId) MAKE_URL(BOOKSHELF_URL "/%d", (userId))
 #define BOOKSHELFIDID_URL(userId, bookId) MAKE_URL(BOOKSHELF_URL "/%d/%d", (userId), (bookId))
-#define BORROW_URL(userId) MAKE_URL(USER_URL "/%d/borrow", (userId))
-#define BORROWID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/borrow/%d", (userId), (bookId))
-#define BLACKLIST_URL(userId) MAKE_URL(USER_URL "/%d/blacklist", (userId))
-#define BLACKLISTID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/blacklist/%d", (userId), (bookId))
+#define BORROW_URL @"/my/borrow"
+#define BORROWID_URL(bookId) MAKE_URL(BORROW_URL "/%d", (bookId))
+#define LEND_URL @"/my/lend"
+#define LENDID_URL(bookId) MAKE_URL(LEND_URL "/%d", (bookId))
+#define BLACKLIST_URL @"/my/blacklist"
+#define BLACKLISTID_URL(userId) MAKE_URL(BLACKLIST_URL "/%d", (userId))
 #define REQUEST_URL(userId) MAKE_URL(USER_URL "/%d/request", (userId))
 #define REQUESTID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/request/%d", (userId), (bookId))
 #define FRIEND_URL(userId) MAKE_URL(USER_URL "/%d/friend", (userId))
@@ -199,43 +201,57 @@ MAKE_PARAM(dict);\
 
 // === [/bookshelves] end
 
-// === [/users/:user_id/borrow] Borrow API
+// === [/my/borrow] Borrow API
 
-- (void)getBorrow:(int)userId DEFAULT_PARAM {
+- (void)getBorrow: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
-    [self GET:BORROW_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self GET:BORROW_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addBorrow:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM {
+- (void)addBorrow:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM {
     MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId), @"lender_id":INT2NS(lenderId)}));
-    [self POST:BORROW_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self POST:BORROW_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)deleteBorrow:(int)userId bookId:(int)bookId DEFAULT_PARAM {
+- (void)deleteBorrow:(int)bookId DEFAULT_PARAM __attribute__ ((deprecated)){
     MAKE_TOKEN_PARAM();
-    [self DELETE:BORROWID_URL(userId, bookId) parameters:param DEFAULT_CALLBACK];
+    [self DELETE:BORROWID_URL(bookId) parameters:param DEFAULT_CALLBACK];
 }
 
-// === [/users/:user_id/borrow] end
+// === [/my/borrow] end
 
-// === [/users/:user_id/blacklist] Blacklist API
+// === [/my/lend] Lend API
 
-- (void)getBlacklist:(int)userId DEFAULT_PARAM {
+- (void)getLending: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
-    [self GET:BLACKLIST_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self GET:LEND_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addBlacklist:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM {
+- (void)deleteLending:(int)bookId DEFAULT_PARAM {
+    MAKE_TOKEN_PARAM();
+    [self DELETE:LENDID_URL(bookId) parameters:param DEFAULT_CALLBACK];
+}
+
+// === [/my/lend] end
+
+// === [/my/blacklist] Blacklist API
+
+- (void)getBlacklist: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self GET:BLACKLIST_URL parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)addBlacklist:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM {
     MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId), @"lender_id":INT2NS(lenderId)}));
-    [self POST:BLACKLIST_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self POST:BLACKLIST_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)deleteBlacklist:(int)userId bookId:(int)bookId DEFAULT_PARAM {
+- (void)deleteBlacklist:(int)userId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self DELETE:BLACKLISTID_URL(userId, bookId) parameters:param DEFAULT_CALLBACK];
+    [self DELETE:BLACKLISTID_URL(userId) parameters:param DEFAULT_CALLBACK];
 }
 
-// === [/users/:user_id/blacklist] end
+// === [/my/blacklist] end
 
 // === [/users/:user_id/request] Request API
 
