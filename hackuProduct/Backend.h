@@ -32,6 +32,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/auth] Auth API
 - (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM;
+- (void)logout: DEFAULT_PARAM2;
 // === [/auth] end
 
 // === [/books] Books API

@@ -62,6 +62,7 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 #define USERID_URL(userId) MAKE_URL(USER_URL "/%d", (userId))
 #define AUTH_URL @"auth"
 #define AUTH_LOGIN_URL (AUTH_URL "/login")
+#define AUTH_LOGOUT_URL (AUTH_URL "/logout")
 #define BOOK_URL @"books"
 #define BOOKID_URL(bookId) MAKE_URL(BOOK_URL "/%d", (bookId))
 #define BOOKSHELF_URL @"bookshelves"
@@ -135,6 +136,11 @@ MAKE_PARAM(dict);\
            callback(nil, error);
        }
     ];
+}
+
+- (void)logout: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self POST:AUTH_LOGOUT_URL parameters:param DEFAULT_CALLBACK];
 }
 
 // === [/auth] end

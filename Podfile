@@ -10,3 +10,8 @@ target 'hackuProductTests' do
 
 end
 
+post_install do | installer |
+  require 'fileutils'
+  FileUtils.cp_r('Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct-acknowledgements.plist', 'hackuProduct/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+end
+

@@ -4,6 +4,7 @@
 #import "TimelineViewController.h"
 #import "FriendViewController.h"
 #import "OtherViewController.h"
+#import "SettingViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,7 @@
     FriendViewController *friendVC = [FriendViewController new];
     BookShelfCollectionViewController *bookShelfCollectionVC = [BookShelfCollectionViewController new];
     OtherViewController *otherVC = [OtherViewController new];
-    OtherViewController *settingVC = [OtherViewController new];
+    SettingViewController *settingVC = [SettingViewController new];
     
     UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
     
