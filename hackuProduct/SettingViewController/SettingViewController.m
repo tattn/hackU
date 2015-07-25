@@ -12,18 +12,6 @@
 
 @interface SettingViewController ()
 
-typedef NS_ENUM (NSUInteger, kMenu) {
-    kMenuHelp,
-    kMenuFAQ,
-    kMenuFeedback,
-    kMenuAbout,
-    kMenuVersion,
-//    kMenu利用規約,
-    kMenuPolicy,
-    kMenuLicense,
-    kMenuMax,
-};
-
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property UITableView *tableView;
@@ -40,21 +28,24 @@ typedef NS_ENUM (NSUInteger, kMenu) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _sections = @[@"HELP", @"ABOUT"];
+    _sections = @[@"ACCOUNT", @"BASIC", @"HELP", @"ABOUT"];
     
     _menu = @[
+        @[@"プロフィール", @"アカウント情報"],
+        @[@"通知", @"連携"],
         @[@"よくある質問", @"フィードバック"],
         @[@"Version", @"利用規約", @"プライバシーポリシー", @"ライセンス"],
     ];
     
     self.title = @"設定";
     self.view.backgroundColor = [UIColor whiteColor];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _tableView.sectionHeaderHeight = 40;
     _tableView.scrollEnabled = NO;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [self.view addSubview:_tableView];
+    [scrollView addSubview:_tableView];
     
     UIColor *themeColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
     _signoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -65,17 +56,21 @@ typedef NS_ENUM (NSUInteger, kMenu) {
     [_signoutButton addTarget:self
                action:@selector(signout:)
      forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_signoutButton];
+    [scrollView addSubview:_signoutButton];
+    
+    [self.view addSubview:scrollView];
 }
 
 -(void)viewWillLayoutSubviews {
     //FIXME: 試行錯誤したがこれ以外の方法でうまくサイズ調整できなかった
     dispatch_async(dispatch_get_main_queue(), ^{
+        UIScrollView *scrollView = (UIScrollView*)_tableView.superview;
         CGRect frame = self.view.frame;
-        frame.size.height = _tableView.contentSize.height + _tableView.sectionHeaderHeight * 2;
+        frame.size.height = _tableView.contentSize.height + _tableView.sectionHeaderHeight;
         _tableView.frame = frame;
         
-        _signoutButton.frame = CGRectMake(20, frame.size.height + 20, frame.size.width - 40, 40);
+        _signoutButton.frame = CGRectMake(20, frame.size.height + 10, frame.size.width - 40, 40);
+        scrollView.contentSize = CGSizeMake(frame.size.width, frame.size.height + 50);
     });
 }
 
@@ -136,7 +131,7 @@ typedef NS_ENUM (NSUInteger, kMenu) {
     cell.textLabel.text = _menu[indexPath.section][indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
     
-    if (indexPath.section == 1 && indexPath.row == 0) { //FIXME: bad magic number
+    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"Version"]) { //FIXME: use enum?
         // Version
         cell.detailTextLabel.text = @"1.0.0";
     }
@@ -155,7 +150,7 @@ typedef NS_ENUM (NSUInteger, kMenu) {
 //    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
     
-    if (indexPath.section == 1 && indexPath.row == 3) {
+    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"ライセンス"]) { //FIXME: use enum?
         LicenseViewController *vc = [LicenseViewController new];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
