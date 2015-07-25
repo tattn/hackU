@@ -13,6 +13,8 @@
 
 @interface LoginViewController : UIViewController
 
++ (void)showLoginIfNotLoggedIn:(UIViewController*)vc;
+
 @end
 
 #endif

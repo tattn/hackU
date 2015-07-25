@@ -3,6 +3,7 @@
 #import "FriendTableViewCell.h"
 #import "FriendBookShelfCollectionViewController.h"
 #import "FriendBookShelfCell.h"
+#import "AddFriendViewController.h"
 #import "Backend.h"
 
 @interface FriendViewController ()
@@ -20,13 +21,17 @@
     self.tableView.dataSource = self;
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                              target:self
+                                              action:@selector(didTapAddFriend:)];
     
     UINib *nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"FriendTableViewCell"];
     
     _friends = [NSMutableArray array];
     Backend *backend = Backend.shared;
-    [backend getFriend:1 option:@{} callback:^(NSDictionary* res, NSError *error) {
+    [backend getFriend:@{} callback:^(NSDictionary* res, NSError *error) {
         NSArray* users = res[@"users"];
         [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
             NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
@@ -38,6 +43,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)didTapAddFriend:(id)selector {
+    AddFriendViewController *vc = [AddFriendViewController new];
+    [self.navigationController pushViewController:vc animated: true];
 }
 
 #pragma mark - Table view data source

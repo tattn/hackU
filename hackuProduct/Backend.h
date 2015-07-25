@@ -79,12 +79,12 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 // === [/users/:user_id/request] end
 
 // === [/users/:user_id/frined] Friend API
-- (void)getFriend:(int)userId DEFAULT_PARAM;
-- (void)addFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
-- (void)deleteFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
-- (void)getNewFriend:(int)userId DEFAULT_PARAM;
-- (void)allowNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
-- (void)rejectNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM;
+- (void)getFriend: DEFAULT_PARAM2;
+- (void)addFriend:(int)friendId DEFAULT_PARAM;
+- (void)deleteFriend:(int)friendId DEFAULT_PARAM;
+- (void)getNewFriend: DEFAULT_PARAM2;
+- (void)allowNewFriend:(int)friendId DEFAULT_PARAM;
+- (void)rejectNewFriend:(int)friendId DEFAULT_PARAM;
 // === [/users/:user_id/frined] end
 
 #undef DEFAULT_PARAM

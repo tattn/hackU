@@ -5,6 +5,7 @@
 #import "FriendViewController.h"
 #import "OtherViewController.h"
 #import "SettingViewController.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -71,6 +72,8 @@
     self.window.rootViewController = self.tabBarController;
     
     [self.window makeKeyAndVisible];
+    
+    [LoginViewController showLoginIfNotLoggedIn:self.tabBarController];
     
     return YES;
 }
