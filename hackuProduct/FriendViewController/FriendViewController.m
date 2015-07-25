@@ -140,19 +140,4 @@
     // editActionsFroWorAtIndexPath の有効化
 }
 
-/*
-func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath)
--&gt; [AnyObject]? {
-    let editAction =
-    UITableViewRowAction(style: .Normal, // 削除等の破壊的な操作を示さないスタイル
-                         title: "edit"){(action, indexPath) in println("\(indexPath) edited")}
-    editAction.backgroundColor = UIColor.greenColor()
-    let deleteAction =
-    UITableViewRowAction(style: .Default, // 標準のスタイル
-                         title: "delete"){(action, indexPath) in println("\(indexPath) deleted")}
-    deleteAction.backgroundColor = UIColor.redColor()
-    return [editAction, deleteAction]
-}
- */
-
 @end
