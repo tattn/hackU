@@ -11,9 +11,8 @@
 #import "AFNetworking.h"
 
 @interface Backend ()
-// maybe write private property here
-//    @property int dummy;
 @property NSString* accessToken;
+@property int userId; // ログイン中のユーザーID
 @end
 
 @implementation Backend : AFHTTPSessionManager
@@ -129,7 +128,8 @@ MAKE_PARAM(dict);\
     MAKE_PARAM((@{@"email":email, @"password":password}));
     [self POST:AUTH_LOGIN_URL parameters:param
        success:^(NSURLSessionDataTask *task, id responseObject) {
-           self.accessToken = responseObject[@"token"];
+           _accessToken = responseObject[@"token"];
+           _userId = ((NSString*)responseObject[@"userId"]).intValue;
            callback(responseObject, nil);
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -285,34 +285,34 @@ MAKE_PARAM(dict);\
 
 // === [/users/:user_id/frined] Friend API
 
-- (void)getFriend:(int)userId DEFAULT_PARAM {
+- (void)getFriend: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
-    [self GET:FRIEND_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self GET:FRIEND_URL(_userId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+- (void)addFriend:(int)friendId DEFAULT_PARAM {
     MAKE_PARAM_WITH_TOKEN((@{@"friend_id":INT2NS(friendId)}));
-    [self POST:FRIEND_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self POST:FRIEND_URL(_userId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)deleteFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+- (void)deleteFriend:(int)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self DELETE:FRIENDID_URL(userId, friendId) parameters:param DEFAULT_CALLBACK];
+    [self DELETE:FRIENDID_URL(_userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)getNewFriend:(int)userId DEFAULT_PARAM {
+- (void)getNewFriend: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
-    [self GET:FRIEND_NEW_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self GET:FRIEND_NEW_URL(_userId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)allowNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+- (void)allowNewFriend:(int)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self PUT:FRIEND_NEWID_URL(userId, friendId) parameters:param DEFAULT_CALLBACK];
+    [self PUT:FRIEND_NEWID_URL(_userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)rejectNewFriend:(int)userId friendId:(int)friendId DEFAULT_PARAM {
+- (void)rejectNewFriend:(int)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self DELETE:FRIEND_NEWID_URL(userId, friendId) parameters:param DEFAULT_CALLBACK];
+    [self DELETE:FRIEND_NEWID_URL(_userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
 
 // === [/users/:user_id/frined] end
