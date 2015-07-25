@@ -11,7 +11,14 @@
 @implementation FriendTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    
+    //UIImageViewを円形枠線付きに表示
+    self.friendImage.layer.cornerRadius = self.friendImage.frame.size.width / 2.f;
+    self.friendImage.layer.masksToBounds = YES;
+    self.friendImage.layer.borderColor = [UIColor blackColor].CGColor;
+    //self.friendImage.layer.borderWidth = 1.f;
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

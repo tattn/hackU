@@ -2,6 +2,7 @@
 #import "FriendBookShelfCollectionViewController.h"
 #import "FriendBookShelfCell.h"
 #import "Backend.h"
+#import "FriendBookDetailViewController.h"
 
 @interface FriendBookShelfCollectionViewController ()
 
@@ -23,6 +24,13 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
     [super viewDidLoad];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    //戻るボタンの文字をなくす
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:nil
+                                                           action:nil];
+    self.navigationItem.backBarButtonItem = btn;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +70,14 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
     
     FriendBookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     return cell;
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    FriendBookDetailViewController *friendBookDetailViewController = [[FriendBookDetailViewController alloc] init];
+    
+    [self.navigationController pushViewController:friendBookDetailViewController animated:YES];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

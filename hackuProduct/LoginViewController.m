@@ -77,7 +77,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
     [backend login:email password:pass option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             //TODO: ログインに失敗したことをユーザーに通知する、テキストフィールドを赤枠にする
-            NSLog(@"Login error");
+            NSLog(@"Login error: %@", error);
         }
         else {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
