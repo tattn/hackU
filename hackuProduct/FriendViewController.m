@@ -3,8 +3,11 @@
 #import "FriendTableViewCell.h"
 #import "FriendBookShelfCollectionViewController.h"
 #import "FriendBookShelfCell.h"
+#import "Backend.h"
 
 @interface FriendViewController ()
+
+@property NSMutableArray* friends;
 
 @end
 
@@ -21,6 +24,16 @@
     UINib *nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"FriendTableViewCell"];
     
+    _friends = [NSMutableArray array];
+    Backend *backend = Backend.shared;
+    [backend getFriend:1 option:@{} callback:^(NSDictionary* res, NSError *error) {
+        NSArray* users = res[@"users"];
+        [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
+            NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
+            [_friends addObject:fullname];
+        }];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,19 +47,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _friends.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
     
-    // カスタムセルを取得してそのままリターン
-    return [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.firendNameLabel.text = _friends[indexPath.row];
+    
     return cell;
 }
 

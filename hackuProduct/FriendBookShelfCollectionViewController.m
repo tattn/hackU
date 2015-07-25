@@ -59,16 +59,8 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *identifier = @"FriendBookShelfCell";
-    static BOOL nibCellLoaded = NO;
     
-    if(!nibCellLoaded){
-        UINib *nib = [UINib nibWithNibName:@"FriendBookShelfCell" bundle:nil];
-        [collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
-        nibCellLoaded = YES;
-    }
-    
-    FriendBookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    FriendBookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     return cell;
 }
 
