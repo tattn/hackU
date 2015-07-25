@@ -49,6 +49,7 @@
                 }
                 else {
                     [self addFriends:res[@"users"] new:@NO];
+                    [self showBadge];
                     [self.tableView reloadData];
                 }
             }];
@@ -73,6 +74,16 @@
     [Backend.shared rejectNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
         [self getAllFriends];
     }];
+}
+
+- (void)showBadge {
+    __block int num = 0;
+    [_friends enumerateObjectsUsingBlock:^(NSDictionary *friend, NSUInteger idx, BOOL *stop) {
+        if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
+            num++;
+        }
+    }];
+    self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", num];
 }
 
 - (void)didTapAddFriend:(id)selector {
