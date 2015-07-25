@@ -83,7 +83,9 @@
             num++;
         }
     }];
-    self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", num];
+    if (num > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", num];
+    }
 }
 
 - (void)didTapAddFriend:(id)selector {
