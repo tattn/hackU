@@ -19,6 +19,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new]; // 余分なCellのセパレータを表示しないための処理
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
@@ -29,20 +30,49 @@
     UINib *nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"FriendTableViewCell"];
     
-    _friends = [NSMutableArray array];
-    Backend *backend = Backend.shared;
-    [backend getFriend:@{} callback:^(NSDictionary* res, NSError *error) {
-        NSArray* users = res[@"users"];
-        [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
-            NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
-            [_friends addObject:fullname];
-        }];
-        [self.tableView reloadData];
-    }];
+    [self getAllFriends];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)getAllFriends {
+    _friends = [NSMutableArray array];
+    [Backend.shared getNewFriend:@{} callback:^(NSDictionary* res, NSError *error) {
+        if (error) {
+        }
+        else {
+            [self addFriends:res[@"users"] new:@YES];
+            [Backend.shared getFriend:@{} callback:^(NSDictionary* res, NSError *error) {
+                if (error) {
+                }
+                else {
+                    [self addFriends:res[@"users"] new:@NO];
+                    [self.tableView reloadData];
+                }
+            }];
+        }
+    }];
+}
+
+- (void)addFriends:(NSArray*)users new:(NSNumber*)new {
+    [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
+        NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
+        [_friends addObject:@{@"id":user[@"userId"], @"name":fullname, @"new":new}];
+    }];
+}
+
+- (void)allowNewFriendById:(int)userId {
+    [Backend.shared allowNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+        [self getAllFriends];
+    }];
+}
+
+- (void)rejectNewFriendById:(int)userId {
+    [Backend.shared rejectNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+        [self getAllFriends];
+    }];
 }
 
 - (void)didTapAddFriend:(id)selector {
@@ -64,7 +94,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
     
-    cell.firendNameLabel.text = _friends[indexPath.row];
+    NSDictionary* friend = _friends[indexPath.row];
+    cell.firendNameLabel.text = friend[@"name"];
+    
+    if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
+        cell.alpha = 0.5f;
+    }
     
     return cell;
 }
@@ -79,5 +114,45 @@
     
     [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
 }
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary* friend = _friends[indexPath.row];
+    if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
+        // 拒否ボタン
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"拒否"
+                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                    NSDictionary* friend = _friends[indexPath.row];
+                    [self rejectNewFriendById:((NSNumber*)friend[@"id"]).intValue];
+        }];
+        
+        // 許可ボタン
+        UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"許可"
+                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                    NSDictionary* friend = _friends[indexPath.row];
+                    [self allowNewFriendById:((NSNumber*)friend[@"id"]).intValue];
+        }];
+        return @[deleteAction, editAction];
+    }
+    return @[];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // editActionsFroWorAtIndexPath の有効化
+}
+
+/*
+func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath)
+-&gt; [AnyObject]? {
+    let editAction =
+    UITableViewRowAction(style: .Normal, // 削除等の破壊的な操作を示さないスタイル
+                         title: "edit"){(action, indexPath) in println("\(indexPath) edited")}
+    editAction.backgroundColor = UIColor.greenColor()
+    let deleteAction =
+    UITableViewRowAction(style: .Default, // 標準のスタイル
+                         title: "delete"){(action, indexPath) in println("\(indexPath) deleted")}
+    deleteAction.backgroundColor = UIColor.redColor()
+    return [editAction, deleteAction]
+}
+ */
 
 @end
