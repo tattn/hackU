@@ -7,5 +7,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *publisherLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UIButton *rentRequestButton;
 
 @end

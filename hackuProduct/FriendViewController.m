@@ -67,6 +67,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
     
+    //ナビゲーションバーのタイトル設置
+    NSString *name = _friends[indexPath.row];
+    NSString *shelf = @"の本棚";
+    NSString *friendNavTitle = [NSString stringWithFormat:@"%@ %@",name,shelf];
+    friendBookShelfCollectionVC.title = friendNavTitle;
+    
+    //戻るボタンを変更
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:nil
+                                                           action:nil];
+    self.navigationItem.backBarButtonItem = btn;
+    
     [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
 }
 

@@ -25,12 +25,9 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
-    //戻るボタンの文字をなくす
-    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                            style:UIBarButtonItemStylePlain
-                                                           target:nil
-                                                           action:nil];
-    self.navigationItem.backBarButtonItem = btn;
+    UINib *nib = [UINib nibWithNibName:@"FriendBookShelfCell" bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,9 +64,8 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    FriendBookDetailViewController *friendBookDetailViewController = [[FriendBookDetailViewController alloc] init];
-    
-    [self.navigationController pushViewController:friendBookDetailViewController animated:YES];
+    FriendBookDetailViewController *friendBookDetailVC = [[FriendBookDetailViewController alloc] init];
+    [self.navigationController pushViewController:friendBookDetailVC animated:YES];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

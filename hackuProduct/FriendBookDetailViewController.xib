@@ -10,6 +10,7 @@
                 <outlet property="bookTitleLabel" destination="5Ht-TR-ZTk" id="mib-UG-kiJ"/>
                 <outlet property="friendBookImage" destination="kw9-xu-pRL" id="TmY-18-Qjh"/>
                 <outlet property="publisherLabel" destination="kD6-qJ-Lsu" id="Bd0-yd-AmQ"/>
+                <outlet property="rentRequestButton" destination="Zio-DD-5fJ" id="rgE-Pd-6ZH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -39,6 +40,15 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zio-DD-5fJ">
+                    <rect key="frame" x="147" y="437" width="81" height="38"/>
+                    <color key="backgroundColor" red="1" green="0.8873333256" blue="0.40961153500000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                    <state key="normal" title="借りたい">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
