@@ -28,6 +28,13 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
     UINib *nib = [UINib nibWithNibName:@"FriendBookShelfCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
     
+    //戻るボタンの表示変更
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:nil
+                                                           action:nil];
+    self.navigationItem.backBarButtonItem = btn;
+    
 }
 
 - (void)didReceiveMemoryWarning {

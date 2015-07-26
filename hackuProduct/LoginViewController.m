@@ -35,6 +35,14 @@ typedef NS_ENUM (NSUInteger, kMode) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.emailLabel.delegate = self;
+    self.passLabel.delegate = self;
+    self.lastnameLabel.delegate = self;
+    self.firstnameLabel.delegate = self;
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSingleTap:)];
+    [self.view addGestureRecognizer:gesture];
+    
     _mode = kModeLogin;
     
     //FIXME: 前回のアカウントでログインする.ここで実行すると一瞬Viewが見えてしまうので、別の場所に移した方がいい
@@ -128,6 +136,15 @@ typedef NS_ENUM (NSUInteger, kMode) {
     LoginViewController *loginVC = [LoginViewController new];
     [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
     [vc presentViewController:loginVC animated:YES completion:nil];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)onSingleTap:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
 }
 
 @end
