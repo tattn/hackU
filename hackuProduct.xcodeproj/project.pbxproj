@@ -40,6 +40,7 @@
 		4AC2D4C51B6409AC00F80E61 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */; };
 		4AC2D4C61B6409AC00F80E61 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */; };
 		4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */; };
+		4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */; };
 		AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		4ADD13BC1B60B22D00A0D7B6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewCell.xib; sourceTree = "<group>"; };
 		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -263,6 +265,7 @@
 				4AC2D4C21B6409AC00F80E61 /* HomeViewController.h */,
 				4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */,
 				4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */,
+				4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				17B7B9E41B53D42D009A8752 /* OtherViewController.xib in Resources */,
 				175EC6671B5A9FB900752BE6 /* FriendBookShelfCell.xib in Resources */,
 				4AC2D4C01B63AB3300F80E61 /* AddFriendViewController.xib in Resources */,
+				4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */,
 				17B7B9F61B594322009A8752 /* book.png in Resources */,
 				4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */,
 				17B7B9DA1B53D3EF009A8752 /* TimelineViewController.xib in Resources */,
