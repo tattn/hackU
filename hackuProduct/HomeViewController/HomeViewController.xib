@@ -34,12 +34,30 @@
                         <constraint firstAttribute="height" constant="202" id="jax-ZT-2IN"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jk1-av-hJj">
+                    <rect key="frame" x="0.0" y="222" width="600" height="173"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jN9-kB-vSu">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="173"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-JP-GEU">
+                    <rect key="frame" x="239" y="158" width="123" height="29"/>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="YVN-Tk-Aoe" secondAttribute="trailing" constant="65" id="6pa-lm-1iu"/>
                 <constraint firstAttribute="bottom" secondItem="cTV-ZR-lXB" secondAttribute="bottom" id="GZb-ia-zHQ"/>
                 <constraint firstItem="YVN-Tk-Aoe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Kfx-z8-qYg"/>
+                <constraint firstAttribute="centerX" secondItem="6rg-JP-GEU" secondAttribute="centerX" id="RoE-8w-NQJ"/>
                 <constraint firstAttribute="trailing" secondItem="cTV-ZR-lXB" secondAttribute="trailing" id="UO6-aT-SnI"/>
                 <constraint firstItem="cTV-ZR-lXB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dpt-Nv-h5z"/>
                 <constraint firstItem="YVN-Tk-Aoe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="lGu-VX-fv5"/>
