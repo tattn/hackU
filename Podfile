@@ -4,9 +4,15 @@
 target 'hackuProduct' do
 	platform :ios, '7.0'
 	pod "AFNetworking", "~> 2.0"
+	pod 'RMUniversalAlert'
 end
 
 target 'hackuProductTests' do
 
+end
+
+post_install do | installer |
+  require 'fileutils'
+  FileUtils.cp_r('Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct-acknowledgements.plist', 'hackuProduct/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
 end
 

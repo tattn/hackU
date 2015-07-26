@@ -39,12 +39,15 @@ typedef NS_ENUM (NSUInteger, kMode) {
     
     //FIXME: 前回のアカウントでログインする.ここで実行すると一瞬Viewが見えてしまうので、別の場所に移した方がいい
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults removeObjectForKey:@"LoginEmail"];
+//    [userDefaults removeObjectForKey:@"LoginEmail"]; // for debug
     NSString *email = [userDefaults objectForKey:@"LoginEmail"];
     NSString *pass = [userDefaults objectForKey:@"LoginPass"];
-    if (email && pass) {
-        [self tryLogin:email password:pass];
-    }
+    
+    _emailLabel.text = email;
+    _passLabel.text = pass;
+//    if (email && pass) {
+//        [self tryLogin:email password:pass];
+//    }
 }
 
 - (IBAction)login:(id)sender {
@@ -119,6 +122,12 @@ typedef NS_ENUM (NSUInteger, kMode) {
         [_switchButton setTitle:@"ログイン" forState:UIControlStateNormal];
         [_nameView setHidden:NO];
     }
+}
+
++ (void)showLoginIfNotLoggedIn:(UIViewController*)vc {
+    LoginViewController *loginVC = [LoginViewController new];
+    [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    [vc presentViewController:loginVC animated:YES completion:nil];
 }
 
 @end
