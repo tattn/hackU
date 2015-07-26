@@ -247,8 +247,8 @@ MAKE_PARAM(dict);\
     [self GET:BLACKLIST_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addBlacklist:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM {
-    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId), @"lender_id":INT2NS(lenderId)}));
+- (void)addBlacklist:(int)userId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"user_id":INT2NS(userId)}));
     [self POST:BLACKLIST_URL parameters:param DEFAULT_CALLBACK];
 }
 

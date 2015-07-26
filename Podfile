@@ -4,6 +4,7 @@
 target 'hackuProduct' do
 	platform :ios, '7.0'
 	pod "AFNetworking", "~> 2.0"
+	pod 'RMUniversalAlert'
 end
 
 target 'hackuProductTests' do

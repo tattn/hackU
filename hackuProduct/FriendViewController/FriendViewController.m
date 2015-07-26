@@ -4,6 +4,7 @@
 #import "FriendBookShelfCollectionViewController.h"
 #import "FriendBookShelfCell.h"
 #import "AddFriendViewController.h"
+#import <RMUniversalAlert.h>
 #import "Backend.h"
 
 @interface FriendViewController ()
@@ -76,6 +77,44 @@
     }];
 }
 
+- (void)deleteFriendById:(int)userId {
+    [RMUniversalAlert showAlertInViewController:self
+                                      withTitle:@"フレンドの削除"
+                                        message:@"フレンドを削除します。本当によろしいですか？"
+                              cancelButtonTitle:@"キャンセル"
+                         destructiveButtonTitle:@"削除"
+                              otherButtonTitles:@[]
+                                       tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
+                                           if (buttonIndex == alert.cancelButtonIndex) {
+                                           } else if (buttonIndex == alert.destructiveButtonIndex) {
+                                               
+    [Backend.shared deleteFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+        [self getAllFriends];
+    }];
+                                               
+                                           }
+                                       }];
+}
+
+- (void)blockFriendById:(int)userId {
+    [RMUniversalAlert showAlertInViewController:self
+                                      withTitle:@"フレンドのブロック"
+                                        message:@"フレンドをブロックします。本当によろしいですか？"
+                              cancelButtonTitle:@"キャンセル"
+                         destructiveButtonTitle:@"ブロック"
+                              otherButtonTitles:@[]
+                                       tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
+                                           if (buttonIndex == alert.cancelButtonIndex) {
+                                           } else if (buttonIndex == alert.destructiveButtonIndex) {
+                                               
+    [Backend.shared addBlacklist:userId option:@{} callback:^(id responseObject, NSError *error) {
+        [self getAllFriends];
+    }];
+                                               
+                                           }
+                                       }];
+}
+
 - (void)showBadge {
     __block int num = 0;
     [_friends enumerateObjectsUsingBlock:^(NSDictionary *friend, NSUInteger idx, BOOL *stop) {
@@ -85,6 +124,9 @@
     }];
     if (num > 0) {
         self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", num];
+    }
+    else {
+        self.navigationController.tabBarItem.badgeValue = nil; // nilにすると消える
     }
 }
 
@@ -111,7 +153,7 @@
     cell.firendNameLabel.text = friend[@"name"];
     
     if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
-        cell.alpha = 0.5f;
+        cell.backgroundColor = [UIColor yellowColor];
     }
     
     return cell;
@@ -123,30 +165,54 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
-    
-    [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
+    NSDictionary* friend = _friends[indexPath.row];
+    if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
+        FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
+        
+        [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
+    }
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary* friend = _friends[indexPath.row];
     if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
         // 拒否ボタン
-        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"拒否"
+        UITableViewRowAction *rejectAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"拒否"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                     NSDictionary* friend = _friends[indexPath.row];
                     [self rejectNewFriendById:((NSNumber*)friend[@"id"]).intValue];
         }];
         
         // 許可ボタン
-        UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"許可"
+        UITableViewRowAction *allowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"許可"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                     NSDictionary* friend = _friends[indexPath.row];
                     [self allowNewFriendById:((NSNumber*)friend[@"id"]).intValue];
         }];
-        return @[deleteAction, editAction];
+        return @[rejectAction, allowAction];
     }
-    return @[];
+    else {
+        // 削除ボタン
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"削除"
+                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                    NSDictionary* friend = _friends[indexPath.row];
+                    [self deleteFriendById:((NSNumber*)friend[@"id"]).intValue];
+        }];
+        
+        // ブロックボタン
+        UITableViewRowAction *blockAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"ブロック"
+                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                    NSDictionary* friend = _friends[indexPath.row];
+                    [self blockFriendById:((NSNumber*)friend[@"id"]).intValue];
+        }];
+        return @[deleteAction, blockAction];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+//    NSDictionary* friend = _friends[indexPath.row];
+//    return ((NSNumber*)friend[@"new"]).intValue;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
