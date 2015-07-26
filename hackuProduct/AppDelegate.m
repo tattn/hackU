@@ -6,6 +6,7 @@
 #import "OtherViewController.h"
 #import "SettingViewController.h"
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +24,7 @@
     UIColor *unfocusedColor = UIColor.grayColor;
     UIColor *defaultFontColor = UIColor.whiteColor;
     
-    TimelineViewController *timelineVC = [TimelineViewController new];
+    HomeViewController *homeVC = [HomeViewController new];
     FriendViewController *friendVC = [FriendViewController new];
     BookShelfCollectionViewController *bookShelfCollectionVC = [BookShelfCollectionViewController new];
     OtherViewController *otherVC = [OtherViewController new];
@@ -37,19 +38,19 @@
     NSDictionary *selectedAttributes = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:defaultFontColor};
     [[UITabBarItem appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
     
-    [timelineVC setTitle:@"ホーム"];
+    [homeVC setTitle:@"ホーム"];
     [friendVC setTitle:@"フレンド"];
     [bookShelfCollectionVC setTitle:@"本棚"];
     [otherVC setTitle:@"検索"];
     [settingVC setTitle:@"設定"];
-    timelineVC.tabBarItem.image = [UIImage imageNamed:@"IconHome"];
+    homeVC.tabBarItem.image = [UIImage imageNamed:@"IconHome"];
     friendVC.tabBarItem.image = [UIImage imageNamed:@"IconFriend"];
     bookShelfCollectionVC.tabBarItem.image = [UIImage imageNamed:@"IconBookshelf"];
     otherVC.tabBarItem.image = [UIImage imageNamed:@"IconSearch"];
     settingVC.tabBarItem.image = [UIImage imageNamed:@"IconSettings"];
     
     NSArray *viewControllers = @[
-        [[UINavigationController alloc] initWithRootViewController:timelineVC],
+        [[UINavigationController alloc] initWithRootViewController:homeVC],
         [[UINavigationController alloc] initWithRootViewController:friendVC],
         [[UINavigationController alloc] initWithRootViewController:bookShelfCollectionVC],
         [[UINavigationController alloc] initWithRootViewController:otherVC],

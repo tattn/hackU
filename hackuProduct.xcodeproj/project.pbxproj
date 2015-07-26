@@ -37,6 +37,8 @@
 		4AB78D231B59988D00B27BEC /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB78D221B59988D00B27BEC /* Backend.m */; };
 		4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */; };
 		4AC2D4C01B63AB3300F80E61 /* AddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */; };
+		4AC2D4C51B6409AC00F80E61 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */; };
+		4AC2D4C61B6409AC00F80E61 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */; };
 		4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */; };
 		AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */; };
 /* End PBXBuildFile section */
@@ -101,6 +103,9 @@
 		4AC2D4BC1B63AB3300F80E61 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
 		4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
 		4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendViewController.xib; sourceTree = "<group>"; };
+		4AC2D4C21B6409AC00F80E61 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		4ADD13BC1B60B22D00A0D7B6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +153,7 @@
 		17B7B9961B52CA74009A8752 /* hackuProduct */ = {
 			isa = PBXGroup;
 			children = (
+				4AC2D4C11B64087200F80E61 /* HomeViewController */,
 				17B7B9F11B593BA9009A8752 /* static */,
 				17B7B99B1B52CA74009A8752 /* AppDelegate.h */,
 				17B7B99C1B52CA74009A8752 /* AppDelegate.m */,
@@ -249,6 +255,16 @@
 				4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */,
 			);
 			path = FriendViewController;
+			sourceTree = "<group>";
+		};
+		4AC2D4C11B64087200F80E61 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4AC2D4C21B6409AC00F80E61 /* HomeViewController.h */,
+				4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */,
+				4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */,
+			);
+			path = HomeViewController;
 			sourceTree = "<group>";
 		};
 		4ADD13BB1B60B22D00A0D7B6 /* SettingViewController */ = {
@@ -369,6 +385,7 @@
 				17B7B9DA1B53D3EF009A8752 /* TimelineViewController.xib in Resources */,
 				17B7B9D51B53D2E8009A8752 /* BookShelfCollectionViewController.xib in Resources */,
 				17B7B9D01B53D16F009A8752 /* BookShelfCell.xib in Resources */,
+				4AC2D4C61B6409AC00F80E61 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +456,7 @@
 				4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */,
 				17B7B9D91B53D3EF009A8752 /* TimelineViewController.m in Sources */,
 				17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */,
+				4AC2D4C51B6409AC00F80E61 /* HomeViewController.m in Sources */,
 				17B7B99A1B52CA74009A8752 /* main.m in Sources */,
 				17B7B9EA1B570D43009A8752 /* FriendViewController.m in Sources */,
 				4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */,
