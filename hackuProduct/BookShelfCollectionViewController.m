@@ -3,8 +3,11 @@
 #import "BookShelfCell.h"
 #import "Backend.h"
 #import "LoginViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface BookShelfCollectionViewController ()
+
+@property NSArray* books;
 
 @end
 
@@ -22,22 +25,17 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // WebAPI サンプル　要らなくなったら消して下さい
-//    Backend *backend = [Backend shared];
-//    [backend getBook:1 option:@{} callback:^(id json, NSError *error) {
-////    [backend addBook:@"はろー" option:@{} callback:^(id json, NSError *error) {
-////    [backend updateBook:20 option:@{@"title":@"ほげ"} callback:^(id json, NSError *error) {
-////    [backend searchBook:@{@"title":@"ワンピース"} callback:^(id json, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        }
-//        else {
-//            NSLog(@"JSON: %@", json);
-//            
-////            searchBookで最初に見つかった本のタイトルを取得する方法
-////            NSLog(@"JSON: %@", json[@"books"][0][@"title"]);
-//        }
-//    }];
+    Backend *backend = Backend.shared;
+    [backend searchBook:@{@"title":@"ワンピース"} callback:^(id json, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+        else {
+            self.books = json[@"books"];
+            [self.collectionView reloadData];
+            [self.collectionView layoutIfNeeded];
+        }
+    }];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
 }
@@ -64,7 +62,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return self.books.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -79,6 +77,10 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     }
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    NSURL *url = [NSURL URLWithString:self.books[indexPath.row][@"coverImageUrl"]];
+    [cell.bookImage sd_setImageWithURL:url
+                    placeholderImage:[UIImage imageNamed:url.absoluteString]];
     
     return cell;
 }
