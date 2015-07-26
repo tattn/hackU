@@ -3,7 +3,7 @@
 #import "BookShelfCell.h"
 #import "Backend.h"
 #import "LoginViewController.h"
-#import "UIImageView+WebCache.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface BookShelfCollectionViewController ()
 

@@ -31,6 +31,12 @@
     UINib *nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"FriendTableViewCell"];
     
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:nil
+                                                           action:nil];
+    self.navigationItem.backBarButtonItem = btn;
+    
     [self getAllFriends];
 }
 
@@ -168,6 +174,13 @@
     NSDictionary* friend = _friends[indexPath.row];
     if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
         FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
+        
+        
+        NSString *name = friend[@"name"];
+        NSString *shelf = @"の本棚";
+        NSString *str = [NSString stringWithFormat:@"%@ %@",name,shelf];
+        friendBookShelfCollectionVC.title = str;
+        
         
         [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
     }
