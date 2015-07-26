@@ -67,7 +67,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/my/blacklist] Blacklist API
 - (void)getBlacklist:(int)userId DEFAULT_PARAM;
-- (void)addBlacklist:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM;
+- (void)addBlacklist:(int)userId DEFAULT_PARAM;
 - (void)deleteBlacklist:(int)userId bookId:(int)bookId DEFAULT_PARAM;
 // === [/my/blacklist] end
 
