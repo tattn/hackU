@@ -32,21 +32,20 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     
-    _singleTapForKeyboard = [[UITapGestureRecognizer alloc] init];
-    _singleTapForKeyboard.delegate = self;
-    _singleTapForKeyboard.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:_singleTapForKeyboard];
+    _tapGestureForKeyboard = [[UITapGestureRecognizer alloc] init];
+    _tapGestureForKeyboard.delegate = self;
+    _tapGestureForKeyboard.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:_tapGestureForKeyboard];
 }
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    if (gestureRecognizer != _singleTapForKeyboard) {
+    if (gestureRecognizer != _tapGestureForKeyboard) {
         return YES;
     }
     
-    UIView *touchedView = touch.view;
     UIView *firstResponderView = [self.view findFirstResponder];
     
-    if (firstResponderView && firstResponderView != touchedView) {
+    if (firstResponderView && firstResponderView != touch.view) {
         [self.view endEditing:YES];
     }
     

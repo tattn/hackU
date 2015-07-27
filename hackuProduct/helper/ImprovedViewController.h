@@ -13,7 +13,7 @@
 
 @interface ImprovedViewController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
-@property UITapGestureRecognizer *singleTapForKeyboard;
+@property UITapGestureRecognizer *tapGestureForKeyboard;
 
 @end
 
