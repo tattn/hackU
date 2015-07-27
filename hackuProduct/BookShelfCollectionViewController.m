@@ -3,6 +3,7 @@
 #import "BookShelfCell.h"
 #import "Backend.h"
 #import "LoginViewController.h"
+#import "MyBookDetailViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 
 @interface BookShelfCollectionViewController ()
@@ -83,6 +84,12 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                     placeholderImage:[UIImage imageNamed:url.absoluteString]];
     
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    MyBookDetailViewController *myBookDetailVC = [[MyBookDetailViewController alloc] init];
+    [self.navigationController pushViewController:myBookDetailVC animated:YES];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
