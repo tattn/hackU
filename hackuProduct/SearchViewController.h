@@ -1,5 +1,4 @@
 
-#import <UIKit/UIKit.h>
 #import "ImprovedViewController.h"
 
 @interface SearchViewController : ImprovedViewController<UISearchBarDelegate>

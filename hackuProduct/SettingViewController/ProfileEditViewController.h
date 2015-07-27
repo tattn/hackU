@@ -1,7 +1,7 @@
 
-#import <UIKit/UIKit.h>
+#import "ImprovedViewController.h"
 
-@interface ProfileEditViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ProfileEditViewController : ImprovedViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
