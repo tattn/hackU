@@ -1,10 +1,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileEditViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *profileImage;
+@interface ProfileEditViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+
+@property (weak, nonatomic) IBOutlet UIButton *profileImageButton;
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *word;
-- (IBAction)profileImage:(UIButton *)sender;
-
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @end
