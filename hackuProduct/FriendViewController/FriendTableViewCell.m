@@ -1,10 +1,3 @@
-//
-//  FriendTableViewCell.m
-//  hackuProduct
-//
-//  Created by Kazusa Sakamoto on 2015/07/17.
-//  Copyright (c) 2015年 Kazusa Sakamoto. All rights reserved.
-//
 
 #import "FriendTableViewCell.h"
 #import "FriendProfileViewController.h"

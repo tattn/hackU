@@ -6,6 +6,7 @@
 #import "OtherViewController.h"
 #import "SettingViewController.h"
 #import "LoginViewController.h"
+#import "SearchViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +27,7 @@
     TimelineViewController *timelineVC = [TimelineViewController new];
     FriendViewController *friendVC = [FriendViewController new];
     BookShelfCollectionViewController *bookShelfCollectionVC = [BookShelfCollectionViewController new];
-    OtherViewController *otherVC = [OtherViewController new];
+    SearchViewController *searchVC = [SearchViewController new];
     SettingViewController *settingVC = [SettingViewController new];
     
     UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
@@ -40,19 +41,19 @@
     [timelineVC setTitle:@"ホーム"];
     [friendVC setTitle:@"フレンド"];
     [bookShelfCollectionVC setTitle:@"本棚"];
-    [otherVC setTitle:@"検索"];
+    [searchVC setTitle:@"検索"];
     [settingVC setTitle:@"設定"];
     timelineVC.tabBarItem.image = [UIImage imageNamed:@"IconHome"];
     friendVC.tabBarItem.image = [UIImage imageNamed:@"IconFriend"];
     bookShelfCollectionVC.tabBarItem.image = [UIImage imageNamed:@"IconBookshelf"];
-    otherVC.tabBarItem.image = [UIImage imageNamed:@"IconSearch"];
+    searchVC.tabBarItem.image = [UIImage imageNamed:@"IconSearch"];
     settingVC.tabBarItem.image = [UIImage imageNamed:@"IconSettings"];
     
     NSArray *viewControllers = @[
         [[UINavigationController alloc] initWithRootViewController:timelineVC],
         [[UINavigationController alloc] initWithRootViewController:friendVC],
         [[UINavigationController alloc] initWithRootViewController:bookShelfCollectionVC],
-        [[UINavigationController alloc] initWithRootViewController:otherVC],
+        [[UINavigationController alloc] initWithRootViewController:searchVC],
         [[UINavigationController alloc] initWithRootViewController:settingVC],
     ];
     
