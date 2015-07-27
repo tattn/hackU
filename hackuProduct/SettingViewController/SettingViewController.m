@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "LicenseViewController.h"
+#import "ProfileEditViewController.h"
 #import "Backend.h"
 
 @interface SettingViewController ()
@@ -149,6 +150,12 @@
     // Create the next view controller.
 //    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
+    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual:@"プロフィール"]) {
+        ProfileEditViewController *profileEditVC = [ProfileEditViewController new];
+        profileEditVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:profileEditVC];
+        [self presentViewController:nvc animated:YES completion:nil];
+    }
     
     if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"ライセンス"]) { //FIXME: use enum?
         LicenseViewController *vc = [LicenseViewController new];
