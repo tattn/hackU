@@ -13,12 +13,12 @@
     //UIImageViewを円形にして表示する
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2.f;
     self.profileImage.layer.masksToBounds = YES;
-    self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileImage.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImage.layer.borderWidth = 5;
     
     self.profileImageButton.layer.cornerRadius = self.profileImage.frame.size.width / 2.f;
     self.profileImageButton.layer.masksToBounds = YES;
-    self.profileImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileImageButton.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImageButton.layer.borderWidth = 5;
     
     self.name.text = @"my name"; //（未実装）自分の名前をあらかじめ設置
