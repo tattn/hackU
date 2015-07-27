@@ -154,6 +154,7 @@
         ProfileEditViewController *profileEditVC = [ProfileEditViewController new];
         profileEditVC.hidesBottomBarWhenPushed = YES;
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:profileEditVC];
+        profileEditVC.title = @"プロフィール編集";
         [self presentViewController:nvc animated:YES completion:nil];
     }
     

@@ -25,7 +25,7 @@
     self.word.text = @"進撃の巨人読みたい"; //（未実装）一言の情報をあらかじめ設置
     
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc]
-                              initWithTitle:@"キャンセル"
+                              initWithTitle:@"戻る"
                               style:UIBarButtonItemStylePlain
                               target:self
                               action:@selector(dismissProfileEditView)];
