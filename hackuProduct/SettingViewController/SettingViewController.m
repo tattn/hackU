@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "LicenseViewController.h"
+#import "BlocklistViewController.h"
 #import "Backend.h"
 
 @interface SettingViewController ()
@@ -32,7 +33,7 @@
     
     _menu = @[
         @[@"プロフィール", @"アカウント情報"],
-        @[@"通知", @"連携"],
+        @[@"通知", @"連携", @"ブロックリスト"],
         @[@"よくある質問", @"フィードバック"],
         @[@"Version", @"利用規約", @"プライバシーポリシー", @"ライセンス"],
     ];
@@ -145,27 +146,17 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-//    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
-    
-    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"ライセンス"]) { //FIXME: use enum?
+    NSString *menuItem = _menu[indexPath.section][indexPath.row];
+    if ([menuItem isEqual: @"ライセンス"]) { //FIXME: use enum?
         LicenseViewController *vc = [LicenseViewController new];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    else if ([menuItem isEqual: @"ブロックリスト"]) {
+        BlocklistViewController *vc = [BlocklistViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

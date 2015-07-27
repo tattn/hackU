@@ -44,6 +44,8 @@
 		4AC2D4C61B6409AC00F80E61 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */; };
 		4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */; };
 		4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */; };
+		4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */; };
+		4AEE8C961B66AA4700865AFF /* Setting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEE8C951B66AA4700865AFF /* Setting.xib */; };
 		AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,9 @@
 		4ADD13BC1B60B22D00A0D7B6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewCell.xib; sourceTree = "<group>"; };
+		4AEE8C901B65CAAC00865AFF /* BlocklistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocklistViewController.h; sourceTree = "<group>"; };
+		4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocklistViewController.m; sourceTree = "<group>"; };
+		4AEE8C951B66AA4700865AFF /* Setting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Setting.xib; sourceTree = "<group>"; };
 		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -289,6 +294,9 @@
 				4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */,
 				4A901A8F1B62D65000C8FE1C /* LicenseViewController.h */,
 				4A901A901B62D65000C8FE1C /* LicenseViewController.m */,
+				4AEE8C901B65CAAC00865AFF /* BlocklistViewController.h */,
+				4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */,
+				4AEE8C951B66AA4700865AFF /* Setting.xib */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -398,6 +406,7 @@
 				4AC2D4C01B63AB3300F80E61 /* AddFriendViewController.xib in Resources */,
 				4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */,
 				17B7B9F61B594322009A8752 /* book.png in Resources */,
+				4AEE8C961B66AA4700865AFF /* Setting.xib in Resources */,
 				4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */,
 				17B7B9DA1B53D3EF009A8752 /* TimelineViewController.xib in Resources */,
 				17B7B9D51B53D2E8009A8752 /* BookShelfCollectionViewController.xib in Resources */,
@@ -470,6 +479,7 @@
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
 				17B7B9E31B53D42D009A8752 /* OtherViewController.m in Sources */,
+				4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */,
 				4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */,
 				17B7B9D91B53D3EF009A8752 /* TimelineViewController.m in Sources */,
 				17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */,

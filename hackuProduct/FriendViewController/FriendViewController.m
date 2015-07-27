@@ -175,12 +175,9 @@
     if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
         FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
         
-        
-        NSString *name = friend[@"name"];
-        NSString *shelf = @"の本棚";
-        NSString *str = [NSString stringWithFormat:@"%@ %@",name,shelf];
-        friendBookShelfCollectionVC.title = str;
-        
+        //FIXME: FriendBookShelfCollectionVC クラス内で設定した方がいい
+        NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend[@"name"]];
+        friendBookShelfCollectionVC.title = title;
         
         [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
     }
@@ -224,8 +221,6 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
-//    NSDictionary* friend = _friends[indexPath.row];
-//    return ((NSNumber*)friend[@"new"]).intValue;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
