@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		174D1E0C1B65DD4E007BB81C /* MyBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174D1E0A1B65DD4E007BB81C /* MyBookDetailViewController.m */; };
 		174D1E0D1B65DD4E007BB81C /* MyBookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174D1E0B1B65DD4E007BB81C /* MyBookDetailViewController.xib */; };
+		174D1E111B660CA9007BB81C /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174D1E0F1B660CA9007BB81C /* FriendProfileViewController.m */; };
+		174D1E121B660CA9007BB81C /* FriendProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174D1E101B660CA9007BB81C /* FriendProfileViewController.xib */; };
 		175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175EC6611B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m */; };
 		175EC6661B5A9FB900752BE6 /* FriendBookShelfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 175EC6641B5A9FB900752BE6 /* FriendBookShelfCell.m */; };
 		175EC6671B5A9FB900752BE6 /* FriendBookShelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 175EC6651B5A9FB900752BE6 /* FriendBookShelfCell.xib */; };
@@ -60,6 +62,9 @@
 		174D1E091B65DD4E007BB81C /* MyBookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBookDetailViewController.h; sourceTree = "<group>"; };
 		174D1E0A1B65DD4E007BB81C /* MyBookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBookDetailViewController.m; sourceTree = "<group>"; };
 		174D1E0B1B65DD4E007BB81C /* MyBookDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyBookDetailViewController.xib; sourceTree = "<group>"; };
+		174D1E0E1B660CA9007BB81C /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
+		174D1E0F1B660CA9007BB81C /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
+		174D1E101B660CA9007BB81C /* FriendProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendProfileViewController.xib; sourceTree = "<group>"; };
 		175EC6601B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendBookShelfCollectionViewController.h; sourceTree = "<group>"; };
 		175EC6611B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendBookShelfCollectionViewController.m; sourceTree = "<group>"; };
 		175EC6631B5A9FB900752BE6 /* FriendBookShelfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendBookShelfCell.h; sourceTree = "<group>"; };
@@ -264,6 +269,9 @@
 				175EC66F1B63656D00752BE6 /* FriendBookDetailViewController.h */,
 				175EC6701B63656D00752BE6 /* FriendBookDetailViewController.m */,
 				175EC6711B63656D00752BE6 /* FriendBookDetailViewController.xib */,
+				174D1E0E1B660CA9007BB81C /* FriendProfileViewController.h */,
+				174D1E0F1B660CA9007BB81C /* FriendProfileViewController.m */,
+				174D1E101B660CA9007BB81C /* FriendProfileViewController.xib */,
 				4AC2D4BC1B63AB3300F80E61 /* AddFriendViewController.h */,
 				4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */,
 				4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */,
@@ -379,6 +387,7 @@
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
 				175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */,
 				17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */,
+				174D1E121B660CA9007BB81C /* FriendProfileViewController.xib in Resources */,
 				17B7B9A51B52CA74009A8752 /* Images.xcassets in Resources */,
 				17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */,
 				175EC6731B63656D00752BE6 /* FriendBookDetailViewController.xib in Resources */,
@@ -465,6 +474,7 @@
 				17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */,
 				17B7B99A1B52CA74009A8752 /* main.m in Sources */,
 				175EC6721B63656D00752BE6 /* FriendBookDetailViewController.m in Sources */,
+				174D1E111B660CA9007BB81C /* FriendProfileViewController.m in Sources */,
 				17B7B9EA1B570D43009A8752 /* FriendViewController.m in Sources */,
 				4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */,
 				175EC6661B5A9FB900752BE6 /* FriendBookShelfCell.m in Sources */,

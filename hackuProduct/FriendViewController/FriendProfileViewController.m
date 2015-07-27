@@ -1,15 +1,19 @@
 
-#import "MyBookDetailViewController.h"
+#import "FriendProfileViewController.h"
 
-@interface MyBookDetailViewController ()
+@interface FriendProfileViewController ()
 
 @end
 
-@implementation MyBookDetailViewController
+@implementation FriendProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //UIImageViewを円形にして表示する
+    self.friendImage.layer.cornerRadius = self.friendImage.frame.size.width / 2.f;
+    self.friendImage.layer.masksToBounds = YES;
+    self.friendImage.layer.borderColor = [UIColor blackColor].CGColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,4 +31,9 @@
 }
 */
 
+- (IBAction)bookShelfButton:(UIButton *)sender {
+}
+
+- (IBAction)blockButton:(UIButton *)sender {
+}
 @end
