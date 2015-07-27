@@ -3,7 +3,6 @@
 #import "BookShelfCollectionViewController.h"
 #import "TimelineViewController.h"
 #import "FriendViewController.h"
-#import "OtherViewController.h"
 #import "SettingViewController.h"
 #import "LoginViewController.h"
 #import "SearchViewController.h"
