@@ -31,6 +31,7 @@
     UINib *nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"FriendTableViewCell"];
     
+    //戻るボタンの表示変更
     UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
                                                             style:UIBarButtonItemStylePlain
                                                            target:nil

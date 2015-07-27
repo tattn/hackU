@@ -3,10 +3,10 @@
 #import "BookShelfCollectionViewController.h"
 #import "TimelineViewController.h"
 #import "FriendViewController.h"
-#import "OtherViewController.h"
 #import "SettingViewController.h"
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#import "SearchViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,45 +18,45 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+
     // colors: 色をカスタマイズできると良さそう
     UIColor *themeColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
     UIColor *unfocusedColor = UIColor.grayColor;
     UIColor *defaultFontColor = UIColor.whiteColor;
-    
+
     HomeViewController *homeVC = [HomeViewController new];
     FriendViewController *friendVC = [FriendViewController new];
     BookShelfCollectionViewController *bookShelfCollectionVC = [BookShelfCollectionViewController new];
-    OtherViewController *otherVC = [OtherViewController new];
+    SearchViewController *searchVC = [SearchViewController new];
     SettingViewController *settingVC = [SettingViewController new];
-    
+
     UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
-    
+
     NSDictionary *attributesNormal = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:unfocusedColor};
     [[UITabBarItem appearance] setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    
+
     NSDictionary *selectedAttributes = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:defaultFontColor};
     [[UITabBarItem appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
-    
+
     [homeVC setTitle:@"ホーム"];
     [friendVC setTitle:@"フレンド"];
     [bookShelfCollectionVC setTitle:@"本棚"];
-    [otherVC setTitle:@"検索"];
+    [searchVC setTitle:@"検索"];
     [settingVC setTitle:@"設定"];
     homeVC.tabBarItem.image = [UIImage imageNamed:@"IconHome"];
     friendVC.tabBarItem.image = [UIImage imageNamed:@"IconFriend"];
     bookShelfCollectionVC.tabBarItem.image = [UIImage imageNamed:@"IconBookshelf"];
-    otherVC.tabBarItem.image = [UIImage imageNamed:@"IconSearch"];
+    searchVC.tabBarItem.image = [UIImage imageNamed:@"IconSearch"];
     settingVC.tabBarItem.image = [UIImage imageNamed:@"IconSettings"];
-    
+
     NSArray *viewControllers = @[
         [[UINavigationController alloc] initWithRootViewController:homeVC],
         [[UINavigationController alloc] initWithRootViewController:friendVC],
         [[UINavigationController alloc] initWithRootViewController:bookShelfCollectionVC],
-        [[UINavigationController alloc] initWithRootViewController:otherVC],
+        [[UINavigationController alloc] initWithRootViewController:searchVC],
         [[UINavigationController alloc] initWithRootViewController:settingVC],
     ];
-    
+
     [UINavigationBar appearance].tintColor = defaultFontColor;
     [UINavigationBar appearance].barTintColor = themeColor;
     [[UITabBar appearance] setBarTintColor:themeColor];
@@ -66,16 +66,16 @@
         NSFontAttributeName: [UIFont fontWithName:@"HiraKakuProN-W6" size:20.0f],
     };
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
     self.tabBarController = [UITabBarController new];
     [self.tabBarController setViewControllers:viewControllers];
-    
+
     self.window.rootViewController = self.tabBarController;
-    
+
     [self.window makeKeyAndVisible];
-    
+
     [LoginViewController showLoginIfNotLoggedIn:self.tabBarController];
-    
+
     return YES;
 }
 

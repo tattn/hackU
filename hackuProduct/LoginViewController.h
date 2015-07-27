@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<UITextFieldDelegate>
 
 + (void)showLoginIfNotLoggedIn:(UIViewController*)vc;
 
