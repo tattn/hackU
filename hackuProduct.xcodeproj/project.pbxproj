@@ -47,6 +47,7 @@
 		4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */; };
 		4AC2D4C01B63AB3300F80E61 /* AddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */; };
 		4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */; };
+		4AEE8C9A1B66BD6E00865AFF /* ImprovedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */; };
 		AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,8 @@
 		4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendViewController.xib; sourceTree = "<group>"; };
 		4ADD13BC1B60B22D00A0D7B6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		4ADD13BD1B60B22D00A0D7B6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		4AEE8C981B66B99600865AFF /* ImprovedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImprovedViewController.h; sourceTree = "<group>"; };
+		4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImprovedViewController.m; sourceTree = "<group>"; };
 		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -171,6 +174,7 @@
 		17B7B9961B52CA74009A8752 /* hackuProduct */ = {
 			isa = PBXGroup;
 			children = (
+				4AEE8C971B66B88900865AFF /* helper */,
 				17B7B9F11B593BA9009A8752 /* static */,
 				17B7B99B1B52CA74009A8752 /* AppDelegate.h */,
 				17B7B99C1B52CA74009A8752 /* AppDelegate.m */,
@@ -296,6 +300,15 @@
 				174D1E5B1B666C2E007BB81C /* ProfileEditViewController.xib */,
 			);
 			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		4AEE8C971B66B88900865AFF /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				4AEE8C981B66B99600865AFF /* ImprovedViewController.h */,
+				4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 		C6225939FBED4FE41DCAD514 /* Pods */ = {
@@ -473,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AEE8C9A1B66BD6E00865AFF /* ImprovedViewController.m in Sources */,
 				175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */,
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
