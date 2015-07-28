@@ -95,10 +95,6 @@ MAKE_PARAM(dict);\
 
 #define MAKE_TOKEN_PARAM() MAKE_PARAM(@{@"token":self.accessToken})
 
-// Cast utilities
-#define INT2NS(val) [NSNumber numberWithInt:(val)]
-#define BOOL2NS(b) [NSNumber numberWithBool:(b)]
-
 
 
 // === [/users] Users API
