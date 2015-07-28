@@ -39,8 +39,7 @@
 		17B7B9EB1B570D43009A8752 /* FriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9E91B570D43009A8752 /* FriendViewController.xib */; };
 		17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */; };
 		17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */; };
-		17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9F31B593BFB009A8752 /* friendImage.png */; };
-		17B7B9F61B594322009A8752 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9F51B594322009A8752 /* book.png */; };
+		17B7B9F41B593BFB009A8752 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		4A2FE1A61B67455300D129DC /* BarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A41B67455300D129DC /* BarcodeViewController.m */; };
 		4A2FE1A71B67455300D129DC /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A51B67455300D129DC /* BarcodeViewController.xib */; };
 		4A2FE1AB1B67558800D129DC /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A91B67558800D129DC /* SearchResultViewController.m */; };
@@ -51,6 +50,7 @@
 		4A901A8B1B62A15800C8FE1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A901A8A1B62A15800C8FE1C /* Settings.bundle */; };
 		4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A901A901B62D65000C8FE1C /* LicenseViewController.m */; };
 		4AB78D231B59988D00B27BEC /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB78D221B59988D00B27BEC /* Backend.m */; };
+		4AC1031D1B67EBFA004B3E75 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1031C1B67EBFA004B3E75 /* User.m */; };
 		4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */; };
 		4AC2D4C01B63AB3300F80E61 /* AddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */; };
 		4AC2D4C51B6409AC00F80E61 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */; };
@@ -140,6 +140,8 @@
 		4A901A901B62D65000C8FE1C /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
 		4AB78D221B59988D00B27BEC /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		4AB78D241B5998A100B27BEC /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
+		4AC1031C1B67EBFA004B3E75 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		4AC1031E1B67EC03004B3E75 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4AC2D4BC1B63AB3300F80E61 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
 		4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
 		4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendViewController.xib; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		17B7B9961B52CA74009A8752 /* hackuProduct */ = {
 			isa = PBXGroup;
 			children = (
+				4AC103181B67EB80004B3E75 /* Database */,
 				4AC2D4C11B64087200F80E61 /* HomeViewController */,
 				4AEE8C971B66B88900865AFF /* helper */,
 				17B7B9F11B593BA9009A8752 /* static */,
@@ -318,6 +321,15 @@
 				4AC2D4BE1B63AB3300F80E61 /* AddFriendViewController.xib */,
 			);
 			path = FriendViewController;
+			sourceTree = "<group>";
+		};
+		4AC103181B67EB80004B3E75 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				4AC1031E1B67EC03004B3E75 /* User.h */,
+				4AC1031C1B67EBFA004B3E75 /* User.m */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		4AC2D4C11B64087200F80E61 /* HomeViewController */ = {
@@ -458,7 +470,7 @@
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
 				175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */,
 				174D1E5D1B666C2E007BB81C /* ProfileEditViewController.xib in Resources */,
-				17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */,
+				17B7B9F41B593BFB009A8752 /* (null) in Resources */,
 				4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */,
 				4A2FE1AC1B67558800D129DC /* SearchResultViewController.xib in Resources */,
 				174D1E121B660CA9007BB81C /* FriendProfileViewController.xib in Resources */,
@@ -540,6 +552,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC1031D1B67EBFA004B3E75 /* User.m in Sources */,
 				4AEE8C9A1B66BD6E00865AFF /* ImprovedViewController.m in Sources */,
 				175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */,
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
@@ -679,12 +692,13 @@
 			baseConfigurationReference = 42D7E9A1590D7C82A85E7BB1 /* Pods-hackuProduct.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazusa Sakamoto (7UUL3DK9Y3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = hackuProduct/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "89c71bc7-d343-4958-8bed-ddfe51a08a53";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -693,12 +707,13 @@
 			baseConfigurationReference = 1838465C38D31AE895EAA4BD /* Pods-hackuProduct.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazusa Sakamoto (7UUL3DK9Y3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = hackuProduct/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "89c71bc7-d343-4958-8bed-ddfe51a08a53";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

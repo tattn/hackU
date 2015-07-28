@@ -6,10 +6,12 @@
 #import "AddFriendViewController.h"
 #import <RMUniversalAlert.h>
 #import "Backend.h"
+#import "User.h"
 
 @interface FriendViewController ()
 
 @property NSMutableArray* friends;
+@property int userId;
 
 @end
 
@@ -37,8 +39,15 @@
                                                            target:nil
                                                            action:nil];
     self.navigationItem.backBarButtonItem = btn;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    [self getAllFriends];
+    if (_userId != User.shared.userId) {
+        [self getAllFriends];
+        _userId = User.shared.userId;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
