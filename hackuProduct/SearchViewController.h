@@ -1,7 +1,7 @@
 
-#import <UIKit/UIKit.h>
+#import "ImprovedViewController.h"
 
-@interface SearchViewController : UIViewController<UISearchBarDelegate>
+@interface SearchViewController : ImprovedViewController<UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *barcodeButton;
