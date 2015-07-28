@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "LicenseViewController.h"
 #import "ProfileEditViewController.h"
+#import "AccountEditViewController.h"
 #import "Backend.h"
 
 @interface SettingViewController ()
@@ -155,6 +156,14 @@
         profileEditVC.hidesBottomBarWhenPushed = YES;
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:profileEditVC];
         profileEditVC.title = @"プロフィール編集";
+        [self presentViewController:nvc animated:YES completion:nil];
+    }
+    
+    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual:@"アカウント情報"]) {
+        AccountEditViewController *accountEditVC = [AccountEditViewController new];
+        accountEditVC.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:accountEditVC];
+        accountEditVC.title = @"アカウント編集";
         [self presentViewController:nvc animated:YES completion:nil];
     }
     

@@ -21,6 +21,7 @@
     self.profileImageButton.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImageButton.layer.borderWidth = 5;
     
+    
     self.name.text = @"my name"; //（未実装）自分の名前をあらかじめ設置
     self.word.text = @"進撃の巨人読みたい"; //（未実装）一言の情報をあらかじめ設置
     
