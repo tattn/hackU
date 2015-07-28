@@ -165,17 +165,20 @@
                 <constraint firstItem="h4v-nA-ACB" firstAttribute="centerX" secondItem="ux3-Rf-NUp" secondAttribute="centerX" id="D74-qX-5ee"/>
                 <constraint firstAttribute="bottom" secondItem="4Hp-y4-uP5" secondAttribute="bottom" constant="25" id="Ejz-ZU-fU5"/>
                 <constraint firstItem="j5C-ty-Lhb" firstAttribute="trailing" secondItem="qcz-ir-OsX" secondAttribute="trailing" id="FEr-OV-o2q"/>
+                <constraint firstItem="TUM-Gn-X5e" firstAttribute="width" secondItem="0U5-eH-fAQ" secondAttribute="width" id="FTP-72-z0d"/>
                 <constraint firstItem="qcz-ir-OsX" firstAttribute="leading" secondItem="j5C-ty-Lhb" secondAttribute="leading" id="GHW-TT-bzL"/>
                 <constraint firstItem="PTT-bh-n1p" firstAttribute="width" secondItem="GSC-tP-JdH" secondAttribute="width" id="JSb-Dr-1s9"/>
                 <constraint firstItem="qcz-ir-OsX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Jhk-II-ezF"/>
                 <constraint firstItem="j5C-ty-Lhb" firstAttribute="top" secondItem="qcz-ir-OsX" secondAttribute="bottom" constant="8" symbolic="YES" id="LXK-rG-ed2"/>
                 <constraint firstItem="UyV-w2-HJn" firstAttribute="centerX" secondItem="j5C-ty-Lhb" secondAttribute="centerX" id="Mgo-r7-DiG"/>
                 <constraint firstItem="qcz-ir-OsX" firstAttribute="leading" secondItem="h4v-nA-ACB" secondAttribute="leading" id="Vya-tO-JxB"/>
+                <constraint firstItem="TUM-Gn-X5e" firstAttribute="width" secondItem="tr4-OV-V1U" secondAttribute="width" id="ZB7-dK-Pi6"/>
                 <constraint firstItem="h4v-nA-ACB" firstAttribute="trailing" secondItem="qcz-ir-OsX" secondAttribute="trailing" id="ZVk-BS-s4W"/>
                 <constraint firstItem="PTT-bh-n1p" firstAttribute="width" secondItem="ZCx-x6-USh" secondAttribute="width" id="fxe-9M-wMk"/>
                 <constraint firstItem="PTT-bh-n1p" firstAttribute="width" secondItem="2r1-T5-Y5D" secondAttribute="width" id="gu3-KF-4vL"/>
                 <constraint firstItem="UyV-w2-HJn" firstAttribute="top" secondItem="j5C-ty-Lhb" secondAttribute="bottom" constant="16" id="hEJ-Tb-WLq"/>
                 <constraint firstItem="4Hp-y4-uP5" firstAttribute="top" secondItem="UyV-w2-HJn" secondAttribute="bottom" constant="10" id="vty-Ry-SNB"/>
+                <constraint firstItem="TUM-Gn-X5e" firstAttribute="width" secondItem="GqA-bN-1HO" secondAttribute="width" id="x5z-9g-0Qe"/>
             </constraints>
         </view>
     </objects>
