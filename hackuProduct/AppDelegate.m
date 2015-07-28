@@ -35,7 +35,7 @@
     NSDictionary *attributesNormal = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:unfocusedColor};
     [[UITabBarItem appearance] setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
 
-    NSDictionary *selectedAttributes = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:defaultFontColor};
+    NSDictionary *selectedAttributes = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:themeColor};
     [[UITabBarItem appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
 
     [homeVC setTitle:@"ホーム"];
@@ -59,8 +59,9 @@
 
     [UINavigationBar appearance].tintColor = defaultFontColor;
     [UINavigationBar appearance].barTintColor = themeColor;
-    [[UITabBar appearance] setBarTintColor:themeColor];
-    [[UITabBar appearance] setTintColor:defaultFontColor];
+//    [[UITabBar appearance] setBarTintColor:themeColor];
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setTintColor:themeColor];
     [UINavigationBar appearance].titleTextAttributes = @{
         NSForegroundColorAttributeName: defaultFontColor,
         NSFontAttributeName: [UIFont fontWithName:@"HiraKakuProN-W6" size:20.0f],
