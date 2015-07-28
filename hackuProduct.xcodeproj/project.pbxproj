@@ -39,8 +39,7 @@
 		17B7B9EB1B570D43009A8752 /* FriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9E91B570D43009A8752 /* FriendViewController.xib */; };
 		17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */; };
 		17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */; };
-		17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9F31B593BFB009A8752 /* friendImage.png */; };
-		17B7B9F61B594322009A8752 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9F51B594322009A8752 /* book.png */; };
+		17B7B9F41B593BFB009A8752 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		4A2FE1A61B67455300D129DC /* BarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A41B67455300D129DC /* BarcodeViewController.m */; };
 		4A2FE1A71B67455300D129DC /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A51B67455300D129DC /* BarcodeViewController.xib */; };
 		4A2FE1AB1B67558800D129DC /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A91B67558800D129DC /* SearchResultViewController.m */; };
@@ -458,7 +457,7 @@
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
 				175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */,
 				174D1E5D1B666C2E007BB81C /* ProfileEditViewController.xib in Resources */,
-				17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */,
+				17B7B9F41B593BFB009A8752 /* (null) in Resources */,
 				4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */,
 				4A2FE1AC1B67558800D129DC /* SearchResultViewController.xib in Resources */,
 				174D1E121B660CA9007BB81C /* FriendProfileViewController.xib in Resources */,
