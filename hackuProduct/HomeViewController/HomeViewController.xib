@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-JP-GEU">
-                    <rect key="frame" x="207.5" y="158" width="185" height="29"/>
+                    <rect key="frame" x="208" y="158" width="185" height="29"/>
                     <segments>
                         <segment title="タイムライン"/>
                         <segment title="通知"/>
@@ -44,8 +44,8 @@
                         </mask>
                     </variation>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-Tk-Aoe">
-                    <rect key="frame" x="65" y="41" width="470" height="74"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-Tk-Aoe">
+                    <rect key="frame" x="65" y="39" width="470" height="111"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="74" id="IwK-68-4WF"/>
@@ -67,6 +67,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LoginLogo" width="328" height="48"/>
+        <image name="appLogo" width="361" height="311"/>
     </resources>
 </document>

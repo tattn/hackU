@@ -1,12 +1,6 @@
-//
-//  LoginViewController.m
-//  hackuProduct
-//
-//  Created by Tanaka Tatsuya on 2015/07/22.
-//  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "LoginViewController.h"
 #import "Backend.h"
 
@@ -39,6 +33,11 @@ typedef NS_ENUM (NSUInteger, kMode) {
     self.passLabel.delegate = self;
     self.lastnameLabel.delegate = self;
     self.firstnameLabel.delegate = self;
+    
+    self.loginButton.layer.cornerRadius = 8;
+    self.loginButton.clipsToBounds = YES;
+    self.switchButton.layer.cornerRadius = 8;
+    self.switchButton.clipsToBounds = YES;
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSingleTap:)];
     [self.view addGestureRecognizer:gesture];
