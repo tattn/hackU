@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friendImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xwr-Y9-GlT">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friendImage" translatesAutoresizingMaskIntoConstraints="NO" id="Xwr-Y9-GlT">
                         <rect key="frame" x="8" y="5" width="50" height="50"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
@@ -32,6 +32,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="friendImage.png" width="225" height="225"/>
+        <image name="friendImage" width="211" height="211"/>
     </resources>
 </document>

@@ -34,7 +34,7 @@
     _sections = @[@"ACCOUNT", @"BASIC", @"HELP", @"ABOUT"];
 
     _menu = @[
-        @[@"プロフィール", @"アカウント情報"],
+        @[@"プロフィール", @"アカウント"],
         @[@"通知", @"連携", @"ブロックリスト"],
         @[@"よくある質問", @"フィードバック"],
         @[@"Version", @"利用規約", @"プライバシーポリシー", @"ライセンス"],
@@ -154,19 +154,19 @@
         ProfileEditViewController *profileEditVC = [ProfileEditViewController new];
         profileEditVC.hidesBottomBarWhenPushed = YES;
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:profileEditVC];
-        profileEditVC.title = @"プロフィール編集";
+        profileEditVC.title = @"プロフィール";
         [self presentViewController:nvc animated:YES completion:nil];
     }
     
-    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual:@"アカウント情報"]) {
+    else if ([menuItem isEqual:@"アカウント"]) {
         AccountEditViewController *accountEditVC = [AccountEditViewController new];
         accountEditVC.hidesBottomBarWhenPushed = YES;
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:accountEditVC];
-        accountEditVC.title = @"アカウント編集";
+        accountEditVC.title = @"アカウント";
         [self presentViewController:nvc animated:YES completion:nil];
     }
     
-    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"ライセンス"]) { //FIXME: use enum?
+    else if ([menuItem isEqual: @"ライセンス"]) { //FIXME: use enum?
         LicenseViewController *vc = [LicenseViewController new];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
