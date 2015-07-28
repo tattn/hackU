@@ -22,7 +22,7 @@ static Backend* instance = nil;
 + (Backend*)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *url = [[[NSProcessInfo processInfo]environment]objectForKey:@"BACKEND_URL"];
+        NSString *url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"BACKEND_URL"];
         instance = [[Backend manager] initWithBaseURL:[[NSURL alloc] initWithString:url]];
     });
     return instance;

@@ -386,7 +386,7 @@
 				TargetAttributes = {
 					17B7B9931B52CA74009A8752 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 7UUL3DK9Y3;
+						DevelopmentTeam = X3Q8DP844F;
 					};
 					17B7B9AC1B52CA75009A8752 = {
 						CreatedOnToolsVersion = 6.2;
@@ -506,7 +506,6 @@
 				175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */,
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
-				17B7B9E31B53D42D009A8752 /* OtherViewController.m in Sources */,
 				4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */,
 				174D1E5C1B666C2E007BB81C /* ProfileEditViewController.m in Sources */,
 				174D1E0C1B65DD4E007BB81C /* MyBookDetailViewController.m in Sources */,
