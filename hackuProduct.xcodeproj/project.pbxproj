@@ -39,6 +39,13 @@
 		17B7B9EB1B570D43009A8752 /* FriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9E91B570D43009A8752 /* FriendViewController.xib */; };
 		17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */; };
 		17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */; };
+		17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9F31B593BFB009A8752 /* friendImage.png */; };
+		17B7B9F61B594322009A8752 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9F51B594322009A8752 /* book.png */; };
+		4A2FE1A61B67455300D129DC /* BarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A41B67455300D129DC /* BarcodeViewController.m */; };
+		4A2FE1A71B67455300D129DC /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A51B67455300D129DC /* BarcodeViewController.xib */; };
+		4A2FE1AB1B67558800D129DC /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A91B67558800D129DC /* SearchResultViewController.m */; };
+		4A2FE1AC1B67558800D129DC /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */; };
+		4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */; };
 		4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C63851B5F746800AA233C /* LoginViewController.m */; };
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4A901A8B1B62A15800C8FE1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A901A8A1B62A15800C8FE1C /* Settings.bundle */; };
@@ -118,6 +125,13 @@
 		17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 		1838465C38D31AE895EAA4BD /* Pods-hackuProduct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.release.xcconfig"; sourceTree = "<group>"; };
 		42D7E9A1590D7C82A85E7BB1 /* Pods-hackuProduct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.debug.xcconfig"; sourceTree = "<group>"; };
+		4A2FE1A31B67455300D129DC /* BarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeViewController.h; sourceTree = "<group>"; };
+		4A2FE1A41B67455300D129DC /* BarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeViewController.m; sourceTree = "<group>"; };
+		4A2FE1A51B67455300D129DC /* BarcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarcodeViewController.xib; sourceTree = "<group>"; };
+		4A2FE1A81B67558800D129DC /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		4A2FE1A91B67558800D129DC /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
+		4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		4A5C63851B5F746800AA233C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4A5C63871B5F748200AA233C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4A5C63881B5F752C00AA233C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -217,6 +231,13 @@
 				4A5C63881B5F752C00AA233C /* LoginViewController.xib */,
 				4ADD13BB1B60B22D00A0D7B6 /* SettingViewController */,
 				4A901A8A1B62A15800C8FE1C /* Settings.bundle */,
+				4A2FE1A31B67455300D129DC /* BarcodeViewController.h */,
+				4A2FE1A41B67455300D129DC /* BarcodeViewController.m */,
+				4A2FE1A51B67455300D129DC /* BarcodeViewController.xib */,
+				4A2FE1A81B67558800D129DC /* SearchResultViewController.h */,
+				4A2FE1A91B67558800D129DC /* SearchResultViewController.m */,
+				4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */,
+				4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */,
 			);
 			path = hackuProduct;
 			sourceTree = "<group>";
@@ -437,6 +458,9 @@
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
 				175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */,
 				174D1E5D1B666C2E007BB81C /* ProfileEditViewController.xib in Resources */,
+				17B7B9F41B593BFB009A8752 /* friendImage.png in Resources */,
+				4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */,
+				4A2FE1AC1B67558800D129DC /* SearchResultViewController.xib in Resources */,
 				174D1E121B660CA9007BB81C /* FriendProfileViewController.xib in Resources */,
 				17B7B9A51B52CA74009A8752 /* Images.xcassets in Resources */,
 				17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */,
@@ -449,6 +473,7 @@
 				4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */,
 				17B7B9DA1B53D3EF009A8752 /* TimelineViewController.xib in Resources */,
 				174D1E0D1B65DD4E007BB81C /* MyBookDetailViewController.xib in Resources */,
+				4A2FE1A71B67455300D129DC /* BarcodeViewController.xib in Resources */,
 				17B7B9D51B53D2E8009A8752 /* BookShelfCollectionViewController.xib in Resources */,
 				17B7B9D01B53D16F009A8752 /* BookShelfCell.xib in Resources */,
 				4AC2D4C61B6409AC00F80E61 /* HomeViewController.xib in Resources */,
@@ -529,8 +554,10 @@
 				4AC2D4C51B6409AC00F80E61 /* HomeViewController.m in Sources */,
 				17B7B99A1B52CA74009A8752 /* main.m in Sources */,
 				175EC6721B63656D00752BE6 /* FriendBookDetailViewController.m in Sources */,
+				4A2FE1AB1B67558800D129DC /* SearchResultViewController.m in Sources */,
 				174D1E111B660CA9007BB81C /* FriendProfileViewController.m in Sources */,
 				17B7B9EA1B570D43009A8752 /* FriendViewController.m in Sources */,
+				4A2FE1A61B67455300D129DC /* BarcodeViewController.m in Sources */,
 				4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */,
 				174D1E611B675BF1007BB81C /* AccountEditViewController.m in Sources */,
 				175EC6661B5A9FB900752BE6 /* FriendBookShelfCell.m in Sources */,

@@ -23,6 +23,13 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 #define DEFAULT_PARAM  option:(NSDictionary*)option callback:(CompletionBlock)callback
 #define DEFAULT_PARAM2        (NSDictionary*)option callback:(CompletionBlock)callback
 
+// Cast utilities
+#define INT2NS(val) [NSNumber numberWithInt:(val)]
+#define LONG2NS(val) [NSNumber numberWithLong:(val)]
+#define BOOL2NS(b) [NSNumber numberWithBool:(b)]
+#define LONGLONG2NS(val) [NSNumber numberWithLongLong:(val)]
+
+
 // === [/users] Users API
 - (void)addUser:(NSString*)email password:(NSString*)password firstname:(NSString*)firstname lastname:(NSString*)lastname DEFAULT_PARAM;
 - (void)getUser:(int)userId DEFAULT_PARAM;
