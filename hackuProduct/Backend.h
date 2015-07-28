@@ -25,6 +25,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // Cast utilities
 #define INT2NS(val) [NSNumber numberWithInt:(val)]
+#define LONG2NS(val) [NSNumber numberWithLong:(val)]
 #define BOOL2NS(b) [NSNumber numberWithBool:(b)]
 #define LONGLONG2NS(val) [NSNumber numberWithLongLong:(val)]
 
@@ -61,9 +62,9 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 // === [/bookshelves] end
 
 // === [/my/borrow] Borrow API
-- (void)getBorrow:(int)userId DEFAULT_PARAM;
-- (void)addBorrow:(int)userId bookId:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM;
-- (void)deleteBorrow:(int)userId bookId:(int)bookId DEFAULT_PARAM __attribute__ ((deprecated));
+- (void)getBorrow: DEFAULT_PARAM2;
+- (void)addBorrow:(int)bookId lenderId:(int)lenderId DEFAULT_PARAM;
+- (void)deleteBorrow:(int)bookId DEFAULT_PARAM __attribute__ ((deprecated));
 // === [/my/borrow] end
 
 // === [/my/lend] Lend API
@@ -72,9 +73,9 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 // === [/my/lend] end
 
 // === [/my/blacklist] Blacklist API
-- (void)getBlacklist:(int)userId DEFAULT_PARAM;
-- (void)addBlacklist:(int)userId DEFAULT_PARAM;
-- (void)deleteBlacklist:(int)userId bookId:(int)bookId DEFAULT_PARAM;
+- (void)getBlacklist: DEFAULT_PARAM2;
+- (void)addBlacklist:(long)userId DEFAULT_PARAM;
+- (void)deleteBlacklist:(long)userId DEFAULT_PARAM;
 // === [/my/blacklist] end
 
 // === [/users/:user_id/request] Request API
@@ -87,7 +88,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 // === [/users/:user_id/frined] Friend API
 - (void)getFriend: DEFAULT_PARAM2;
 - (void)addFriend:(int)friendId DEFAULT_PARAM;
-- (void)deleteFriend:(int)friendId DEFAULT_PARAM;
+- (void)deleteFriend:(long)friendId DEFAULT_PARAM;
 - (void)getNewFriend: DEFAULT_PARAM2;
 - (void)allowNewFriend:(int)friendId DEFAULT_PARAM;
 - (void)rejectNewFriend:(int)friendId DEFAULT_PARAM;

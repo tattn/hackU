@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "LicenseViewController.h"
+#import "BlocklistViewController.h"
 #import "ProfileEditViewController.h"
 #import "Backend.h"
 
@@ -28,16 +29,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     _sections = @[@"ACCOUNT", @"BASIC", @"HELP", @"ABOUT"];
-    
+
     _menu = @[
         @[@"プロフィール", @"アカウント情報"],
-        @[@"通知", @"連携"],
+        @[@"通知", @"連携", @"ブロックリスト"],
         @[@"よくある質問", @"フィードバック"],
         @[@"Version", @"利用規約", @"プライバシーポリシー", @"ライセンス"],
     ];
-    
+
     self.title = @"設定";
     self.view.backgroundColor = [UIColor whiteColor];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
@@ -47,7 +48,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [scrollView addSubview:_tableView];
-    
+
     UIColor *themeColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
     _signoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _signoutButton.backgroundColor = themeColor;
@@ -58,7 +59,7 @@
                action:@selector(signout:)
      forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:_signoutButton];
-    
+
     [self.view addSubview:scrollView];
 }
 
@@ -69,7 +70,7 @@
         CGRect frame = self.view.frame;
         frame.size.height = _tableView.contentSize.height + _tableView.sectionHeaderHeight;
         _tableView.frame = frame;
-        
+
         _signoutButton.frame = CGRectMake(20, frame.size.height + 10, frame.size.width - 40, 40);
         scrollView.contentSize = CGSizeMake(frame.size.width, frame.size.height + 50);
     });
@@ -122,16 +123,16 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *CellId = @"SettingCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellId];
     }
-    
+
     cell.textLabel.text = _menu[indexPath.section][indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
-    
+
     if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"Version"]) { //FIXME: use enum?
         // Version
         cell.detailTextLabel.text = @"1.0.0";
@@ -139,41 +140,31 @@
     else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     return cell;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-//    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual:@"プロフィール"]) {
+
+    NSString *menuItem = _menu[indexPath.section][indexPath.row];
+    if ([menuItem isEqual: @"プロフィール"]) { //FIXME: use enum?
         ProfileEditViewController *profileEditVC = [ProfileEditViewController new];
         profileEditVC.hidesBottomBarWhenPushed = YES;
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:profileEditVC];
         profileEditVC.title = @"プロフィール編集";
         [self presentViewController:nvc animated:YES completion:nil];
     }
-    
-    if ([(NSString*)(_menu[indexPath.section][indexPath.row]) isEqual: @"ライセンス"]) { //FIXME: use enum?
+    else if ([menuItem isEqual: @"ライセンス"]) {
         LicenseViewController *vc = [LicenseViewController new];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    else if ([menuItem isEqual: @"ブロックリスト"]) {
+        BlocklistViewController *vc = [BlocklistViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

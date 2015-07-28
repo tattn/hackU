@@ -67,16 +67,16 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 #define BOOKSHELF_URL @"bookshelves"
 #define BOOKSHELFID_URL(userId) MAKE_URL(BOOKSHELF_URL "/%d", (userId))
 #define BOOKSHELFIDID_URL(userId, bookId) MAKE_URL(BOOKSHELF_URL "/%d/%d", (userId), (bookId))
-#define BORROW_URL @"/my/borrow"
+#define BORROW_URL @"my/borrow"
 #define BORROWID_URL(bookId) MAKE_URL(BORROW_URL "/%d", (bookId))
-#define LEND_URL @"/my/lend"
+#define LEND_URL @"my/lend"
 #define LENDID_URL(bookId) MAKE_URL(LEND_URL "/%d", (bookId))
-#define BLACKLIST_URL @"/my/blacklist"
-#define BLACKLISTID_URL(userId) MAKE_URL(BLACKLIST_URL "/%d", (userId))
+#define BLACKLIST_URL @"my/blacklist"
+#define BLACKLISTID_URL(userId) MAKE_URL(BLACKLIST_URL "/%ld", (userId))
 #define REQUEST_URL(userId) MAKE_URL(USER_URL "/%d/request", (userId))
 #define REQUESTID_URL(userId, bookId) MAKE_URL(USER_URL "/%d/request/%d", (userId), (bookId))
 #define FRIEND_URL(userId) MAKE_URL(USER_URL "/%d/friend", (userId))
-#define FRIENDID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/%d", (userId), (friendId))
+#define FRIENDID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/%ld", (userId), (friendId))
 #define FRIEND_NEW_URL(userId) MAKE_URL(USER_URL "/%d/friend/new", (userId))
 #define FRIEND_NEWID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/new/%d", (userId), (friendId))
 
@@ -243,12 +243,12 @@ MAKE_PARAM(dict);\
     [self GET:BLACKLIST_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addBlacklist:(int)userId DEFAULT_PARAM {
-    MAKE_PARAM_WITH_TOKEN((@{@"user_id":INT2NS(userId)}));
+- (void)addBlacklist:(long)userId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"user_id":LONG2NS(userId)}));
     [self POST:BLACKLIST_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)deleteBlacklist:(int)userId DEFAULT_PARAM {
+- (void)deleteBlacklist:(long)userId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
     [self DELETE:BLACKLISTID_URL(userId) parameters:param DEFAULT_CALLBACK];
 }
@@ -291,7 +291,7 @@ MAKE_PARAM(dict);\
     [self POST:FRIEND_URL(_userId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)deleteFriend:(int)friendId DEFAULT_PARAM {
+- (void)deleteFriend:(long)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
     [self DELETE:FRIENDID_URL(_userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
