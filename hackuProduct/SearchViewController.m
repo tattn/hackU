@@ -1,6 +1,8 @@
 
 #import "SearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BarcodeViewController.h"
+#import "SearchResultViewController.h"
 
 @interface SearchViewController ()
 
@@ -29,19 +31,29 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)keywordButton:(UIButton *)sender {
+    [self showSearchResult:self.searchBar.text];
 }
 
 - (IBAction)barcodeButton:(UIButton *)sender {
+    BarcodeViewController *barcodeVC = [BarcodeViewController new];
+    barcodeVC.hidesBottomBarWhenPushed = YES;
+    barcodeVC.delegate = self;
+    [self presentViewController:barcodeVC animated:YES completion:nil];
 }
+
+- (void)detectedBarcode:(NSString *)code {
+    [self showSearchResult:code];
+}
+
+- (void)showSearchResult:(NSString*)query {
+    self.searchBar.text = query;
+    
+    SearchResultViewController *searchResultVC = [SearchResultViewController new];
+    searchResultVC.searchQuery = query;
+    
+    [self.navigationController pushViewController:searchResultVC animated: true];
+}
+
 @end
