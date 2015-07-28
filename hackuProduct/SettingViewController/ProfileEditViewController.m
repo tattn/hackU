@@ -1,5 +1,7 @@
 
 #import "ProfileEditViewController.h"
+#import "User.h"
+#import "Backend.h"
 
 @interface ProfileEditViewController ()
 
@@ -22,8 +24,9 @@
     self.profileImageButton.layer.borderWidth = 5;
     
     
-    self.name.text = @"my name"; //（未実装）自分の名前をあらかじめ設置
-    self.word.text = @"進撃の巨人読みたい"; //（未実装）一言の情報をあらかじめ設置
+    self.firstname.text = User.shared.firstname;
+    self.lastname.text = User.shared.lastname;
+    self.word.text = @"進撃の巨人読みたい"; //TODO:（未実装）一言の情報をあらかじめ設置
     
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc]
                               initWithTitle:@"キャンセル"
@@ -46,8 +49,13 @@
 }
 
 - (void)saveProfileEditView {
-    //TODO: 更新情報の保存は未実装
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //TODO: コメントと画像の保存は未実装
+    [Backend.shared updateUser:User.shared.userId option:@{
+        @"firstname": _firstname.text,
+        @"lastname": _lastname.text,
+    } callback:^(id responseObject, NSError *error) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (IBAction)imageChange:(id)sender {

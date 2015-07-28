@@ -55,6 +55,15 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
     callback(nil, error);\
 }
 
+#define TRIGGER_CALLBACK(stmt) \
+success:^(NSURLSessionDataTask *task, id responseObject) {\
+    stmt;\
+    callback(responseObject, nil);\
+}\
+failure:^(NSURLSessionDataTask *task, NSError *error) {\
+    callback(nil, error);\
+}
+
 // URL builders
 #define MAKE_URL(fmt, ...) [NSString stringWithFormat:(fmt), __VA_ARGS__]
 #define USER_URL @"users"
@@ -113,7 +122,9 @@ MAKE_PARAM(dict);\
 }
 
 - (void)updateUser:(int)userId DEFAULT_PARAM {
-    [self PUT:USERID_URL(userId) parameters:option DEFAULT_CALLBACK];
+    [self PUT:USERID_URL(userId) parameters:option TRIGGER_CALLBACK({
+        [User.shared update:option];
+    })];
 }
 
 - (void)deleteUser:(int)userId DEFAULT_PARAM {
@@ -126,30 +137,19 @@ MAKE_PARAM(dict);\
 
 - (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM {
     MAKE_PARAM((@{@"email":email, @"password":password}));
-    [self POST:AUTH_LOGIN_URL parameters:param
-       success:^(NSURLSessionDataTask *task, id responseObject) {
-           _accessToken = responseObject[@"token"];
-           User.shared.userId = ((NSString*)responseObject[@"userId"]).intValue;
-           callback(responseObject, nil);
-       }
-       failure:^(NSURLSessionDataTask *task, NSError *error) {
-           callback(nil, error);
-       }
-    ];
+    [self POST:AUTH_LOGIN_URL parameters:param TRIGGER_CALLBACK({
+        _accessToken = responseObject[@"token"];
+        NSDictionary* user = responseObject[@"users"];
+        [User.shared update:user];
+    })];
 }
 
 - (void)logout: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
-    [self POST:AUTH_LOGOUT_URL parameters:param
-       success:^(NSURLSessionDataTask *task, id responseObject) {
-           _accessToken = nil;
-           User.shared.userId = -1;
-           callback(responseObject, nil);
-       }
-       failure:^(NSURLSessionDataTask *task, NSError *error) {
-           callback(nil, error);
-       }
-    ];
+    [self POST:AUTH_LOGOUT_URL parameters:param TRIGGER_CALLBACK({
+        _accessToken = nil;
+        [User.shared reset];
+    })];
 }
 
 // === [/auth] end

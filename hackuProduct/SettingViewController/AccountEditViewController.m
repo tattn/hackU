@@ -1,5 +1,8 @@
 
 #import "AccountEditViewController.h"
+#import "Backend.h"
+#import "User.h"
+#import <RMUniversalAlert.h>
 
 @interface AccountEditViewController ()
 
@@ -24,10 +27,7 @@
                                    action:@selector(saveAccountEditView)];
     self.navigationItem.rightBarButtonItems = @[saveButton];
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *email = [userDefaults objectForKey:@"LoginEmail"];
-    self.emailEdit.text = email;
-    
+    self.emailEdit.text = User.shared.email;
 }
 
 - (void)dismissAccountEditView {
@@ -35,9 +35,29 @@
 }
 
 - (void)saveAccountEditView {
-    //変更情報保存未実装
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //FIXME: 正確なバリデーションを行う
+    if (_editPassword.text != _editPasswordConfirm.text) {
+        [RMUniversalAlert showAlertInViewController:self
+                                          withTitle:@"エラー"
+                                            message:@"パスワードと確認用パスワードが異なります"
+                                  cancelButtonTitle:nil
+                             destructiveButtonTitle:@"OK"
+                                  otherButtonTitles:@[]
+                                           tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
+                                           }];
+        return;
+    }
     
+    //TODO: パスワードの更新を行う
+    [Backend.shared updateUser:User.shared.userId option:@{
+        @"email": _emailEdit.text,
+    } callback:^(id responseObject, NSError *error) {
+        if (error) {
+        }
+        else {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,7 +27,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [super viewDidLoad];
     
     Backend *backend = Backend.shared;
-    [backend searchBook:@{@"title":@"ワンピース"} callback:^(id json, NSError *error) {
+    [backend searchBook:@{@"title":@"ワンピース", @"amazon":@""} callback:^(id json, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }

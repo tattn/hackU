@@ -42,4 +42,16 @@ static User* instance = nil;
     return self;
 }
 
+- (void)update:(NSDictionary*)user {
+    _userId = ((NSString*)user[@"userId"]).intValue;
+    _email = user[@"email"];
+    _firstname = user[@"firstname"];
+    _lastname = user[@"lastname"];
+    _school = user[@"school"];
+}
+
+- (void)reset {
+    _userId = -1;
+}
+
 @end

@@ -14,6 +14,13 @@
 + (instancetype)shared;
 
 @property int userId;
+@property NSString* email;
+@property NSString* firstname;
+@property NSString* lastname;
+@property NSString* school;
+
+- (void)update:(NSDictionary*)user;
+- (void)reset;
 
 @end
 

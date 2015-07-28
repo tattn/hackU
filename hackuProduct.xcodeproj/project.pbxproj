@@ -153,7 +153,7 @@
 		4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewCell.xib; sourceTree = "<group>"; };
 		4AEE8C901B65CAAC00865AFF /* BlocklistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocklistViewController.h; sourceTree = "<group>"; };
 		4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocklistViewController.m; sourceTree = "<group>"; };
-		4AEE8C951B66AA4700865AFF /* Setting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Setting.xib; sourceTree = "<group>"; };
+		4AEE8C951B66AA4700865AFF /* BlocklistCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlocklistCell.xib; sourceTree = "<group>"; };
 		4AEE8C981B66B99600865AFF /* ImprovedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImprovedViewController.h; sourceTree = "<group>"; };
 		4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImprovedViewController.m; sourceTree = "<group>"; };
 		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,7 +352,7 @@
 				4A901A901B62D65000C8FE1C /* LicenseViewController.m */,
 				4AEE8C901B65CAAC00865AFF /* BlocklistViewController.h */,
 				4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */,
-				4AEE8C951B66AA4700865AFF /* Setting.xib */,
+				4AEE8C951B66AA4700865AFF /* BlocklistCell.xib */,
 				174D1E591B666C2E007BB81C /* ProfileEditViewController.h */,
 				174D1E5A1B666C2E007BB81C /* ProfileEditViewController.m */,
 				174D1E5B1B666C2E007BB81C /* ProfileEditViewController.xib */,

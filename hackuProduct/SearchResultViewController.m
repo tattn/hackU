@@ -47,7 +47,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)searchBook:(NSString*)query {
-    [Backend.shared searchBook:@{@"title":query} callback:^(id responseObject, NSError *error) {
+    [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - searchBook: %@", error);
         }
@@ -56,6 +56,11 @@ static NSString* SearchResultCellId = @"SearchResultCell";
             [_tableView reloadData];
         }
     }];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.view endEditing:YES];
+    [self searchBook: _searchBar.text];
 }
 
 #pragma mark - Table view data source

@@ -43,6 +43,11 @@
     [self presentViewController:barcodeVC animated:YES completion:nil];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.view endEditing:YES];
+    [self showSearchResult:self.searchBar.text];
+}
+
 - (void)detectedBarcode:(NSString *)code {
     [self showSearchResult:code];
 }
