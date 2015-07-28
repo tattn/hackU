@@ -9,9 +9,9 @@
 #ifndef hackuProduct_LoginViewController_h
 #define hackuProduct_LoginViewController_h
 
-#import <UIKit/UIKit.h>
+#import "ImprovedViewController.h"
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate>
+@interface LoginViewController : ImprovedViewController<UITextFieldDelegate>
 
 + (void)showLoginIfNotLoggedIn:(UIViewController*)vc;
 
