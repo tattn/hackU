@@ -30,7 +30,7 @@
     SearchViewController *searchVC = [SearchViewController new];
     SettingViewController *settingVC = [SettingViewController new];
 
-    UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
+    UIFont *tabFont = [UIFont fontWithName:@"HiraKakuProN-W6" size:11.0f];
 
     NSDictionary *attributesNormal = @{NSFontAttributeName:tabFont, NSForegroundColorAttributeName:unfocusedColor};
     [[UITabBarItem appearance] setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
