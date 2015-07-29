@@ -11,11 +11,10 @@
 #import "BlocklistViewController.h"
 #import "ProfileEditViewController.h"
 #import "AccountEditViewController.h"
+#import "LoginViewController.h"
 #import "Backend.h"
 
 @interface SettingViewController ()
-
-//@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property UITableView *tableView;
 @property UIButton *signoutButton;
@@ -81,7 +80,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)signout:(UIButton *)buttona {
+- (void)signout:(UIButton *)button {
     Backend *backend = Backend.shared;
     [backend logout: @{} callback:^(id responseObject, NSError *error) {
         if (error) {
@@ -89,6 +88,7 @@
             NSLog(@"Logout error: %@", error);
         }
         else {
+            [LoginViewController showLoginIfNotLoggedIn:self];
         }
     }];
 }

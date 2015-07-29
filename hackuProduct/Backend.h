@@ -30,6 +30,8 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 #define LONGLONG2NS(val) [NSNumber numberWithLongLong:(val)]
 
 
+- (BOOL)isLoggedIn;
+
 // === [/users] Users API
 - (void)addUser:(NSString*)email password:(NSString*)password firstname:(NSString*)firstname lastname:(NSString*)lastname DEFAULT_PARAM;
 - (void)getUser:(int)userId DEFAULT_PARAM;
