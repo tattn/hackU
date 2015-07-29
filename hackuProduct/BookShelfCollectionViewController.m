@@ -6,6 +6,7 @@
 #import "MyBookDetailViewController.h"
 #import "User.h"
 #import "UIImageViewHelper.h"
+#import "SearchViewController.h"
 
 @interface BookShelfCollectionViewController ()
 
@@ -50,8 +51,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 }
 
 - (void)didTapAddBook:(id)selector {
-//    AddFriendViewController *vc = [AddFriendViewController new];
-//    [self.navigationController pushViewController:vc animated: true];
+    [SearchViewController showForAddingBookToBookshelf:self.navigationController];
 }
 
 - (void)getBookshelf {

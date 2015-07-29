@@ -43,6 +43,8 @@
 		4A2FE1AB1B67558800D129DC /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FE1A91B67558800D129DC /* SearchResultViewController.m */; };
 		4A2FE1AC1B67558800D129DC /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */; };
 		4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */; };
+		4A3576061B6944100025BD73 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3576051B6944100025BD73 /* BookDetailViewController.m */; };
+		4A3576081B6944450025BD73 /* BookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3576071B6944450025BD73 /* BookDetailViewController.xib */; };
 		4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C63851B5F746800AA233C /* LoginViewController.m */; };
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4A901A8B1B62A15800C8FE1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A901A8A1B62A15800C8FE1C /* Settings.bundle */; };
@@ -128,6 +130,9 @@
 		4A2FE1A91B67558800D129DC /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
 		4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		4A3576041B6944100025BD73 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		4A3576051B6944100025BD73 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
+		4A3576071B6944450025BD73 /* BookDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookDetailViewController.xib; sourceTree = "<group>"; };
 		4A5C63851B5F746800AA233C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4A5C63871B5F748200AA233C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4A5C63881B5F752C00AA233C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -220,9 +225,6 @@
 				174D1E091B65DD4E007BB81C /* MyBookDetailViewController.h */,
 				174D1E0A1B65DD4E007BB81C /* MyBookDetailViewController.m */,
 				174D1E0B1B65DD4E007BB81C /* MyBookDetailViewController.xib */,
-				174D1E541B6629D2007BB81C /* SearchViewController.h */,
-				174D1E551B6629D2007BB81C /* SearchViewController.m */,
-				174D1E561B6629D2007BB81C /* SearchViewController.xib */,
 				17B7B9A41B52CA74009A8752 /* Images.xcassets */,
 				17B7B9A61B52CA74009A8752 /* LaunchScreen.xib */,
 				17B7B9971B52CA74009A8752 /* Supporting Files */,
@@ -236,12 +238,18 @@
 				4A2FE1A31B67455300D129DC /* BarcodeViewController.h */,
 				4A2FE1A41B67455300D129DC /* BarcodeViewController.m */,
 				4A2FE1A51B67455300D129DC /* BarcodeViewController.xib */,
+				174D1E541B6629D2007BB81C /* SearchViewController.h */,
+				174D1E551B6629D2007BB81C /* SearchViewController.m */,
+				174D1E561B6629D2007BB81C /* SearchViewController.xib */,
 				4A2FE1A81B67558800D129DC /* SearchResultViewController.h */,
 				4A2FE1A91B67558800D129DC /* SearchResultViewController.m */,
 				4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */,
 				4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */,
 				4A965B011B68216300F7ABE6 /* SNS.h */,
 				4A965B021B68217000F7ABE6 /* SNS.m */,
+				4A3576041B6944100025BD73 /* BookDetailViewController.h */,
+				4A3576051B6944100025BD73 /* BookDetailViewController.m */,
+				4A3576071B6944450025BD73 /* BookDetailViewController.xib */,
 			);
 			path = hackuProduct;
 			sourceTree = "<group>";
@@ -466,6 +474,7 @@
 			files = (
 				17B7B9EB1B570D43009A8752 /* FriendViewController.xib in Resources */,
 				174D1E581B6629D2007BB81C /* SearchViewController.xib in Resources */,
+				4A3576081B6944450025BD73 /* BookDetailViewController.xib in Resources */,
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
 				175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */,
 				174D1E5D1B666C2E007BB81C /* ProfileEditViewController.xib in Resources */,
@@ -576,6 +585,7 @@
 				17B7B9D41B53D2E8009A8752 /* BookShelfCollectionViewController.m in Sources */,
 				4AB78D231B59988D00B27BEC /* Backend.m in Sources */,
 				17B7B9CF1B53D16F009A8752 /* BookShelfCell.m in Sources */,
+				4A3576061B6944100025BD73 /* BookDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

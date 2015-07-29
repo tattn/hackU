@@ -10,4 +10,13 @@
 - (IBAction)keywordButton:(UIButton *)sender;
 - (IBAction)barcodeButton:(UIButton *)sender;
 
+typedef NS_ENUM (NSUInteger, Mode) {
+    kModeNormal,
+    kModeAddingBookToBookshelf,
+};
+
+@property Mode mode;
+
++ (void)showForAddingBookToBookshelf:(UINavigationController*)nc;
+
 @end
