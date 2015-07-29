@@ -187,7 +187,7 @@ MAKE_PARAM(dict);\
 
 - (void)addBookToBookshelf:(int)userId bookId:(int)bookId DEFAULT_PARAM {
     MAKE_PARAM(@{@"book_id":INT2NS(bookId)});
-    [self GET:BOOKSHELFID_URL(userId) parameters:param DEFAULT_CALLBACK];
+    [self POST:BOOKSHELFID_URL(userId) parameters:param DEFAULT_CALLBACK];
 }
 
 - (void)updateBookshelf:(int)userId DEFAULT_PARAM {

@@ -5,10 +5,12 @@
 #import "LoginViewController.h"
 #import "MyBookDetailViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "User.h"
 
 @interface BookShelfCollectionViewController ()
 
-@property NSArray* books;
+@property NSMutableArray* books;
+@property int userId;
 
 @end
 
@@ -26,18 +28,6 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Backend *backend = Backend.shared;
-    [backend searchBook:@{@"title":@"ワンピース", @"amazon":@""} callback:^(id json, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-        else {
-            self.books = json[@"books"];
-            [self.collectionView reloadData];
-            [self.collectionView layoutIfNeeded];
-        }
-    }];
-    
     self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
@@ -45,15 +35,33 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (_userId != User.shared.userId) {
+        _userId = User.shared.userId;
+        [self getBookshelf];
+    }
 }
-*/
+
+- (void)getBookshelf {
+    _books = [NSMutableArray array];
+    [Backend.shared getBookshelf:_userId option:@{} callback:^(NSDictionary* res, NSError *error) {
+        if (error) {
+            NSLog(@"Error - getBookshelf: %@", error);
+        }
+        else {
+            NSArray* bookshelves = res[@"bookshelves"];
+            [bookshelves enumerateObjectsUsingBlock:^(NSDictionary* bookshelf, NSUInteger idx, BOOL *stop) {
+                NSDictionary* book = bookshelf[@"book"];
+                [_books addObject:book];
+            }];
+            
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -79,9 +87,12 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    NSURL *url = [NSURL URLWithString:self.books[indexPath.row][@"coverImageUrl"]];
-    [cell.bookImage sd_setImageWithURL:url
-                    placeholderImage:[UIImage imageNamed:url.absoluteString]];
+    NSString* coverImageUrl = self.books[indexPath.row][@"coverImageUrl"];
+    if (coverImageUrl != (id)[NSNull null]) {
+        NSURL *url = [NSURL URLWithString:coverImageUrl];
+        [cell.bookImage sd_setImageWithURL:url
+                        placeholderImage:[UIImage imageNamed:url.absoluteString]];
+    }
     
     return cell;
 }
