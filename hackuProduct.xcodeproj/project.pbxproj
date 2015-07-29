@@ -49,6 +49,7 @@
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4A901A8B1B62A15800C8FE1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A901A8A1B62A15800C8FE1C /* Settings.bundle */; };
 		4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A901A901B62D65000C8FE1C /* LicenseViewController.m */; };
+		4A965B031B68217000F7ABE6 /* SNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A965B021B68217000F7ABE6 /* SNS.m */; };
 		4AB78D231B59988D00B27BEC /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB78D221B59988D00B27BEC /* Backend.m */; };
 		4AC1031D1B67EBFA004B3E75 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1031C1B67EBFA004B3E75 /* User.m */; };
 		4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2D4BD1B63AB3300F80E61 /* AddFriendViewController.m */; };
@@ -138,6 +139,8 @@
 		4A901A8A1B62A15800C8FE1C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4A901A8F1B62D65000C8FE1C /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
 		4A901A901B62D65000C8FE1C /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
+		4A965B011B68216300F7ABE6 /* SNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNS.h; sourceTree = "<group>"; };
+		4A965B021B68217000F7ABE6 /* SNS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNS.m; sourceTree = "<group>"; };
 		4AB78D221B59988D00B27BEC /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		4AB78D241B5998A100B27BEC /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 		4AC1031C1B67EBFA004B3E75 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				4A2FE1A91B67558800D129DC /* SearchResultViewController.m */,
 				4A2FE1AA1B67558800D129DC /* SearchResultViewController.xib */,
 				4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */,
+				4A965B011B68216300F7ABE6 /* SNS.h */,
+				4A965B021B68217000F7ABE6 /* SNS.m */,
 			);
 			path = hackuProduct;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				4AC1031D1B67EBFA004B3E75 /* User.m in Sources */,
 				4AEE8C9A1B66BD6E00865AFF /* ImprovedViewController.m in Sources */,
 				175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */,
+				4A965B031B68217000F7ABE6 /* SNS.m in Sources */,
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
 				4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */,
