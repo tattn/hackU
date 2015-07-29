@@ -8,6 +8,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *registerNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rentNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *borrowNumberLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bookShelfButton;
+@property (weak, nonatomic) IBOutlet UIButton *blockButton;
 - (IBAction)bookShelfButton:(UIButton *)sender;
 - (IBAction)blockButton:(UIButton *)sender;
 
