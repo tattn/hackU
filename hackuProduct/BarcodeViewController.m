@@ -7,6 +7,7 @@
 //
 
 #import "BarcodeViewController.h"
+#import "UIView+Toast.h"
 
 @interface BarcodeViewController ()
 
@@ -24,6 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"バーコード読み取り";
+    self.view.backgroundColor = [UIColor blackColor];
     
     _frameView = [UIView new];
     _frameView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
@@ -49,7 +53,7 @@
     _output.metadataObjectTypes = [_output availableMetadataObjectTypes];
     
     _layer = [AVCaptureVideoPreviewLayer layerWithSession:_session];
-    _layer.frame = self.view.bounds;
+    _layer.frame = self.view.frame;
     _layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:_layer];
     
@@ -58,6 +62,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.view makeToast:@"本のバーコードにかざして下さい。"];
     
     [_session startRunning];
 }

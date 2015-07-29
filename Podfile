@@ -6,6 +6,7 @@ target 'hackuProduct' do
 	pod "AFNetworking", "~> 2.0"
 	pod 'RMUniversalAlert'
 	pod 'SDWebImage', '~>3.7'
+	pod 'Toast', '~> 2.4'
 end
 
 target 'hackuProductTests' do

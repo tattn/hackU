@@ -4,8 +4,8 @@
 #import "Backend.h"
 #import "LoginViewController.h"
 #import "MyBookDetailViewController.h"
-#import "SDWebImage/UIImageView+WebCache.h"
 #import "User.h"
+#import "UIImageViewHelper.h"
 
 @interface BookShelfCollectionViewController ()
 
@@ -88,11 +88,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     NSString* coverImageUrl = self.books[indexPath.row][@"coverImageUrl"];
-    if (coverImageUrl != (id)[NSNull null]) {
-        NSURL *url = [NSURL URLWithString:coverImageUrl];
-        [cell.bookImage sd_setImageWithURL:url
-                        placeholderImage:[UIImage imageNamed:url.absoluteString]];
-    }
+    [cell.bookImage my_setImageWithURL:coverImageUrl];
     
     return cell;
 }
@@ -100,6 +96,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     MyBookDetailViewController *myBookDetailVC = [[MyBookDetailViewController alloc] init];
+    myBookDetailVC.book = _books[indexPath.row];
     [self.navigationController pushViewController:myBookDetailVC animated:YES];
 }
 

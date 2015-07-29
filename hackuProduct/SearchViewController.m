@@ -40,7 +40,7 @@
     BarcodeViewController *barcodeVC = [BarcodeViewController new];
     barcodeVC.hidesBottomBarWhenPushed = YES;
     barcodeVC.delegate = self;
-    [self presentViewController:barcodeVC animated:YES completion:nil];
+    [self.navigationController pushViewController:barcodeVC animated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
