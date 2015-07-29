@@ -16,8 +16,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditViewController">
             <connections>
-                <outlet property="firstname" destination="hXu-LS-nwL" id="hm9-wh-AG2"/>
-                <outlet property="lastname" destination="JF8-5R-SPQ" id="SxQ-ZL-iV1"/>
+                <outlet property="firstname" destination="JF8-5R-SPQ" id="wxj-Ys-kZy"/>
+                <outlet property="lastname" destination="hXu-LS-nwL" id="Hzj-mS-zz0"/>
                 <outlet property="profileImage" destination="MfU-Yi-0Nb" id="eja-sf-T8a"/>
                 <outlet property="profileImageButton" destination="kDL-ha-NMw" id="5dk-4l-Li7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
