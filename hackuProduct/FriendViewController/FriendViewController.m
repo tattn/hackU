@@ -2,7 +2,6 @@
 #import "FriendViewController.h"
 #import "FriendTableViewCell.h"
 #import "FriendBookShelfCollectionViewController.h"
-#import "FriendBookShelfCell.h"
 #import "AddFriendViewController.h"
 #import <RMUniversalAlert.h>
 #import "Backend.h"
@@ -185,9 +184,9 @@
     if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
         FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
         
-        //FIXME: FriendBookShelfCollectionVC クラス内で設定した方がいい
         NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend[@"name"]];
         friendBookShelfCollectionVC.title = title;
+        friendBookShelfCollectionVC.userId = ((NSNumber*)friend[@"id"]).intValue;
         
         [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
     }

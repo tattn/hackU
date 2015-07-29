@@ -82,7 +82,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/users/:user_id/request] Request API
 - (void)getRequest:(int)userId DEFAULT_PARAM;
-- (void)addRequest:(int)userId bookId:(int)bookId senderId:(int)senderId DEFAULT_PARAM;
+- (void)addRequest:(int)userId bookId:(int)bookId DEFAULT_PARAM;
 - (void)replyRequest:(int)userId bookId:(int)bookId accepted:(bool)accepted DEFAULT_PARAM;
 - (void)deleteRequest:(int)userId bookId:(int)bookId DEFAULT_PARAM;
 // === [/users/:user_id/request] end

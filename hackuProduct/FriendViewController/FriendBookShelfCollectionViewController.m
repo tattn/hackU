@@ -1,16 +1,19 @@
 
 #import "FriendBookShelfCollectionViewController.h"
-#import "FriendBookShelfCell.h"
+#import "BookShelfCell.h"
 #import "Backend.h"
 #import "FriendBookDetailViewController.h"
+#import "UIImageViewHelper.h"
 
 @interface FriendBookShelfCollectionViewController ()
+
+@property NSMutableArray* bookshelves;
 
 @end
 
 @implementation FriendBookShelfCollectionViewController
 
-static NSString * const reuseIdentifier = @"FriendBookShelfCell";
+static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (id)init {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -25,7 +28,7 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
-    UINib *nib = [UINib nibWithNibName:@"FriendBookShelfCell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:reuseIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
     
     //戻るボタンの表示変更
@@ -41,15 +44,23 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getBookshelf];
 }
-*/
+
+- (void)getBookshelf {
+    [Backend.shared getBookshelf:_userId option:@{} callback:^(NSDictionary* res, NSError *error) {
+        if (error) {
+            NSLog(@"Error - getBookshelf: %@", error);
+        }
+        else {
+            _bookshelves = res[@"bookshelves"];
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -59,12 +70,17 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return _bookshelves.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    FriendBookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                           
+    NSDictionary* bookshelf = _bookshelves[indexPath.row];
+    NSString *url = ((NSDictionary*)bookshelf[@"book"])[@"coverImageUrl"];
+    [cell.bookImage my_setImageWithURL:url];
+                           
     return cell;
 }
 
@@ -72,6 +88,8 @@ static NSString * const reuseIdentifier = @"FriendBookShelfCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     FriendBookDetailViewController *friendBookDetailVC = [[FriendBookDetailViewController alloc] init];
+    friendBookDetailVC.bookshelf = _bookshelves[indexPath.row];
+    friendBookDetailVC.userId = _userId;
     [self.navigationController pushViewController:friendBookDetailVC animated:YES];
 }
 

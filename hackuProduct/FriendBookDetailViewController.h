@@ -9,4 +9,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rentRequestButton;
 
+@property NSDictionary* bookshelf;
+@property int userId;
+
 @end

@@ -275,8 +275,8 @@ MAKE_PARAM(dict);\
     [self GET:REQUEST_URL(userId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addRequest:(int)userId bookId:(int)bookId senderId:(int)senderId DEFAULT_PARAM {
-    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId), @"sender_id":INT2NS(senderId)}));
+- (void)addRequest:(int)userId bookId:(int)bookId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId)}));
     [self POST:REQUEST_URL(userId) parameters:param DEFAULT_CALLBACK];
 }
 
