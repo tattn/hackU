@@ -29,6 +29,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [super viewDidLoad];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                              target:self
+                                              action:@selector(didTapAddBook:)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +47,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
         _userId = User.shared.userId;
         [self getBookshelf];
     }
+}
+
+- (void)didTapAddBook:(id)selector {
+//    AddFriendViewController *vc = [AddFriendViewController new];
+//    [self.navigationController pushViewController:vc animated: true];
 }
 
 - (void)getBookshelf {
