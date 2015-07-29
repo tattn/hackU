@@ -129,6 +129,8 @@ typedef NS_ENUM (NSUInteger, kMode) {
 }
 
 + (void)showLoginIfNotLoggedIn:(UIViewController*)vc {
+    if ([Backend.shared isLoggedIn]) return;
+    
     LoginViewController *loginVC = [LoginViewController new];
     [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
     [vc presentViewController:loginVC animated:YES completion:nil];

@@ -31,7 +31,7 @@ static NSString* BlocklistCellId = @"BlocklistCell";
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-    UINib *nib = [UINib nibWithNibName:@"Setting" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:BlocklistCellId bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:BlocklistCellId];
     
     [self getBlocklist];
