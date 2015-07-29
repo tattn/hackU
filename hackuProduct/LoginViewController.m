@@ -13,7 +13,6 @@ typedef NS_ENUM (NSUInteger, kMode) {
 
 @property (weak, nonatomic) IBOutlet UITextField *emailLabel;
 @property (weak, nonatomic) IBOutlet UITextField *passLabel;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UIView *nameView;
@@ -118,13 +117,11 @@ typedef NS_ENUM (NSUInteger, kMode) {
 - (IBAction)switchMode:(id)sender {
     _mode = (_mode + 1) % 2;
     if (_mode == kModeLogin) {
-        _titleLabel.text = @"ログイン";
         [_loginButton setTitle:@"ログイン" forState:UIControlStateNormal];
         [_switchButton setTitle:@"新規登録" forState:UIControlStateNormal];
         [_nameView setHidden:YES];
     }
     else {
-        _titleLabel.text = @"新規登録";
         [_loginButton setTitle:@"新規登録" forState:UIControlStateNormal];
         [_switchButton setTitle:@"ログイン" forState:UIControlStateNormal];
         [_nameView setHidden:NO];

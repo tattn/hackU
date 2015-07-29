@@ -35,30 +35,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyV-w2-HJn">
-                    <rect key="frame" x="37" y="479" width="300" height="45"/>
-                    <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
-                    <state key="normal" title="ログイン">
-                        <color key="titleColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="login:" destination="-1" eventType="touchUpInside" id="shl-f8-9IV"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hp-y4-uP5">
-                    <rect key="frame" x="37" y="538" width="300" height="45"/>
-                    <color key="backgroundColor" red="0.21547721544789813" green="0.42059358465608465" blue="0.31931247087642717" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
-                    <state key="normal" title="新規登録">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="switchMode:" destination="-1" eventType="touchUpInside" id="Ttt-a2-dnS"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ux3-Rf-NUp">
                     <rect key="frame" x="97" y="67" width="180" height="152"/>
                 </imageView>
@@ -122,6 +98,35 @@
                             <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7K-l9-awh">
+                    <rect key="frame" x="0.0" y="479" width="375" height="104"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyV-w2-HJn">
+                            <rect key="frame" x="37" y="0.0" width="300" height="45"/>
+                            <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                            <state key="normal" title="ログイン">
+                                <color key="titleColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="login:" destination="-1" eventType="touchUpInside" id="shl-f8-9IV"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hp-y4-uP5">
+                            <rect key="frame" x="37" y="59" width="300" height="45"/>
+                            <color key="backgroundColor" red="0.21547721544789813" green="0.42059358465608465" blue="0.31931247087642717" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                            <state key="normal" title="新規登録">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="switchMode:" destination="-1" eventType="touchUpInside" id="Ttt-a2-dnS"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </view>
             </subviews>
