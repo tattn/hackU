@@ -43,11 +43,11 @@ static User* instance = nil;
 }
 
 - (void)update:(NSDictionary*)user {
-    _userId = ((NSString*)user[@"userId"]).intValue;
-    _email = user[@"email"];
-    _firstname = user[@"firstname"];
-    _lastname = user[@"lastname"];
-    _school = user[@"school"];
+    if ([user objectForKey:@"userId"]) _userId = ((NSString*)user[@"userId"]).intValue;
+    if ([user objectForKey:@"email"]) _email = user[@"email"];
+    if ([user objectForKey:@"firstname"]) _firstname = user[@"firstname"];
+    if ([user objectForKey:@"lastname"]) _lastname = user[@"lastname"];
+    if ([user objectForKey:@"school"]) _school = user[@"school"];
 }
 
 - (void)reset {
