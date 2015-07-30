@@ -85,6 +85,7 @@
 {
     UITabBarController *controller = (UITabBarController *)tabBarController;
     controller.selectedViewController = [controller.viewControllers objectAtIndex:selectedViewIndex];
+    [self tabBarController:controller didSelectViewController:controller.selectedViewController];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
