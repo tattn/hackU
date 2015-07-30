@@ -14,6 +14,6 @@
 
 + (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book;
 
-+ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf userId:(int)userId;
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf;
 
 @end
