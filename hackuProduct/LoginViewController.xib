@@ -35,17 +35,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ux3-Rf-NUp">
-                    <rect key="frame" x="120" y="40" width="361" height="187"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="152" id="qgs-5Q-v1G"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="qgs-5Q-v1G"/>
-                        </mask>
-                    </variation>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcz-ir-OsX">
                     <rect key="frame" x="0.0" y="250" width="600" height="83"/>
                     <subviews>
@@ -189,6 +178,17 @@
                         <action selector="switchMode:" destination="-1" eventType="touchUpInside" id="Ttt-a2-dnS"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ux3-Rf-NUp">
+                    <rect key="frame" x="120" y="40" width="361" height="187"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="152" id="qgs-5Q-v1G"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="qgs-5Q-v1G"/>
+                        </mask>
+                    </variation>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
