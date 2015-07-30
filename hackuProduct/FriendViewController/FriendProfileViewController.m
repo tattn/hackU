@@ -27,6 +27,9 @@
     self.blockButton.clipsToBounds = YES;
     
     self.friendNameLabel.text = _user[@"fullname"]; // dirty hack
+    self.registerNumberLabel.text = ((NSNumber*)_user[@"bookNum"]).stringValue;
+    self.rentNumberLabel.text = ((NSNumber*)_user[@"lendNum"]).stringValue;
+    self.borrowNumberLabel.text = ((NSNumber*)_user[@"borrowNum"]).stringValue;
 }
 
 - (void)didReceiveMemoryWarning {
