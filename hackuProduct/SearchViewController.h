@@ -8,7 +8,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *searchSegmentControl;
 
 typedef NS_ENUM (NSUInteger, Mode) {
-    kModeNormal,
+    kModeRequest,
     kModeAddingBookToBookshelf,
 };
 
@@ -16,4 +16,10 @@ typedef NS_ENUM (NSUInteger, Mode) {
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc;
 
+@end
+
+
+@interface SearchResultCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *bookImage;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end

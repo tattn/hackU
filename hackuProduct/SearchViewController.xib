@@ -14,6 +14,7 @@
                 <outlet property="mainView" destination="Ur2-ab-xWX" id="eZM-NJ-WhW"/>
                 <outlet property="searchBar" destination="h4D-Ae-1d5" id="g9i-2A-ceF"/>
                 <outlet property="searchSegmentControl" destination="ejg-C1-TvR" id="HfG-2s-s35"/>
+                <outlet property="searchSwitch" destination="Vyl-ZA-uON" id="0PX-MJ-WM2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

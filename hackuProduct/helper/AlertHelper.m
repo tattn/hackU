@@ -11,6 +11,14 @@
 
 @implementation AlertHelper
 
++ (void)showYesNo:(UIViewController*)parent title:(NSString*)title msg:(NSString*)msg yesTitle:(NSString*)yesTitle yes:(void (^)())yes {
+    [AlertHelper showYesNo:parent title:title msg:msg yesTitle:yesTitle noTitle:@"キャンセル" yes:yes no:^(){}];
+}
+
++ (void)showYesNo:(UIViewController*)parent title:(NSString*)title msg:(NSString*)msg yesTitle:(NSString*)yesTitle noTitle:(NSString*)noTitle yes:(void (^)())yes {
+    [AlertHelper showYesNo:parent title:title msg:msg yesTitle:yesTitle noTitle:noTitle yes:yes no:^(){}];
+}
+
 + (void)showYesNo:(UIViewController*)parent title:(NSString*)title msg:(NSString*)msg yesTitle:(NSString*)yesTitle noTitle:(NSString*)noTitle yes:(void (^)())yes no:(void (^)())no {
 
     [RMUniversalAlert showAlertInViewController:parent

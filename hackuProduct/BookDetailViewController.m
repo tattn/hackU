@@ -35,9 +35,18 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    if (_bookshelf) _book = _bookshelf[@"book"];
+    if (_bookshelf) {
+        _book = _bookshelf[@"book"];
+        //FIXME: ユーザーデータをローカルに保存したほうがいいかも、ただし更新タイミングを考慮する必要がある
+        [Backend.shared getUser:_userId option:@{} callback:^(id res, NSError *error) {
+            NSDictionary* user = res[@"user"];
+            self.title = [NSString stringWithFormat:@"%@ %@の本の詳細", user[@"lastname"], user[@"firstname"]];
+        }];
+    }
+    else {
+        self.title = @"本の詳細";
+    }
     
-    self.title = @"本の詳細";
     self.navigationController.navigationBarHidden = NO;
     
     _titleLabel.text = _book[@"title"];
@@ -114,25 +123,22 @@
 
 - (void)tapAddingBookToBookshelf:(id)sender {
     [AlertHelper showYesNo:self title:@"本棚に追加" msg:@"この本を本棚に追加します。よろしいですか？"
-                  yesTitle:@"追加" noTitle:@"キャンセル" yes:^() {
+                  yesTitle:@"追加" yes:^() {
                       [self addBookToBookshelf];
-    } no:^() {
     }];
 }
 
 - (void)tapRemovingBookFromBookshelf:(id)sender {
     [AlertHelper showYesNo:self title:@"本棚から削除" msg:@"この本を本棚から削除します。よろしいですか？"
-                  yesTitle:@"削除" noTitle:@"キャンセル" yes:^() {
+                  yesTitle:@"削除" yes:^() {
                       [self removeBookFromBookshelf];
-    } no:^() {
     }];
 }
 
 - (void)tapRequestingBook:(id)sender {
     [AlertHelper showYesNo:self title:@"本のリクエスト" msg:@"この本をリクエストを送ります。よろしいですか？"
-                  yesTitle:@"はい" noTitle:@"キャンセル" yes:^() {
+                  yesTitle:@"はい" yes:^() {
                       [self requestBook];
-    } no:^() {
     }];
 }
 
@@ -172,10 +178,10 @@
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf userId:(int)userId {
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.bookshelf = bookshelf;
-    vc.userId = userId;
+    vc.userId = ((NSNumber*)bookshelf[@"userId"]).intValue;
     UIButton* btn = [vc createButton:@"借りたい"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]

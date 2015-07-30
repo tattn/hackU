@@ -80,11 +80,12 @@
     return YES;
 }
 
-- (void)switchTabBarController:(NSInteger)selectedViewIndex
+- (UIViewController*)switchTabBarController:(NSInteger)selectedViewIndex
 {
     UITabBarController *controller = (UITabBarController *)tabBarController;
     controller.selectedViewController = [controller.viewControllers objectAtIndex:selectedViewIndex];
     [self tabBarController:controller didSelectViewController:controller.selectedViewController];
+    return controller.selectedViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
