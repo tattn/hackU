@@ -9,6 +9,7 @@
 #import "SearchResultViewController.h"
 #import "Backend.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "BookDetailViewController.h"
 
 @implementation SearchResultCell
 @end
@@ -29,6 +30,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"検索結果";
     _searchBar.text = _searchQuery;
     _searchBar.placeholder = @"タイトル, 著者, ISBN...";
     _searchBar.keyboardType = UIKeyboardTypeDefault;
@@ -47,12 +49,12 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)searchBook:(NSString*)query {
-    [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id responseObject, NSError *error) {
+    [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
         if (error) {
             NSLog(@"Error - searchBook: %@", error);
         }
         else {
-            _books = responseObject[@"books"];
+            _books = res[@"books"];
             [_tableView reloadData];
         }
     }];
@@ -61,6 +63,13 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.view endEditing:YES];
     [self searchBook: _searchBar.text];
+}
+
++ (void)show:(SearchViewController*)parent query:(NSString*)query {
+    SearchResultViewController *vc = [SearchResultViewController new];
+    vc.searchQuery = query;
+    vc.searchVC = parent;
+    [parent.navigationController pushViewController:vc animated: true];
 }
 
 #pragma mark - Table view data source
@@ -93,6 +102,18 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (_searchVC.mode) {
+        case kModeNormal:
+            break;
+            
+        case kModeAddingBookToBookshelf:
+            [BookDetailViewController showForAddingBookToBookshelf:self book:_books[indexPath.row]];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

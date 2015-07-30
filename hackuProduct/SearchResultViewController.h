@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchViewController.h"
 
 @interface SearchResultViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 @property NSString* searchQuery;
+@property SearchViewController* searchVC;
+
++ (void)show:(SearchViewController*)parent query:(NSString*)query;
 
 @end
 
