@@ -3,9 +3,10 @@
 #import "BookShelfCell.h"
 #import "Backend.h"
 #import "LoginViewController.h"
-#import "MyBookDetailViewController.h"
 #import "User.h"
 #import "UIImageViewHelper.h"
+#import "SearchViewController.h"
+#import "BookDetailViewController.h"
 
 @interface BookShelfCollectionViewController ()
 
@@ -29,6 +30,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [super viewDidLoad];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                              target:self
+                                              action:@selector(didTapAddBook:)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,10 +44,15 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (_userId != User.shared.userId) {
+//TODO: 再表示するたびにデータベースに問い合わせをするのは良くないかも、重かったら必要なときだけ更新するように変える
+//    if (_userId != User.shared.userId) {
         _userId = User.shared.userId;
         [self getBookshelf];
-    }
+//    }
+}
+
+- (void)didTapAddBook:(id)selector {
+    [SearchViewController showForAddingBookToBookshelf:self.navigationController];
 }
 
 - (void)getBookshelf {
@@ -95,9 +106,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    MyBookDetailViewController *myBookDetailVC = [[MyBookDetailViewController alloc] init];
-    myBookDetailVC.book = _books[indexPath.row];
-    [self.navigationController pushViewController:myBookDetailVC animated:YES];
+    [BookDetailViewController showForRemovingBookFromBookshelf:self book:_books[indexPath.row]];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

@@ -13,7 +13,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UISearchBar *searchBar = [[UISearchBar alloc] init];
     self.searchBar.placeholder = @"タイトル, 著者, ISBN...";
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     self.searchBar.delegate = self;
@@ -54,11 +53,14 @@
 
 - (void)showSearchResult:(NSString*)query {
     self.searchBar.text = query;
-    
-    SearchResultViewController *searchResultVC = [SearchResultViewController new];
-    searchResultVC.searchQuery = query;
-    
-    [self.navigationController pushViewController:searchResultVC animated: true];
+    [SearchResultViewController show:self query:query];
+}
+
++ (void)showForAddingBookToBookshelf:(UINavigationController*)nc {
+    SearchViewController* vc = [SearchViewController new];
+    vc.title = @"追加する本の検索";
+    vc.mode = kModeAddingBookToBookshelf;
+    [nc pushViewController:vc animated: true];
 }
 
 @end
