@@ -8,8 +8,8 @@
 
 #import "SearchResultViewController.h"
 #import "Backend.h"
-#import "SDWebImage/UIImageView+WebCache.h"
 #import "BookDetailViewController.h"
+#import "UIImageViewHelper.h"
 
 @implementation SearchResultCell
 @end
@@ -89,9 +89,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSDictionary* book = _books[indexPath.row];
     cell.titleLabel.text = book[@"title"];
     
-    NSURL *url = [NSURL URLWithString:book[@"coverImageUrl"]];
-    [cell.bookImage sd_setImageWithURL:url
-                    placeholderImage:[UIImage imageNamed:url.absoluteString]];
+    [cell.bookImage my_setImageWithURL:book[@"coverImageUrl"]];
     
     return cell;
 }
