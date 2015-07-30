@@ -3,9 +3,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BarcodeViewController.h"
 #import "SearchResultViewController.h"
-#import "SDWebImage/UIImageView+WebCache.h"
-#import "BookDetailViewController.h"
-#import "Backend.h"
 
 @interface SearchViewController ()
 
