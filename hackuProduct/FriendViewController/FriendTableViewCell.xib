@@ -6,6 +6,7 @@
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
             <string>HiraKakuProN-W3</string>
+            <string>HiraKakuProN-W3</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -19,11 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friendImage" translatesAutoresizingMaskIntoConstraints="NO" id="Xwr-Y9-GlT">
-                        <rect key="frame" x="8" y="5" width="50" height="50"/>
+                        <rect key="frame" x="9" y="5" width="50" height="50"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello How are you?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-eS-ruT">
+                        <rect key="frame" x="75" y="34" width="237" height="21"/>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="12"/>
+                        <color key="textColor" red="0.50173611111111116" green="0.50173611111111116" blue="0.50173611111111116" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
-                        <rect key="frame" x="82" y="14" width="222" height="32"/>
-                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                        <rect key="frame" x="75" y="5" width="222" height="30"/>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="19"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -33,7 +40,7 @@
                 <outlet property="firendNameLabel" destination="QtZ-ie-P5J" id="u5K-da-Nl7"/>
                 <outlet property="friendImage" destination="Xwr-Y9-GlT" id="Kee-4L-WCf"/>
             </connections>
-            <point key="canvasLocation" x="139" y="150"/>
+            <point key="canvasLocation" x="23" y="219"/>
         </tableViewCell>
     </objects>
     <resources>
