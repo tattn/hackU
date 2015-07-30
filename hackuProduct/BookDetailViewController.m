@@ -11,6 +11,8 @@
 #import <RMUniversalAlert.h>
 #import "Backend.h"
 #import "User.h"
+#import "AlertHelper.h"
+#import "BookShelfCollectionViewController.h"
 
 @interface BookDetailViewController ()
 
@@ -54,21 +56,36 @@
     }];
 }
 
+- (void)removeBookFromBookshelf {
+    NSNumber* bookId = _book[@"bookId"];
+    [Backend.shared deleteBookInBookshelf:User.shared.userId bookId: bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error - deleteBookInBookshelf: %@", error);
+        }
+        else {
+            [self.navigationController popViewControllerAnimated:YES];
+//            BookShelfCollectionViewController* vc = (BookShelfCollectionViewController*)[self.navigationController popViewControllerAnimated:YES];
+//            [vc.collectionView reloadData];
+        }
+    }];
+}
+
 #pragma mark - button events
 
 - (void)tapAddingBookToBookshelf:(id)sender {
-    [RMUniversalAlert showAlertInViewController:self
-                                      withTitle:@"本棚に追加"
-                                        message:@"この本を本棚に追加します。よろしいですか？"
-                              cancelButtonTitle:@"キャンセル"
-                         destructiveButtonTitle:@"追加"
-                              otherButtonTitles:@[]
-                                       tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
-                                           if (buttonIndex == alert.cancelButtonIndex) {
-                                           } else if (buttonIndex == alert.destructiveButtonIndex) {
-                                               [self addBookToBookshelf];
-                                           }
-                                       }];
+    [AlertHelper showYesNo:self title:@"本棚に追加" msg:@"この本を本棚に追加します。よろしいですか？"
+                  yesTitle:@"追加" noTitle:@"キャンセル" yes:^() {
+                      [self addBookToBookshelf];
+    } no:^() {
+    }];
+}
+
+- (void)tapRemovingBookFromBookshelf:(id)sender {
+    [AlertHelper showYesNo:self title:@"本棚から削除" msg:@"この本を本棚から削除します。よろしいですか？"
+                  yesTitle:@"削除" noTitle:@"キャンセル" yes:^() {
+                      [self removeBookFromBookshelf];
+    } no:^() {
+    }];
 }
 
 #pragma mark - create UI
@@ -92,6 +109,17 @@
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
                               action:@selector(tapAddingBookToBookshelf:)];
+    vc.buttons = @[btn];
+    [parent.navigationController pushViewController:vc animated: true];
+}
+
++ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
+    BookDetailViewController *vc = [BookDetailViewController new];
+    vc.book = book;
+    UIButton* btn = [vc createButton:@"本棚から削除"
+                               color:[UIColor whiteColor]
+                             bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
+                              action:@selector(tapRemovingBookFromBookshelf:)];
     vc.buttons = @[btn];
     [parent.navigationController pushViewController:vc animated: true];
 }

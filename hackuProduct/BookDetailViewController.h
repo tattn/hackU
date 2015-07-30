@@ -12,4 +12,6 @@
 
 + (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(NSDictionary*)book;
 
++ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book;
+
 @end
