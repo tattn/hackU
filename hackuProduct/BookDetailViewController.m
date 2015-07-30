@@ -172,10 +172,10 @@
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf userId:(int)userId {
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.bookshelf = bookshelf;
-    vc.userId = userId;
+    vc.userId = ((NSNumber*)bookshelf[@"userId"]).intValue;
     UIButton* btn = [vc createButton:@"借りたい"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]

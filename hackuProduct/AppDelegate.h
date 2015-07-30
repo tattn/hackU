@@ -10,7 +10,7 @@
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 
-- (void)switchTabBarController:(NSInteger)selectedViewIndex;
+- (UIViewController*)switchTabBarController:(NSInteger)selectedViewIndex;
 
 @end
 

@@ -1,20 +1,24 @@
 
 #import "SearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SearchResultViewController.h"
 #import "BookDetailViewController.h"
 #import "UIImageViewHelper.h"
 #import "Backend.h"
 #import "BarcodeView.h"
 #import "UIView+Toast.h"
 
+@implementation SearchResultCell
+@end
+
 @interface SearchViewController ()
 
 @property UITableView* tableView;
 @property BarcodeView* barcodeView;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UISwitch *searchSwitch;
 
 @property NSMutableArray* books;
+@property NSMutableArray* bookshelves;
 
 @end
 
@@ -45,8 +49,9 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     _barcodeView.delegate = self;
     [_barcodeView setupCamera];
     
-    UISegmentedControl *segmentControl = self.searchSegmentControl;
-    [segmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+    [_searchSegmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+    
+    _mode = kModeAddingBookToBookshelf;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,33 +83,45 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.view endEditing:YES];
-    [self showSearchResult:self.searchBar.text];
+    [self searchBook:self.searchBar.text];
 }
 
 - (void)detectedBarcode:(NSString *)code {
     [self changeMainView:0];
-    [self showSearchResult:code];
-}
-
-- (void)showSearchResult:(NSString*)query {
-    self.searchBar.text = query;
-    [self searchBook:query];
+    [self searchBook:code];
 }
 
 - (void)searchBook:(NSString*)query {
+    self.searchBar.text = query;
+    
     if ([[query stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
         return; // 空文字や空白文字だけの時は検索しない
     }
     
-    [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
-        if (error) {
-            NSLog(@"Error - searchBook: %@", error);
-        }
-        else {
-            _books = res[@"books"];
-            [_tableView reloadData];
-        }
-    }];
+    if (_mode == kModeAddingBookToBookshelf) {
+        [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
+            if (error) {
+                NSLog(@"Error - searchBook: %@", error);
+            }
+            else {
+                _books = res[@"books"];
+                [_tableView reloadData];
+            }
+        }];
+    }
+    else if (_mode == kModeRequest) {
+        _bookshelves = [NSMutableArray array];
+        [Backend.shared getFriend:@{} callback:^(id res, NSError *error) {
+            NSArray* friends = res[@"users"];
+            [friends enumerateObjectsUsingBlock:^(id friend, NSUInteger idx, BOOL *stop) {
+                int friendId = ((NSNumber*)friend[@"userId"]).intValue;
+                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":query} callback:^(id res2, NSError *error) {
+                    [_bookshelves addObjectsFromArray:res2[@"bookshelves"]];
+                    if (idx == friends.count - 1) [_tableView reloadData];
+                }];
+            }];
+        }];
+    }
 }
 
 #pragma mark - Table view data source
@@ -114,16 +131,27 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _books.count;
+    if (_mode == kModeAddingBookToBookshelf) {
+        return _books.count;
+    }
+    else {
+        return _bookshelves.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SearchResultCell* cell = [tableView dequeueReusableCellWithIdentifier:SearchResultCellId];
     
-    NSDictionary* book = _books[indexPath.row];
-    cell.titleLabel.text = book[@"title"];
+    NSDictionary* book;
+    if (_mode == kModeRequest) {
+        book = ((NSDictionary*)_bookshelves[indexPath.row])[@"book"];
+    }
+    else {
+        book = _books[indexPath.row];
+    }
     
+    cell.titleLabel.text = book[@"title"];
     [cell.bookImage my_setImageWithURL:book[@"coverImageUrl"]];
     
     return cell;
@@ -137,9 +165,8 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (_mode) {
-        case kModeNormal:
-            //FIXME: 友達の本のリクエスト画面
-//            [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelf userId:??];
+        case kModeRequest:
+            [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
             break;
             
         case kModeAddingBookToBookshelf:
@@ -153,7 +180,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 
 - (IBAction)changeMode:(UISwitch*)sender {
     if (sender.on) {
-        _mode = kModeNormal;
+        _mode = kModeRequest;
     }
     else {
         _mode = kModeAddingBookToBookshelf;
@@ -164,7 +191,9 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 #pragma mark - for showing
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc {
-    [APP_DELEGATE switchTabBarController:3];
+    SearchViewController* vc = (SearchViewController*)[APP_DELEGATE switchTabBarController:3];
+    vc.searchSwitch.on = YES;
+    vc.mode = kModeAddingBookToBookshelf;
 }
 
 @end
