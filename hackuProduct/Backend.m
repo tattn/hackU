@@ -75,6 +75,7 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
 #define BOOKID_URL(bookId) MAKE_URL(BOOK_URL "/%d", (bookId))
 #define BOOKSHELF_URL @"bookshelves"
 #define BOOKSHELFID_URL(userId) MAKE_URL(BOOKSHELF_URL "/%d", (userId))
+#define BOOKSHELF_SEARCH_URL(userId) MAKE_URL(BOOKSHELF_URL "/%d/search", (userId))
 #define BOOKSHELFIDID_URL(userId, bookId) MAKE_URL(BOOKSHELF_URL "/%d/%d", (userId), (bookId))
 #define BORROW_URL @"my/borrow"
 #define BORROWID_URL(bookId) MAKE_URL(BORROW_URL "/%d", (bookId))
@@ -211,7 +212,7 @@ MAKE_PARAM(dict);\
 }
 
 - (void)searchBookInBookshelf:(int)userId DEFAULT_PARAM {
-    [self GET:BOOKSHELFID_URL(userId) parameters:option DEFAULT_CALLBACK];
+    [self GET:BOOKSHELF_SEARCH_URL(userId) parameters:option DEFAULT_CALLBACK];
 }
 
 // === [/bookshelves] end
