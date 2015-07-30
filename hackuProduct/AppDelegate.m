@@ -69,6 +69,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     self.tabBarController = [UITabBarController new];
+    self.tabBarController.delegate = self;
     [self.tabBarController setViewControllers:viewControllers];
 
     self.window.rootViewController = self.tabBarController;
@@ -99,6 +100,13 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    // 他のタブに移動した時に最初の画面を表示するようにする
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        [(UINavigationController *)viewController popToRootViewControllerAnimated:NO];
+    }
 }
 
 @end
