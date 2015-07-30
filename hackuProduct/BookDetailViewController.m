@@ -25,6 +25,8 @@
 @property NSArray* buttons;
 
 @property NSDictionary* book;
+@property NSDictionary* bookshelf;
+@property int userId;
 
 @end
 
@@ -33,7 +35,11 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    if (_bookshelf) _book = _bookshelf[@"book"];
+    
     self.title = @"本の詳細";
+    self.navigationController.navigationBarHidden = NO;
+    
     _titleLabel.text = _book[@"title"];
     _publisherLabel.text = _book[@"manufacturer"];
     _authorLabel.text = _book[@"author"];
@@ -68,6 +74,42 @@
     }];
 }
 
+- (void)requestBook {
+    NSNumber* bookId = _bookshelf[@"book"][@"bookId"];
+    [Backend.shared addRequest:_userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error - requestBook: %@", error);
+        }
+        else {
+            [self checkRequest:_buttons[0]]; //FIXME: dirty hack
+        }
+    }];
+}
+
+#pragma mark - check database
+
+- (void) checkRequest:(UIButton*)btn {
+    //FIXME: 自分以外の誰かがリクエストしている時もボタンが押せなくなる.現在はそれが仕様.
+    [Backend.shared getRequest:_userId option:@{} callback:^(id responseObject, NSError *error) {
+        NSArray* books = responseObject[@"books"];
+        [books enumerateObjectsUsingBlock:^(NSDictionary* book, NSUInteger idx, BOOL *stop) {
+            NSNumber* bookId = book[@"bookId"];
+            if ([bookId isEqualToNumber: _bookshelf[@"book"][@"bookId"]]) {
+                [btn setTitle:@"リクエスト中" forState:UIControlStateNormal];
+                btn.enabled = NO;
+            }
+        }];
+    }];
+}
+
+- (void) checkLending:(UIButton*)btn {
+    NSNumber* borrowerId = _bookshelf[@"borrowerId"];
+    if (![borrowerId isEqualToNumber:@0]) {
+        [btn setTitle:@"貸出中" forState:UIControlStateNormal];
+        btn.enabled = NO;
+    }
+}
+
 #pragma mark - button events
 
 - (void)tapAddingBookToBookshelf:(id)sender {
@@ -82,6 +124,14 @@
     [AlertHelper showYesNo:self title:@"本棚から削除" msg:@"この本を本棚から削除します。よろしいですか？"
                   yesTitle:@"削除" noTitle:@"キャンセル" yes:^() {
                       [self removeBookFromBookshelf];
+    } no:^() {
+    }];
+}
+
+- (void)tapRequestingBook:(id)sender {
+    [AlertHelper showYesNo:self title:@"本のリクエスト" msg:@"この本をリクエストを送ります。よろしいですか？"
+                  yesTitle:@"はい" noTitle:@"キャンセル" yes:^() {
+                      [self requestBook];
     } no:^() {
     }];
 }
@@ -118,6 +168,20 @@
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
                               action:@selector(tapRemovingBookFromBookshelf:)];
+    vc.buttons = @[btn];
+    [parent.navigationController pushViewController:vc animated: true];
+}
+
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf userId:(int)userId {
+    BookDetailViewController *vc = [BookDetailViewController new];
+    vc.bookshelf = bookshelf;
+    vc.userId = userId;
+    UIButton* btn = [vc createButton:@"借りたい"
+                               color:[UIColor whiteColor]
+                             bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
+                              action:@selector(tapRequestingBook:)];
+    [vc checkRequest:btn];
+    [vc checkLending:btn];
     vc.buttons = @[btn];
     [parent.navigationController pushViewController:vc animated: true];
 }

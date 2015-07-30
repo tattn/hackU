@@ -12,6 +12,12 @@
 #import <UIKit/UIKit.h>
 #import "SDWebImage/UIImageView+WebCache.h"
 
+@interface UIImageView (UIUtil)
+
+- (void)my_setImageWithURL:(NSString*)url;
+
+@end
+
 @implementation UIImageView (UIUtil)
 
 - (void)my_setImageWithURL:(NSString*)url {
