@@ -49,6 +49,10 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)searchBook:(NSString*)query {
+    if ([[query stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        return;
+    }
+    
     [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
         if (error) {
             NSLog(@"Error - searchBook: %@", error);
