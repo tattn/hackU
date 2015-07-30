@@ -7,9 +7,6 @@
         <mutableArray key="HiraginoKakuGothic.ttc">
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
-            <string>HiraKakuProN-W3</string>
-            <string>HiraKakuProN-W3</string>
-            <string>HiraKakuProN-W3</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -33,7 +30,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnP-05-hOD">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="314"/>
-                    <color key="backgroundColor" red="1" green="0.59022302819687544" blue="0.58298831461707212" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -43,7 +40,7 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXK-jM-79y">
                     <rect key="frame" x="44" y="241" width="286" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="21"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -53,47 +50,48 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登録している本の数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQo-hv-m0L">
-                    <rect key="frame" x="44" y="339" width="179" height="34"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="books" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQo-hv-m0L">
+                    <rect key="frame" x="14" y="376" width="110" height="20"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                    <color key="textColor" red="0.50173611110000005" green="0.50173611110000005" blue="0.50173611110000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9c-R5-v2Y">
+                    <rect key="frame" x="132" y="376" width="110" height="20"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                    <color key="textColor" red="0.50173611110000005" green="0.50173611110000005" blue="0.50173611110000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="borrow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8i-XM-dwY">
+                    <rect key="frame" x="250" y="376" width="110" height="20"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                    <color key="textColor" red="0.50173611110000005" green="0.50173611110000005" blue="0.50173611110000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eI8-al-wSW">
-                    <rect key="frame" x="254" y="339" width="69" height="34"/>
+                    <rect key="frame" x="19" y="334" width="100" height="40"/>
                     <string key="text" base64-UTF8="YES">
 COWGiuaVsA
 </string>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="貸した本の数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9c-R5-v2Y">
-                    <rect key="frame" x="79" y="390" width="109" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="冊数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s42-hW-Zgc">
-                    <rect key="frame" x="267" y="390" width="42" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="借りた本の数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8i-XM-dwY">
-                    <rect key="frame" x="79" y="432" width="109" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <rect key="frame" x="137" y="334" width="100" height="40"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="冊数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ut-0e-t0u">
-                    <rect key="frame" x="267" y="432" width="42" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <rect key="frame" x="255" y="334" width="100" height="40"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mM-sx-oyc">
-                    <rect key="frame" x="37" y="490" width="300" height="50"/>
-                    <color key="backgroundColor" red="0.12952405704555603" green="0.63620072891139168" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="37" y="458" width="300" height="50"/>
+                    <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
                     <state key="normal" title="本棚を見る">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,8 +102,8 @@ COWGiuaVsA
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxj-mB-oVl">
-                    <rect key="frame" x="112" y="560" width="150" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.21455374999999999" blue="0.16289375589999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="112" y="546" width="150" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.41404105142265057" blue="0.52317094880746717" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
                     <state key="normal" title="ブロックする">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
