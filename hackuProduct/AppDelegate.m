@@ -59,7 +59,6 @@
 
     [UINavigationBar appearance].tintColor = defaultFontColor;
     [UINavigationBar appearance].barTintColor = themeColor;
-//    [[UITabBar appearance] setBarTintColor:themeColor];
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setTintColor:themeColor];
     [UINavigationBar appearance].titleTextAttributes = @{

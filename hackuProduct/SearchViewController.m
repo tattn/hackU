@@ -13,6 +13,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationItem.title = @"";
+    
     self.searchBar.placeholder = @"タイトル, 著者, ISBN...";
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     self.searchBar.delegate = self;
@@ -23,6 +25,17 @@
     self.searchButton.clipsToBounds = YES;
     self.barcodeButton.layer.cornerRadius = 10;
     self.barcodeButton.clipsToBounds = YES;
+    
+    NSArray *items = [NSArray arrayWithObjects:@"キーワード検索", @"バーコード検索", nil];
+    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:items];
+//    segmentControl.selectedSegmentIndex = UISegmentedControlNoSegment;
+    segmentControl.momentary = YES;
+    
+    [segmentControl addTarget:self action:@selector(Button_Click:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:segmentControl];
+}
+
+- (void)Button_Click:(UISegmentedControl*)seg {
     
 }
 
