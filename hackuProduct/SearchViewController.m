@@ -25,8 +25,6 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = YES;
-    
     self.searchBar.placeholder = @"タイトル, 著者, ISBN...";
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     self.searchBar.delegate = self;
@@ -51,11 +49,17 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [segmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)segmentedControlAction:(UISegmentedControl*)seg {
-    [self changeMode:seg.selectedSegmentIndex];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
-- (void)changeMode:(long)mode { //FIXME: must use enum
+- (void)segmentedControlAction:(UISegmentedControl*)seg {
+    [self changeMainView:seg.selectedSegmentIndex];
+}
+
+- (void)changeMainView:(long)mode { //FIXME: must use enum
     if(mode == 0) {
         [_barcodeView removeFromSuperview];
         [_mainView addSubview:_tableView];
@@ -78,7 +82,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)detectedBarcode:(NSString *)code {
-    [self changeMode:0];
+    [self changeMainView:0];
     [self showSearchResult:code];
 }
 
@@ -134,6 +138,8 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     
     switch (_mode) {
         case kModeNormal:
+            //FIXME: 友達の本のリクエスト画面
+//            [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelf userId:??];
             break;
             
         case kModeAddingBookToBookshelf:
@@ -145,14 +151,20 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     }
 }
 
+- (IBAction)changeMode:(UISwitch*)sender {
+    if (sender.on) {
+        _mode = kModeNormal;
+    }
+    else {
+        _mode = kModeAddingBookToBookshelf;
+    }
+}
+
+
 #pragma mark - for showing
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc {
     [APP_DELEGATE switchTabBarController:3];
-//    SearchViewController* vc = [SearchViewController new];
-//    vc.title = @"追加する本の検索";
-//    vc.mode = kModeAddingBookToBookshelf;
-//    [nc pushViewController:vc animated: true];
 }
 
 @end

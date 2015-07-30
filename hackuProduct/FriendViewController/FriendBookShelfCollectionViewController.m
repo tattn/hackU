@@ -2,8 +2,9 @@
 #import "FriendBookShelfCollectionViewController.h"
 #import "BookShelfCell.h"
 #import "Backend.h"
-#import "FriendBookDetailViewController.h"
 #import "UIImageViewHelper.h"
+#import "BookDetailViewController.h"
+
 
 @interface FriendBookShelfCollectionViewController ()
 
@@ -87,10 +88,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    FriendBookDetailViewController *friendBookDetailVC = [[FriendBookDetailViewController alloc] init];
-    friendBookDetailVC.bookshelf = _bookshelves[indexPath.row];
-    friendBookDetailVC.userId = _userId;
-    [self.navigationController pushViewController:friendBookDetailVC animated:YES];
+    [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row] userId:_userId];
+//    FriendBookDetailViewController *friendBookDetailVC = [[FriendBookDetailViewController alloc] init];
+//    friendBookDetailVC.bookshelf = _bookshelves[indexPath.row];
+//    friendBookDetailVC.userId = _userId;
+//    [self.navigationController pushViewController:friendBookDetailVC animated:YES];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
