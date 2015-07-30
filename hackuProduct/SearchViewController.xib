@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
@@ -11,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController">
             <connections>
+                <outlet property="mainView" destination="Ur2-ab-xWX" id="eZM-NJ-WhW"/>
                 <outlet property="searchBar" destination="h4D-Ae-1d5" id="g9i-2A-ceF"/>
                 <outlet property="searchSegmentControl" destination="ejg-C1-TvR" id="HfG-2s-s35"/>
-                <outlet property="tableView" destination="6Ar-cm-zNp" id="zo3-uP-CKc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-C1-TvR">
@@ -48,7 +49,7 @@
                         <constraint firstAttribute="height" constant="40" id="NKa-Kx-daA"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Vyl-ZA-uON">
@@ -59,24 +60,17 @@
                 </switch>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ur2-ab-xWX">
                     <rect key="frame" x="0.0" y="152" width="600" height="399"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6Ar-cm-zNp">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="399"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </tableView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="00x-Jy-9Fh"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1K3-XP-1OS"/>
+                <constraint firstItem="Ur2-ab-xWX" firstAttribute="top" secondItem="UKS-n5-CfA" secondAttribute="bottom" constant="3" id="7QU-8P-UaJ"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9YP-O3-TIO"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="AMQ-Sm-Wyq"/>
-                <constraint firstAttribute="trailing" secondItem="Ur2-ab-xWX" secondAttribute="trailing" id="CPH-dN-vu0"/>
                 <constraint firstItem="UKS-n5-CfA" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" id="DO8-uW-Fk2"/>
-                <constraint firstAttribute="bottom" secondItem="Ur2-ab-xWX" secondAttribute="bottom" id="Dhi-dS-Y0k"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="F86-Yy-XQO"/>
                 <constraint firstAttribute="trailing" secondItem="UKS-n5-CfA" secondAttribute="trailing" id="FGF-lL-XRg"/>
                 <constraint firstItem="Vyl-ZA-uON" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" constant="4" id="GJ0-up-Den"/>
@@ -86,19 +80,18 @@
                 <constraint firstAttribute="trailing" secondItem="h4D-Ae-1d5" secondAttribute="trailing" id="OzN-F6-leg"/>
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="WfZ-LP-QEP"/>
                 <constraint firstItem="UKS-n5-CfA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XRv-sv-pO0"/>
+                <constraint firstItem="Ur2-ab-xWX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aWQ-5G-uNm"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="d7x-si-jtE"/>
                 <constraint firstAttribute="centerX" secondItem="h4D-Ae-1d5" secondAttribute="centerX" id="eHj-Gm-I0p"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ekG-BH-OgR"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="fQh-2S-mce"/>
-                <constraint firstItem="Ur2-ab-xWX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iSQ-lJ-L5z"/>
+                <constraint firstAttribute="bottom" secondItem="Ur2-ab-xWX" secondAttribute="bottom" constant="49" id="fp5-tt-Y1M"/>
                 <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="32" id="j8e-p3-lBq"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" constant="13" id="lDz-Ws-gF0"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="pOc-Qr-bEQ"/>
-                <constraint firstItem="Ur2-ab-xWX" firstAttribute="top" secondItem="UKS-n5-CfA" secondAttribute="bottom" constant="3" id="qWW-rJ-xxQ"/>
+                <constraint firstAttribute="trailing" secondItem="Ur2-ab-xWX" secondAttribute="trailing" id="tqq-p8-ule"/>
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="yAB-wL-rLd"/>
             </constraints>
-            <nil key="simulatedTopBarMetrics"/>
-            <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="1K3-XP-1OS"/>

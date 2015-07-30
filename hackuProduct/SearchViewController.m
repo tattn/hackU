@@ -1,15 +1,18 @@
 
 #import "SearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "BarcodeViewController.h"
 #import "SearchResultViewController.h"
 #import "BookDetailViewController.h"
 #import "UIImageViewHelper.h"
 #import "Backend.h"
+#import "BarcodeView.h"
+#import "UIView+Toast.h"
 
 @interface SearchViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property UITableView* tableView;
+@property BarcodeView* barcodeView;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property NSMutableArray* books;
 
@@ -29,27 +32,41 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     self.searchBar.delegate = self;
     [self.searchBar becomeFirstResponder];
     
+    UINib *nib = [UINib nibWithNibName:SearchResultCellId bundle:nil];
+    _tableView = [UITableView new];
+    [_tableView registerNib:nib forCellReuseIdentifier:SearchResultCellId];
+    [_mainView addSubview:_tableView];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _tableView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);
     
-//    UISegmentedControl *segmentControl = self.searchSegmentControl;
-//    [segmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
-//    [self.navigationItem setTitleView:segmentControl];
+    _barcodeView = [BarcodeView new];
+    _barcodeView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);
+    _barcodeView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _barcodeView.delegate = self;
+    [_barcodeView setupCamera];
     
-    UINib *nib = [UINib nibWithNibName:SearchResultCellId bundle:nil];
-    [_tableView registerNib:nib forCellReuseIdentifier:SearchResultCellId];
+    UISegmentedControl *segmentControl = self.searchSegmentControl;
+    [segmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)segmentedControlAction:(UISegmentedControl*)seg {
-    
-    if(seg.selectedSegmentIndex == 0) {
-        [self showSearchResult:self.searchBar.text];
+    [self changeMode:seg.selectedSegmentIndex];
+}
+
+- (void)changeMode:(long)mode { //FIXME: must use enum
+    if(mode == 0) {
+        [_barcodeView removeFromSuperview];
+        [_mainView addSubview:_tableView];
+        [_barcodeView stop];
     }else {
-        BarcodeViewController *barcodeVC = [BarcodeViewController new];
-        barcodeVC.hidesBottomBarWhenPushed = YES;
-        barcodeVC.delegate = self;
-        [self.navigationController pushViewController:barcodeVC animated:YES];
+        [_tableView removeFromSuperview];
+        [_mainView addSubview:_barcodeView];
+        [_barcodeView start];
+        [_mainView makeToast:@"本のバーコードにかざして下さい。"];
     }
+    _searchSegmentControl.selectedSegmentIndex = mode;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +78,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)detectedBarcode:(NSString *)code {
+    [self changeMode:0];
     [self showSearchResult:code];
 }
 
@@ -130,10 +148,11 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 #pragma mark - for showing
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc {
-    SearchViewController* vc = [SearchViewController new];
-    vc.title = @"追加する本の検索";
-    vc.mode = kModeAddingBookToBookshelf;
-    [nc pushViewController:vc animated: true];
+    [APP_DELEGATE switchTabBarController:3];
+//    SearchViewController* vc = [SearchViewController new];
+//    vc.title = @"追加する本の検索";
+//    vc.mode = kModeAddingBookToBookshelf;
+//    [nc pushViewController:vc animated: true];
 }
 
 @end
