@@ -1,8 +1,8 @@
 
 #import "ImprovedViewController.h"
-#import "BarcodeViewController.h"
+#import "BarcodeView.h"
 
-@interface SearchViewController : ImprovedViewController<UISearchBarDelegate, BarcodeDelegate>
+@interface SearchViewController : ImprovedViewController<UISearchBarDelegate, BarcodeDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *searchSegmentControl;

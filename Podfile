@@ -7,6 +7,7 @@ target 'hackuProduct' do
 	pod 'RMUniversalAlert'
 	pod 'SDWebImage', '~>3.7'
 	pod 'Toast', '~> 2.4'
+	pod 'MNMBottomPullToRefresh'
 end
 
 target 'hackuProductTests' do
