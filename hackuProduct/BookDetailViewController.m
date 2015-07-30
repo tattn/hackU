@@ -52,7 +52,7 @@
 - (void)addBookToBookshelf {
     NSNumber* bookId = _book[@"bookId"];
     [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
-//TODO: 追加後に本棚のreloadDataをするようにする
+        [APP_DELEGATE switchTabBarController:2];
     }];
 }
 
@@ -63,9 +63,7 @@
             NSLog(@"Error - deleteBookInBookshelf: %@", error);
         }
         else {
-            [self.navigationController popViewControllerAnimated:YES];
-//            BookShelfCollectionViewController* vc = (BookShelfCollectionViewController*)[self.navigationController popViewControllerAnimated:YES];
-//            [vc.collectionView reloadData];
+            [APP_DELEGATE switchTabBarController:2];
         }
     }];
 }

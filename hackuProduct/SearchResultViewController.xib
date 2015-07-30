@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultViewController">
@@ -29,10 +28,10 @@
                     </connections>
                 </searchBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUk-tm-Hpj">
-                    <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                    <rect key="frame" x="0.0" y="110" width="375" height="508"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gsR-q3-aGQ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="508"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </tableView>
                     </subviews>
@@ -46,10 +45,11 @@
                 <constraint firstAttribute="trailing" secondItem="HW9-BP-NOx" secondAttribute="trailing" id="JuP-dI-eDW"/>
                 <constraint firstItem="ZUk-tm-Hpj" firstAttribute="top" secondItem="HW9-BP-NOx" secondAttribute="bottom" id="K2Y-jm-6cW"/>
                 <constraint firstItem="HW9-BP-NOx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dBv-JZ-lLK"/>
-                <constraint firstAttribute="bottom" secondItem="ZUk-tm-Hpj" secondAttribute="bottom" id="iFA-OL-zt2"/>
+                <constraint firstAttribute="bottom" secondItem="ZUk-tm-Hpj" secondAttribute="bottom" constant="49" id="iFA-OL-zt2"/>
                 <constraint firstAttribute="trailing" secondItem="ZUk-tm-Hpj" secondAttribute="trailing" id="pob-gx-eem"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
         <searchDisplayController id="0Bq-gC-d4l">
