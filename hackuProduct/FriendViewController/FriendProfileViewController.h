@@ -13,4 +13,6 @@
 - (IBAction)bookShelfButton:(UIButton *)sender;
 - (IBAction)blockButton:(UIButton *)sender;
 
++ (void)show:(UIViewController*)parent user:(NSDictionary*)user;
+
 @end

@@ -2,6 +2,7 @@
 #import "FriendViewController.h"
 #import "FriendTableViewCell.h"
 #import "FriendBookShelfCollectionViewController.h"
+#import "FriendProfileViewController.h"
 #import "AddFriendViewController.h"
 #import <RMUniversalAlert.h>
 #import "Backend.h"
@@ -43,10 +44,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (_userId != User.shared.userId) {
-        [self getAllFriends];
+    //TODO: 表示するたびにデータベースに問い合わせをするのは良くないかも、必要なときだけ更新するように変更する
+//    if (_userId != User.shared.userId) {
         _userId = User.shared.userId;
-    }
+        [self getAllFriends];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +78,9 @@
 - (void)addFriends:(NSArray*)users new:(NSNumber*)new {
     [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
         NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
-        [_friends addObject:@{@"id":user[@"userId"], @"name":fullname, @"new":new}];
+        NSMutableDictionary *friend = [@{@"fullname":fullname, @"new":new} mutableCopy];
+        [friend addEntriesFromDictionary:user];
+        [_friends addObject:friend];
     }];
 }
 
@@ -165,7 +169,10 @@
     FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
     
     NSDictionary* friend = _friends[indexPath.row];
-    cell.firendNameLabel.text = friend[@"name"];
+    cell.firendNameLabel.text = friend[@"fullname"];
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFriendIcon:)];
+    [cell.friendImage addGestureRecognizer:tapGesture];
     
     if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
         cell.backgroundColor = [UIColor yellowColor];
@@ -184,9 +191,9 @@
     if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
         FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
         
-        NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend[@"name"]];
+        NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend[@"fullname"]];
         friendBookShelfCollectionVC.title = title;
-        friendBookShelfCollectionVC.userId = ((NSNumber*)friend[@"id"]).intValue;
+        friendBookShelfCollectionVC.userId = ((NSNumber*)friend[@"userId"]).intValue;
         
         [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
     }
@@ -199,14 +206,14 @@
         UITableViewRowAction *rejectAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"拒否"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                     NSDictionary* friend = _friends[indexPath.row];
-                    [self rejectNewFriendById:((NSNumber*)friend[@"id"]).intValue];
+                    [self rejectNewFriendById:((NSNumber*)friend[@"userId"]).intValue];
         }];
         
         // 許可ボタン
         UITableViewRowAction *allowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"許可"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                     NSDictionary* friend = _friends[indexPath.row];
-                    [self allowNewFriendById:((NSNumber*)friend[@"id"]).intValue];
+                    [self allowNewFriendById:((NSNumber*)friend[@"userId"]).intValue];
         }];
         return @[rejectAction, allowAction];
     }
@@ -215,14 +222,14 @@
         UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"削除"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                     NSDictionary* friend = _friends[indexPath.row];
-                    [self deleteFriendById:((NSNumber*)friend[@"id"]).intValue];
+                    [self deleteFriendById:((NSNumber*)friend[@"userId"]).intValue];
         }];
         
         // ブロックボタン
         UITableViewRowAction *blockAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"ブロック"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                     NSDictionary* friend = _friends[indexPath.row];
-                    [self blockFriendById:((NSNumber*)friend[@"id"]).intValue];
+                    [self blockFriendById:((NSNumber*)friend[@"userId"]).intValue];
         }];
         return @[deleteAction, blockAction];
     }
@@ -234,6 +241,14 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     // editActionsFroWorAtIndexPath の有効化
+}
+
+#pragma mark - tap imageView
+
+- (void)tapFriendIcon:(UITapGestureRecognizer*)sender {
+    CGPoint p = [sender locationInView:self.tableView];
+    NSIndexPath* path = [self.tableView indexPathForRowAtPoint:p];
+    [FriendProfileViewController show:self user:_friends[path.row]];
 }
 
 @end

@@ -8,8 +8,8 @@
 
 #import "SearchResultViewController.h"
 #import "Backend.h"
-#import "SDWebImage/UIImageView+WebCache.h"
 #import "BookDetailViewController.h"
+#import "UIImageViewHelper.h"
 
 @implementation SearchResultCell
 @end
@@ -49,6 +49,10 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)searchBook:(NSString*)query {
+    if ([[query stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
+        return;
+    }
+    
     [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
         if (error) {
             NSLog(@"Error - searchBook: %@", error);
@@ -89,9 +93,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSDictionary* book = _books[indexPath.row];
     cell.titleLabel.text = book[@"title"];
     
-    NSURL *url = [NSURL URLWithString:book[@"coverImageUrl"]];
-    [cell.bookImage sd_setImageWithURL:url
-                    placeholderImage:[UIImage imageNamed:url.absoluteString]];
+    [cell.bookImage my_setImageWithURL:book[@"coverImageUrl"]];
     
     return cell;
 }
