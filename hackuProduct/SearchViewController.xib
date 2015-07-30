@@ -6,15 +6,13 @@
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
             <string>HiraKakuProN-W3</string>
-            <string>HiraKakuProN-W3</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController">
             <connections>
-                <outlet property="barcodeButton" destination="Ca1-LM-WlO" id="cpV-6q-bMd"/>
                 <outlet property="searchBar" destination="h4D-Ae-1d5" id="g9i-2A-ceF"/>
-                <outlet property="searchButton" destination="8f0-kz-kb8" id="VI1-0H-YZ6"/>
+                <outlet property="searchSegmentControl" destination="ejg-C1-TvR" id="HfG-2s-s35"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,41 +21,63 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8f0-kz-kb8">
-                    <rect key="frame" x="40" y="274" width="130" height="130"/>
-                    <color key="backgroundColor" red="1" green="0.87780110499730191" blue="0.34824677076093724" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
-                    <state key="normal" title="キーワード検索">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="keywordButton:" destination="-1" eventType="touchUpInside" id="McP-XY-ufJ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ca1-LM-WlO">
-                    <rect key="frame" x="205" y="274" width="130" height="130"/>
-                    <color key="backgroundColor" red="1" green="0.87780110499999997" blue="0.34824677079999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
-                    <state key="normal" title="バーコード検索">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="barcodeButton:" destination="-1" eventType="touchUpInside" id="jNE-Dm-Jfi"/>
-                    </connections>
-                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-C1-TvR">
+                    <rect key="frame" x="0.0" y="24" width="600" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="6Pu-93-ZP0"/>
+                    </constraints>
+                    <segments>
+                        <segment title="キーワード検索"/>
+                        <segment title="バーコード検索"/>
+                    </segments>
+                </segmentedControl>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="h4D-Ae-1d5">
                     <rect key="frame" x="0.0" y="65" width="600" height="44"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="友達の本棚を検索する" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKS-n5-CfA">
+                    <rect key="frame" x="0.0" y="109" width="600" height="40"/>
+                    <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="NKa-Kx-daA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ur2-ab-xWX">
+                    <rect key="frame" x="0.0" y="152" width="600" height="448"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6Ar-cm-zNp">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="448"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Vyl-ZA-uON">
+                    <rect key="frame" x="519" y="113" width="51" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="rtn-UX-yAG"/>
+                    </constraints>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1K3-XP-1OS"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9YP-O3-TIO"/>
+                <constraint firstItem="UKS-n5-CfA" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" id="DO8-uW-Fk2"/>
+                <constraint firstAttribute="trailing" secondItem="UKS-n5-CfA" secondAttribute="trailing" id="FGF-lL-XRg"/>
+                <constraint firstItem="Vyl-ZA-uON" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" constant="4" id="GJ0-up-Den"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="GnH-qn-8XY"/>
+                <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="N8L-eF-VBJ"/>
                 <constraint firstAttribute="trailing" secondItem="h4D-Ae-1d5" secondAttribute="trailing" id="OzN-F6-leg"/>
+                <constraint firstItem="UKS-n5-CfA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XRv-sv-pO0"/>
                 <constraint firstAttribute="centerX" secondItem="h4D-Ae-1d5" secondAttribute="centerX" id="eHj-Gm-I0p"/>
+                <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="32" id="j8e-p3-lBq"/>
+                <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" constant="13" id="lDz-Ws-gF0"/>
+                <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="pOc-Qr-bEQ"/>
+                <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="yAB-wL-rLd"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <point key="canvasLocation" x="358" y="327"/>

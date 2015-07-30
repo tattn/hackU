@@ -5,10 +5,7 @@
 @interface SearchViewController : ImprovedViewController<UISearchBarDelegate, BarcodeDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
-@property (weak, nonatomic) IBOutlet UIButton *barcodeButton;
-- (IBAction)keywordButton:(UIButton *)sender;
-- (IBAction)barcodeButton:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *searchSegmentControl;
 
 typedef NS_ENUM (NSUInteger, Mode) {
     kModeNormal,

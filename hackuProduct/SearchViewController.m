@@ -3,6 +3,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BarcodeViewController.h"
 #import "SearchResultViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
+#import "BookDetailViewController.h"
+#import "Backend.h"
 
 @interface SearchViewController ()
 
@@ -13,48 +16,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationItem.title = @"";
+//    self.navigationController.navigationBarHidden = YES;
     
     self.searchBar.placeholder = @"タイトル, 著者, ISBN...";
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     self.searchBar.delegate = self;
     [self.searchBar becomeFirstResponder];
     
-    //ボタンの角を丸くする
-    self.searchButton.layer.cornerRadius = 10;
-    self.searchButton.clipsToBounds = YES;
-    self.barcodeButton.layer.cornerRadius = 10;
-    self.barcodeButton.clipsToBounds = YES;
-    
-    NSArray *items = [NSArray arrayWithObjects:@"キーワード検索", @"バーコード検索", nil];
-    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:items];
-//    segmentControl.selectedSegmentIndex = UISegmentedControlNoSegment;
-    segmentControl.momentary = YES;
-    
-    [segmentControl addTarget:self action:@selector(Button_Click:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:segmentControl];
+    UISegmentedControl *segmentControl = self.searchSegmentControl;
+    [segmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+    [self.navigationItem setTitleView:segmentControl];
 }
 
-- (void)Button_Click:(UISegmentedControl*)seg {
+- (void)segmentedControlAction:(UISegmentedControl*)seg {
     
+    if(seg.selectedSegmentIndex == 0) {
+        
+        [self showSearchResult:self.searchBar.text];
+        NSLog(@"keyword");
+        
+    }else {
+        
+        BarcodeViewController *barcodeVC = [BarcodeViewController new];
+        barcodeVC.hidesBottomBarWhenPushed = YES;
+        barcodeVC.delegate = self;
+        [self.navigationController pushViewController:barcodeVC animated:YES];
+        NSLog(@"barcode");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
-- (IBAction)keywordButton:(UIButton *)sender {
-    [self showSearchResult:self.searchBar.text];
-}
-
-- (IBAction)barcodeButton:(UIButton *)sender {
-    BarcodeViewController *barcodeVC = [BarcodeViewController new];
-    barcodeVC.hidesBottomBarWhenPushed = YES;
-    barcodeVC.delegate = self;
-    [self.navigationController pushViewController:barcodeVC animated:YES];
-}
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.view endEditing:YES];
     [self showSearchResult:self.searchBar.text];
