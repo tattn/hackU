@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "Backend.h"
 #import "User.h"
+#import "BookDetailViewController.h"
 
 @implementation NotificationCell
 @end
@@ -24,7 +25,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
 
 @property kMode mode;
 
-@property NSArray* requests;
+@property NSMutableArray* requests;
 
 @end
 
@@ -61,7 +62,14 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (void)getBookRequests {
     [Backend.shared getRequest:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
-        _requests = responseObject[@"requests"];
+        _requests = [NSMutableArray array];
+        NSArray* requests = responseObject[@"requests"];
+        [requests enumerateObjectsUsingBlock:^(NSDictionary* req, NSUInteger idx, BOOL *stop) {
+            NSNumber* accepted = req[@"accepted"];
+            if (accepted == (id)[NSNull null]) {
+                [_requests addObject:req];
+            }
+        }];
         [_tableView reloadData];
     }];
 }
@@ -92,6 +100,13 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary* req = _requests[indexPath.row];
+    NSDictionary* user = req[@"sender"];
+    NSDictionary* book = req[@"book"];
+    
+    if (_mode == kModeNotification) {
+        [BookDetailViewController showForAcceptingBook:self book:book sender:user];
+    }
 }
 
 @end
