@@ -13,6 +13,7 @@
 #import "User.h"
 #import "AlertHelper.h"
 #import "BookShelfCollectionViewController.h"
+#import "UIView+Toast.h"
 
 @interface BookDetailViewController ()
 

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
@@ -12,28 +13,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchResultCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultCell" rowHeight="127" id="n9K-ka-tpO" customClass="SearchResultCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n9K-ka-tpO" id="LsR-Gb-cNv">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="126.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beB-ju-lDc">
-                        <rect key="frame" x="8" y="4" width="80" height="120"/>
+                        <rect key="frame" x="8" y="3" width="80" height="120"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5D-Ud-Htc">
-                        <rect key="frame" x="96" y="25" width="216" height="76"/>
-                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title &amp; Author" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5D-Ud-Htc">
+                        <rect key="frame" x="96" y="28" width="268" height="70"/>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mY-DI-xds">
+                        <rect key="frame" x="304" y="80" width="60" height="38"/>
+                        <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="CJy-AU-yho"/>
+                            <constraint firstAttribute="height" constant="38" id="F5t-3r-JzD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="3mY-DI-xds" firstAttribute="bottom" secondItem="LsR-Gb-cNv" secondAttribute="bottomMargin" id="897-hc-8Ii"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3mY-DI-xds" secondAttribute="trailing" constant="3" id="TZG-28-1M5"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addBookLabel" destination="3mY-DI-xds" id="Wra-cK-WFv"/>
                 <outlet property="bookImage" destination="beB-ju-lDc" id="IUp-i0-Dbd"/>
                 <outlet property="titleLabel" destination="M5D-Ud-Htc" id="SmF-OU-AY3"/>
             </connections>
-            <point key="canvasLocation" x="217" y="774.5"/>
+            <point key="canvasLocation" x="226.5" y="773.5"/>
         </tableViewCell>
     </objects>
 </document>
