@@ -18,6 +18,7 @@
                 <outlet property="borrowNumberLabel" destination="2Ut-0e-t0u" id="26q-Q9-MW4"/>
                 <outlet property="friendImage" destination="q4d-nD-UX7" id="l7b-UH-j20"/>
                 <outlet property="friendNameLabel" destination="hXK-jM-79y" id="r40-Bj-19s"/>
+                <outlet property="friendWordLabel" destination="til-xV-dyJ" id="0wR-c2-j6c"/>
                 <outlet property="registerNumberLabel" destination="eI8-al-wSW" id="edS-J2-Dsj"/>
                 <outlet property="rentNumberLabel" destination="s42-hW-Zgc" id="gRa-01-qKg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="270"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="friendImage" translatesAutoresizingMaskIntoConstraints="NO" id="q4d-nD-UX7">

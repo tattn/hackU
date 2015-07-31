@@ -170,6 +170,7 @@
     
     NSDictionary* friend = _friends[indexPath.row];
     cell.firendNameLabel.text = friend[@"fullname"];
+    cell.friendCommentLabel.text = friend[@"comment"];
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFriendIcon:)];
     [cell.friendImage addGestureRecognizer:tapGesture];
