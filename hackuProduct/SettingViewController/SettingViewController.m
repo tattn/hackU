@@ -51,9 +51,11 @@
 
     UIColor *themeColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0];
     _signoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _signoutButton.layer.cornerRadius = 8;
+    _signoutButton.clipsToBounds = YES;
     _signoutButton.backgroundColor = themeColor;
     _signoutButton.tintColor = [UIColor whiteColor];
-    _signoutButton.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:13.0f];
+    _signoutButton.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:15.0f];
     [_signoutButton setTitle:@"ログアウト" forState:UIControlStateNormal];
     [_signoutButton addTarget:self
                action:@selector(signout:)
@@ -71,7 +73,7 @@
         frame.size.height = _tableView.contentSize.height + _tableView.sectionHeaderHeight;
         _tableView.frame = frame;
 
-        _signoutButton.frame = CGRectMake(20, frame.size.height + 10, frame.size.width - 40, 40);
+        _signoutButton.frame = CGRectMake(20, frame.size.height, frame.size.width - 40, 40);
         scrollView.contentSize = CGSizeMake(frame.size.width, frame.size.height + 50);
     });
 }
