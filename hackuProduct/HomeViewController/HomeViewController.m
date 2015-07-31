@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "Backend.h"
+#import "Toast.h"
 
 @interface HomeViewController ()
 
@@ -47,6 +48,7 @@ static NSString* NotificationCellID = @"NotificationCell";
     _mode = sender.selectedSegmentIndex;
     
     //TODO: バックエンドとの接続
+    [Toast show:self.view message:@"てすとめっせえええええええええじ"];
     
     [_tableView reloadData];
 }
