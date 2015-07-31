@@ -48,6 +48,7 @@ static User* instance = nil;
     if ([user objectForKey:@"firstname"]) _firstname = user[@"firstname"];
     if ([user objectForKey:@"lastname"]) _lastname = user[@"lastname"];
     if ([user objectForKey:@"school"]) _school = user[@"school"];
+    if ([user objectForKey:@"comment"]) _comment = user[@"comment"];
 }
 
 - (void)reset {
