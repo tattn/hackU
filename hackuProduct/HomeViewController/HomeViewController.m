@@ -48,6 +48,8 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
+    [super viewDidAppear:animated];
+    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
