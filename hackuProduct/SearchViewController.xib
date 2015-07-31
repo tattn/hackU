@@ -23,21 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-C1-TvR">
-                    <rect key="frame" x="0.0" y="31" width="600" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="6Pu-93-ZP0"/>
-                    </constraints>
-                    <segments>
-                        <segment title="キーワード検索"/>
-                        <segment title="バーコード検索"/>
-                    </segments>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="6Pu-93-ZP0"/>
-                        </mask>
-                    </variation>
-                </segmentedControl>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="h4D-Ae-1d5">
                     <rect key="frame" x="0.0" y="65" width="600" height="44"/>
                     <textInputTraits key="textInputTraits"/>
@@ -48,15 +33,16 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="NKa-Kx-daA"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Vyl-ZA-uON">
-                    <rect key="frame" x="519" y="113" width="51" height="31"/>
+                    <rect key="frame" x="543" y="115" width="51" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="rtn-UX-yAG"/>
                     </constraints>
+                    <color key="onTintColor" red="1" green="0.41404105140000003" blue="0.52317094880000004" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="changeMode:" destination="-1" eventType="valueChanged" id="puB-58-haB"/>
                     </connections>
@@ -65,6 +51,22 @@
                     <rect key="frame" x="0.0" y="152" width="600" height="399"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-C1-TvR">
+                    <rect key="frame" x="0.0" y="37" width="600" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="6Pu-93-ZP0"/>
+                    </constraints>
+                    <segments>
+                        <segment title="キーワード検索"/>
+                        <segment title="バーコード検索"/>
+                    </segments>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="6Pu-93-ZP0"/>
+                        </mask>
+                    </variation>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -80,19 +82,20 @@
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="GnH-qn-8XY"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="MP8-3G-Ysv"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="N8L-eF-VBJ"/>
+                <constraint firstItem="Vyl-ZA-uON" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" constant="6" id="Ngk-tu-yVj"/>
                 <constraint firstAttribute="trailing" secondItem="h4D-Ae-1d5" secondAttribute="trailing" id="OzN-F6-leg"/>
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="WfZ-LP-QEP"/>
                 <constraint firstItem="UKS-n5-CfA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XRv-sv-pO0"/>
                 <constraint firstItem="Ur2-ab-xWX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aWQ-5G-uNm"/>
-                <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="d7x-si-jtE"/>
                 <constraint firstAttribute="centerX" secondItem="h4D-Ae-1d5" secondAttribute="centerX" id="eHj-Gm-I0p"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ekG-BH-OgR"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="fQh-2S-mce"/>
                 <constraint firstAttribute="bottom" secondItem="Ur2-ab-xWX" secondAttribute="bottom" constant="49" id="fp5-tt-Y1M"/>
-                <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="32" id="j8e-p3-lBq"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" constant="13" id="lDz-Ws-gF0"/>
+                <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="8" id="mUd-J7-RCj"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="pOc-Qr-bEQ"/>
                 <constraint firstAttribute="trailing" secondItem="Ur2-ab-xWX" secondAttribute="trailing" id="tqq-p8-ule"/>
+                <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" id="vYp-e2-C8X"/>
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="yAB-wL-rLd"/>
             </constraints>
             <variation key="default">
@@ -107,6 +110,7 @@
                     <exclude reference="pOc-Qr-bEQ"/>
                     <exclude reference="yAB-wL-rLd"/>
                     <exclude reference="lDz-Ws-gF0"/>
+                    <exclude reference="GJ0-up-Den"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="358" y="327"/>
