@@ -41,11 +41,13 @@ static NSString* NotificationCellID = @"NotificationCell";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    self.navigationController.navigationBarHidden = YES;
-    
     UINib *nib = [UINib nibWithNibName:@"HomeViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:NotificationCellID];
 //    [self.tableView registerClass:[NotificationCell class] forCellReuseIdentifier:NotificationCellID];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
