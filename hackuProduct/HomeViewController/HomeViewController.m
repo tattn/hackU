@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "Backend.h"
+#import "Toast.h"
 #import "User.h"
 #import "BookDetailViewController.h"
 
