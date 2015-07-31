@@ -44,7 +44,7 @@
                      animations:^{self.alpha = 1.0;}
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:1.0
-                                               delay:1.5
+                                               delay:1.3
                                              options:UIViewAnimationOptionCurveLinear
                                           animations:^{self.alpha = 0.0;}
                                           completion:^(BOOL finished) {
@@ -53,6 +53,13 @@
 }
 
 +(void)show:(UIView*)parent message:(NSString*)msg {
+    // 表示中のToastがあれば、削除
+    for (UIView *view in [parent subviews]) {
+        if ([view isKindOfClass:[Toast class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    
     Toast* toast = [Toast initWithMessage:msg parent:parent.bounds];
     
     [parent addSubview:toast];
