@@ -21,6 +21,8 @@
 @property NSMutableArray* books;
 @property NSMutableArray* bookshelves;
 
+@property (nonatomic, strong) MNMBottomPullToRefreshManager* refreshManager;
+
 @end
 
 @implementation SearchViewController
@@ -53,6 +55,8 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [_searchSegmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
     _mode = kModeAddingBookToBookshelf;
+    
+    self.refreshManager = [[MNMBottomPullToRefreshManager alloc] initWithPullToRefreshViewHeight:60.0 tableView:_tableView withClient:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,12 +96,14 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [self searchBook:code];
 }
 
+- (BOOL)checkSearchQuery {
+    return ![[self.searchBar.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""];
+}
+
 - (void)searchBook:(NSString*)query {
     self.searchBar.text = query;
     
-    if ([[query stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
-        return; // 空文字や空白文字だけの時は検索しない
-    }
+    if (![self checkSearchQuery]) return; // 空文字や空白文字だけの時は検索しない
     
     if (_mode == kModeAddingBookToBookshelf) {
         [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
@@ -186,6 +192,33 @@ static NSString* SearchResultCellId = @"SearchResultCell";
             break;
     }
 }
+
+# pragma mark - MNMBottomPullToRefreshManager
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.refreshManager tableViewScrolled];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.refreshManager tableViewReleased];
+}
+
+- (void)bottomPullToRefreshTriggered:(MNMBottomPullToRefreshManager *)manager {
+
+    [self performSelector:@selector(refresh) withObject:nil afterDelay:0.3f];
+}
+
+- (void)refresh {
+    // データ更新
+    if ([self checkSearchQuery]) {
+        
+    }
+
+    [self.refreshManager tableViewReloadFinished];
+}
+
 
 - (IBAction)changeMode:(UISwitch*)sender {
     if (sender.on) {

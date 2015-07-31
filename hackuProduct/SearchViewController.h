@@ -1,8 +1,9 @@
 
 #import "ImprovedViewController.h"
 #import "BarcodeView.h"
+#import <MNMBottomPullToRefreshManager.h>
 
-@interface SearchViewController : ImprovedViewController<UISearchBarDelegate, BarcodeDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SearchViewController : ImprovedViewController<UISearchBarDelegate, BarcodeDelegate, UITableViewDataSource, UITableViewDelegate, MNMBottomPullToRefreshManagerClient>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *searchSegmentControl;
