@@ -13,5 +13,6 @@
 @end
 
 @interface NotificationCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 
 @end

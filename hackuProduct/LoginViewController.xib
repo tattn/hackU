@@ -205,17 +205,11 @@
                 <constraint firstItem="j5C-ty-Lhb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gw1-7w-squ"/>
                 <constraint firstItem="j5C-ty-Lhb" firstAttribute="top" secondItem="qcz-ir-OsX" secondAttribute="bottom" constant="3" id="hEt-ba-RwN"/>
                 <constraint firstAttribute="trailing" secondItem="4Hp-y4-uP5" secondAttribute="trailing" constant="35" id="k4k-1w-SaV"/>
-                <constraint firstItem="j5C-ty-Lhb" firstAttribute="top" secondItem="qcz-ir-OsX" secondAttribute="bottom" constant="4" id="kft-3V-V8W"/>
                 <constraint firstAttribute="trailing" secondItem="qcz-ir-OsX" secondAttribute="trailing" id="mJj-Pb-8N3"/>
                 <constraint firstItem="4Hp-y4-uP5" firstAttribute="top" secondItem="UyV-w2-HJn" secondAttribute="bottom" constant="9" id="rHO-fg-eKN"/>
                 <constraint firstAttribute="centerX" secondItem="4Hp-y4-uP5" secondAttribute="centerX" id="yjS-gU-0Yo"/>
                 <constraint firstAttribute="bottom" secondItem="4Hp-y4-uP5" secondAttribute="bottom" constant="42" id="zw8-0c-XGM"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="kft-3V-V8W"/>
-                </mask>
-            </variation>
         </view>
     </objects>
     <resources>

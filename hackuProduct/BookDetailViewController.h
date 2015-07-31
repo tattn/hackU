@@ -16,4 +16,6 @@
 
 + (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf;
 
++ (void)showForAcceptingBook:(UIViewController*)parent book:(NSDictionary*)book sender:(NSDictionary*)sender;
+
 @end

@@ -3,6 +3,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BookDetailViewController.h"
 #import "UIImageViewHelper.h"
+#import "User.h"
 #import "Backend.h"
 #import "BarcodeView.h"
 #import "UIView+Toast.h"
@@ -143,6 +144,9 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SearchResultCell* cell = [tableView dequeueReusableCellWithIdentifier:SearchResultCellId];
     
+    cell.addBookLabel.layer.cornerRadius = 13;
+    cell.addBookLabel.clipsToBounds = YES;
+    
     NSDictionary* book;
     if (_mode == kModeRequest) {
         book = ((NSDictionary*)_bookshelves[indexPath.row])[@"book"];
@@ -150,9 +154,14 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     else {
         book = _books[indexPath.row];
     }
-    
-    cell.titleLabel.text = book[@"title"];
+    NSString *title = book[@"title"];
+    NSString *author = book[@"author"];
+    NSString *bookInfo = [NSString stringWithFormat:@"%@\n\n%@", title, author];
+    cell.titleLabel.text = bookInfo;
     [cell.bookImage my_setImageWithURL:book[@"coverImageUrl"]];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAddLabel:)];
+    [cell.addBookLabel addGestureRecognizer:tapGesture];
     
     return cell;
 }
@@ -187,13 +196,22 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     }
 }
 
+#pragma mark - tap AddLabel
+
+- (void)tapAddLabel:(UIGestureRecognizer*)sender {
+    CGPoint p = [sender locationInView:self.tableView];
+    NSIndexPath *path = [self.tableView indexPathForRowAtPoint:p];
+    NSDictionary *book = _books[path.row];
+    NSNumber *bookId = book[@"bookId"];
+    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){[_mainView makeToast:@"本棚に登録しました"];}];
+    NSLog(@"tapped");
+}
+
 
 #pragma mark - for showing
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc {
-    SearchViewController* vc = (SearchViewController*)[APP_DELEGATE switchTabBarController:3];
-    vc.searchSwitch.on = YES;
-    vc.mode = kModeAddingBookToBookshelf;
+    [APP_DELEGATE switchTabBarController:3];
 }
 
 @end

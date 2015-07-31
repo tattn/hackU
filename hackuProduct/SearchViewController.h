@@ -22,4 +22,5 @@ typedef NS_ENUM (NSUInteger, Mode) {
 @interface SearchResultCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addBookLabel;
 @end

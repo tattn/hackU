@@ -45,8 +45,7 @@ static NSString* BlocklistCellId = @"BlocklistCell";
         else {
             NSArray* users = res[@"users"];
             [users enumerateObjectsUsingBlock:^(NSDictionary* user, NSUInteger idx, BOOL *stop) {
-                NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
-                [_blocklist addObject:@{@"id":user[@"userId"], @"name":fullname}];
+                [_blocklist addObject:@{@"id":user[@"userId"], @"name":user[@"fullname"]}];
             }];
             [_tableView reloadData];
         }

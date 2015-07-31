@@ -77,8 +77,7 @@
 
 - (void)addFriends:(NSArray*)users new:(NSNumber*)new {
     [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
-        NSString *fullname = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
-        NSMutableDictionary *friend = [@{@"fullname":fullname, @"new":new} mutableCopy];
+        NSMutableDictionary *friend = [@{@"new":new} mutableCopy];
         [friend addEntriesFromDictionary:user];
         [_friends addObject:friend];
     }];
@@ -170,6 +169,7 @@
     
     NSDictionary* friend = _friends[indexPath.row];
     cell.firendNameLabel.text = friend[@"fullname"];
+    cell.friendCommentLabel.text = friend[@"comment"];
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFriendIcon:)];
     [cell.friendImage addGestureRecognizer:tapGesture];
