@@ -204,6 +204,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSDictionary *book = _books[path.row];
     NSNumber *bookId = book[@"bookId"];
     [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){[_mainView makeToast:@"本棚に登録しました"];}];
+    NSLog(@"tapped");
 }
 
 
