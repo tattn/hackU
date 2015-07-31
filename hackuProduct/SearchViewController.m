@@ -6,7 +6,7 @@
 #import "User.h"
 #import "Backend.h"
 #import "BarcodeView.h"
-#import "UIView+Toast.h"
+#import "Toast.h"
 
 @implementation SearchResultCell
 @end
@@ -78,7 +78,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
         [_tableView removeFromSuperview];
         [_mainView addSubview:_barcodeView];
         [_barcodeView start];
-        [_mainView makeToast:@"本のバーコードにかざして下さい。"];
+        [Toast show:_mainView message:@"本のバーコードにかざして下さい。"];
     }
     _searchSegmentControl.selectedSegmentIndex = mode;
 }
@@ -236,7 +236,9 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSIndexPath *path = [self.tableView indexPathForRowAtPoint:p];
     NSDictionary *book = _books[path.row];
     NSNumber *bookId = book[@"bookId"];
-    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){[_mainView makeToast:@"本棚に登録しました"];}];
+    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
+        [Toast show:_mainView message:@"本棚に登録しました"];
+    }];
     NSLog(@"tapped");
 }
 

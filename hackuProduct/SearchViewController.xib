@@ -38,7 +38,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Vyl-ZA-uON">
-                    <rect key="frame" x="543" y="115" width="51" height="31"/>
+                    <rect key="frame" x="538" y="115" width="51" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="rtn-UX-yAG"/>
                     </constraints>
@@ -81,6 +81,7 @@
                 <constraint firstAttribute="trailing" secondItem="UKS-n5-CfA" secondAttribute="trailing" id="FGF-lL-XRg"/>
                 <constraint firstItem="Vyl-ZA-uON" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" constant="4" id="GJ0-up-Den"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="GnH-qn-8XY"/>
+                <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="13" id="HKp-E5-TPR"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="MP8-3G-Ysv"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="N8L-eF-VBJ"/>
                 <constraint firstItem="Vyl-ZA-uON" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" constant="6" id="Ngk-tu-yVj"/>
@@ -93,7 +94,6 @@
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="fQh-2S-mce"/>
                 <constraint firstAttribute="bottom" secondItem="Ur2-ab-xWX" secondAttribute="bottom" constant="49" id="fp5-tt-Y1M"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" constant="13" id="lDz-Ws-gF0"/>
-                <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="8" id="mUd-J7-RCj"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="pOc-Qr-bEQ"/>
                 <constraint firstAttribute="trailing" secondItem="Ur2-ab-xWX" secondAttribute="trailing" id="tqq-p8-ule"/>
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="yAB-wL-rLd"/>

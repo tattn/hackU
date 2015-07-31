@@ -15,7 +15,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //UIImageViewを円形にして表示する
+    self.title = @"Profile";
+    
     self.friendImage.layer.cornerRadius = self.friendImage.frame.size.width / 2.f;
     self.friendImage.layer.masksToBounds = YES;
     self.friendImage.layer.borderColor = [UIColor whiteColor].CGColor;

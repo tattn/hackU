@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.friendApplyButton.layer.cornerRadius = 8;
+    self.friendApplyButton.clipsToBounds = YES;
     self.title = @"フレンド申請";
 }
 
