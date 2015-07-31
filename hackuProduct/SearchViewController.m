@@ -21,7 +21,8 @@
 @property NSMutableArray* books;
 @property NSMutableArray* bookshelves;
 
-@property (nonatomic, strong) MNMBottomPullToRefreshManager* refreshManager;
+@property int searchStart;
+@property BOOL searchEnd;
 
 @end
 
@@ -55,8 +56,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [_searchSegmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
     _mode = kModeAddingBookToBookshelf;
-    
-    self.refreshManager = [[MNMBottomPullToRefreshManager alloc] initWithPullToRefreshViewHeight:60.0 tableView:_tableView withClient:self];
+    _searchStart = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,29 +102,50 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 
 - (void)searchBook:(NSString*)query {
     self.searchBar.text = query;
-    
+    _searchStart = -1;
+    _searchEnd = NO;
+    _books = [NSMutableArray array];
+    _bookshelves = [NSMutableArray array];
+    [self resumeSearchBook];
+}
+
+- (void)resumeSearchBook {
+    if (_searchEnd) return;
     if (![self checkSearchQuery]) return; // 空文字や空白文字だけの時は検索しない
     
+    _searchStart++; // 次の検索結果へ
+    _searchEnd = YES;
+    
     if (_mode == kModeAddingBookToBookshelf) {
-        [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
+        NSNumber* start = [NSNumber numberWithInt:_searchStart];
+        [Backend.shared searchBook:@{@"title":_searchBar.text, @"amazon":@"", @"start":start} callback:^(id res, NSError *error) {
             if (error) {
                 NSLog(@"Error - searchBook: %@", error);
             }
             else {
-                _books = res[@"books"];
-                [_tableView reloadData];
+                NSArray* books = res[@"books"];
+                if (books.count > 0) {
+                    [_books addObjectsFromArray:books];
+                    [_tableView reloadData];
+                    _searchEnd = NO;
+                }
             }
         }];
     }
     else if (_mode == kModeRequest) {
-        _bookshelves = [NSMutableArray array];
         [Backend.shared getFriend:@{} callback:^(id res, NSError *error) {
             NSArray* friends = res[@"users"];
             [friends enumerateObjectsUsingBlock:^(id friend, NSUInteger idx, BOOL *stop) {
                 int friendId = ((NSNumber*)friend[@"userId"]).intValue;
-                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":query} callback:^(id res2, NSError *error) {
-                    [_bookshelves addObjectsFromArray:res2[@"bookshelves"]];
-                    if (idx == friends.count - 1) [_tableView reloadData];
+                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":_searchBar.text} callback:^(id res2, NSError *error) {
+                    NSArray* bookshelves = res2[@"bookshelves"];
+                    if (bookshelves.count > 0) {
+                        [_bookshelves addObjectsFromArray:bookshelves];
+                        if (idx == friends.count - 1) {
+                            [_tableView reloadData];
+                            _searchEnd = NO;
+                        }
+                    }
                 }];
             }];
         }];
@@ -193,30 +214,13 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     }
 }
 
-# pragma mark - MNMBottomPullToRefreshManager
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.refreshManager tableViewScrolled];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [self.refreshManager tableViewReleased];
-}
-
-- (void)bottomPullToRefreshTriggered:(MNMBottomPullToRefreshManager *)manager {
-
-    [self performSelector:@selector(refresh) withObject:nil afterDelay:0.3f];
-}
-
-- (void)refresh {
-    // データ更新
-    if ([self checkSearchQuery]) {
-        
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //一番下までスクロールしたかどうか
+    if (_tableView.contentOffset.y >= (_tableView.contentSize.height - _tableView.bounds.size.height)) {
+        if (!_searchEnd) {
+            [self resumeSearchBook];
+        }
     }
-
-    [self.refreshManager tableViewReloadFinished];
 }
 
 
@@ -227,6 +231,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     else {
         _mode = kModeAddingBookToBookshelf;
     }
+    [self searchBook:self.searchBar.text];
 }
 
 #pragma mark - tap AddLabel
@@ -239,7 +244,6 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
         [Toast show:_mainView message:@"本棚に登録しました"];
     }];
-    NSLog(@"tapped");
 }
 
 
