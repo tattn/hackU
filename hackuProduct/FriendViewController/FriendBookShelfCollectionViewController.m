@@ -27,7 +27,8 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    UIColor *backColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1.0];
+    self.collectionView.backgroundColor = backColor;
     
     UINib *nib = [UINib nibWithNibName:reuseIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
