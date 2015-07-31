@@ -52,7 +52,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-C1-TvR">
-                    <rect key="frame" x="0.0" y="37" width="600" height="29"/>
+                    <rect key="frame" x="0.0" y="29" width="600" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="6Pu-93-ZP0"/>
                     </constraints>
@@ -74,6 +74,7 @@
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1K3-XP-1OS"/>
                 <constraint firstItem="Ur2-ab-xWX" firstAttribute="top" secondItem="UKS-n5-CfA" secondAttribute="bottom" constant="3" id="7QU-8P-UaJ"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9YP-O3-TIO"/>
+                <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" constant="8" id="9uR-gb-SPy"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="AMQ-Sm-Wyq"/>
                 <constraint firstItem="UKS-n5-CfA" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" id="DO8-uW-Fk2"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="F86-Yy-XQO"/>
@@ -95,7 +96,6 @@
                 <constraint firstAttribute="trailing" secondItem="Vyl-ZA-uON" secondAttribute="trailing" constant="8" id="mUd-J7-RCj"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="pOc-Qr-bEQ"/>
                 <constraint firstAttribute="trailing" secondItem="Ur2-ab-xWX" secondAttribute="trailing" id="tqq-p8-ule"/>
-                <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" id="vYp-e2-C8X"/>
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="yAB-wL-rLd"/>
             </constraints>
             <variation key="default">
