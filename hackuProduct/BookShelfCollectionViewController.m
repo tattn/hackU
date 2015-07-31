@@ -29,8 +29,8 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    
+    UIColor *backColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1.0];
+    self.collectionView.backgroundColor = backColor;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                               target:self
@@ -120,7 +120,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10.0;
+    return 30.0;
 }
 
 #pragma mark <UICollectionViewDelegate>
