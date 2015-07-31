@@ -31,13 +31,14 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
                         <rect key="frame" x="75" y="5" width="222" height="30"/>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="19"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="firendNameLabel" destination="QtZ-ie-P5J" id="u5K-da-Nl7"/>
+                <outlet property="friendCommentLabel" destination="KkW-eS-ruT" id="3k6-Pg-Q5C"/>
                 <outlet property="friendImage" destination="Xwr-Y9-GlT" id="Kee-4L-WCf"/>
             </connections>
             <point key="canvasLocation" x="23" y="219"/>

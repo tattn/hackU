@@ -191,9 +191,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 #pragma mark - for showing
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc {
-    SearchViewController* vc = (SearchViewController*)[APP_DELEGATE switchTabBarController:3];
-    vc.searchSwitch.on = YES;
-    vc.mode = kModeAddingBookToBookshelf;
+    [APP_DELEGATE switchTabBarController:3];
 }
 
 @end

@@ -18,6 +18,7 @@
 @property NSString* firstname;
 @property NSString* lastname;
 @property NSString* school;
+@property NSString* comment;
 
 - (void)update:(NSDictionary*)user;
 - (void)reset;
