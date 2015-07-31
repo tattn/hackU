@@ -27,6 +27,16 @@
 @property NSDictionary* book;
 @property NSDictionary* bookshelf;
 @property int userId;
+@property NSDictionary* user;
+
+typedef NS_ENUM (NSUInteger, Mode) {
+    kModeAddingBookToBookshelf,
+    kModeRemovingBookFromBookshelf,
+    kModeRequestingBook,
+    kModeAcceptingBook,
+};
+
+@property Mode mode;
 
 @end
 
@@ -35,13 +45,16 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    if (_bookshelf) {
+    if (_mode == kModeRequestingBook) {
         _book = _bookshelf[@"book"];
         //FIXME: ユーザーデータをローカルに保存したほうがいいかも、ただし更新タイミングを考慮する必要がある
         [Backend.shared getUser:_userId option:@{} callback:^(id res, NSError *error) {
-            NSDictionary* user = res[@"user"];
-            self.title = [NSString stringWithFormat:@"%@ %@の本の詳細", user[@"lastname"], user[@"firstname"]];
+            _user = res[@"user"];
+            self.title = [NSString stringWithFormat:@"%@の本の詳細", _user[@"fullname"]];
         }];
+    }
+    else if (_mode == kModeAcceptingBook) {
+        self.title = [NSString stringWithFormat:@"%@からのリクエスト", _user[@"fullname"]];
     }
     else {
         self.title = @"本の詳細";
@@ -84,7 +97,7 @@
 }
 
 - (void)requestBook {
-    NSNumber* bookId = _bookshelf[@"book"][@"bookId"];
+    NSNumber* bookId = _book[@"bookId"];
     [Backend.shared addRequest:_userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
@@ -94,6 +107,19 @@
         }
     }];
 }
+
+- (void)replyRequest:(BOOL)accepted {
+    NSNumber* bookId = _book[@"bookId"];
+    [Backend.shared replyRequest:User.shared.userId bookId:bookId.intValue accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error - requestBook: %@", error);
+        }
+        else {
+            [APP_DELEGATE switchTabBarController:0];
+        }
+    }];
+}
+
 
 #pragma mark - check database
 
@@ -142,15 +168,33 @@
     }];
 }
 
+- (void)tapAcceptingRequest:(id)sender {
+    [AlertHelper showYesNo:self title:@"リクエストの許可" msg:@"この本のリクエストを許可します。よろしいですか？"
+                  yesTitle:@"はい" yes:^() {
+                      [self replyRequest:YES];
+    }];
+}
+
+- (void)tapRejectingRequest:(id)sender {
+    [AlertHelper showYesNo:self title:@"リクエストの拒否" msg:@"この本のリクエストを拒否します。よろしいですか？"
+                  yesTitle:@"はい" yes:^() {
+                      [self replyRequest:NO];
+    }];
+}
+
 #pragma mark - create UI
 
-- (UIButton*)createButton:(NSString*)title color:(UIColor*)titleColor bgColor:(UIColor*)bgColor action:(SEL)action{
+- (UIButton*)createButton:(NSString*)title color:(UIColor*)titleColor bgColor:(UIColor*)bgColor borderColor:(UIColor*)borderColor action:(SEL)action{
     UIButton* btn = [UIButton new];
     btn.backgroundColor = bgColor;
     btn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:15.0f];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:titleColor forState:UIControlStateNormal];
     [btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    if (borderColor) {
+        [btn.layer setBorderColor:borderColor.CGColor];
+        [btn.layer setBorderWidth:1.0];
+    }
     return btn;
 }
 
@@ -158,10 +202,12 @@
 
 + (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
     BookDetailViewController *vc = [BookDetailViewController new];
+    vc.mode = kModeAddingBookToBookshelf;
     vc.book = book;
     UIButton* btn = [vc createButton:@"本棚に追加"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
+                         borderColor:nil
                               action:@selector(tapAddingBookToBookshelf:)];
     vc.buttons = @[btn];
     [parent.navigationController pushViewController:vc animated: true];
@@ -169,10 +215,12 @@
 
 + (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
     BookDetailViewController *vc = [BookDetailViewController new];
+    vc.mode = kModeRemovingBookFromBookshelf;
     vc.book = book;
     UIButton* btn = [vc createButton:@"本棚から削除"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
+                         borderColor:nil
                               action:@selector(tapRemovingBookFromBookshelf:)];
     vc.buttons = @[btn];
     [parent.navigationController pushViewController:vc animated: true];
@@ -180,15 +228,36 @@
 
 + (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf {
     BookDetailViewController *vc = [BookDetailViewController new];
+    vc.mode = kModeRequestingBook;
     vc.bookshelf = bookshelf;
     vc.userId = ((NSNumber*)bookshelf[@"userId"]).intValue;
     UIButton* btn = [vc createButton:@"借りたい"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
+                         borderColor:nil
                               action:@selector(tapRequestingBook:)];
     [vc checkRequest:btn];
     [vc checkLending:btn];
     vc.buttons = @[btn];
+    [parent.navigationController pushViewController:vc animated: true];
+}
+
++ (void)showForAcceptingBook:(UIViewController*)parent book:(NSDictionary*)book sender:(NSDictionary*)sender {
+    BookDetailViewController *vc = [BookDetailViewController new];
+    vc.mode = kModeAcceptingBook;
+    vc.book = book;
+    vc.user = sender;
+    UIButton* btn1 = [vc createButton:@"貸す"
+                               color:[UIColor whiteColor]
+                             bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
+                         borderColor:nil
+                              action:@selector(tapAcceptingRequest:)];
+    UIButton* btn2 = [vc createButton:@"貸さない"
+                               color:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0]
+                             bgColor:[UIColor whiteColor]
+                         borderColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0]
+                              action:@selector(tapRejectingRequest:)];
+    vc.buttons = @[btn1, btn2];
     [parent.navigationController pushViewController:vc animated: true];
 }
 
