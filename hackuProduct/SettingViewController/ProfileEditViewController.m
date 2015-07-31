@@ -26,7 +26,7 @@
     
     self.firstname.text = User.shared.firstname;
     self.lastname.text = User.shared.lastname;
-    self.word.text = @"進撃の巨人読みたい"; //TODO:（未実装）一言の情報をあらかじめ設置
+    self.word.text = User.shared.comment;
     
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc]
                               initWithTitle:@"キャンセル"
@@ -49,10 +49,11 @@
 }
 
 - (void)saveProfileEditView {
-    //TODO: コメントと画像の保存は未実装
+    //TODO: 画像の保存は未実装
     [Backend.shared updateUser:User.shared.userId option:@{
         @"firstname": _firstname.text,
         @"lastname": _lastname.text,
+        @"comment": _word.text,
     } callback:^(id responseObject, NSError *error) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -75,17 +76,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
