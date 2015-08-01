@@ -151,7 +151,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
-    if (_friends.count <= 0) return cell;
+    if (_friends.count <= 0) return cell; // 非同期処理バグの一時的な対処
     
     NSDictionary* friend = _friends[indexPath.row];
     cell.firendNameLabel.text = friend[@"fullname"];

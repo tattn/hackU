@@ -91,7 +91,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    if (_books.count <= 0) return cell;
+    if (_books.count <= 0) return cell; // 非同期処理バグの一時的な対処
     
     NSString* coverImageUrl = self.books[indexPath.row][@"coverImageUrl"];
     [cell.bookImage my_setImageWithURL:coverImageUrl];
