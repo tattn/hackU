@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,11 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="oNd-pj-IXl">
-                    <rect key="frame" x="144" y="148" width="193" height="184"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bookee" translatesAutoresizingMaskIntoConstraints="NO" id="oNd-pj-IXl">
+                    <rect key="frame" x="115" y="169" width="251" height="142"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="184" id="EEY-FM-t22"/>
-                        <constraint firstAttribute="width" constant="193" id="jzc-aw-biQ"/>
+                        <constraint firstAttribute="height" constant="142" id="EEY-FM-t22"/>
+                        <constraint firstAttribute="width" constant="251" id="jzc-aw-biQ"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -29,6 +30,6 @@
         </view>
     </objects>
     <resources>
-        <image name="appLogo" width="361" height="311"/>
+        <image name="Bookee" width="394" height="131"/>
     </resources>
 </document>

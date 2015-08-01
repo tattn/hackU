@@ -44,7 +44,7 @@
                         </mask>
                     </variation>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-Tk-Aoe">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bookee" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-Tk-Aoe">
                     <rect key="frame" x="65" y="41" width="470" height="74"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -67,6 +67,6 @@
         </view>
     </objects>
     <resources>
-        <image name="appLogo" width="361" height="311"/>
+        <image name="Bookee" width="394" height="131"/>
     </resources>
 </document>
