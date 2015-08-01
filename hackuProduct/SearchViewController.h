@@ -7,12 +7,12 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *searchSegmentControl;
 
-typedef NS_ENUM (NSUInteger, Mode) {
-    kModeRequest,
-    kModeAddingBookToBookshelf,
+typedef NS_ENUM (NSUInteger, SearchMode) {
+    kSearchModeRequest,
+    kSearchModeAddingBookToBookshelf,
 };
 
-@property Mode mode;
+@property SearchMode mode;
 
 + (void)showForAddingBookToBookshelf:(UINavigationController*)nc;
 

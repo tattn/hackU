@@ -21,6 +21,9 @@
 @property NSMutableArray* books;
 @property NSMutableArray* bookshelves;
 
+@property int searchStart;
+@property BOOL searchEnd;
+
 @end
 
 @implementation SearchViewController
@@ -52,7 +55,8 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     
     [_searchSegmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
-    _mode = kModeAddingBookToBookshelf;
+    _mode = kSearchModeAddingBookToBookshelf;
+    _searchStart = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,7 +77,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     }else {
         [_tableView removeFromSuperview];
         [_mainView addSubview:_barcodeView];
-        [_barcodeView start];
+        [_barcodeView start:kBarcodeModeBarcode];
         [Toast show:_mainView message:@"本のバーコードにかざして下さい。"];
     }
     _searchSegmentControl.selectedSegmentIndex = mode;
@@ -92,33 +96,57 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [self searchBook:code];
 }
 
+- (BOOL)checkSearchQuery {
+    return ![[self.searchBar.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""];
+}
+
 - (void)searchBook:(NSString*)query {
     self.searchBar.text = query;
+    _searchStart = -1;
+    _searchEnd = NO;
+    _books = [NSMutableArray array];
+    _bookshelves = [NSMutableArray array];
+    [self resumeSearchBook];
+}
+
+- (void)resumeSearchBook {
+    if (_searchEnd) return;
+    if (![self checkSearchQuery]) return; // 空文字や空白文字だけの時は検索しない
     
-    if ([[query stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]){
-        return; // 空文字や空白文字だけの時は検索しない
-    }
+    _searchStart++; // 次の検索結果へ
+    _searchEnd = YES;
     
-    if (_mode == kModeAddingBookToBookshelf) {
-        [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
+    if (_mode == kSearchModeAddingBookToBookshelf) {
+        NSNumber* start = [NSNumber numberWithInt:_searchStart];
+        [Backend.shared searchBook:@{@"title":_searchBar.text, @"amazon":@"", @"start":start} callback:^(id res, NSError *error) {
             if (error) {
                 NSLog(@"Error - searchBook: %@", error);
             }
             else {
-                _books = res[@"books"];
-                [_tableView reloadData];
+                NSArray* books = res[@"books"];
+                if (books.count > 0) {
+                    [_books addObjectsFromArray:books];
+                    [_tableView reloadData];
+                    _searchEnd = NO;
+                }
             }
         }];
     }
-    else if (_mode == kModeRequest) {
+    else if (_mode == kSearchModeRequest) {
         _bookshelves = [NSMutableArray array];
         [Backend.shared getFriend:@{} callback:^(id res, NSError *error) {
             NSArray* friends = res[@"users"];
             [friends enumerateObjectsUsingBlock:^(id friend, NSUInteger idx, BOOL *stop) {
                 int friendId = ((NSNumber*)friend[@"userId"]).intValue;
-                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":query} callback:^(id res2, NSError *error) {
-                    [_bookshelves addObjectsFromArray:res2[@"bookshelves"]];
-                    if (idx == friends.count - 1) [_tableView reloadData];
+                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":_searchBar.text} callback:^(id res2, NSError *error) {
+                    NSArray* bookshelves = res2[@"bookshelves"];
+                    if (bookshelves.count > 0) {
+                        [_bookshelves addObjectsFromArray:bookshelves];
+                        if (idx == friends.count - 1) {
+                            [_tableView reloadData];
+                            _searchEnd = NO;
+                        }
+                    }
                 }];
             }];
         }];
@@ -132,7 +160,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_mode == kModeAddingBookToBookshelf) {
+    if (_mode == kSearchModeAddingBookToBookshelf) {
         return _books.count;
     }
     else {
@@ -148,7 +176,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     cell.addBookLabel.clipsToBounds = YES;
     
     NSDictionary* book;
-    if (_mode == kModeRequest) {
+    if (_mode == kSearchModeRequest) {
         book = ((NSDictionary*)_bookshelves[indexPath.row])[@"book"];
     }
     else {
@@ -174,11 +202,11 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (_mode) {
-        case kModeRequest:
+        case kSearchModeRequest:
             [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
             break;
             
-        case kModeAddingBookToBookshelf:
+        case kSearchModeAddingBookToBookshelf:
             [BookDetailViewController showForAddingBookToBookshelf:self book:_books[indexPath.row]];
             break;
             
@@ -187,13 +215,24 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //一番下までスクロールしたかどうか
+    if (_tableView.contentOffset.y >= (_tableView.contentSize.height - _tableView.bounds.size.height)) {
+        if (!_searchEnd) {
+            [self resumeSearchBook];
+        }
+    }
+}
+
+
 - (IBAction)changeMode:(UISwitch*)sender {
     if (sender.on) {
-        _mode = kModeRequest;
+        _mode = kSearchModeRequest;
     }
     else {
-        _mode = kModeAddingBookToBookshelf;
+        _mode = kSearchModeAddingBookToBookshelf;
     }
+    [self searchBook:self.searchBar.text];
 }
 
 #pragma mark - tap AddLabel
@@ -206,7 +245,6 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
         [Toast show:_mainView message:@"本棚に登録しました"];
     }];
-    NSLog(@"tapped");
 }
 
 

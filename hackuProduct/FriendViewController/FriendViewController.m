@@ -4,7 +4,7 @@
 #import "FriendBookShelfCollectionViewController.h"
 #import "FriendProfileViewController.h"
 #import "AddFriendViewController.h"
-#import <RMUniversalAlert.h>
+#import "AlertHelper.h"
 #import "Backend.h"
 #import "User.h"
 
@@ -84,53 +84,35 @@
 }
 
 - (void)allowNewFriendById:(int)userId {
-    [Backend.shared allowNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
-        [self getAllFriends];
+    [AlertHelper showYesNo:self title:@"フレンド申請の許可" msg:@"フレンド申請を許可します。よろしいですか？" yesTitle:@"はい" yes:^() {
+        [Backend.shared allowNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+            [self getAllFriends];
+        }];
     }];
 }
 
 - (void)rejectNewFriendById:(int)userId {
-    [Backend.shared rejectNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
-        [self getAllFriends];
+    [AlertHelper showYesNo:self title:@"フレンド申請の拒否" msg:@"フレンド申請を拒否します。よろしいですか？" yesTitle:@"はい" yes:^() {
+        [Backend.shared rejectNewFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+            [self getAllFriends];
+        }];
     }];
 }
 
 - (void)deleteFriendById:(int)userId {
-    [RMUniversalAlert showAlertInViewController:self
-                                      withTitle:@"フレンドの削除"
-                                        message:@"フレンドを削除します。本当によろしいですか？"
-                              cancelButtonTitle:@"キャンセル"
-                         destructiveButtonTitle:@"削除"
-                              otherButtonTitles:@[]
-                                       tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
-                                           if (buttonIndex == alert.cancelButtonIndex) {
-                                           } else if (buttonIndex == alert.destructiveButtonIndex) {
-                                               
-    [Backend.shared deleteFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
-        [self getAllFriends];
+    [AlertHelper showYesNo:self title:@"フレンドの削除" msg:@"フレンドを削除します。本当によろしいですか？" yesTitle:@"削除" yes:^() {
+        [Backend.shared deleteFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+            [self getAllFriends];
+        }];
     }];
-                                               
-                                           }
-                                       }];
 }
 
 - (void)blockFriendById:(int)userId {
-    [RMUniversalAlert showAlertInViewController:self
-                                      withTitle:@"フレンドのブロック"
-                                        message:@"フレンドをブロックします。本当によろしいですか？"
-                              cancelButtonTitle:@"キャンセル"
-                         destructiveButtonTitle:@"ブロック"
-                              otherButtonTitles:@[]
-                                       tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
-                                           if (buttonIndex == alert.cancelButtonIndex) {
-                                           } else if (buttonIndex == alert.destructiveButtonIndex) {
-                                               
-    [Backend.shared addBlacklist:userId option:@{} callback:^(id responseObject, NSError *error) {
-        [self getAllFriends];
+    [AlertHelper showYesNo:self title:@"フレンドのブロック" msg:@"フレンドをブロックします。本当によろしいですか？" yesTitle:@"ブロック" yes:^() {
+        [Backend.shared addBlacklist:userId option:@{} callback:^(id responseObject, NSError *error) {
+            [self getAllFriends];
+        }];
     }];
-                                               
-                                           }
-                                       }];
 }
 
 - (void)showBadge {
@@ -150,7 +132,10 @@
 
 - (void)didTapAddFriend:(id)selector {
     AddFriendViewController *vc = [AddFriendViewController new];
-    [self.navigationController pushViewController:vc animated: true];
+//    vc.tabBarController.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated: YES];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -176,6 +161,9 @@
     
     if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
         cell.backgroundColor = [UIColor yellowColor];
+    }
+    else {
+        cell.backgroundColor = nil;
     }
     
     return cell;

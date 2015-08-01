@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Profile";
+    self.title = @"プロフィール";
     
     self.friendImage.layer.cornerRadius = self.friendImage.frame.size.width / 2.f;
     self.friendImage.layer.masksToBounds = YES;

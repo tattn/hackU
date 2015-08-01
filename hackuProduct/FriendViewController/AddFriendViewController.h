@@ -6,9 +6,10 @@
 //  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ImprovedViewController.h"
+#import "BarcodeView.h"
 
-@interface AddFriendViewController : UIViewController
+@interface AddFriendViewController : ImprovedViewController <BarcodeDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *friendApplyButton;
 
 @end
