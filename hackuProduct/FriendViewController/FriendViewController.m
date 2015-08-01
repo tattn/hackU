@@ -151,6 +151,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
+    if (_friends.count <= 0) return cell;
     
     NSDictionary* friend = _friends[indexPath.row];
     cell.firendNameLabel.text = friend[@"fullname"];
