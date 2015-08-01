@@ -132,7 +132,10 @@
 
 - (void)didTapAddFriend:(id)selector {
     AddFriendViewController *vc = [AddFriendViewController new];
-    [self.navigationController pushViewController:vc animated: true];
+//    vc.tabBarController.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated: YES];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
