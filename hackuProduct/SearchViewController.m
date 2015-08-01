@@ -52,7 +52,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     
     [_searchSegmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
-    _mode = kModeAddingBookToBookshelf;
+    _mode = kSearchModeAddingBookToBookshelf;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,7 +73,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     }else {
         [_tableView removeFromSuperview];
         [_mainView addSubview:_barcodeView];
-        [_barcodeView start];
+        [_barcodeView start:kBarcodeModeBarcode];
         [Toast show:_mainView message:@"本のバーコードにかざして下さい。"];
     }
     _searchSegmentControl.selectedSegmentIndex = mode;
@@ -99,7 +99,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
         return; // 空文字や空白文字だけの時は検索しない
     }
     
-    if (_mode == kModeAddingBookToBookshelf) {
+    if (_mode == kSearchModeAddingBookToBookshelf) {
         [Backend.shared searchBook:@{@"title":query, @"amazon":@""} callback:^(id res, NSError *error) {
             if (error) {
                 NSLog(@"Error - searchBook: %@", error);
@@ -110,7 +110,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
             }
         }];
     }
-    else if (_mode == kModeRequest) {
+    else if (_mode == kSearchModeRequest) {
         _bookshelves = [NSMutableArray array];
         [Backend.shared getFriend:@{} callback:^(id res, NSError *error) {
             NSArray* friends = res[@"users"];
@@ -132,7 +132,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_mode == kModeAddingBookToBookshelf) {
+    if (_mode == kSearchModeAddingBookToBookshelf) {
         return _books.count;
     }
     else {
@@ -148,7 +148,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     cell.addBookLabel.clipsToBounds = YES;
     
     NSDictionary* book;
-    if (_mode == kModeRequest) {
+    if (_mode == kSearchModeRequest) {
         book = ((NSDictionary*)_bookshelves[indexPath.row])[@"book"];
     }
     else {
@@ -174,11 +174,11 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (_mode) {
-        case kModeRequest:
+        case kSearchModeRequest:
             [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
             break;
             
-        case kModeAddingBookToBookshelf:
+        case kSearchModeAddingBookToBookshelf:
             [BookDetailViewController showForAddingBookToBookshelf:self book:_books[indexPath.row]];
             break;
             
@@ -189,10 +189,10 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 
 - (IBAction)changeMode:(UISwitch*)sender {
     if (sender.on) {
-        _mode = kModeRequest;
+        _mode = kSearchModeRequest;
     }
     else {
-        _mode = kModeAddingBookToBookshelf;
+        _mode = kSearchModeAddingBookToBookshelf;
     }
 }
 

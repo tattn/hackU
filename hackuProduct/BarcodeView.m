@@ -18,6 +18,8 @@
 
 @property UIView *frameView;
 
+@property NSMutableArray *barCodeTypes;
+
 @end
 
 
@@ -28,7 +30,7 @@
 
 - (void)setupCamera {
     _frameView = [UIView new];
-    _frameView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
+//    _frameView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
     _frameView.layer.borderColor = [UIColor greenColor].CGColor;
     _frameView.layer.borderWidth = 3;
     [self addSubview:_frameView];
@@ -52,14 +54,21 @@
     _output.metadataObjectTypes = [_output availableMetadataObjectTypes];
     
     _previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_session];
-    _previewLayer.frame = self.frame;
     _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.layer addSublayer:_previewLayer];
     
 //    [self bringSubviewToFront:_frameView];
 }
 
-- (void)start {
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _previewLayer.frame = self.frame;
+}
+
+- (void)start:(int)mode {
+    _barCodeTypes = [NSMutableArray array];
+    if (mode & kBarcodeModeBarcode) [_barCodeTypes addObject:AVMetadataObjectTypeEAN13Code];
+    if (mode & kBarcodeModeQRcode) [_barCodeTypes addObject:AVMetadataObjectTypeQRCode];
     [_session startRunning];
 }
 
@@ -72,21 +81,9 @@
     CGRect highlightViewRect = CGRectZero;
     AVMetadataMachineReadableCodeObject *barCodeObject;
     NSString *detectionString = nil;
-    NSArray *barCodeTypes = @[
-//                              AVMetadataObjectTypeUPCECode,
-//                              AVMetadataObjectTypeCode39Code,
-//                              AVMetadataObjectTypeCode39Mod43Code,
-                              AVMetadataObjectTypeEAN13Code,
-//                              AVMetadataObjectTypeEAN8Code,
-//                              AVMetadataObjectTypeCode93Code,
-//                              AVMetadataObjectTypeCode128Code,
-//                              AVMetadataObjectTypePDF417Code,
-//                              AVMetadataObjectTypeQRCode,
-//                              AVMetadataObjectTypeAztecCode,
-                              ];
     
     for (AVMetadataObject *metadata in metadataObjects) {
-        for (NSString *type in barCodeTypes) {
+        for (NSString *type in _barCodeTypes) {
             if ([metadata.type isEqualToString:type]) {
                 barCodeObject = (AVMetadataMachineReadableCodeObject *)[_previewLayer transformedMetadataObjectForMetadataObject:(AVMetadataMachineReadableCodeObject *)metadata];
                 highlightViewRect = barCodeObject.bounds;
