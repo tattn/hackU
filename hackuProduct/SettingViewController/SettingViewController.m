@@ -78,12 +78,6 @@
     });
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -183,6 +177,8 @@
         BlocklistViewController *vc = [BlocklistViewController new];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

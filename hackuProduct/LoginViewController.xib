@@ -178,8 +178,8 @@
                         <action selector="switchMode:" destination="-1" eventType="touchUpInside" id="Ttt-a2-dnS"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ux3-Rf-NUp">
-                    <rect key="frame" x="120" y="40" width="361" height="187"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bookee" translatesAutoresizingMaskIntoConstraints="NO" id="ux3-Rf-NUp">
+                    <rect key="frame" x="60" y="53" width="480" height="134"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="152" id="qgs-5Q-v1G"/>
                     </constraints>
@@ -192,27 +192,28 @@
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="qcz-ir-OsX" firstAttribute="top" secondItem="ux3-Rf-NUp" secondAttribute="bottom" constant="23" id="6sc-Q0-9Wb"/>
                 <constraint firstItem="4Hp-y4-uP5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="Bd6-62-uEN"/>
                 <constraint firstItem="qcz-ir-OsX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IOo-Uy-hmh"/>
                 <constraint firstItem="UyV-w2-HJn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="KiF-fS-abV"/>
+                <constraint firstAttribute="trailing" secondItem="ux3-Rf-NUp" secondAttribute="trailing" constant="60" id="L1X-On-flI"/>
                 <constraint firstAttribute="centerX" secondItem="UyV-w2-HJn" secondAttribute="centerX" id="MVv-A6-OcZ"/>
                 <constraint firstItem="UyV-w2-HJn" firstAttribute="top" secondItem="j5C-ty-Lhb" secondAttribute="bottom" constant="40" id="QFJ-38-7rG"/>
                 <constraint firstAttribute="trailing" secondItem="j5C-ty-Lhb" secondAttribute="trailing" id="SEu-Pd-Amj"/>
-                <constraint firstItem="ux3-Rf-NUp" firstAttribute="centerX" secondItem="qcz-ir-OsX" secondAttribute="centerX" id="aI0-ye-dEO"/>
                 <constraint firstAttribute="trailing" secondItem="UyV-w2-HJn" secondAttribute="trailing" constant="35" id="aaO-wh-qWe"/>
-                <constraint firstItem="ux3-Rf-NUp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="brP-rD-XpX"/>
                 <constraint firstItem="j5C-ty-Lhb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gw1-7w-squ"/>
                 <constraint firstItem="j5C-ty-Lhb" firstAttribute="top" secondItem="qcz-ir-OsX" secondAttribute="bottom" constant="3" id="hEt-ba-RwN"/>
                 <constraint firstAttribute="trailing" secondItem="4Hp-y4-uP5" secondAttribute="trailing" constant="35" id="k4k-1w-SaV"/>
                 <constraint firstAttribute="trailing" secondItem="qcz-ir-OsX" secondAttribute="trailing" id="mJj-Pb-8N3"/>
                 <constraint firstItem="4Hp-y4-uP5" firstAttribute="top" secondItem="UyV-w2-HJn" secondAttribute="bottom" constant="9" id="rHO-fg-eKN"/>
+                <constraint firstItem="ux3-Rf-NUp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="53" id="rbj-An-hKv"/>
+                <constraint firstItem="qcz-ir-OsX" firstAttribute="top" secondItem="ux3-Rf-NUp" secondAttribute="bottom" constant="63" id="vaf-1B-oEh"/>
                 <constraint firstAttribute="centerX" secondItem="4Hp-y4-uP5" secondAttribute="centerX" id="yjS-gU-0Yo"/>
+                <constraint firstItem="ux3-Rf-NUp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="zXs-Sh-eyy"/>
                 <constraint firstAttribute="bottom" secondItem="4Hp-y4-uP5" secondAttribute="bottom" constant="42" id="zw8-0c-XGM"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="appLogo" width="361" height="311"/>
+        <image name="Bookee" width="394" height="131"/>
     </resources>
 </document>
