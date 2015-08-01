@@ -16,7 +16,6 @@
 		174D1E611B675BF1007BB81C /* AccountEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174D1E5F1B675BF1007BB81C /* AccountEditViewController.m */; };
 		174D1E621B675BF1007BB81C /* AccountEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174D1E601B675BF1007BB81C /* AccountEditViewController.xib */; };
 		175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175EC6611B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m */; };
-		175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 175EC6681B5AA4C500752BE6 /* frendbook.jpg */; };
 		175EC6751B636A2B00752BE6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175EC6741B636A2B00752BE6 /* QuartzCore.framework */; };
 		17B7B99A1B52CA74009A8752 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9991B52CA74009A8752 /* main.m */; };
 		17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B99C1B52CA74009A8752 /* AppDelegate.m */; };
@@ -84,7 +83,6 @@
 		174D1E601B675BF1007BB81C /* AccountEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountEditViewController.xib; sourceTree = "<group>"; };
 		175EC6601B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendBookShelfCollectionViewController.h; sourceTree = "<group>"; };
 		175EC6611B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendBookShelfCollectionViewController.m; sourceTree = "<group>"; };
-		175EC6681B5AA4C500752BE6 /* frendbook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frendbook.jpg; sourceTree = "<group>"; };
 		175EC6741B636A2B00752BE6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		17B7B9941B52CA74009A8752 /* hackuProduct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackuProduct.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17B7B9981B52CA74009A8752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 				4AC103181B67EB80004B3E75 /* Database */,
 				4AC2D4C11B64087200F80E61 /* HomeViewController */,
 				4AEE8C971B66B88900865AFF /* helper */,
-				17B7B9F11B593BA9009A8752 /* static */,
 				17B7B99B1B52CA74009A8752 /* AppDelegate.h */,
 				17B7B99C1B52CA74009A8752 /* AppDelegate.m */,
 				17B7B9CC1B53D16F009A8752 /* BookShelfCell.h */,
@@ -265,22 +262,6 @@
 				17B7B9B21B52CA75009A8752 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		17B7B9F11B593BA9009A8752 /* static */ = {
-			isa = PBXGroup;
-			children = (
-				17B7B9F21B593BCA009A8752 /* images */,
-			);
-			name = static;
-			sourceTree = "<group>";
-		};
-		17B7B9F21B593BCA009A8752 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				175EC6681B5AA4C500752BE6 /* frendbook.jpg */,
-			);
-			name = images;
 			sourceTree = "<group>";
 		};
 		1F519D42D4C2A4B1708991ED /* Frameworks */ = {
@@ -464,7 +445,6 @@
 				174D1E581B6629D2007BB81C /* SearchViewController.xib in Resources */,
 				4A3576081B6944450025BD73 /* BookDetailViewController.xib in Resources */,
 				17B7B9A81B52CA74009A8752 /* LaunchScreen.xib in Resources */,
-				175EC6691B5AA4C500752BE6 /* frendbook.jpg in Resources */,
 				174D1E5D1B666C2E007BB81C /* ProfileEditViewController.xib in Resources */,
 				17B7B9F41B593BFB009A8752 /* (null) in Resources */,
 				4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */,
