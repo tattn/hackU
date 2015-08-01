@@ -19,8 +19,13 @@
 
 @property id<BarcodeDelegate> delegate;
 
+typedef NS_ENUM (int, BarcodeMode) {
+    kBarcodeModeBarcode = 0x1,
+    kBarcodeModeQRcode  = 0x2,
+};
+
 - (void)setupCamera;
-- (void)start;
+- (void)start:(int)mode;
 - (void)stop;
 
 @end
