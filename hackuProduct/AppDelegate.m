@@ -1,7 +1,6 @@
 
 #import "AppDelegate.h"
 #import "BookShelfCollectionViewController.h"
-#import "TimelineViewController.h"
 #import "FriendViewController.h"
 #import "SettingViewController.h"
 #import "LoginViewController.h"

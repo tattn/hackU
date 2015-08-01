@@ -80,6 +80,10 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)deleteBlacklist:(long)userId DEFAULT_PARAM;
 // === [/my/blacklist] end
 
+// === [/my/request] New Request API
+- (void)getRequestIsent: DEFAULT_PARAM2;
+// === [/my/request] end
+
 // === [/users/:user_id/request] Request API
 - (void)getRequest:(int)userId DEFAULT_PARAM;
 - (void)addRequest:(int)userId bookId:(int)bookId DEFAULT_PARAM;
