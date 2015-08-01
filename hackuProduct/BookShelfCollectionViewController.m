@@ -35,6 +35,9 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                               target:self
                                               action:@selector(didTapAddBook:)];
+    
+    UINib *nib = [UINib nibWithNibName:@"BookShelfCell" bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,16 +90,8 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *identifier = @"BookShelfCell";
-    static BOOL nibCellLoaded = NO;
-    
-    if(!nibCellLoaded){
-        UINib *nib = [UINib nibWithNibName:@"BookShelfCell" bundle:nil];
-        [collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
-        nibCellLoaded = YES;
-    }
-    
-    BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    if (_books.count <= 0) return cell; // 非同期処理バグの一時的な対処
     
     NSString* coverImageUrl = self.books[indexPath.row][@"coverImageUrl"];
     [cell.bookImage my_setImageWithURL:coverImageUrl];
@@ -122,36 +117,5 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 {
     return 30.0;
 }
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end
