@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相手の招待コードを入力またはQRコードを読み取って下さい。" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-iA-wcr">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相手の招待コードを入力またはQRコードを読み取って下さい" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-iA-wcr">
                     <rect key="frame" x="40" y="112" width="520" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Wmv-LS-lRW"/>
@@ -53,7 +52,7 @@
                     </variation>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7m-ZI-RPW">
-                    <rect key="frame" x="238" y="221" width="125" height="40"/>
+                    <rect key="frame" x="238" y="233" width="125" height="40"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="DfD-h2-ovr"/>
@@ -68,8 +67,15 @@
                         <action selector="touchUpRequest:" destination="-1" eventType="touchUpInside" id="r99-xq-iMg"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-Xn-gho">
+                    <rect key="frame" x="210" y="296" width="180" height="180"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Ebt-Xn-gho" secondAttribute="height" multiplier="1:1" id="jJF-Cv-CiD"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-5R-X9Z">
-                    <rect key="frame" x="193" y="520" width="214" height="40"/>
+                    <rect key="frame" x="193" y="499" width="214" height="40"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ih2-aq-NMo"/>
@@ -84,41 +90,26 @@
                         <action selector="touchUpQRbutton:" destination="-1" eventType="touchUpInside" id="jao-2y-b6i"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-Xn-gho">
-                    <rect key="frame" x="185.5" y="283" width="229" height="229"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Ebt-Xn-gho" secondAttribute="height" multiplier="1:1" id="jJF-Cv-CiD"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="0.96754032059999995" green="0.96754032059999995" blue="0.96754032059999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="d5J-5R-X9Z" firstAttribute="top" secondItem="Ebt-Xn-gho" secondAttribute="bottom" constant="23" id="0M9-Fz-cze"/>
                 <constraint firstItem="hTh-iA-wcr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="2tT-dR-h75"/>
                 <constraint firstAttribute="centerX" secondItem="hTh-iA-wcr" secondAttribute="centerX" id="3Ug-Y0-24A"/>
-                <constraint firstAttribute="bottom" secondItem="d5J-5R-X9Z" secondAttribute="bottom" constant="40" id="62V-qo-7LP"/>
-                <constraint firstAttribute="trailing" secondItem="x7m-ZI-RPW" secondAttribute="trailing" constant="277" id="6iy-J9-g7C"/>
                 <constraint firstAttribute="centerX" secondItem="Ebt-Xn-gho" secondAttribute="centerX" id="7Jk-fn-GGd"/>
-                <constraint firstItem="d5J-5R-X9Z" firstAttribute="top" secondItem="Ebt-Xn-gho" secondAttribute="bottom" constant="8" id="BiF-gw-dCs"/>
-                <constraint firstItem="x7m-ZI-RPW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="277" id="GJo-y9-JKd"/>
                 <constraint firstAttribute="centerX" secondItem="d5J-5R-X9Z" secondAttribute="centerX" id="GWD-X7-51D"/>
                 <constraint firstAttribute="centerX" secondItem="OTG-AS-YG1" secondAttribute="centerX" id="NBS-ij-fXi"/>
                 <constraint firstAttribute="centerX" secondItem="x7m-ZI-RPW" secondAttribute="centerX" id="ZZf-U7-Tvd"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="top" secondItem="hTh-iA-wcr" secondAttribute="bottom" constant="8" id="cwi-oz-18P"/>
+                <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="23" id="d1R-oh-R7T"/>
                 <constraint firstAttribute="trailing" secondItem="OTG-AS-YG1" secondAttribute="trailing" constant="30" id="dDE-SQ-gEY"/>
                 <constraint firstAttribute="trailing" secondItem="hTh-iA-wcr" secondAttribute="trailing" constant="40" id="f0H-nu-ivL"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="kZY-kR-Sbh"/>
-                <constraint firstItem="Ebt-Xn-gho" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="22" id="t18-Fi-Sd9"/>
-                <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="11" id="twC-V6-tlS"/>
+                <constraint firstItem="Ebt-Xn-gho" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="23" id="ldk-Wg-jBg"/>
+                <constraint firstAttribute="bottom" secondItem="d5J-5R-X9Z" secondAttribute="bottom" constant="61" id="qhg-qv-2dR"/>
                 <constraint firstItem="hTh-iA-wcr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="112" id="x7k-jm-aaH"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="6iy-J9-g7C"/>
-                    <exclude reference="GJo-y9-JKd"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>
