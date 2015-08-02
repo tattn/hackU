@@ -176,6 +176,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_friends.count <= 0) return; // 非同期処理バグの一時的な対処
+    
     NSDictionary* friend = _friends[indexPath.row];
     if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
         FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
@@ -189,6 +191,8 @@
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_friends.count <= 0) return @[]; // 非同期処理バグの一時的な対処
+    
     NSDictionary* friend = _friends[indexPath.row];
     if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
         // 拒否ボタン
@@ -235,6 +239,7 @@
 #pragma mark - tap imageView
 
 - (void)tapFriendIcon:(UITapGestureRecognizer*)sender {
+    if (_friends.count <= 0) return; // 非同期処理バグの一時的な対処
     CGPoint p = [sender locationInView:self.tableView];
     NSIndexPath* path = [self.tableView indexPathForRowAtPoint:p];
     [FriendProfileViewController show:self user:_friends[path.row]];

@@ -7,6 +7,7 @@ target 'hackuProduct' do
 	pod 'RMUniversalAlert'
 	pod 'SDWebImage', '~>3.7'
 	pod 'SIAlertView'
+	pod 'SVProgressHUD'
 end
 
 target 'hackuProductTests' do
