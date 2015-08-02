@@ -95,7 +95,7 @@
                     <color key="textColor" red="0.50173611110000005" green="0.50173611110000005" blue="0.50173611110000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9c-R5-v2Y">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9c-R5-v2Y">
                     <rect key="frame" x="250" y="340" width="100" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="NRy-zu-sg9"/>
