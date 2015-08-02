@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 @property (weak, nonatomic) IBOutlet UIView *actionView;
+@property (weak, nonatomic) IBOutlet UILabel *publishDateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *amazonUrlButton;
+- (IBAction)amazonUrlButton:(UIButton *)sender;
 
 @property NSArray* buttons;
 
@@ -63,8 +66,25 @@ typedef NS_ENUM (NSUInteger, Mode) {
     self.navigationController.navigationBarHidden = NO;
     
     _titleLabel.text = _book[@"title"];
-    _publisherLabel.text = _book[@"manufacturer"];
     _authorLabel.text = _book[@"author"];
+    _publisherLabel.text = _book[@"manufacturer"];
+    
+    _amazonUrlButton.layer.cornerRadius = 8;
+    _amazonUrlButton.clipsToBounds = YES;
+    UIColor *amazonButtonColor = [UIColor colorWithRed:253/255.0 green:196/255.0 blue:79/255.0 alpha:1.0];
+    _amazonUrlButton.backgroundColor = amazonButtonColor;
+    
+    if (_book[@"publicationDate"] == (id)[NSNull null]) {
+        _publishDateLabel.text = @"No infomation";
+    }else{_publishDateLabel.text = _book[@"publicationDate"];}
+    
+    if ([_book[@"amazonUrl"]  isEqual: @""]) {
+        [_amazonUrlButton setTitle:@"No infomation" forState:UIControlStateNormal];
+        _amazonUrlButton.backgroundColor = [UIColor whiteColor];
+        _amazonUrlButton.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:13.0f];
+        [_amazonUrlButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }else{_amazonUrlButton.titleLabel.text = @"Amazonで買う";}
+    
     [_bookImage my_setImageWithURL: _book[@"coverImageUrl"]];
     
     const float ButtonHeight = 45;
@@ -263,4 +283,9 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
+- (IBAction)amazonUrlButton:(UIButton *)sender {
+    NSString *amazonUrl = _book[@"amazonUrl"];
+    NSURL *url = [NSURL URLWithString:amazonUrl];
+    [[UIApplication sharedApplication] openURL:url];
+}
 @end

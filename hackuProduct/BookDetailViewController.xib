@@ -7,14 +7,17 @@
         <mutableArray key="HiraginoKakuGothic.ttc">
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
+            <string>HiraKakuProN-W3</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookDetailViewController">
             <connections>
                 <outlet property="actionView" destination="8Jh-nA-SV4" id="swU-2b-LYv"/>
+                <outlet property="amazonUrlButton" destination="iQh-P8-5f0" id="IMt-vj-i9R"/>
                 <outlet property="authorLabel" destination="KzO-6r-L5u" id="mrr-Yh-JBe"/>
                 <outlet property="bookImage" destination="tOl-1O-Tcr" id="aZh-rj-2Mv"/>
+                <outlet property="publishDateLabel" destination="Oiq-po-4hr" id="onW-v1-jOU"/>
                 <outlet property="publisherLabel" destination="yEX-e1-VDx" id="g7e-8H-3e7"/>
                 <outlet property="titleLabel" destination="TvM-dk-jbB" id="fyq-l3-hlh"/>
                 <outlet property="view" destination="DEu-9r-3pz" id="KT8-yh-Fok"/>
@@ -31,28 +34,55 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="出版社" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEX-e1-VDx">
-                    <rect key="frame" x="17" y="435" width="340" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="出版社" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEX-e1-VDx">
+                    <rect key="frame" x="197" y="406" width="170" height="40"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="著者" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzO-6r-L5u">
+                    <rect key="frame" x="9" y="406" width="170" height="40"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NoImage" translatesAutoresizingMaskIntoConstraints="NO" id="tOl-1O-Tcr">
                     <rect key="frame" x="112" y="98" width="150" height="225"/>
                 </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-nA-SV4" userLabel="ActionView">
-                    <rect key="frame" x="87" y="481" width="200" height="135"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="著者" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzO-6r-L5u">
-                    <rect key="frame" x="17" y="406" width="340" height="21"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="発売日" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oiq-po-4hr">
+                    <rect key="frame" x="9" y="455" width="170" height="40"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zr0-8R-Feg">
+                    <rect key="frame" x="8" y="450" width="359" height="1"/>
+                    <color key="backgroundColor" red="0.85819692459999997" green="0.85819692459999997" blue="0.85819692459999997" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQa-1h-khA">
+                    <rect key="frame" x="187" y="406" width="1" height="89"/>
+                    <color key="backgroundColor" red="0.85819692459999997" green="0.85819692459999997" blue="0.85819692459999997" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-nA-SV4" userLabel="ActionView">
+                    <rect key="frame" x="87" y="503" width="200" height="100"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQh-P8-5f0">
+                    <rect key="frame" x="222" y="457" width="120" height="35"/>
+                    <color key="backgroundColor" red="1" green="0.67121711437768283" blue="0.23624256888437922" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                    <state key="normal" title="Amazonで買う">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="amazonUrlButton:" destination="-1" eventType="touchUpInside" id="b1z-ij-yCL"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
