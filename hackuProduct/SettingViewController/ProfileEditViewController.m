@@ -55,7 +55,12 @@
         @"lastname": _lastname.text,
         @"comment": _word.text,
     } callback:^(id responseObject, NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [Backend.shared uploadProfileImage:User.shared.userId image:self.profileImage.image option:@{} callback:^(id responseObject, NSError *error) {
+            if (error) {
+                NSLog(@"Upload error: %@", error);
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     }];
 }
 

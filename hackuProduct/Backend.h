@@ -37,6 +37,8 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)getUser:(int)userId DEFAULT_PARAM;
 - (void)updateUser:(int)userId DEFAULT_PARAM;
 - (void)deleteUser:(int)userId DEFAULT_PARAM;
+- (void)getProfileImage:(int)userId DEFAULT_PARAM;
+- (void)uploadProfileImage:(int)userId image:(UIImage*)img DEFAULT_PARAM;
 // === [/users] end
 
 // === [/auth] Auth API
