@@ -1,4 +1,4 @@
-s
+
 #import "TimelineCell.h"
 
 @implementation TimelineCell
