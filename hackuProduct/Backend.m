@@ -10,6 +10,7 @@
 #import "Backend.h"
 #import "AFNetworking.h"
 #import "User.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface Backend ()
 @property NSString* accessToken;
@@ -49,18 +50,22 @@ static Backend* instance = nil;
 
 #define DEFAULT_CALLBACK \
 success:^(NSURLSessionDataTask *task, id responseObject) {\
+    [SVProgressHUD dismiss];\
     callback(responseObject, nil);\
 }\
 failure:^(NSURLSessionDataTask *task, NSError *error) {\
+    [SVProgressHUD dismiss];\
     callback(nil, error);\
 }
 
 #define TRIGGER_CALLBACK(stmt) \
 success:^(NSURLSessionDataTask *task, id responseObject) {\
+    [SVProgressHUD dismiss];\
     stmt;\
     callback(responseObject, nil);\
 }\
 failure:^(NSURLSessionDataTask *task, NSError *error) {\
+    [SVProgressHUD dismiss];\
     callback(nil, error);\
 }
 
@@ -183,6 +188,7 @@ MAKE_PARAM(dict);\
 // === [/bookshelves] Bookshelves API
 
 - (void)getBookshelf:(int)userId DEFAULT_PARAM {
+    [SVProgressHUD showWithStatus:@"本棚の読み込み中"];
     [self GET:BOOKSHELFID_URL(userId) parameters:option DEFAULT_CALLBACK];
 }
 
@@ -305,6 +311,7 @@ MAKE_PARAM(dict);\
 // === [/users/:user_id/frined] Friend API
 
 - (void)getFriend: DEFAULT_PARAM2 {
+    [SVProgressHUD showWithStatus:@"友達情報の読み込み中"];
     MAKE_TOKEN_PARAM();
     [self GET:FRIEND_URL(User.shared.userId) parameters:param DEFAULT_CALLBACK];
 }

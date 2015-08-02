@@ -78,6 +78,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    if (_bookshelves.count <= 0) return cell; // 非同期処理バグの一時的な対処
                            
     NSDictionary* bookshelf = _bookshelves[indexPath.row];
     NSString *url = ((NSDictionary*)bookshelf[@"book"])[@"coverImageUrl"];
@@ -89,6 +90,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    if (_bookshelves.count <= 0) return; // 非同期処理バグの一時的な対処
     [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
 }
 
