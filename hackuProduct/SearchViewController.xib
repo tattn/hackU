@@ -52,7 +52,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-C1-TvR">
-                    <rect key="frame" x="0.0" y="29" width="600" height="29"/>
+                    <rect key="frame" x="5" y="29" width="590" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="6Pu-93-ZP0"/>
                     </constraints>
@@ -76,6 +76,7 @@
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9YP-O3-TIO"/>
                 <constraint firstItem="h4D-Ae-1d5" firstAttribute="top" secondItem="ejg-C1-TvR" secondAttribute="bottom" constant="8" id="9uR-gb-SPy"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="31" id="AMQ-Sm-Wyq"/>
+                <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Aya-BN-uwm"/>
                 <constraint firstItem="UKS-n5-CfA" firstAttribute="top" secondItem="h4D-Ae-1d5" secondAttribute="bottom" id="DO8-uW-Fk2"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="F86-Yy-XQO"/>
                 <constraint firstAttribute="trailing" secondItem="UKS-n5-CfA" secondAttribute="trailing" id="FGF-lL-XRg"/>
@@ -89,6 +90,7 @@
                 <constraint firstAttribute="centerX" secondItem="ejg-C1-TvR" secondAttribute="centerX" id="WfZ-LP-QEP"/>
                 <constraint firstItem="UKS-n5-CfA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XRv-sv-pO0"/>
                 <constraint firstItem="Ur2-ab-xWX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aWQ-5G-uNm"/>
+                <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" constant="5" id="bhf-Hz-LG8"/>
                 <constraint firstAttribute="centerX" secondItem="h4D-Ae-1d5" secondAttribute="centerX" id="eHj-Gm-I0p"/>
                 <constraint firstItem="ejg-C1-TvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ekG-BH-OgR"/>
                 <constraint firstAttribute="trailing" secondItem="ejg-C1-TvR" secondAttribute="trailing" id="fQh-2S-mce"/>
@@ -100,8 +102,10 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="00x-Jy-9Fh"/>
                     <exclude reference="1K3-XP-1OS"/>
                     <exclude reference="AMQ-Sm-Wyq"/>
+                    <exclude reference="F86-Yy-XQO"/>
                     <exclude reference="MP8-3G-Ysv"/>
                     <exclude reference="N8L-eF-VBJ"/>
                     <exclude reference="WfZ-LP-QEP"/>

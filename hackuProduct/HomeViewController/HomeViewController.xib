@@ -15,17 +15,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-JP-GEU">
-                    <rect key="frame" x="208" y="158" width="185" height="29"/>
-                    <segments>
-                        <segment title="タイムライン"/>
-                        <segment title="通知"/>
-                    </segments>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <action selector="segmentChanged:" destination="-1" eventType="valueChanged" id="EBU-ga-tSS"/>
-                    </connections>
-                </segmentedControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-ZR-lXB">
                     <rect key="frame" x="0.0" y="194" width="600" height="406"/>
                     <subviews>
@@ -51,18 +40,31 @@
                         <constraint firstAttribute="height" constant="74" id="IwK-68-4WF"/>
                     </constraints>
                 </imageView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-JP-GEU">
+                    <rect key="frame" x="5" y="158" width="590" height="29"/>
+                    <segments>
+                        <segment title="タイムライン"/>
+                        <segment title="通知"/>
+                    </segments>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="segmentChanged:" destination="-1" eventType="valueChanged" id="EBU-ga-tSS"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="6rg-JP-GEU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="1dQ-q6-sSl"/>
                 <constraint firstAttribute="trailing" secondItem="YVN-Tk-Aoe" secondAttribute="trailing" constant="65" id="6pa-lm-1iu"/>
                 <constraint firstAttribute="bottom" secondItem="cTV-ZR-lXB" secondAttribute="bottom" id="GZb-ia-zHQ"/>
                 <constraint firstItem="YVN-Tk-Aoe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41" id="Kfx-z8-qYg"/>
                 <constraint firstItem="cTV-ZR-lXB" firstAttribute="top" secondItem="6rg-JP-GEU" secondAttribute="bottom" constant="8" id="QBV-km-Z8W"/>
-                <constraint firstAttribute="centerX" secondItem="6rg-JP-GEU" secondAttribute="centerX" id="RoE-8w-NQJ"/>
                 <constraint firstAttribute="trailing" secondItem="cTV-ZR-lXB" secondAttribute="trailing" id="UO6-aT-SnI"/>
                 <constraint firstItem="cTV-ZR-lXB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dpt-Nv-h5z"/>
                 <constraint firstItem="6rg-JP-GEU" firstAttribute="top" secondItem="YVN-Tk-Aoe" secondAttribute="bottom" constant="43" id="edd-Tr-5pA"/>
+                <constraint firstAttribute="centerX" secondItem="6rg-JP-GEU" secondAttribute="centerX" id="kun-us-Ctf"/>
                 <constraint firstItem="YVN-Tk-Aoe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="lGu-VX-fv5"/>
+                <constraint firstAttribute="trailing" secondItem="6rg-JP-GEU" secondAttribute="trailing" constant="5" id="rsR-TF-w2X"/>
             </constraints>
         </view>
     </objects>
