@@ -7,6 +7,7 @@
 #import "AlertHelper.h"
 #import "Backend.h"
 #import "User.h"
+#import "UIImageViewHelper.h"
 
 @interface FriendViewController ()
 
@@ -156,6 +157,7 @@
     NSDictionary* friend = _friends[indexPath.row];
     cell.firendNameLabel.text = friend[@"fullname"];
     cell.friendCommentLabel.text = friend[@"comment"];
+    [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(friend[@"userId"])];
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFriendIcon:)];
     [cell.friendImage addGestureRecognizer:tapGesture];

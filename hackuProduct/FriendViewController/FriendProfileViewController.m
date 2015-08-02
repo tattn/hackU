@@ -3,6 +3,7 @@
 #import "FriendBookShelfCollectionViewController.h"
 #import "AlertHelper.h"
 #import "Backend.h"
+#import "UIImageViewHelper.h"
 
 @interface FriendProfileViewController ()
 
@@ -21,6 +22,7 @@
     self.friendImage.layer.masksToBounds = YES;
     self.friendImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.friendImage.layer.borderWidth = 5;
+    [self.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(_user[@"userId"])];
     
     self.bookShelfButton.layer.cornerRadius = 8;
     self.bookShelfButton.clipsToBounds = YES;

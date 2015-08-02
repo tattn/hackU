@@ -69,10 +69,20 @@ failure:^(NSURLSessionDataTask *task, NSError *error) {\
     callback(nil, error);\
 }
 
+#define MULTIPART_CALLBACK(stmt) \
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) { \
+    stmt;\
+} success:^(NSURLSessionDataTask *task, id responseObject) {\
+    callback(responseObject, nil);\
+} failure:^(NSURLSessionDataTask *task, NSError *error) {\
+    callback(nil, error);\
+}
+
 // URL builders
 #define MAKE_URL(fmt, ...) [NSString stringWithFormat:(fmt), __VA_ARGS__]
 #define USER_URL @"users"
 #define USERID_URL(userId) MAKE_URL(USER_URL "/%d", (userId))
+#define ICON_URL(userId) MAKE_URL(USER_URL "/%d/icon", (userId))
 #define AUTH_URL @"auth"
 #define AUTH_LOGIN_URL (AUTH_URL "/login")
 #define AUTH_LOGOUT_URL (AUTH_URL "/logout")
@@ -135,6 +145,19 @@ MAKE_PARAM(dict);\
 
 - (void)deleteUser:(int)userId DEFAULT_PARAM {
     [self DELETE:USERID_URL(userId) parameters:option DEFAULT_CALLBACK];
+}
+
+- (void)getProfileImage:(int)userId DEFAULT_PARAM {
+    MAKE_TOKEN_PARAM();
+    [self GET:ICON_URL(userId) parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)uploadProfileImage:(int)userId image:(UIImage*)img DEFAULT_PARAM {
+    MAKE_TOKEN_PARAM();
+    [self POST:ICON_URL(userId) parameters:param MULTIPART_CALLBACK(
+    NSData* imgData = UIImagePNGRepresentation(img);
+    [formData appendPartWithFileData:imgData name:@"upload_file" fileName:@"img.png" mimeType:@"image/png"];
+     )];
 }
 
 // === [/users] end

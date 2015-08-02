@@ -12,4 +12,7 @@
 #import "AppDelegate.h"
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication] delegate]
 
+#define PROFILE_IMAGE_URL(userId) [NSString stringWithFormat:@"http://160.16.70.40/bookshare/api/v1/users/%d/icon", userId]
+#define PROFILE_IMAGE_URL2(userId) [NSString stringWithFormat:@"http://160.16.70.40/bookshare/api/v1/users/%@/icon", userId]
+
 #endif
