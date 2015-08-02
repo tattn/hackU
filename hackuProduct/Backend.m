@@ -269,6 +269,15 @@ MAKE_PARAM(dict);\
 
 // === [/my/blacklist] end
 
+// === [/my/request] New Request API
+
+- (void)getRequestIsent: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self GET:@"my/request/sent" parameters:param DEFAULT_CALLBACK];
+}
+
+// === [/my/request] end
+
 // === [/users/:user_id/request] Request API
 
 - (void)getRequest:(int)userId DEFAULT_PARAM {

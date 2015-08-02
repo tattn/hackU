@@ -27,7 +27,8 @@ typedef NS_ENUM (NSUInteger, kMode) {
 
 @property kMode mode;
 
-@property NSArray* requests;
+@property NSMutableArray* requests;
+@property NSMutableArray* replies;
 
 @end
 
@@ -69,8 +70,25 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (void)getBookRequests {
     [Backend.shared getRequest:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
-        _requests = responseObject[@"requests"];
-        [_tableView reloadData];
+        _requests = [NSMutableArray array];
+        NSArray* reqs = responseObject[@"requests"];
+        [reqs enumerateObjectsUsingBlock:^(id req, NSUInteger idx, BOOL *stop) {
+            NSNumber* accepted = req[@"accepted"];
+            if (accepted == (id)[NSNull null]) {
+                [_requests addObject:req];
+            }
+        }];
+        [Backend.shared getRequestIsent:@{} callback:^(id reqIsent, NSError *error) {
+            _replies = [NSMutableArray array];
+            NSArray* reqs = reqIsent[@"requests"];
+            [reqs enumerateObjectsUsingBlock:^(id req, NSUInteger idx, BOOL *stop) {
+                NSNumber* accepted = req[@"accepted"];
+                if (accepted != (id)[NSNull null]) {
+                    [_replies addObject:req];
+                }
+            }];
+            [_tableView reloadData];
+        }];
     }];
 }
 
@@ -82,7 +100,7 @@ static NSString* NotificationCellID = @"NotificationCell";
         return 0;
     }
     else {
-        return 1;
+        return 2;
     }
 }
 
@@ -91,7 +109,12 @@ static NSString* NotificationCellID = @"NotificationCell";
         return @"";
     }
     else {
-        return @"";
+        if (section == 0) {
+            return @"Request";
+        }
+        else {
+            return @"Reply";
+        }
     }
 }
 
@@ -100,7 +123,12 @@ static NSString* NotificationCellID = @"NotificationCell";
         return 0;
     }
     else {
-        return _requests.count;
+        if (section == 0) {
+            return _requests.count;
+        }
+        else {
+            return _replies.count;
+        }
     }
 }
 
@@ -109,21 +137,25 @@ static NSString* NotificationCellID = @"NotificationCell";
         
     }
     else {
-        NSDictionary* req = _requests[indexPath.row];
-        NSDictionary* user = req[@"sender"];
-        NSNumber* accepted = req[@"accepted"];
-        NSDictionary* book = req[@"book"];
-        
         NotificationCell* cell = [tableView dequeueReusableCellWithIdentifier:NotificationCellID forIndexPath:indexPath];
         
-        if (accepted == (id)[NSNull null]) {
+        if (indexPath.section == 0) {
+            NSDictionary* req = _requests[indexPath.row];
+            NSDictionary* user = req[@"sender"];
             cell.msgLabel.text = [NSString stringWithFormat:@"%@から本のリクエストが届いています。", user[@"fullname"]];
         }
-        else if ([accepted  isEqual: @YES]) {
-            cell.msgLabel.text = [NSString stringWithFormat:@"%@が%@のリクエストを許可しました。", user[@"fullname"], book[@"title"]];
-        }
         else {
-            cell.msgLabel.text = [NSString stringWithFormat:@"%@が%@のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
+            NSDictionary* req = _replies[indexPath.row];
+            NSDictionary* book = req[@"book"];
+            NSDictionary* user = req[@"receiver"];
+            NSNumber* accepted = req[@"accepted"];
+            
+            if ([accepted  isEqual: @YES]) {
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@が%@のリクエストを許可しました。", user[@"fullname"], book[@"title"]];
+            }
+            else {
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@が%@のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
+            }
         }
         
         return cell;
@@ -133,25 +165,29 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary* req = _requests[indexPath.row];
-    NSDictionary* user = req[@"sender"];
-    NSDictionary* book = req[@"book"];
-    NSNumber* accepted = req[@"accepted"];
-    
     if (_mode == kModeNotification) {
-        if (accepted == (id)[NSNull null]) {
+        if (indexPath.section == 0) {
+            NSDictionary* req = _requests[indexPath.row];
+            NSDictionary* user = req[@"sender"];
+            NSDictionary* book = req[@"book"];
             [BookDetailViewController showForAcceptingBook:self book:book sender:user];
         }
-        else if ([accepted isEqual: @YES]) {
-            [SNS postToLine:@""];
-        }
         else {
-            int bookId = ((NSNumber*)book[@"bookId"]).intValue;
-            [Backend.shared deleteRequest:User.shared.userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
-                [_tableView reloadData];
-            }];
+            NSDictionary* req = _replies[indexPath.row];
+            NSDictionary* book = req[@"book"];
+            NSNumber* accepted = req[@"accepted"];
+            if ([accepted isEqual: @YES]) {
+                [SNS postToLine:@""];
+            }
+            else {
+                int bookId = ((NSNumber*)book[@"bookId"]).intValue;
+                [Backend.shared deleteRequest:User.shared.userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
+                    [_tableView reloadData];
+                }];
+            }
         }
     }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
