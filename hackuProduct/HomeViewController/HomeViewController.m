@@ -142,7 +142,7 @@ static NSString* NotificationCellID = @"NotificationCell";
         if (indexPath.section == 0) {
             NSDictionary* req = _requests[indexPath.row];
             NSDictionary* user = req[@"sender"];
-            cell.msgLabel.text = [NSString stringWithFormat:@"%@から本のリクエストが届いています。", user[@"fullname"]];
+            cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから本のリクエストが届いています。", user[@"fullname"]];
         }
         else {
             NSDictionary* req = _replies[indexPath.row];
@@ -151,10 +151,10 @@ static NSString* NotificationCellID = @"NotificationCell";
             NSNumber* accepted = req[@"accepted"];
             
             if ([accepted  isEqual: @YES]) {
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@が%@のリクエストを許可しました。", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが%@のリクエストを許可しました。", user[@"fullname"], book[@"title"]];
             }
             else {
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@が%@のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが%@のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
             }
         }
         

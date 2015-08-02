@@ -67,7 +67,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     _authorLabel.text = _book[@"author"];
     [_bookImage my_setImageWithURL: _book[@"coverImageUrl"]];
     
-    const float ButtonHeight = 40;
+    const float ButtonHeight = 45;
     const float SectionHeight = _actionView.frame.size.height / _buttons.count;
     [_buttons enumerateObjectsUsingBlock:^(UIButton* btn, NSUInteger idx, BOOL *stop) {
         float y = (SectionHeight - ButtonHeight) / 2 + SectionHeight * idx;
@@ -187,7 +187,9 @@ typedef NS_ENUM (NSUInteger, Mode) {
 - (UIButton*)createButton:(NSString*)title color:(UIColor*)titleColor bgColor:(UIColor*)bgColor borderColor:(UIColor*)borderColor action:(SEL)action{
     UIButton* btn = [UIButton new];
     btn.backgroundColor = bgColor;
-    btn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:15.0f];
+    btn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:18.0f];
+    btn.layer.cornerRadius = 8;
+    btn.clipsToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:titleColor forState:UIControlStateNormal];
     [btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];

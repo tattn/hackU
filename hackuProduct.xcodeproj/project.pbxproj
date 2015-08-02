@@ -31,6 +31,8 @@
 		17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */; };
 		17B7B9F01B5922A2009A8752 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */; };
 		17B7B9F41B593BFB009A8752 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		17BD60421B6DE2F8002C84B2 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BD60401B6DE2F8002C84B2 /* TimelineCell.m */; };
+		17BD60431B6DE2F8002C84B2 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */; };
 		4A220D651B6B54F0003B469B /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A220D641B6B54F0003B469B /* Toast.m */; };
 		4A220D681B6CAE81003B469B /* QRcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A220D671B6CAE81003B469B /* QRcodeView.m */; };
 		4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */; };
@@ -104,6 +106,9 @@
 		17B7B9EC1B5922A2009A8752 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
 		17B7B9ED1B5922A2009A8752 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
 		17B7B9EE1B5922A2009A8752 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		17BD603F1B6DE2F8002C84B2 /* TimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineCell.h; sourceTree = "<group>"; };
+		17BD60401B6DE2F8002C84B2 /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineCell.m; sourceTree = "<group>"; };
+		17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
 		1838465C38D31AE895EAA4BD /* Pods-hackuProduct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.release.xcconfig"; sourceTree = "<group>"; };
 		42D7E9A1590D7C82A85E7BB1 /* Pods-hackuProduct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.debug.xcconfig"; sourceTree = "<group>"; };
 		4A220D631B6B54F0003B469B /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
@@ -304,6 +309,9 @@
 				4AC2D4C31B6409AC00F80E61 /* HomeViewController.m */,
 				4AC2D4C41B6409AC00F80E61 /* HomeViewController.xib */,
 				4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */,
+				17BD603F1B6DE2F8002C84B2 /* TimelineCell.h */,
+				17BD60401B6DE2F8002C84B2 /* TimelineCell.m */,
+				17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -403,7 +411,7 @@
 				TargetAttributes = {
 					17B7B9931B52CA74009A8752 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = X3Q8DP844F;
+						DevelopmentTeam = 7UUL3DK9Y3;
 					};
 					17B7B9AC1B52CA75009A8752 = {
 						CreatedOnToolsVersion = 6.2;
@@ -449,6 +457,7 @@
 				4AC2D4C01B63AB3300F80E61 /* AddFriendViewController.xib in Resources */,
 				4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */,
 				174D1E621B675BF1007BB81C /* AccountEditViewController.xib in Resources */,
+				17BD60431B6DE2F8002C84B2 /* TimelineCell.xib in Resources */,
 				4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */,
 				17B7B9D51B53D2E8009A8752 /* BookShelfCollectionViewController.xib in Resources */,
 				17B7B9D01B53D16F009A8752 /* BookShelfCell.xib in Resources */,
@@ -539,6 +548,7 @@
 				174D1E611B675BF1007BB81C /* AccountEditViewController.m in Sources */,
 				4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */,
 				17B7B9D41B53D2E8009A8752 /* BookShelfCollectionViewController.m in Sources */,
+				17BD60421B6DE2F8002C84B2 /* TimelineCell.m in Sources */,
 				4AB78D231B59988D00B27BEC /* Backend.m in Sources */,
 				17B7B9CF1B53D16F009A8752 /* BookShelfCell.m in Sources */,
 				4A3576061B6944100025BD73 /* BookDetailViewController.m in Sources */,
