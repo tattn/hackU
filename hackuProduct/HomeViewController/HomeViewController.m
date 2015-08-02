@@ -12,6 +12,7 @@
 #import "User.h"
 #import "SNS.h"
 #import "BookDetailViewController.h"
+#import "TimelineCell.h"
 
 @implementation NotificationCell
 @end
@@ -35,6 +36,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
 @implementation HomeViewController
 
 static NSString* NotificationCellID = @"NotificationCell";
+static NSString* TimelineCellID = @"TimelineCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +47,8 @@ static NSString* NotificationCellID = @"NotificationCell";
     
     UINib *nib = [UINib nibWithNibName:@"HomeViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:NotificationCellID];
+    UINib *nib2 = [UINib nibWithNibName:@"TimelineCell" bundle:nil];
+    [self.tableView registerNib:nib2 forCellReuseIdentifier:TimelineCellID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,7 +101,7 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (_mode == kModeTimeline) {
-        return 0;
+        return 1;
     }
     else {
         return 2;
@@ -120,7 +124,7 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_mode == kModeTimeline) {
-        return 0;
+        return 2;
     }
     else {
         if (section == 0) {
@@ -134,7 +138,9 @@ static NSString* NotificationCellID = @"NotificationCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_mode == kModeTimeline) {
+        TimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellID forIndexPath:indexPath];
         
+        return cell;
     }
     else {
         NotificationCell* cell = [tableView dequeueReusableCellWithIdentifier:NotificationCellID forIndexPath:indexPath];
@@ -163,6 +169,13 @@ static NSString* NotificationCellID = @"NotificationCell";
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_mode == kModeTimeline){
+        return 210;
+    }else{
+        return 28;
+    }
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (_mode == kModeNotification) {
