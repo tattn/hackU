@@ -102,7 +102,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 
 - (void)searchBook:(NSString*)query {
     self.searchBar.text = query;
-    _searchStart = -1;
+    _searchStart = 0;
     _searchEnd = NO;
     _books = [NSMutableArray array];
     _bookshelves = [NSMutableArray array];
