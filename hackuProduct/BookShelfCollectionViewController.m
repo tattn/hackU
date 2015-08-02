@@ -21,7 +21,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (id)init {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(100, 140)];
+    CGRect screenSize = [[UIScreen mainScreen] bounds];
+    NSUInteger space = 15;
+    CGSize listCellSize = CGSizeMake((screenSize.size.width - space * 4) / 3,
+                                     ((screenSize.size.width - space * 4) / 3) * 1.5f);
+    [flowLayout setItemSize:listCellSize];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     return [super initWithCollectionViewLayout: flowLayout];
 }
@@ -92,7 +96,6 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     if (_books.count <= 0) return cell; // 非同期処理バグの一時的な対処
-    
     NSString* coverImageUrl = self.books[indexPath.row][@"coverImageUrl"];
     [cell.bookImage my_setImageWithURL:coverImageUrl];
     
@@ -103,11 +106,23 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [BookDetailViewController showForRemovingBookFromBookshelf:self book:_books[indexPath.row]];
 }
+/*
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect screenSize = [[UIScreen mainScreen] bounds];
+    NSUInteger space = 15;
+    NSUInteger bar = 64;
+    CGSize listCellSize = CGSizeMake((screenSize.size.width - space * 4) / 3,
+                                     (screenSize.size.height - bar - space * 4) / 3);
+    return listCellSize;
+}
+ */
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    //デバイス間でレイアウトを合わせるためサイズを動的にする必要がある
     return UIEdgeInsetsMake(20, 15, 20, 15);
 }
-
+/*
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 10.0;
@@ -117,5 +132,5 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 {
     return 30.0;
 }
-
+*/
 @end

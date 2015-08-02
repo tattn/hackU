@@ -1,10 +1,3 @@
-//
-//  HomeViewController.m
-//  hackuProduct
-//
-//  Created by Tanaka Tatsuya on 2015/07/26.
-//  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
-//
 
 #import "HomeViewController.h"
 #import "Backend.h"
@@ -139,7 +132,6 @@ static NSString* TimelineCellID = @"TimelineCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_mode == kModeTimeline) {
         TimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellID forIndexPath:indexPath];
-        
         return cell;
     }
     else {

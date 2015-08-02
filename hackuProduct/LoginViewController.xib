@@ -13,8 +13,6 @@
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
-            <string>HiraKakuProN-W3</string>
-            <string>HiraKakuProN-W3</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -154,7 +152,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="UFQ-w9-jfF"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
                     <state key="normal" title="ログイン">
                         <color key="titleColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -169,7 +167,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Y25-zN-GKq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
                     <state key="normal" title="新規登録">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
