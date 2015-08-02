@@ -177,9 +177,11 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     
     NSDictionary* book;
     if (_mode == kSearchModeRequest) {
+        if (_bookshelves.count <= 0) return cell; // 非同期処理関係のバグの対応
         book = ((NSDictionary*)_bookshelves[indexPath.row])[@"book"];
     }
     else {
+        if (_books.count <= 0) return cell; // 非同期処理関係のバグの対応
         book = _books[indexPath.row];
     }
     NSString *title = book[@"title"];
@@ -203,10 +205,12 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     
     switch (_mode) {
         case kSearchModeRequest:
+            if (_bookshelves.count <= 0) return; // 非同期処理関係のバグの対応
             [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
             break;
             
         case kSearchModeAddingBookToBookshelf:
+            if (_books.count <= 0) return; // 非同期処理関係のバグの対応
             [BookDetailViewController showForAddingBookToBookshelf:self book:_books[indexPath.row]];
             break;
             

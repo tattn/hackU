@@ -2,6 +2,8 @@
 #import "ProfileEditViewController.h"
 #import "User.h"
 #import "Backend.h"
+#import "Toast.h"
+#import "UIImageViewHelper.h"
 
 @interface ProfileEditViewController ()
 
@@ -23,6 +25,7 @@
     self.profileImageButton.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImageButton.layer.borderWidth = 5;
     
+    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(User.shared.userId)];
     
     self.firstname.text = User.shared.firstname;
     self.lastname.text = User.shared.lastname;
@@ -41,7 +44,6 @@
                               target:self
                               action:@selector(saveProfileEditView)];
     self.navigationItem.rightBarButtonItems = @[saveButton];
-    
 }
 
 - (void)dismissProfileEditView {
@@ -49,13 +51,18 @@
 }
 
 - (void)saveProfileEditView {
-    //TODO: 画像の保存は未実装
     [Backend.shared updateUser:User.shared.userId option:@{
         @"firstname": _firstname.text,
         @"lastname": _lastname.text,
         @"comment": _word.text,
     } callback:^(id responseObject, NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [Backend.shared uploadProfileImage:User.shared.userId image:self.profileImage.image option:@{} callback:^(id responseObject, NSError *error) {
+            if (error) {
+                NSLog(@"Upload error: %@", error);
+                [Toast show:self.view message:@"画像のアップロードに失敗しました"];
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     }];
 }
 
