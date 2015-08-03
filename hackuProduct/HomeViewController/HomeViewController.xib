@@ -12,36 +12,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-ZR-lXB">
-                    <rect key="frame" x="0.0" y="194" width="600" height="406"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="20" sectionFooterHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="nQF-JU-sq5">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="406"/>
-                            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </tableView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="406" id="jax-ZT-2IN"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="jax-ZT-2IN"/>
-                        </mask>
-                    </variation>
-                </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bookee" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-Tk-Aoe">
-                    <rect key="frame" x="65" y="41" width="470" height="74"/>
-                    <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="74" id="IwK-68-4WF"/>
-                    </constraints>
-                </imageView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rg-JP-GEU">
-                    <rect key="frame" x="5" y="158" width="590" height="29"/>
+                    <rect key="frame" x="5" y="68" width="365" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="34g-f4-ra6"/>
+                    </constraints>
                     <segments>
                         <segment title="タイムライン"/>
                         <segment title="通知"/>
@@ -51,24 +29,38 @@
                         <action selector="segmentChanged:" destination="-1" eventType="valueChanged" id="EBU-ga-tSS"/>
                     </connections>
                 </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-ZR-lXB">
+                    <rect key="frame" x="0.0" y="104" width="375" height="515"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="25" sectionFooterHeight="25" translatesAutoresizingMaskIntoConstraints="NO" id="nQF-JU-sq5">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+                            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="nQF-JU-sq5" firstAttribute="leading" secondItem="cTV-ZR-lXB" secondAttribute="leading" id="1FY-0D-tBb"/>
+                        <constraint firstAttribute="trailing" secondItem="nQF-JU-sq5" secondAttribute="trailing" id="G0o-jY-7Cp"/>
+                        <constraint firstAttribute="bottom" secondItem="nQF-JU-sq5" secondAttribute="bottom" id="cih-uE-bXH"/>
+                        <constraint firstItem="nQF-JU-sq5" firstAttribute="top" secondItem="cTV-ZR-lXB" secondAttribute="top" id="qoI-Sy-pYi"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="6rg-JP-GEU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="1dQ-q6-sSl"/>
-                <constraint firstAttribute="trailing" secondItem="YVN-Tk-Aoe" secondAttribute="trailing" constant="65" id="6pa-lm-1iu"/>
-                <constraint firstAttribute="bottom" secondItem="cTV-ZR-lXB" secondAttribute="bottom" id="GZb-ia-zHQ"/>
-                <constraint firstItem="YVN-Tk-Aoe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41" id="Kfx-z8-qYg"/>
-                <constraint firstItem="cTV-ZR-lXB" firstAttribute="top" secondItem="6rg-JP-GEU" secondAttribute="bottom" constant="8" id="QBV-km-Z8W"/>
+                <constraint firstAttribute="trailing" secondItem="cTV-ZR-lXB" secondAttribute="trailing" id="7n8-od-h39"/>
+                <constraint firstItem="6rg-JP-GEU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="68" id="EAk-Rv-TzS"/>
+                <constraint firstItem="cTV-ZR-lXB" firstAttribute="top" secondItem="6rg-JP-GEU" secondAttribute="bottom" constant="8" id="Nr7-GV-MbN"/>
                 <constraint firstAttribute="trailing" secondItem="cTV-ZR-lXB" secondAttribute="trailing" id="UO6-aT-SnI"/>
                 <constraint firstItem="cTV-ZR-lXB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dpt-Nv-h5z"/>
-                <constraint firstItem="6rg-JP-GEU" firstAttribute="top" secondItem="YVN-Tk-Aoe" secondAttribute="bottom" constant="43" id="edd-Tr-5pA"/>
                 <constraint firstAttribute="centerX" secondItem="6rg-JP-GEU" secondAttribute="centerX" id="kun-us-Ctf"/>
-                <constraint firstItem="YVN-Tk-Aoe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="65" id="lGu-VX-fv5"/>
+                <constraint firstItem="cTV-ZR-lXB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="l5v-gV-Awg"/>
+                <constraint firstAttribute="bottom" secondItem="cTV-ZR-lXB" secondAttribute="bottom" constant="48" id="qTU-Mm-cl4"/>
                 <constraint firstAttribute="trailing" secondItem="6rg-JP-GEU" secondAttribute="trailing" constant="5" id="rsR-TF-w2X"/>
             </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="334.5" y="312.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="Bookee" width="394" height="131"/>
-    </resources>
 </document>
