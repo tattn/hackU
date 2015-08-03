@@ -107,6 +107,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
             NSLog(@"addFriend error: %@\n", error);
         }
         else {
+//            [Toast show:self.view message:@"申請しました"];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];

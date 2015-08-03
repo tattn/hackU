@@ -27,31 +27,56 @@
                             <constraint firstAttribute="width" constant="50" id="U2C-Fe-yKv"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-eS-ruT">
-                        <rect key="frame" x="75" y="34" width="291" height="21"/>
-                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="12"/>
-                        <color key="textColor" red="0.50173611111111116" green="0.50173611111111116" blue="0.50173611111111116" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
-                        <rect key="frame" x="75" y="5" width="291" height="30"/>
-                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                        <rect key="frame" x="67" y="8" width="299" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="299" id="43N-U8-ZJd"/>
+                            <constraint firstAttribute="height" constant="31" id="o6r-ml-6F1"/>
+                            <constraint firstAttribute="height" constant="35" id="yic-pH-DOf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="43N-U8-ZJd"/>
+                                <exclude reference="o6r-ml-6F1"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-eS-ruT">
+                        <rect key="frame" x="67" y="42" width="291" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="D7u-L6-xvM"/>
+                            <constraint firstAttribute="height" constant="18" id="pfN-8R-wfs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
+                        <color key="textColor" red="0.50173611111111116" green="0.50173611111111116" blue="0.50173611111111116" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pfN-8R-wfs"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Xwr-Y9-GlT" firstAttribute="top" secondItem="QtZ-ie-P5J" secondAttribute="top" id="10m-9t-SHk"/>
-                    <constraint firstItem="KkW-eS-ruT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="26" id="2lR-q3-lgB"/>
-                    <constraint firstItem="KkW-eS-ruT" firstAttribute="leading" secondItem="QtZ-ie-P5J" secondAttribute="leading" id="GbL-II-Q4B"/>
+                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5b3-yt-oQV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="KkW-eS-ruT" secondAttribute="trailing" constant="8" id="GAK-1P-3Ay"/>
+                    <constraint firstItem="Xwr-Y9-GlT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="Hsw-uq-nSL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="QtZ-ie-P5J" secondAttribute="bottom" constant="12" id="U0E-Aq-9hg"/>
                     <constraint firstItem="Xwr-Y9-GlT" firstAttribute="bottom" secondItem="KkW-eS-ruT" secondAttribute="bottom" id="Yad-MW-Jjm"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="QtZ-ie-P5J" secondAttribute="bottom" constant="16" id="ZBE-Ed-tw9"/>
-                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="cLk-q3-U4q"/>
-                    <constraint firstItem="KkW-eS-ruT" firstAttribute="trailing" secondItem="QtZ-ie-P5J" secondAttribute="trailing" id="etl-h5-bxr"/>
-                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="hxX-3I-xFZ"/>
-                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="leading" secondItem="Xwr-Y9-GlT" secondAttribute="trailing" constant="16" id="iz1-oA-rwB"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="QtZ-ie-P5J" secondAttribute="bottom" constant="8" id="cHh-a5-z7c"/>
+                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="leading" secondItem="Xwr-Y9-GlT" secondAttribute="trailing" constant="8" id="lrA-yH-ctX"/>
                     <constraint firstItem="Xwr-Y9-GlT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="pZv-Wd-vcj"/>
+                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tXs-k8-K7V"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="leading" secondItem="Xwr-Y9-GlT" secondAttribute="trailing" constant="8" id="vXa-NS-u4r"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="U0E-Aq-9hg"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="firendNameLabel" destination="QtZ-ie-P5J" id="u5K-da-Nl7"/>

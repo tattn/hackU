@@ -30,6 +30,9 @@
     self.firstname.text = User.shared.firstname;
     self.lastname.text = User.shared.lastname;
     self.word.text = User.shared.comment;
+    self.myBooksNumLabel.text = User.shared.bookNum.stringValue;
+    self.myLendNumLabel.text = User.shared.lendNum.stringValue;
+    self.myBorrowNumLabel.text = User.shared.borrowNum.stringValue;
     
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc]
                               initWithTitle:@"キャンセル"
