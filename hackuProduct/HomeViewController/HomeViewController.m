@@ -50,7 +50,6 @@ static NSString* TimelineCellID = @"TimelineCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    self.navigationController.navigationBarHidden = YES;
     [self getTimeline];
 }
 

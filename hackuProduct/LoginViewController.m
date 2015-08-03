@@ -38,6 +38,8 @@ typedef NS_ENUM (NSUInteger, kMode) {
     self.switchButton.layer.cornerRadius = 8;
     self.switchButton.clipsToBounds = YES;
     
+    [_passLabel setSecureTextEntry:YES];
+    
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSingleTap:)];
     [self.view addGestureRecognizer:gesture];
     
