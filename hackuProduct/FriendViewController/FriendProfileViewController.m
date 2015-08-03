@@ -22,7 +22,7 @@
     self.friendImage.layer.masksToBounds = YES;
     self.friendImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.friendImage.layer.borderWidth = 5;
-    [self.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(_user[@"userId"])];
+    [self.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(_user[@"userId"]) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
     self.bookShelfButton.layer.cornerRadius = 8;
     self.bookShelfButton.clipsToBounds = YES;
