@@ -40,7 +40,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    self.title = @"Bookee";
+    self.navigationItem.title = @"Bookee";
     
     UINib *nib = [UINib nibWithNibName:@"HomeViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:NotificationCellID];
