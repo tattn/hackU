@@ -15,7 +15,7 @@
 
 @property UITableView *tableView;
 
-@property NSMutableArray* blocklist;
+@property NSArray* blocklist;
 
 @end
 
@@ -44,10 +44,7 @@ static NSString* BlocklistCellId = @"FriendTableViewCell";
         if (error) {
         }
         else {
-            NSArray* users = res[@"users"];
-            [users enumerateObjectsUsingBlock:^(NSDictionary* user, NSUInteger idx, BOOL *stop) {
-                [_blocklist addObject:@{@"id":user[@"userId"], @"name":user[@"fullname"]}];
-            }];
+            _blocklist = res[@"users"];
             [_tableView reloadData];
         }
     }];
@@ -76,13 +73,14 @@ static NSString* BlocklistCellId = @"FriendTableViewCell";
     if (_blocklist.count <= 0) return cell; // 非同期処理関係のバグの対処
     
     NSDictionary* user = _blocklist[indexPath.row];
-    cell.firendNameLabel.text = user[@"name"];
+    cell.firendNameLabel.text = user[@"fullname"];
     cell.friendCommentLabel.text = user[@"comment"];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_blocklist.count <= 0) return; // 非同期処理関係のバグの対処
     
     NSDictionary* user = _blocklist[indexPath.row];
