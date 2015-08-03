@@ -166,6 +166,12 @@ static NSString* TimelineCellID = @"TimelineCell";
             cell.friendNameLabel.text = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
             [cell.friendBookImage my_setImageWithURL:book[@"cover_image_url"]];
             cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に%@を追加しました", book[@"title"]];
+            NSDateFormatter* dateFormatter = [NSDateFormatter new];
+            // 2015-08-03T06:35:49.589Z
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSZZ"];
+            NSDate *timestamps = [dateFormatter dateFromString:timeline[@"timestamps"]];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+            cell.addDateTimeLabel.text = [dateFormatter stringFromDate:timestamps];
         }
         return cell;
     }
