@@ -12,12 +12,18 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NoImage" translatesAutoresizingMaskIntoConstraints="NO" id="y76-x2-Pwg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage" translatesAutoresizingMaskIntoConstraints="NO" id="y76-x2-Pwg">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="y76-x2-Pwg" secondAttribute="trailing" id="896-QX-59o"/>
+                <constraint firstItem="y76-x2-Pwg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KB1-9j-kUg"/>
+                <constraint firstItem="y76-x2-Pwg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Nx1-aD-kSm"/>
+                <constraint firstAttribute="bottom" secondItem="y76-x2-Pwg" secondAttribute="bottom" id="txH-hm-kfe"/>
+            </constraints>
             <size key="customSize" width="80" height="110"/>
             <connections>
                 <outlet property="bookImage" destination="y76-x2-Pwg" id="b1T-Rp-4vv"/>

@@ -195,5 +195,4 @@ static NSString* TimelineCellID = @"TimelineCell";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 @end
