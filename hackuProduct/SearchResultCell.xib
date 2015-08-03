@@ -19,11 +19,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="126.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beB-ju-lDc">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="beB-ju-lDc">
                         <rect key="frame" x="8" y="3" width="80" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="A0k-lP-hv3"/>
+                            <constraint firstAttribute="height" constant="120" id="eXa-IU-yPv"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title &amp; Author" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5D-Ud-Htc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title &amp; Author" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5D-Ud-Htc">
                         <rect key="frame" x="96" y="28" width="268" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="268" id="Rlk-kt-LNJ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -42,9 +49,22 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="M5D-Ud-Htc" firstAttribute="leading" secondItem="beB-ju-lDc" secondAttribute="trailing" constant="8" id="2ix-Vi-lWG"/>
+                    <constraint firstItem="beB-ju-lDc" firstAttribute="leading" secondItem="LsR-Gb-cNv" secondAttribute="leadingMargin" id="5Vb-fY-Y4Y"/>
+                    <constraint firstItem="M5D-Ud-Htc" firstAttribute="centerY" secondItem="beB-ju-lDc" secondAttribute="centerY" id="6Lm-4v-jsT"/>
+                    <constraint firstItem="M5D-Ud-Htc" firstAttribute="top" secondItem="LsR-Gb-cNv" secondAttribute="topMargin" constant="20" id="7fC-CO-YBv"/>
                     <constraint firstItem="3mY-DI-xds" firstAttribute="bottom" secondItem="LsR-Gb-cNv" secondAttribute="bottomMargin" id="897-hc-8Ii"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="M5D-Ud-Htc" secondAttribute="trailing" constant="3" id="95M-h9-X20"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="beB-ju-lDc" secondAttribute="bottom" constant="-5" id="McT-XY-seX"/>
+                    <constraint firstItem="beB-ju-lDc" firstAttribute="top" secondItem="LsR-Gb-cNv" secondAttribute="topMargin" constant="-5" id="TEg-iE-sXx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3mY-DI-xds" secondAttribute="trailing" constant="3" id="TZG-28-1M5"/>
+                    <constraint firstItem="M5D-Ud-Htc" firstAttribute="leading" secondItem="beB-ju-lDc" secondAttribute="trailing" constant="8" id="hFI-cQ-EFR"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2ix-Vi-lWG"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addBookLabel" destination="3mY-DI-xds" id="Wra-cK-WFv"/>
