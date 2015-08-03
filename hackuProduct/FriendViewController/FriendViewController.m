@@ -27,7 +27,8 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                              initWithImage:[UIImage imageNamed:@"IconAddButton"]
+                                              style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(didTapAddFriend:)];
     

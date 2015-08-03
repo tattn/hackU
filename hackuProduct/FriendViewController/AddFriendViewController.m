@@ -36,7 +36,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
     self.title = @"フレンドの追加";
     
     UIBarButtonItem *btn = [[UIBarButtonItem alloc]
-                            initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+                            initWithImage:[UIImage imageNamed:@"IconCancelButton"]
+                            style:UIBarButtonItemStylePlain
                             target:self action:@selector(close)];
     self.navigationItem.rightBarButtonItems = @[btn];
     

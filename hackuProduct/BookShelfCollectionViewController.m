@@ -36,7 +36,8 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     UIColor *backColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1.0];
     self.collectionView.backgroundColor = backColor;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                              initWithImage:[UIImage imageNamed:@"IconAddButton"]
+                                              style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(didTapAddBook:)];
     

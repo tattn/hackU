@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJD-KP-5cB">
-                        <rect key="frame" x="12" y="7" width="45" height="45"/>
+                        <rect key="frame" x="12" y="8" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="kDQ-zK-RqQ"/>
                             <constraint firstAttribute="width" constant="45" id="rT3-g8-HLk"/>
@@ -78,10 +78,10 @@
                     <constraint firstItem="BJZ-yb-vZL" firstAttribute="leading" secondItem="U0v-sh-e98" secondAttribute="trailing" constant="8" id="Mqf-GK-VVi"/>
                     <constraint firstItem="ueM-zu-Owz" firstAttribute="top" secondItem="BJZ-yb-vZL" secondAttribute="bottom" constant="1" id="Ox7-gf-WvP"/>
                     <constraint firstItem="hJD-KP-5cB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="QLL-n3-muc"/>
+                    <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="hJD-KP-5cB" secondAttribute="bottom" constant="6" id="RM4-x2-vqU"/>
                     <constraint firstItem="U0v-sh-e98" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Slu-Ui-eKs"/>
-                    <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="hJD-KP-5cB" secondAttribute="bottom" constant="7" id="TFZ-31-GZU"/>
+                    <constraint firstItem="hJD-KP-5cB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="UwP-pp-ZDA"/>
                     <constraint firstItem="U0v-sh-e98" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="fSv-oj-QVL"/>
-                    <constraint firstItem="hJD-KP-5cB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="pYy-nV-RN4"/>
                     <constraint firstItem="IzO-VX-Hpg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="rF0-GH-dlk"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BJZ-yb-vZL" secondAttribute="trailing" constant="5" id="sha-y5-fJh"/>
                     <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="IzO-VX-Hpg" secondAttribute="bottom" constant="7" id="uAT-3p-NDq"/>
