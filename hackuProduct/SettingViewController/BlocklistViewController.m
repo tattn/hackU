@@ -8,19 +8,20 @@
 
 #import "BlocklistViewController.h"
 #import "Backend.h"
+#import "FriendTableViewCell.h"
 #import <RMUniversalAlert.h>
 
 @interface BlocklistViewController ()
 
 @property UITableView *tableView;
 
-@property NSMutableArray* blocklist;
+@property NSArray* blocklist;
 
 @end
 
 @implementation BlocklistViewController
 
-static NSString* BlocklistCellId = @"BlocklistCell";
+static NSString* BlocklistCellId = @"FriendTableViewCell";
 
 - (void)viewDidLoad {
     self.title = @"ブロックリスト";
@@ -43,10 +44,7 @@ static NSString* BlocklistCellId = @"BlocklistCell";
         if (error) {
         }
         else {
-            NSArray* users = res[@"users"];
-            [users enumerateObjectsUsingBlock:^(NSDictionary* user, NSUInteger idx, BOOL *stop) {
-                [_blocklist addObject:@{@"id":user[@"userId"], @"name":user[@"fullname"]}];
-            }];
+            _blocklist = res[@"users"];
             [_tableView reloadData];
         }
     }];
@@ -64,7 +62,30 @@ static NSString* BlocklistCellId = @"BlocklistCell";
     }];
 }
 
-- (void)tappedEditButton:(UIButton*)sender {
+#pragma mark - TableView
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _blocklist.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:BlocklistCellId forIndexPath:indexPath];
+    if (_blocklist.count <= 0) return cell; // 非同期処理関係のバグの対処
+    
+    NSDictionary* user = _blocklist[indexPath.row];
+    cell.firendNameLabel.text = user[@"fullname"];
+    cell.friendCommentLabel.text = user[@"comment"];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_blocklist.count <= 0) return; // 非同期処理関係のバグの対処
+    
+    NSDictionary* user = _blocklist[indexPath.row];
+    int userId = ((NSNumber*)user[@"userId"]).intValue;
+    
     [RMUniversalAlert showActionSheetInViewController:self
                                             withTitle:nil
                                               message:nil
@@ -73,38 +94,16 @@ static NSString* BlocklistCellId = @"BlocklistCell";
                                     otherButtonTitles:@[@"ブロック解除"]
                    popoverPresentationControllerBlock:^(RMPopoverPresentationController *popover){
                        popover.sourceView = self.view;
-                       popover.sourceRect = sender.frame;
+                       popover.sourceRect = self.view.frame;
                    }
                                              tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
                                                  if (buttonIndex == alert.cancelButtonIndex) {
-                                                     NSLog(@"Cancel Tapped");
                                                  } else if (buttonIndex == alert.destructiveButtonIndex) {
-                                                     [self deleteBlockUser:sender.tag];
+                                                     [self deleteBlockUser:userId];
                                                  } else if (buttonIndex == alert.firstOtherButtonIndex) {
-                                                     [self unblockUser:sender.tag];
+                                                     [self unblockUser:userId];
                                                  }
                                              }];
-}
-
-#pragma mark - TableView
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _blocklist.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BlocklistCell* cell = [tableView dequeueReusableCellWithIdentifier:BlocklistCellId forIndexPath:indexPath];
-    
-    NSDictionary* user = _blocklist[indexPath.row];
-    cell.nameLabel.text = user[@"name"];
-    [cell.editButton addTarget:self action:@selector(tappedEditButton:) forControlEvents:UIControlEventTouchUpInside];
-    cell.editButton.tag = indexPath.row;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,7 +111,3 @@ static NSString* BlocklistCellId = @"BlocklistCell";
 }
 
 @end
-
-@implementation BlocklistCell
-@end
-
