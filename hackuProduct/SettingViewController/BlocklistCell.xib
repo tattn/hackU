@@ -14,39 +14,69 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" restorationIdentifier="BlocklistCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlocklistCell" rowHeight="60" id="ccZ-gy-vUv" customClass="BlocklistCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ccZ-gy-vUv" id="dgr-MV-hHP">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friendImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bmg-fw-N5g">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friendImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bmg-fw-N5g">
                         <rect key="frame" x="8" y="5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="3DV-1Z-pqe"/>
+                            <constraint firstAttribute="width" constant="50" id="Y5d-Pn-pMl"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arc-x9-76w">
-                        <rect key="frame" x="82" y="14" width="222" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arc-x9-76w">
+                        <rect key="frame" x="66" y="14" width="246" height="32"/>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hU-TL-XaQ">
-                        <rect key="frame" x="282" y="17" width="30" height="27"/>
+                        <rect key="frame" x="320" y="12" width="47" height="35"/>
+                        <color key="backgroundColor" red="1" green="0.54401409479999996" blue="0.67969481210000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="47" id="eMf-61-uws"/>
+                            <constraint firstAttribute="height" constant="35" id="mPv-Xa-ggm"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                         <state key="normal" title="編集">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="6hU-TL-XaQ" firstAttribute="leading" secondItem="arc-x9-76w" secondAttribute="trailing" constant="8" id="4JB-sP-2m0"/>
                     <constraint firstItem="6hU-TL-XaQ" firstAttribute="top" secondItem="dgr-MV-hHP" secondAttribute="topMargin" constant="9" id="6Xn-tp-efE"/>
+                    <constraint firstItem="arc-x9-76w" firstAttribute="leading" secondItem="Bmg-fw-N5g" secondAttribute="trailing" constant="8" id="AxE-kj-55b"/>
+                    <constraint firstItem="arc-x9-76w" firstAttribute="top" secondItem="dgr-MV-hHP" secondAttribute="topMargin" constant="6" id="DNy-oT-fYw"/>
+                    <constraint firstItem="Bmg-fw-N5g" firstAttribute="leading" secondItem="dgr-MV-hHP" secondAttribute="leadingMargin" id="GXv-gc-VsP"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6hU-TL-XaQ" secondAttribute="bottom" constant="4" id="TQS-9d-PjP"/>
+                    <constraint firstItem="6hU-TL-XaQ" firstAttribute="top" secondItem="dgr-MV-hHP" secondAttribute="topMargin" constant="4" id="aPc-TG-sCq"/>
+                    <constraint firstItem="6hU-TL-XaQ" firstAttribute="top" secondItem="dgr-MV-hHP" secondAttribute="topMargin" constant="8" id="bEF-Vs-166"/>
+                    <constraint firstItem="arc-x9-76w" firstAttribute="leading" secondItem="Bmg-fw-N5g" secondAttribute="trailing" constant="8" id="hTO-NC-6b1"/>
                     <constraint firstItem="6hU-TL-XaQ" firstAttribute="trailing" secondItem="dgr-MV-hHP" secondAttribute="trailingMargin" id="mgk-7K-Ym6"/>
+                    <constraint firstItem="6hU-TL-XaQ" firstAttribute="trailing" secondItem="dgr-MV-hHP" secondAttribute="trailingMargin" id="o52-5h-YS9"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6hU-TL-XaQ" secondAttribute="bottom" constant="8" id="pCy-hU-e0e"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="arc-x9-76w" secondAttribute="bottom" constant="5" id="pXS-Z0-JY4"/>
+                    <constraint firstItem="Bmg-fw-N5g" firstAttribute="centerY" secondItem="arc-x9-76w" secondAttribute="centerY" id="r0F-21-UhJ"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="6Xn-tp-efE"/>
+                        <exclude reference="bEF-Vs-166"/>
+                        <exclude reference="mgk-7K-Ym6"/>
+                        <exclude reference="pCy-hU-e0e"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="editButton" destination="6hU-TL-XaQ" id="q7A-wh-ayw"/>
                 <outlet property="nameLabel" destination="arc-x9-76w" id="CdL-YT-yKI"/>
             </connections>
-            <point key="canvasLocation" x="139" y="150"/>
+            <point key="canvasLocation" x="211.5" y="165"/>
         </tableViewCell>
     </objects>
     <resources>

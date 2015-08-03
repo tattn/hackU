@@ -70,7 +70,7 @@
                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxj-mB-oVl">
-                    <rect key="frame" x="225" y="479" width="150" height="40"/>
+                    <rect key="frame" x="225" y="475" width="150" height="40"/>
                     <color key="backgroundColor" red="1" green="0.41404105140000003" blue="0.52317094880000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="Tfz-uz-eaM"/>
@@ -176,10 +176,10 @@ COWGiuaVsA
                 <constraint firstAttribute="trailing" secondItem="til-xV-dyJ" secondAttribute="trailing" constant="37" id="ali-tj-kJL"/>
                 <constraint firstItem="q4d-nD-UX7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="bgf-Li-IN7"/>
                 <constraint firstAttribute="centerX" secondItem="hXK-jM-79y" secondAttribute="centerX" priority="250" id="cHL-mG-cs3"/>
+                <constraint firstItem="qxj-mB-oVl" firstAttribute="top" secondItem="6mM-sx-oyc" secondAttribute="bottom" constant="25" id="cl0-iI-cEM"/>
                 <constraint firstItem="BnP-05-hOD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="d2v-Yh-gxH"/>
                 <constraint firstItem="til-xV-dyJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="38" id="dTj-6u-Zod"/>
                 <constraint firstAttribute="centerX" secondItem="q4d-nD-UX7" secondAttribute="centerX" id="ebB-Ln-Tk8"/>
-                <constraint firstItem="qxj-mB-oVl" firstAttribute="top" secondItem="6mM-sx-oyc" secondAttribute="bottom" constant="29" id="etc-Tk-gRN"/>
                 <constraint firstAttribute="centerX" secondItem="6mM-sx-oyc" secondAttribute="centerX" priority="250" id="gGO-Pt-3fa"/>
                 <constraint firstItem="eI8-al-wSW" firstAttribute="centerX" secondItem="jQo-hv-m0L" secondAttribute="centerX" id="mf6-3D-bjg"/>
                 <constraint firstItem="x9c-R5-v2Y" firstAttribute="leading" secondItem="jQo-hv-m0L" secondAttribute="trailing" id="o2r-Hw-XdK"/>
