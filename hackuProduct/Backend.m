@@ -104,6 +104,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) { \
 #define FRIENDID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/%ld", (userId), (friendId))
 #define FRIEND_NEW_URL(userId) MAKE_URL(USER_URL "/%d/friend/new", (userId))
 #define FRIEND_NEWID_URL(userId, friendId) MAKE_URL(USER_URL "/%d/friend/new/%d", (userId), (friendId))
+#define TIMELINE_URL @"my/timeline"
 
 // Default parameters
 #define DEFAULT_PARAM  option:(NSDictionary*)option callback:(CompletionBlock)callback
@@ -115,10 +116,13 @@ NSMutableDictionary *param = [(dict) mutableCopy];\
 [param addEntriesFromDictionary:option];
 
 #define MAKE_PARAM_WITH_TOKEN(dict) \
+if (![self isLoggedIn]) { NSLog(@"Backend: ログインしていません"); return;} \
 MAKE_PARAM(dict);\
 [param setObject:self.accessToken forKey:@"token"];
 
-#define MAKE_TOKEN_PARAM() MAKE_PARAM(@{@"token":self.accessToken})
+#define MAKE_TOKEN_PARAM() \
+if (![self isLoggedIn]) { NSLog(@"Backend: ログインしていません"); return;} \
+MAKE_PARAM(@{@"token":self.accessToken})
 
 
 - (BOOL)isLoggedIn {
@@ -366,6 +370,15 @@ MAKE_PARAM(dict);\
 
 // === [/users/:user_id/frined] end
 
+
+// === [/my/timeline] Timeline API
+
+- (void)getTimeline: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self GET:TIMELINE_URL parameters:param DEFAULT_CALLBACK];
+}
+
+// === [/my/timeline] end
 
 
 @end
