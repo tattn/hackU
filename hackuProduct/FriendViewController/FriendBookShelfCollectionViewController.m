@@ -18,7 +18,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (id)init {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(100, 150)];
+    CGRect screenSize = [[UIScreen mainScreen] bounds];
+    NSUInteger space = 15;
+    CGSize listCellSize = CGSizeMake((screenSize.size.width - space * 4) / 3,
+                                     ((screenSize.size.width - space * 4) / 3) * 1.5f);
+    [flowLayout setItemSize:listCellSize];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     return [super initWithCollectionViewLayout: flowLayout];
 }
@@ -97,15 +101,4 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(20, 15, 20, 15);
 }
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10.0;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 30.0;
-}
-
 @end

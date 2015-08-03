@@ -151,6 +151,9 @@ static NSString* TimelineCellID = @"TimelineCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_mode == kModeTimeline) {
         TimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellID forIndexPath:indexPath];
+//        cell.layer.borderColor = [UIColor grayColor].CGColor;
+        cell.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
+        cell.layer.borderWidth = 2;
         if (_timelines.count <= 0) return cell; // 非同期処理関係のバグ対策
         //FIXME: 無理やり実装. バックエンドともにリファクタリングしたい
         NSDictionary *timeline = _timelines[indexPath.row];
@@ -199,7 +202,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     if (_mode == kModeTimeline){
         return 210;
     }else{
-        return 28;
+        return 45;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -231,5 +234,4 @@ static NSString* TimelineCellID = @"TimelineCell";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 @end

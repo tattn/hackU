@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
@@ -19,22 +20,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friendImage" translatesAutoresizingMaskIntoConstraints="NO" id="Xwr-Y9-GlT">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friendImage" translatesAutoresizingMaskIntoConstraints="NO" id="Xwr-Y9-GlT">
                         <rect key="frame" x="9" y="5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="1nV-ER-Xpm"/>
+                            <constraint firstAttribute="width" constant="50" id="U2C-Fe-yKv"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-eS-ruT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-eS-ruT">
                         <rect key="frame" x="75" y="34" width="291" height="21"/>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="12"/>
                         <color key="textColor" red="0.50173611111111116" green="0.50173611111111116" blue="0.50173611111111116" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
                         <rect key="frame" x="75" y="5" width="291" height="30"/>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Xwr-Y9-GlT" firstAttribute="top" secondItem="QtZ-ie-P5J" secondAttribute="top" id="10m-9t-SHk"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="26" id="2lR-q3-lgB"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="leading" secondItem="QtZ-ie-P5J" secondAttribute="leading" id="GbL-II-Q4B"/>
+                    <constraint firstItem="Xwr-Y9-GlT" firstAttribute="bottom" secondItem="KkW-eS-ruT" secondAttribute="bottom" id="Yad-MW-Jjm"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="QtZ-ie-P5J" secondAttribute="bottom" constant="16" id="ZBE-Ed-tw9"/>
+                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="cLk-q3-U4q"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="trailing" secondItem="QtZ-ie-P5J" secondAttribute="trailing" id="etl-h5-bxr"/>
+                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="hxX-3I-xFZ"/>
+                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="leading" secondItem="Xwr-Y9-GlT" secondAttribute="trailing" constant="16" id="iz1-oA-rwB"/>
+                    <constraint firstItem="Xwr-Y9-GlT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="pZv-Wd-vcj"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="firendNameLabel" destination="QtZ-ie-P5J" id="u5K-da-Nl7"/>

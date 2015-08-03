@@ -119,7 +119,6 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
  */
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    //デバイス間でレイアウトを合わせるためサイズを動的にする必要がある
     return UIEdgeInsetsMake(20, 15, 20, 15);
 }
 /*
