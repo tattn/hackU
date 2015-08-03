@@ -46,6 +46,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     _tableView.dataSource = self;
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _tableView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);
+    _tableView.tableFooterView = [UIView new]; // 余分なCellのセパレータを表示しないための処理
     
     _barcodeView = [BarcodeView new];
     _barcodeView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);

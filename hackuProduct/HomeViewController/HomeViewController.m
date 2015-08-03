@@ -39,6 +39,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     _mode = kModeTimeline;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.tableFooterView = [UIView new]; // 余分なCellのセパレータを表示しないための処理
     
     self.navigationItem.title = @"Bookee";
     
@@ -51,6 +52,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self getTimeline];
+    [self getBookRequests];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -109,10 +111,20 @@ static NSString* TimelineCellID = @"TimelineCell";
     }];
 }
 
+- (void)showBadge {
+    unsigned long num =  _requests.count + _replies.count;
+    if (num > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", num];
+    }
+    else {
+        self.navigationController.tabBarItem.badgeValue = nil; // nilにすると消える
+    }
+}
 
 #pragma mark - tableView delegates
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    [self showBadge]; //FIXME: この場所がベストではない
     if (_mode == kModeTimeline) {
         return 1;
     }
@@ -167,7 +179,6 @@ static NSString* TimelineCellID = @"TimelineCell";
             [cell.friendBookImage my_setImageWithURL:book[@"cover_image_url"]];
             cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に「%@」を追加しました", book[@"title"]];
             NSDateFormatter* dateFormatter = [NSDateFormatter new];
-            // 2015-08-03T06:35:49.589Z
             [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSZZ"];
             NSDate *timestamps = [dateFormatter dateFromString:timeline[@"timestamps"]];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
@@ -213,7 +224,16 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_mode == kModeNotification) {
+    if (_mode == kModeTimeline) {
+        // バックエンド側の調整が必要
+//        NSDictionary *timeline = _timelines[indexPath.row];
+//        NSString *type = timeline[@"type"];
+//        if ([type isEqualToString: @"bookshelf"]) {
+//            NSDictionary* bookshelf = timeline[@"data"][@"bookshelf"];
+//            [BookDetailViewController showForRequestingBook:self bookshelf:bookshelf];
+//        }
+    }
+    else if (_mode == kModeNotification) {
         if (indexPath.section == 0) {
             if (_requests.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _requests[indexPath.row];

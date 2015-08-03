@@ -10,6 +10,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *invitationCode;
 @property (weak, nonatomic) IBOutlet UIView *qrOrCameraView;
 @property (weak, nonatomic) IBOutlet UIButton *qrButton;
+@property (weak, nonatomic) IBOutlet UILabel *myInvitationLabel;
 
 @property QRcodeView* qrCodeView;
 @property BarcodeView* cameraView;
@@ -45,11 +46,16 @@ typedef NS_ENUM (NSUInteger, Mode) {
     _qrCodeView = [QRcodeView new];
     _qrCodeView.frame = CGRectMake(0, 0, size.width, size.height);
     _qrCodeView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_qrCodeView setString:[NSNumber numberWithInt:User.shared.userId].stringValue];
     _cameraView = [BarcodeView new];
     _cameraView.frame = CGRectMake(0, 0, size.width, size.height);
     _cameraView.delegate = self;
     [_cameraView setupCamera];
+    
+    [Backend.shared getInvitationCode:@{} callback:^(id responseObject, NSError *error) {
+        NSString* invitationCode = responseObject[@"invitation_code"];
+        _myInvitationLabel.text = invitationCode;
+        [_qrCodeView setString:invitationCode];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -95,8 +101,9 @@ typedef NS_ENUM (NSUInteger, Mode) {
     NSString* code = _invitationCode.text;
     
     Backend* backend = Backend.shared;
-    [backend addFriend:code.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    [backend addFriend:code option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
+            [Toast show:self.view message:@"招待コードが間違っています"];
             NSLog(@"addFriend error: %@\n", error);
         }
         else {
@@ -109,10 +116,18 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [self changeMode:(_mode + 1) % kModeMax];
 }
 
+- (IBAction)touchInvitationCode:(UITapGestureRecognizer *)sender {
+    UIPasteboard *pb = [UIPasteboard generalPasteboard];
+    [pb setValue:_myInvitationLabel.text forPasteboardType:@"public.utf8-plain-text"];
+    [Toast show:self.view message:@"自分の招待コードをクリップボードにコピーしました"];
+}
+
 #pragma mark - item bar buttons
 
 - (void)close {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 @end

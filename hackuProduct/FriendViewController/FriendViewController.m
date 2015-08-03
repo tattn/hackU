@@ -158,7 +158,7 @@
     NSDictionary* friend = _friends[indexPath.row];
     cell.firendNameLabel.text = friend[@"fullname"];
     cell.friendCommentLabel.text = friend[@"comment"];
-    [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(friend[@"userId"])];
+    [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(friend[@"userId"]) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFriendIcon:)];
     [cell.friendImage addGestureRecognizer:tapGesture];
