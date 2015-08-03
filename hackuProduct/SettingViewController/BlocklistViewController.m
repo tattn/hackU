@@ -51,14 +51,16 @@ static NSString* BlocklistCellId = @"FriendTableViewCell";
 }
 
 - (void)deleteBlockUser:(long)userId {
-    [self unblockUser:userId];
-    [Backend.shared deleteFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared deleteBlacklist:userId option:@{} callback:^(id responseObject, NSError *error) {
+        [Backend.shared deleteFriend:userId option:@{} callback:^(id responseObject, NSError *error) {
+            [self getBlocklist];
+        }];
     }];
 }
 
 - (void)unblockUser:(long)userId {
     [Backend.shared deleteBlacklist:userId option:@{} callback:^(id responseObject, NSError *error) {
-        [_tableView reloadData];
+        [self getBlocklist];
     }];
 }
 

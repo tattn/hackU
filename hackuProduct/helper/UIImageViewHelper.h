@@ -15,6 +15,7 @@
 @interface UIImageView (UIUtil)
 
 - (void)my_setImageWithURL:(NSString*)url;
+- (void)my_setImageWithURL:(NSString*)url defaultImage:(UIImage*)def;
 
 @end
 
@@ -28,6 +29,20 @@
     }
     else {
         self.image = [UIImage imageNamed:@"NoImage"];
+    }
+}
+
+- (void)my_setImageWithURL:(NSString*)url defaultImage:(UIImage*)def {
+    if (url != (id)[NSNull null] && ![url isEqual: @""]) {
+        NSURL *nsurl = [NSURL URLWithString:url];
+        [self sd_setImageWithURL:nsurl completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (image.size.width == 0) {
+                self.image = def;
+            }
+        }];
+    }
+    else {
+        self.image = def;
     }
 }
 

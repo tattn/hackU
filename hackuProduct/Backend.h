@@ -41,6 +41,10 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)uploadProfileImage:(int)userId image:(UIImage*)img DEFAULT_PARAM;
 // === [/users] end
 
+// === [/my/invitation_code] InvitationCode API
+- (void)getInvitationCode: DEFAULT_PARAM2;
+// === [/my/invitation_code] end
+
 // === [/auth] Auth API
 - (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM;
 - (void)logout: DEFAULT_PARAM2;
@@ -95,7 +99,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/users/:user_id/frined] Friend API
 - (void)getFriend: DEFAULT_PARAM2;
-- (void)addFriend:(int)friendId DEFAULT_PARAM;
+- (void)addFriend:(NSString*)invitationCode DEFAULT_PARAM;
 - (void)deleteFriend:(long)friendId DEFAULT_PARAM;
 - (void)getNewFriend: DEFAULT_PARAM2;
 - (void)allowNewFriend:(int)friendId DEFAULT_PARAM;

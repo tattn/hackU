@@ -166,6 +166,15 @@ MAKE_PARAM(@{@"token":self.accessToken})
 
 // === [/users] end
 
+// === [/my/invitation_code] InvitationCode API
+
+- (void)getInvitationCode: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self GET:@"my/invitation_code" parameters:param DEFAULT_CALLBACK];
+}
+
+// === [/my/invitation_code] end
+
 // === [/auth] Auth API
 
 - (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM {
@@ -343,8 +352,8 @@ MAKE_PARAM(@{@"token":self.accessToken})
     [self GET:FRIEND_URL(User.shared.userId) parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addFriend:(int)friendId DEFAULT_PARAM {
-    MAKE_PARAM_WITH_TOKEN((@{@"friend_id":INT2NS(friendId)}));
+- (void)addFriend:(NSString*)invitationCode DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"invitation_code":invitationCode}));
     [self POST:FRIEND_URL(User.shared.userId) parameters:param DEFAULT_CALLBACK];
 }
 
