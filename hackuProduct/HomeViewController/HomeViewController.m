@@ -40,6 +40,8 @@ static NSString* TimelineCellID = @"TimelineCell";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
+    self.title = @"Bookee";
+    
     UINib *nib = [UINib nibWithNibName:@"HomeViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:NotificationCellID];
     UINib *nib2 = [UINib nibWithNibName:@"TimelineCell" bundle:nil];
@@ -48,7 +50,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     [self getTimeline];
 }
 
@@ -164,7 +166,7 @@ static NSString* TimelineCellID = @"TimelineCell";
             [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(bookshelf[@"user_id"])];
             cell.friendNameLabel.text = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
             [cell.friendBookImage my_setImageWithURL:book[@"cover_image_url"]];
-            cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に%@を追加しました", book[@"title"]];
+            cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に「%@」を追加しました", book[@"title"]];
             NSDateFormatter* dateFormatter = [NSDateFormatter new];
             // 2015-08-03T06:35:49.589Z
             [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSZZ"];
@@ -207,7 +209,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     if (_mode == kModeTimeline){
         return 210;
     }else{
-        return 50;
+        return 60;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -2,9 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
+            <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
         </mutableArray>
@@ -19,35 +21,72 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJD-KP-5cB">
-                        <rect key="frame" x="12" y="6" width="45" height="45"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJD-KP-5cB">
+                        <rect key="frame" x="12" y="7" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="kDQ-zK-RqQ"/>
+                            <constraint firstAttribute="width" constant="45" id="rT3-g8-HLk"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新たに本を⚪︎⚪︎冊追加しました" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-yb-vZL">
-                        <rect key="frame" x="110" y="66" width="252" height="135"/>
-                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iiX-2f-3rX">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iiX-2f-3rX">
                         <rect key="frame" x="12" y="59" width="350" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="uBi-51-eDV"/>
+                        </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IzO-VX-Hpg">
-                        <rect key="frame" x="65" y="6" width="297" height="45"/>
-                        <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IzO-VX-Hpg">
+                        <rect key="frame" x="65" y="7" width="297" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="lMm-e6-cXF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="U0v-sh-e98">
-                        <rect key="frame" x="12" y="66" width="90" height="135"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AddDateTimeLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueM-zu-Owz">
-                        <rect key="frame" x="216" y="180" width="146" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AddDateTimeLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueM-zu-Owz">
+                        <rect key="frame" x="216" y="183" width="146" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="146" id="X0y-M2-1eh"/>
+                            <constraint firstAttribute="height" constant="18" id="k2b-IO-njQ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="U0v-sh-e98">
+                        <rect key="frame" x="12" y="66" width="90" height="135"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="9Xh-Ia-B6k"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新たに本を⚪︎⚪︎冊追加しました" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-yb-vZL">
+                        <rect key="frame" x="110" y="66" width="252" height="116"/>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="iiX-2f-3rX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="1sN-vt-mPS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ueM-zu-Owz" secondAttribute="trailing" constant="5" id="2Tj-Az-Wtn"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IzO-VX-Hpg" secondAttribute="trailing" constant="5" id="A2z-nB-EFN"/>
+                    <constraint firstItem="BJZ-yb-vZL" firstAttribute="top" secondItem="iiX-2f-3rX" secondAttribute="bottom" constant="6" id="AZt-5j-ck3"/>
+                    <constraint firstItem="IzO-VX-Hpg" firstAttribute="leading" secondItem="hJD-KP-5cB" secondAttribute="trailing" constant="8" id="Atc-r0-ND9"/>
+                    <constraint firstItem="U0v-sh-e98" firstAttribute="top" secondItem="iiX-2f-3rX" secondAttribute="bottom" constant="6" id="EpA-Cs-MXk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="iiX-2f-3rX" secondAttribute="trailing" constant="5" id="Hez-f9-Hm8"/>
+                    <constraint firstItem="BJZ-yb-vZL" firstAttribute="leading" secondItem="U0v-sh-e98" secondAttribute="trailing" constant="8" id="Mqf-GK-VVi"/>
+                    <constraint firstItem="ueM-zu-Owz" firstAttribute="top" secondItem="BJZ-yb-vZL" secondAttribute="bottom" constant="1" id="Ox7-gf-WvP"/>
+                    <constraint firstItem="hJD-KP-5cB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="QLL-n3-muc"/>
+                    <constraint firstItem="U0v-sh-e98" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Slu-Ui-eKs"/>
+                    <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="hJD-KP-5cB" secondAttribute="bottom" constant="7" id="TFZ-31-GZU"/>
+                    <constraint firstItem="U0v-sh-e98" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="fSv-oj-QVL"/>
+                    <constraint firstItem="hJD-KP-5cB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="pYy-nV-RN4"/>
+                    <constraint firstItem="IzO-VX-Hpg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="rF0-GH-dlk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BJZ-yb-vZL" secondAttribute="trailing" constant="5" id="sha-y5-fJh"/>
+                    <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="IzO-VX-Hpg" secondAttribute="bottom" constant="7" id="uAT-3p-NDq"/>
+                    <constraint firstItem="ueM-zu-Owz" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="yLt-0x-CzR"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
