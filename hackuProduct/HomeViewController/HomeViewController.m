@@ -6,6 +6,7 @@
 #import "SNS.h"
 #import "BookDetailViewController.h"
 #import "TimelineCell.h"
+#import "UIImageViewHelper.h"
 
 @implementation NotificationCell
 @end
@@ -21,6 +22,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
 
 @property kMode mode;
 
+@property NSArray* timelines;
 @property NSMutableArray* requests;
 @property NSMutableArray* replies;
 
@@ -45,7 +47,12 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self getTimeline];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
 
@@ -58,11 +65,23 @@ static NSString* TimelineCellID = @"TimelineCell";
     
     //TODO: バックエンドとの接続
     if (_mode == kModeTimeline) {
-        [_tableView reloadData];
+        [self getTimeline];
     }
     else if (_mode == kModeNotification) {
         [self getBookRequests];
     }
+}
+
+- (void)getTimeline {
+    [Backend.shared getTimeline:@{} callback:^(id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"getTimeline: %@", error);
+        }
+        else {
+            _timelines = responseObject[@"timelines"];
+            [_tableView reloadData];
+        }
+    }];
 }
 
 - (void)getBookRequests {
@@ -117,7 +136,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_mode == kModeTimeline) {
-        return 5;
+        return _timelines.count;
     }
     else {
         if (section == 0) {
@@ -135,17 +154,32 @@ static NSString* TimelineCellID = @"TimelineCell";
 //        cell.layer.borderColor = [UIColor grayColor].CGColor;
         cell.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
         cell.layer.borderWidth = 2;
+        if (_timelines.count <= 0) return cell; // 非同期処理関係のバグ対策
+        //FIXME: 無理やり実装. バックエンドともにリファクタリングしたい
+        NSDictionary *timeline = _timelines[indexPath.row];
+        NSString *type = timeline[@"type"];
+        if ([type isEqualToString: @"bookshelf"]) {
+            NSDictionary* bookshelf = timeline[@"data"][@"bookshelf"];
+            NSDictionary* book = bookshelf[@"book"];
+            NSDictionary* user = bookshelf[@"user"];
+            [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(bookshelf[@"user_id"])];
+            cell.friendNameLabel.text = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
+            [cell.friendBookImage my_setImageWithURL:book[@"cover_image_url"]];
+            cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に%@を追加しました", book[@"title"]];
+        }
         return cell;
     }
     else {
         NotificationCell* cell = [tableView dequeueReusableCellWithIdentifier:NotificationCellID forIndexPath:indexPath];
         
         if (indexPath.section == 0) {
+            if (_requests.count <= 0) return cell; // 非同期処理関係のバグ対策
             NSDictionary* req = _requests[indexPath.row];
             NSDictionary* user = req[@"sender"];
             cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから本のリクエストが届いています。", user[@"fullname"]];
         }
         else {
+            if (_replies.count <= 0) return cell; // 非同期処理関係のバグ対策
             NSDictionary* req = _replies[indexPath.row];
             NSDictionary* book = req[@"book"];
             NSDictionary* user = req[@"receiver"];
@@ -175,12 +209,14 @@ static NSString* TimelineCellID = @"TimelineCell";
     
     if (_mode == kModeNotification) {
         if (indexPath.section == 0) {
+            if (_requests.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _requests[indexPath.row];
             NSDictionary* user = req[@"sender"];
             NSDictionary* book = req[@"book"];
             [BookDetailViewController showForAcceptingBook:self book:book sender:user];
         }
         else {
+            if (_replies.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _replies[indexPath.row];
             NSDictionary* book = req[@"book"];
             NSNumber* accepted = req[@"accepted"];
