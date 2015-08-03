@@ -12,6 +12,7 @@
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
+            <string>HiraKakuProN-W3</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -55,7 +56,7 @@
                     </variation>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7m-ZI-RPW">
-                    <rect key="frame" x="238" y="193" width="125" height="40"/>
+                    <rect key="frame" x="238" y="189" width="125" height="40"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="DfD-h2-ovr"/>
@@ -71,7 +72,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-Xn-gho">
-                    <rect key="frame" x="186.5" y="306.5" width="227.5" height="227.5"/>
+                    <rect key="frame" x="179.5" y="297" width="242" height="242"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Ebt-Xn-gho" secondAttribute="height" multiplier="1:1" id="jJF-Cv-CiD"/>
@@ -93,14 +94,18 @@
                         <action selector="touchUpQRbutton:" destination="-1" eventType="touchUpInside" id="jao-2y-b6i"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-GM-Z57">
-                    <rect key="frame" x="30" y="275" width="540" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-GM-Z57">
+                    <rect key="frame" x="30" y="269" width="540" height="15"/>
+                    <gestureRecognizers/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="cae-Fc-fHU" appends="YES" id="KFv-sc-fhT"/>
+                    </connections>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分の招待コード" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-uV-5PJ">
-                    <rect key="frame" x="30" y="253" width="540" height="17"/>
+                    <rect key="frame" x="30" y="247" width="540" height="17"/>
                     <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -108,22 +113,22 @@
             </subviews>
             <color key="backgroundColor" red="0.96754032059999995" green="0.96754032059999995" blue="0.96754032059999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="d5J-5R-X9Z" firstAttribute="top" secondItem="Ebt-Xn-gho" secondAttribute="bottom" constant="15" id="0M9-Fz-cze"/>
-                <constraint firstItem="Ebt-Xn-gho" firstAttribute="top" secondItem="Uw7-GM-Z57" secondAttribute="bottom" constant="11" id="2r6-SA-Ag2"/>
+                <constraint firstItem="d5J-5R-X9Z" firstAttribute="top" secondItem="Ebt-Xn-gho" secondAttribute="bottom" constant="10" id="0M9-Fz-cze"/>
+                <constraint firstItem="Ebt-Xn-gho" firstAttribute="top" secondItem="Uw7-GM-Z57" secondAttribute="bottom" constant="13" id="2r6-SA-Ag2"/>
                 <constraint firstItem="hTh-iA-wcr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="2tT-dR-h75"/>
                 <constraint firstAttribute="centerX" secondItem="hTh-iA-wcr" secondAttribute="centerX" id="3Ug-Y0-24A"/>
                 <constraint firstAttribute="trailing" secondItem="GPO-uV-5PJ" secondAttribute="trailing" constant="30" id="3p9-TD-Md9"/>
                 <constraint firstAttribute="centerX" secondItem="Ebt-Xn-gho" secondAttribute="centerX" id="7Jk-fn-GGd"/>
                 <constraint firstItem="GPO-uV-5PJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Fpy-yL-VYK"/>
                 <constraint firstAttribute="centerX" secondItem="d5J-5R-X9Z" secondAttribute="centerX" id="GWD-X7-51D"/>
-                <constraint firstItem="GPO-uV-5PJ" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="20" id="KR9-eX-H9b"/>
+                <constraint firstItem="GPO-uV-5PJ" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="18" id="KR9-eX-H9b"/>
                 <constraint firstItem="Uw7-GM-Z57" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="LeG-vz-QlP"/>
                 <constraint firstAttribute="centerX" secondItem="OTG-AS-YG1" secondAttribute="centerX" id="NBS-ij-fXi"/>
                 <constraint firstItem="Uw7-GM-Z57" firstAttribute="top" secondItem="GPO-uV-5PJ" secondAttribute="bottom" constant="5" id="RF0-vt-Nyz"/>
                 <constraint firstAttribute="trailing" secondItem="Uw7-GM-Z57" secondAttribute="trailing" constant="30" id="Sff-o0-KVm"/>
                 <constraint firstAttribute="centerX" secondItem="x7m-ZI-RPW" secondAttribute="centerX" id="ZZf-U7-Tvd"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="top" secondItem="hTh-iA-wcr" secondAttribute="bottom" constant="8" id="cwi-oz-18P"/>
-                <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="14" id="d1R-oh-R7T"/>
+                <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="10" id="d1R-oh-R7T"/>
                 <constraint firstAttribute="trailing" secondItem="OTG-AS-YG1" secondAttribute="trailing" constant="30" id="dDE-SQ-gEY"/>
                 <constraint firstAttribute="trailing" secondItem="hTh-iA-wcr" secondAttribute="trailing" constant="40" id="f0H-nu-ivL"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="kZY-kR-Sbh"/>
@@ -132,5 +137,10 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
+        <tapGestureRecognizer id="cae-Fc-fHU" userLabel="InvitationCode Tap Gesture">
+            <connections>
+                <action selector="touchInvitationCode:" destination="-1" id="fFA-9T-zph"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

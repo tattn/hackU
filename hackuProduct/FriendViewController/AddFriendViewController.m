@@ -115,10 +115,18 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [self changeMode:(_mode + 1) % kModeMax];
 }
 
+- (IBAction)touchInvitationCode:(UITapGestureRecognizer *)sender {
+    UIPasteboard *pb = [UIPasteboard generalPasteboard];
+    [pb setValue:_myInvitationLabel.text forPasteboardType:@"public.utf8-plain-text"];
+    [Toast show:self.view message:@"自分の招待コードをクリップボードにコピーしました"];
+}
+
 #pragma mark - item bar buttons
 
 - (void)close {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 @end

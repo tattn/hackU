@@ -39,6 +39,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     _mode = kModeTimeline;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.tableFooterView = [UIView new]; // 余分なCellのセパレータを表示しないための処理
     
     self.navigationItem.title = @"Bookee";
     
@@ -224,7 +225,16 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_mode == kModeNotification) {
+    if (_mode == kModeTimeline) {
+        // バックエンド側の調整が必要
+//        NSDictionary *timeline = _timelines[indexPath.row];
+//        NSString *type = timeline[@"type"];
+//        if ([type isEqualToString: @"bookshelf"]) {
+//            NSDictionary* bookshelf = timeline[@"data"][@"bookshelf"];
+//            [BookDetailViewController showForRequestingBook:self bookshelf:bookshelf];
+//        }
+    }
+    else if (_mode == kModeNotification) {
         if (indexPath.section == 0) {
             if (_requests.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _requests[indexPath.row];
