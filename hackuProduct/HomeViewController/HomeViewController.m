@@ -50,6 +50,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [self getTimeline];
+    [self getBookRequests];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,10 +109,20 @@ static NSString* TimelineCellID = @"TimelineCell";
     }];
 }
 
+- (void)showBadge {
+    unsigned long num =  _requests.count + _replies.count;
+    if (num > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", num];
+    }
+    else {
+        self.navigationController.tabBarItem.badgeValue = nil; // nilにすると消える
+    }
+}
 
 #pragma mark - tableView delegates
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    [self showBadge]; //FIXME: この場所がベストではない
     if (_mode == kModeTimeline) {
         return 1;
     }
@@ -151,7 +162,6 @@ static NSString* TimelineCellID = @"TimelineCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_mode == kModeTimeline) {
         TimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellID forIndexPath:indexPath];
-//        cell.layer.borderColor = [UIColor grayColor].CGColor;
         cell.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
         cell.layer.borderWidth = 2;
         if (_timelines.count <= 0) return cell; // 非同期処理関係のバグ対策
@@ -167,7 +177,6 @@ static NSString* TimelineCellID = @"TimelineCell";
             [cell.friendBookImage my_setImageWithURL:book[@"cover_image_url"]];
             cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に%@を追加しました", book[@"title"]];
             NSDateFormatter* dateFormatter = [NSDateFormatter new];
-            // 2015-08-03T06:35:49.589Z
             [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSZZ"];
             NSDate *timestamps = [dateFormatter dateFromString:timeline[@"timestamps"]];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];

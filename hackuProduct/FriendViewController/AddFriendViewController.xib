@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HiraginoKakuGothic.ttc">
+            <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
             <string>HiraKakuProN-W3</string>
@@ -17,6 +19,7 @@
             <connections>
                 <outlet property="friendApplyButton" destination="x7m-ZI-RPW" id="ZUe-Ds-tNc"/>
                 <outlet property="invitationCode" destination="OTG-AS-YG1" id="hLf-Hp-D7p"/>
+                <outlet property="myInvitationLabel" destination="Uw7-GM-Z57" id="NVj-7S-5DA"/>
                 <outlet property="qrButton" destination="d5J-5R-X9Z" id="mqx-y9-nl8"/>
                 <outlet property="qrOrCameraView" destination="Ebt-Xn-gho" id="onl-hC-LHG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相手の招待コードを入力またはQRコードを読み取って下さい" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-iA-wcr">
-                    <rect key="frame" x="40" y="112" width="520" height="50"/>
+                    <rect key="frame" x="40" y="81" width="520" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Wmv-LS-lRW"/>
                     </constraints>
@@ -37,7 +40,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OTG-AS-YG1">
-                    <rect key="frame" x="30" y="170" width="540" height="40"/>
+                    <rect key="frame" x="30" y="139" width="540" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="SGz-pb-lKR"/>
@@ -52,7 +55,7 @@
                     </variation>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7m-ZI-RPW">
-                    <rect key="frame" x="238" y="233" width="125" height="40"/>
+                    <rect key="frame" x="238" y="193" width="125" height="40"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="DfD-h2-ovr"/>
@@ -68,14 +71,14 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-Xn-gho">
-                    <rect key="frame" x="210" y="296" width="180" height="180"/>
+                    <rect key="frame" x="186.5" y="306.5" width="227.5" height="227.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Ebt-Xn-gho" secondAttribute="height" multiplier="1:1" id="jJF-Cv-CiD"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-5R-X9Z">
-                    <rect key="frame" x="193" y="499" width="214" height="40"/>
+                    <rect key="frame" x="193" y="549" width="214" height="40"/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.82745098039999998" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ih2-aq-NMo"/>
@@ -90,24 +93,42 @@
                         <action selector="touchUpQRbutton:" destination="-1" eventType="touchUpInside" id="jao-2y-b6i"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-GM-Z57">
+                    <rect key="frame" x="30" y="275" width="540" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分の招待コード" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-uV-5PJ">
+                    <rect key="frame" x="30" y="253" width="540" height="17"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.96754032059999995" green="0.96754032059999995" blue="0.96754032059999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="d5J-5R-X9Z" firstAttribute="top" secondItem="Ebt-Xn-gho" secondAttribute="bottom" constant="23" id="0M9-Fz-cze"/>
+                <constraint firstItem="d5J-5R-X9Z" firstAttribute="top" secondItem="Ebt-Xn-gho" secondAttribute="bottom" constant="15" id="0M9-Fz-cze"/>
+                <constraint firstItem="Ebt-Xn-gho" firstAttribute="top" secondItem="Uw7-GM-Z57" secondAttribute="bottom" constant="11" id="2r6-SA-Ag2"/>
                 <constraint firstItem="hTh-iA-wcr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="2tT-dR-h75"/>
                 <constraint firstAttribute="centerX" secondItem="hTh-iA-wcr" secondAttribute="centerX" id="3Ug-Y0-24A"/>
+                <constraint firstAttribute="trailing" secondItem="GPO-uV-5PJ" secondAttribute="trailing" constant="30" id="3p9-TD-Md9"/>
                 <constraint firstAttribute="centerX" secondItem="Ebt-Xn-gho" secondAttribute="centerX" id="7Jk-fn-GGd"/>
+                <constraint firstItem="GPO-uV-5PJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Fpy-yL-VYK"/>
                 <constraint firstAttribute="centerX" secondItem="d5J-5R-X9Z" secondAttribute="centerX" id="GWD-X7-51D"/>
+                <constraint firstItem="GPO-uV-5PJ" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="20" id="KR9-eX-H9b"/>
+                <constraint firstItem="Uw7-GM-Z57" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="LeG-vz-QlP"/>
                 <constraint firstAttribute="centerX" secondItem="OTG-AS-YG1" secondAttribute="centerX" id="NBS-ij-fXi"/>
+                <constraint firstItem="Uw7-GM-Z57" firstAttribute="top" secondItem="GPO-uV-5PJ" secondAttribute="bottom" constant="5" id="RF0-vt-Nyz"/>
+                <constraint firstAttribute="trailing" secondItem="Uw7-GM-Z57" secondAttribute="trailing" constant="30" id="Sff-o0-KVm"/>
                 <constraint firstAttribute="centerX" secondItem="x7m-ZI-RPW" secondAttribute="centerX" id="ZZf-U7-Tvd"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="top" secondItem="hTh-iA-wcr" secondAttribute="bottom" constant="8" id="cwi-oz-18P"/>
-                <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="23" id="d1R-oh-R7T"/>
+                <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="14" id="d1R-oh-R7T"/>
                 <constraint firstAttribute="trailing" secondItem="OTG-AS-YG1" secondAttribute="trailing" constant="30" id="dDE-SQ-gEY"/>
                 <constraint firstAttribute="trailing" secondItem="hTh-iA-wcr" secondAttribute="trailing" constant="40" id="f0H-nu-ivL"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="kZY-kR-Sbh"/>
-                <constraint firstItem="Ebt-Xn-gho" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="23" id="ldk-Wg-jBg"/>
-                <constraint firstAttribute="bottom" secondItem="d5J-5R-X9Z" secondAttribute="bottom" constant="61" id="qhg-qv-2dR"/>
-                <constraint firstItem="hTh-iA-wcr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="112" id="x7k-jm-aaH"/>
+                <constraint firstAttribute="bottom" secondItem="d5J-5R-X9Z" secondAttribute="bottom" constant="11" id="qhg-qv-2dR"/>
+                <constraint firstItem="hTh-iA-wcr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="x7k-jm-aaH"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
