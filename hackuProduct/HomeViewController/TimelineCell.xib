@@ -28,7 +28,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新たに本を⚪︎⚪︎冊追加しました" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-yb-vZL">
-                        <rect key="frame" x="126" y="66" width="241" height="135"/>
+                        <rect key="frame" x="106" y="66" width="241" height="135"/>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -50,15 +50,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" translatesAutoresizingMaskIntoConstraints="NO" id="U0v-sh-e98">
-                        <rect key="frame" x="28" y="66" width="90" height="135"/>
+                        <rect key="frame" x="8" y="66" width="90" height="135"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="Qdq-E9-shl"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AddDateTimeLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueM-zu-Owz">
-                        <rect key="frame" x="220" y="180" width="146" height="21"/>
+                        <rect key="frame" x="201" y="180" width="146" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sa2-BD-aI6"/>
+                            <constraint firstAttribute="width" constant="146" id="tn1-jD-bvR"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,11 +70,14 @@
                     <constraint firstItem="ueM-zu-Owz" firstAttribute="top" secondItem="iiX-2f-3rX" secondAttribute="bottom" constant="121" id="0aM-Y0-fqP"/>
                     <constraint firstItem="BJZ-yb-vZL" firstAttribute="leading" secondItem="U0v-sh-e98" secondAttribute="trailing" constant="8" id="1aE-SC-K5b"/>
                     <constraint firstItem="hJD-KP-5cB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="3pS-LH-jcp"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ueM-zu-Owz" secondAttribute="trailing" constant="20" id="45L-qy-Bdh"/>
                     <constraint firstItem="U0v-sh-e98" firstAttribute="top" secondItem="iiX-2f-3rX" secondAttribute="bottom" constant="7" id="6Vj-bM-ryK"/>
                     <constraint firstItem="U0v-sh-e98" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="FFA-gy-MoB"/>
+                    <constraint firstItem="U0v-sh-e98" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="FN5-AY-xCD"/>
                     <constraint firstItem="ueM-zu-Owz" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="QgL-f1-kpx"/>
                     <constraint firstItem="IzO-VX-Hpg" firstAttribute="leading" secondItem="hJD-KP-5cB" secondAttribute="trailing" constant="8" id="TvH-XD-xM2"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IzO-VX-Hpg" secondAttribute="trailing" constant="1" id="UAO-XD-tA5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BJZ-yb-vZL" secondAttribute="trailing" constant="20" id="VFa-hu-6uc"/>
                     <constraint firstItem="U0v-sh-e98" firstAttribute="top" secondItem="iiX-2f-3rX" secondAttribute="bottom" constant="7" id="VjN-bx-utL"/>
                     <constraint firstItem="iiX-2f-3rX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="WQf-o6-ReI"/>
                     <constraint firstItem="hJD-KP-5cB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Wdw-l8-QZs"/>
@@ -83,12 +87,16 @@
                     <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="IzO-VX-Hpg" secondAttribute="bottom" constant="7" id="coO-wA-6lc"/>
                     <constraint firstAttribute="trailingMargin" secondItem="iiX-2f-3rX" secondAttribute="trailing" constant="1" id="fd9-yt-GmL"/>
                     <constraint firstItem="BJZ-yb-vZL" firstAttribute="top" secondItem="iiX-2f-3rX" secondAttribute="bottom" constant="7" id="gCH-zH-x5D"/>
-                    <constraint firstItem="U0v-sh-e98" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="kS2-Cg-Swb"/>
-                    <constraint firstItem="BJZ-yb-vZL" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="mGW-0j-lvm"/>
                     <constraint firstItem="BJZ-yb-vZL" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="u5c-mZ-sBc"/>
                     <constraint firstItem="iiX-2f-3rX" firstAttribute="top" secondItem="IzO-VX-Hpg" secondAttribute="bottom" constant="7" id="uSV-4M-J54"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ueM-zu-Owz" secondAttribute="trailing" constant="1" id="vm0-ln-6Yt"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="cQA-qz-8ET"/>
+                        <exclude reference="vm0-ln-6Yt"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
