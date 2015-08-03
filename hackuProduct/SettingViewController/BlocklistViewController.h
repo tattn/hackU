@@ -12,9 +12,3 @@
 
 @end
 
-@interface BlocklistCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *editButton;
-
-@end
