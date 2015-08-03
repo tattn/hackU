@@ -147,22 +147,6 @@ static NSString* SearchResultCellId = @"SearchResultCell";
                 }
             }
         }];
-//        [Backend.shared getFriend:@{} callback:^(id res, NSError *error) {
-//            NSArray* friends = res[@"users"];
-//            [friends enumerateObjectsUsingBlock:^(id friend, NSUInteger idx, BOOL *stop) {
-//                int friendId = ((NSNumber*)friend[@"userId"]).intValue;
-//                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":_searchBar.text, @"start":start} callback:^(id res2, NSError *error) {
-//                    NSArray* bookshelves = res2[@"bookshelves"];
-//                    if (bookshelves.count > 0) {
-//                        [_bookshelves addObjectsFromArray:bookshelves];
-//                    }
-//                    if (idx == friends.count - 1) {
-//                        [_tableView reloadData];
-//                        _searchEnd = NO;
-//                    }
-//                }];
-//            }];
-//        }];
     }
 }
 
