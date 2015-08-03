@@ -6,5 +6,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *friendBookImage;
 @property (weak, nonatomic) IBOutlet UILabel *addBookInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addDateTimeLabel;
 
 @end
