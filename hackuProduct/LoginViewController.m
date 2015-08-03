@@ -43,9 +43,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
     
     _mode = kModeLogin;
     
-    //FIXME: 前回のアカウントでログインする.ここで実行すると一瞬Viewが見えてしまうので、別の場所に移した方がいい
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults removeObjectForKey:@"LoginEmail"]; // for debug
     NSString *email = [userDefaults objectForKey:@"LoginEmail"];
     NSString *pass = [userDefaults objectForKey:@"LoginPass"];
     

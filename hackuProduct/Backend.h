@@ -102,6 +102,10 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)rejectNewFriend:(int)friendId DEFAULT_PARAM;
 // === [/users/:user_id/frined] end
 
+// === [/my/timeline] Timeline API
+- (void)getTimeline: DEFAULT_PARAM2;
+// === [/my/timeline] end
+
 #undef DEFAULT_PARAM
 #undef DEFAULT_PARAM2
 
