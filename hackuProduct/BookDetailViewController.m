@@ -103,6 +103,10 @@ typedef NS_ENUM (NSUInteger, Mode) {
         [_actionView addSubview:btn];
     }];
     
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.frame = self.view.bounds;
+    scrollView.bounces = NO;
+    
 }
 
 - (void)addBookToBookshelf {
