@@ -23,7 +23,11 @@
     book->coverImageUrl = [book getStr:dic[@"coverImageUrl"]];
     book->salesrank = [book getInt:dic[@"salesrank"]];
     book->publicationDateStr = [book getStr:dic[@"publicationDate"]];
-//    book->publicationDate;
+    if (![book->publicationDateStr  isEqual: @""]) {
+        NSDateFormatter* dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        book->publicationDate = [dateFormatter dateFromString:book->publicationDateStr];
+    }
     book->amazonUrl = [book getStr:dic[@"amazonUrl"]];
     return book;
 }
@@ -49,5 +53,18 @@
 - (NSComparisonResult) compareTitleInv:(Book*)_book {
   return [_book->title localizedCaseInsensitiveCompare:self->title];
 }
+
+- (NSComparisonResult) comparePublicationDate:(Book*)_book {
+    if (_book->publicationDate == nil) return NSOrderedAscending;
+    if (self->publicationDate == nil) return NSOrderedDescending;
+  return [self->publicationDate compare:_book->publicationDate];
+}
+
+- (NSComparisonResult) comparePublicationDateInv:(Book*)_book {
+    if (self->publicationDate == nil) return NSOrderedDescending;
+    if (_book->publicationDate == nil) return NSOrderedAscending;
+  return [_book->publicationDate compare:self->publicationDate];
+}
+
 
 @end

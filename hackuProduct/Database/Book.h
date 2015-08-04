@@ -30,6 +30,8 @@
 
 - (NSComparisonResult) compareTitle:(Book*)_book;
 - (NSComparisonResult) compareTitleInv:(Book*)_book;
+- (NSComparisonResult) comparePublicationDate:(Book*)_book;
+- (NSComparisonResult) comparePublicationDateInv:(Book*)_book;
 
 @end
 

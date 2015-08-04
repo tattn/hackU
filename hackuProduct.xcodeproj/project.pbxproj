@@ -43,6 +43,7 @@
 		4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C63851B5F746800AA233C /* LoginViewController.m */; };
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4A7A12081B71050B00277161 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A12071B71050B00277161 /* Book.m */; };
+		4A7A120B1B71118D00277161 /* Bookshelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A120A1B71118D00277161 /* Bookshelf.m */; };
 		4A901A8B1B62A15800C8FE1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A901A8A1B62A15800C8FE1C /* Settings.bundle */; };
 		4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A901A901B62D65000C8FE1C /* LicenseViewController.m */; };
 		4A965B031B68217000F7ABE6 /* SNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A965B021B68217000F7ABE6 /* SNS.m */; };
@@ -130,6 +131,8 @@
 		4A5C63881B5F752C00AA233C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4A7A12061B7103FF00277161 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		4A7A12071B71050B00277161 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		4A7A12091B71117100277161 /* Bookshelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookshelf.h; sourceTree = "<group>"; };
+		4A7A120A1B71118D00277161 /* Bookshelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookshelf.m; sourceTree = "<group>"; };
 		4A7D29421B68CB6F009D0B7E /* UIImageViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewHelper.h; sourceTree = "<group>"; };
 		4A901A8A1B62A15800C8FE1C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4A901A8F1B62D65000C8FE1C /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				4AC1031C1B67EBFA004B3E75 /* User.m */,
 				4A7A12061B7103FF00277161 /* Book.h */,
 				4A7A12071B71050B00277161 /* Book.m */,
+				4A7A12091B71117100277161 /* Bookshelf.h */,
+				4A7A120A1B71118D00277161 /* Bookshelf.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 				4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */,
 				4A7A12081B71050B00277161 /* Book.m in Sources */,
 				174D1E571B6629D2007BB81C /* SearchViewController.m in Sources */,
+				4A7A120B1B71118D00277161 /* Bookshelf.m in Sources */,
 				17B7B9EF1B5922A2009A8752 /* FriendTableViewCell.m in Sources */,
 				4AC2D4C51B6409AC00F80E61 /* HomeViewController.m in Sources */,
 				17B7B99A1B52CA74009A8752 /* main.m in Sources */,
