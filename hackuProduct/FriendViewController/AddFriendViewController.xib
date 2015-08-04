@@ -71,7 +71,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-Xn-gho">
-                    <rect key="frame" x="179" y="297" width="242" height="242"/>
+                    <rect key="frame" x="177" y="293" width="246" height="246"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Ebt-Xn-gho" secondAttribute="height" multiplier="1:1" id="jJF-Cv-CiD"/>
@@ -94,9 +94,12 @@
                     </connections>
                 </button>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-GM-Z57">
-                    <rect key="frame" x="30" y="269" width="540" height="15"/>
+                    <rect key="frame" x="8" y="267" width="584" height="13"/>
                     <gestureRecognizers/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="wsc-Ov-aQr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <connections>
@@ -104,8 +107,8 @@
                     </connections>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分の招待コード" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-uV-5PJ">
-                    <rect key="frame" x="30" y="247" width="540" height="17"/>
-                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
+                    <rect key="frame" x="30" y="247" width="540" height="15"/>
+                    <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -120,12 +123,12 @@
                 <constraint firstAttribute="centerX" secondItem="Ebt-Xn-gho" secondAttribute="centerX" id="7Jk-fn-GGd"/>
                 <constraint firstItem="GPO-uV-5PJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Fpy-yL-VYK"/>
                 <constraint firstAttribute="centerX" secondItem="d5J-5R-X9Z" secondAttribute="centerX" id="GWD-X7-51D"/>
+                <constraint firstItem="Uw7-GM-Z57" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="JMS-1L-WVf"/>
                 <constraint firstItem="GPO-uV-5PJ" firstAttribute="top" secondItem="x7m-ZI-RPW" secondAttribute="bottom" constant="18" id="KR9-eX-H9b"/>
-                <constraint firstItem="Uw7-GM-Z57" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="LeG-vz-QlP"/>
                 <constraint firstAttribute="centerX" secondItem="OTG-AS-YG1" secondAttribute="centerX" id="NBS-ij-fXi"/>
                 <constraint firstItem="Uw7-GM-Z57" firstAttribute="top" secondItem="GPO-uV-5PJ" secondAttribute="bottom" constant="5" id="RF0-vt-Nyz"/>
-                <constraint firstAttribute="trailing" secondItem="Uw7-GM-Z57" secondAttribute="trailing" constant="30" id="Sff-o0-KVm"/>
                 <constraint firstAttribute="centerX" secondItem="x7m-ZI-RPW" secondAttribute="centerX" id="ZZf-U7-Tvd"/>
+                <constraint firstAttribute="trailing" secondItem="Uw7-GM-Z57" secondAttribute="trailing" constant="8" id="b3M-5v-kfl"/>
                 <constraint firstItem="OTG-AS-YG1" firstAttribute="top" secondItem="hTh-iA-wcr" secondAttribute="bottom" constant="8" id="cwi-oz-18P"/>
                 <constraint firstItem="x7m-ZI-RPW" firstAttribute="top" secondItem="OTG-AS-YG1" secondAttribute="bottom" constant="10" id="d1R-oh-R7T"/>
                 <constraint firstAttribute="trailing" secondItem="OTG-AS-YG1" secondAttribute="trailing" constant="30" id="dDE-SQ-gEY"/>
