@@ -49,6 +49,9 @@ static User* instance = nil;
     if ([user objectForKey:@"lastname"]) _lastname = user[@"lastname"];
     if ([user objectForKey:@"school"]) _school = user[@"school"];
     if ([user objectForKey:@"comment"]) _comment = user[@"comment"];
+    if ([user objectForKey:@"bookNum"]) _bookNum = user[@"bookNum"];
+    if ([user objectForKey:@"lendNum"]) _lendNum = user[@"lendNum"];
+    if ([user objectForKey:@"borrowNum"]) _borrowNum = user[@"borrowNum"];
 }
 
 - (void)reset {
