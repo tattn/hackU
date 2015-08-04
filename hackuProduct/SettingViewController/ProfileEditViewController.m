@@ -34,6 +34,13 @@
     self.myLendNumLabel.text = User.shared.lendNum.stringValue;
     self.myBorrowNumLabel.text = User.shared.borrowNum.stringValue;
     
+    [Backend.shared getUser:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
+        NSDictionary* user = responseObject[@"user"];
+        self.myBooksNumLabel.text = ((NSNumber*)user[@"bookNum"]).stringValue;
+        self.myLendNumLabel.text = ((NSNumber*)user[@"lendNum"]).stringValue;
+        self.myBorrowNumLabel.text = ((NSNumber*)user[@"borrowNum"]).stringValue;
+    }];
+    
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc]
                               initWithTitle:@"キャンセル"
                               style:UIBarButtonItemStylePlain
