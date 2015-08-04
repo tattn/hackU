@@ -295,11 +295,6 @@ MAKE_PARAM(@{@"token":self.accessToken})
     [self POST:LEND_URL parameters:param DEFAULT_CALLBACK];
 }
 
-- (void)addLending:(int)bookId DEFAULT_PARAM {
-    MAKE_TOKEN_PARAM();
-    [self DELETE:LENDID_URL(bookId) parameters:param DEFAULT_CALLBACK];
-}
-
 - (void)deleteLending:(int)bookId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
     [self DELETE:LENDID_URL(bookId) parameters:param DEFAULT_CALLBACK];

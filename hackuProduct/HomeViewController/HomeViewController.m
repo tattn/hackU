@@ -247,13 +247,15 @@ static NSString* TimelineCellID = @"TimelineCell";
             }
             NSDictionary* status = _statuses[indexPath.row];
             if ([[status allKeys] containsObject:@"lending"]) {
-                NSDictionary* user = status[@"borrower"];
-                NSDictionary* book = status[@"book"];
+                NSDictionary* lending = status[@"lending"];
+                NSDictionary* user = lending[@"borrower"];
+                NSDictionary* book = lending[@"book"];
                 cell.msgLabel.text = [NSString stringWithFormat:@"%@さんに%@を貸しています。", user[@"fullname"], book[@"title"]];
             }
             else {
-                NSDictionary* user = status[@"lender"];
-                NSDictionary* book = status[@"book"];
+                NSDictionary* borrow = status[@"borrow"];
+                NSDictionary* user = borrow[@"lender"];
+                NSDictionary* book = borrow[@"book"];
                 cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから%@を借りています", user[@"fullname"], book[@"title"]];
             }
         }
@@ -290,7 +292,7 @@ static NSString* TimelineCellID = @"TimelineCell";
             NSDictionary* book = req[@"book"];
             [BookDetailViewController showForAcceptingBook:self book:book sender:user];
         }
-        else {
+        else if (indexPath.section == 1) {
             if (_replies.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _replies[indexPath.row];
             NSDictionary* book = req[@"book"];
@@ -315,6 +317,25 @@ static NSString* TimelineCellID = @"TimelineCell";
                         NSLog(@"deleteRequestIsent: %@", error);
                     }
                     [self getBookRequests];
+                }];
+            }
+        }
+        else {
+            if (_statuses.count <= 0) return; //非同期処理関係のバグ対策
+            
+            NSDictionary* status = _statuses[indexPath.row];
+            if ([[status allKeys] containsObject:@"lending"]) {
+                NSDictionary* lending = status[@"lending"];
+                NSDictionary* book = lending[@"book"];
+                int bookId = ((NSNumber*)book[@"bookId"]).intValue;
+                // 貸している
+                [AlertHelper showYesNo:self title:@"確認" msg:@"この本は返却されましたか？" yesTitle:@"はい" noTitle:@"いいえ" yes:^{
+                    [Backend.shared deleteLending:bookId option:@{} callback:^(id responseObject, NSError *error) {
+                        if (error) {
+                            NSLog(@"Error - deleteLending: %@", error);
+                        }
+                        [self getBookRequests];
+                    }];
                 }];
             }
         }
