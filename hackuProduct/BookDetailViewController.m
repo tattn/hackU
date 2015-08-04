@@ -147,9 +147,14 @@ typedef NS_ENUM (NSUInteger, Mode) {
     }];
     
     if (accepted == YES) {
-        NSNumber* borrowerId = _user[@"userId"];
-        [Backend.shared updateBookInBookshelf:User.shared.userId bookId:bookId option:@{@"borrower_id":borrowerId} callback:^(id responseObject, NSError *error) {
+        int borrowerId = ((NSNumber*)_user[@"userId"]).intValue;
+        [Backend.shared addLending:bookId borrowerId:borrowerId option:@{} callback:^(id responseObject, NSError *error) {
+            if (error) {
+                NSLog(@"Error - addLending: %@", error);
+            }
         }];
+//        [Backend.shared updateBookInBookshelf:User.shared.userId bookId:bookId option:@{@"borrower_id":borrowerId} callback:^(id responseObject, NSError *error) {
+//        }];
     }
 }
 

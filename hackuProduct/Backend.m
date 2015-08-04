@@ -290,6 +290,11 @@ MAKE_PARAM(@{@"token":self.accessToken})
     [self GET:LEND_URL parameters:param DEFAULT_CALLBACK];
 }
 
+- (void)addLending:(int)bookId borrowerId:(int)borrowerId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId), @"borrower_id":INT2NS(borrowerId)}));
+    [self POST:LEND_URL parameters:param DEFAULT_CALLBACK];
+}
+
 - (void)deleteLending:(int)bookId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
     [self DELETE:LENDID_URL(bookId) parameters:param DEFAULT_CALLBACK];
