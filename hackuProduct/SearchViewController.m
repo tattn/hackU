@@ -7,6 +7,7 @@
 #import "Backend.h"
 #import "BarcodeView.h"
 #import "Toast.h"
+#import "Book.h"
 
 @implementation SearchResultCell
 @end
@@ -205,10 +206,12 @@ static NSString* SearchResultCellId = @"SearchResultCell";
             [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
             break;
             
-        case kSearchModeAddingBookToBookshelf:
+        case kSearchModeAddingBookToBookshelf: {
             if (_books.count <= 0) return; // 非同期処理関係のバグの対応
-            [BookDetailViewController showForAddingBookToBookshelf:self book:_books[indexPath.row]];
+            Book* book = [Book initWithDic:_books[indexPath.row]];
+            [BookDetailViewController showForAddingBookToBookshelf:self book:book];
             break;
+        }
             
         default:
             break;

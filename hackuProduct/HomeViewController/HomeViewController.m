@@ -8,6 +8,7 @@
 #import "TimelineCell.h"
 #import "UIImageViewHelper.h"
 #import "AlertHelper.h"
+#import "Book.h"
 
 @implementation NotificationCell
 @end
@@ -305,7 +306,7 @@ static NSString* TimelineCellID = @"TimelineCell";
             if (_requests.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _requests[indexPath.row];
             NSDictionary* user = req[@"sender"];
-            NSDictionary* book = req[@"book"];
+            Book* book = [Book initWithDic:req[@"book"]];
             [BookDetailViewController showForAcceptingBook:self book:book sender:user];
         }
         else if (indexPath.section == 1) {
