@@ -78,6 +78,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/my/lend] Lend API
 - (void)getLending: DEFAULT_PARAM2;
+- (void)addLending:(int)bookId borrowerId:(int)borrowerId DEFAULT_PARAM;
 - (void)deleteLending:(int)bookId DEFAULT_PARAM;
 // === [/my/lend] end
 

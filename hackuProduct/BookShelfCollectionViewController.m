@@ -182,6 +182,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    if (_books.count <= 0) return; // 非同期処理バグの一時的な対処
     [BookDetailViewController showForRemovingBookFromBookshelf:self book:_books[indexPath.row]];
 }
 /*

@@ -27,6 +27,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
 @property NSArray* timelines;
 @property NSMutableArray* requests;
 @property NSMutableArray* replies;
+@property NSMutableArray* statuses;
 
 @end
 
@@ -55,10 +56,6 @@ static NSString* TimelineCellID = @"TimelineCell";
     [super viewDidAppear:animated];
     [self getTimeline];
     [self getBookRequests];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,7 +105,35 @@ static NSString* TimelineCellID = @"TimelineCell";
                     [_replies addObject:req];
                 }
             }];
-            [_tableView reloadData];
+            [self getBookStatuses];
+        }];
+    }];
+}
+
+- (void)getBookStatuses {
+    [Backend.shared getLending:@{} callback:^(id responseObject, NSError *error) {
+        _statuses = [NSMutableArray array];
+        NSArray* lendings = responseObject[@"lendings"];
+        [lendings enumerateObjectsUsingBlock:^(id lending, NSUInteger idx, BOOL *stop) {
+            [_statuses addObject:@{@"lending":lending}];
+        }];
+        
+        [Backend.shared getBorrow:@{} callback:^(id responseObject, NSError *error) {
+            NSArray* borrows = responseObject[@"borrows"];
+            [borrows enumerateObjectsUsingBlock:^(id borrow, NSUInteger idx, BOOL *stop) {
+                [_statuses addObject:@{@"borrow":borrow}];
+            }];
+            
+            [Backend.shared getRequestIsent:@{} callback:^(id responseObject, NSError *error) {
+                NSArray* reqs = responseObject[@"requests"];
+                [reqs enumerateObjectsUsingBlock:^(id req, NSUInteger idx, BOOL *stop) {
+                    if (!req[@"accepted"]) {
+                        [_statuses addObject:@{@"request":req}];
+                    }
+                }];
+                [_tableView reloadData];
+            }];
+            
         }];
     }];
 }
@@ -131,7 +156,7 @@ static NSString* TimelineCellID = @"TimelineCell";
         return 1;
     }
     else {
-        return 2;
+        return 3;
     }
 }
 
@@ -143,8 +168,11 @@ static NSString* TimelineCellID = @"TimelineCell";
         if (section == 0) {
             return @"本のリクエスト";
         }
-        else {
+        else if (section == 1){
             return @"友達からの返答";
+        }
+        else {
+            return @"ステータス";
         }
     }
 }
@@ -155,10 +183,16 @@ static NSString* TimelineCellID = @"TimelineCell";
     }
     else {
         if (section == 0) {
+            if (_requests.count <= 0) return 1; // 〜はありません用
             return _requests.count;
         }
-        else {
+        else if (section == 1){
+            if (_replies.count <= 0) return 1; // 〜はありません用
             return _replies.count;
+        }
+        else {
+            if (_statuses.count <= 0) return 1; // 〜はありません用
+            return _statuses.count;
         }
     }
 }
@@ -192,13 +226,19 @@ static NSString* TimelineCellID = @"TimelineCell";
         NotificationCell* cell = [tableView dequeueReusableCellWithIdentifier:NotificationCellID forIndexPath:indexPath];
         
         if (indexPath.section == 0) {
-            if (_requests.count <= 0) return cell; // 非同期処理関係のバグ対策
+            if (_requests.count <= 0) {
+                cell.msgLabel.text = @"リクエストはありません。";
+                return cell; // 非同期処理関係のバグ対策
+            }
             NSDictionary* req = _requests[indexPath.row];
             NSDictionary* user = req[@"sender"];
             cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから本のリクエストが届いています。", user[@"fullname"]];
         }
-        else {
-            if (_replies.count <= 0) return cell; // 非同期処理関係のバグ対策
+        else if (indexPath.section == 1){
+            if (_replies.count <= 0) {
+                cell.msgLabel.text = @"返信はありません。";
+                return cell; // 非同期処理関係のバグ対策
+            }
             NSDictionary* req = _replies[indexPath.row];
             NSDictionary* book = req[@"book"];
             NSDictionary* user = req[@"receiver"];
@@ -209,6 +249,31 @@ static NSString* TimelineCellID = @"TimelineCell";
             }
             else {
                 cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが%@のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
+            }
+        }
+        else {
+            if (_statuses.count <= 0) {
+                cell.msgLabel.text = @"ステータスはありません。";
+                return cell; // 非同期処理関係のバグ対策
+            }
+            NSDictionary* status = _statuses[indexPath.row];
+            if ([[status allKeys] containsObject:@"lending"]) {
+                NSDictionary* lending = status[@"lending"];
+                NSDictionary* user = lending[@"borrower"];
+                NSDictionary* book = lending[@"book"];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんに%@を貸しています。", user[@"fullname"], book[@"title"]];
+            }
+            else if ([[status allKeys] containsObject:@"borrow"]) {
+                NSDictionary* borrow = status[@"borrow"];
+                NSDictionary* user = borrow[@"lender"];
+                NSDictionary* book = borrow[@"book"];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから%@を借りています", user[@"fullname"], book[@"title"]];
+            }
+            else {
+                NSDictionary* borrow = status[@"request"];
+                NSDictionary* user = borrow[@"receiver"];
+                NSDictionary* book = borrow[@"book"];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんへ%@をリクエストしています", user[@"fullname"], book[@"title"]];
             }
         }
         
@@ -225,6 +290,7 @@ static NSString* TimelineCellID = @"TimelineCell";
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (_mode == kModeTimeline) {
         // バックエンド側の調整が必要
@@ -243,7 +309,7 @@ static NSString* TimelineCellID = @"TimelineCell";
             Book* book = [Book initWithDic:req[@"book"]];
             [BookDetailViewController showForAcceptingBook:self book:book sender:user];
         }
-        else {
+        else if (indexPath.section == 1) {
             if (_replies.count <= 0) return; //非同期処理関係のバグ対策
             NSDictionary* req = _replies[indexPath.row];
             NSDictionary* book = req[@"book"];
@@ -268,6 +334,25 @@ static NSString* TimelineCellID = @"TimelineCell";
                         NSLog(@"deleteRequestIsent: %@", error);
                     }
                     [self getBookRequests];
+                }];
+            }
+        }
+        else {
+            if (_statuses.count <= 0) return; //非同期処理関係のバグ対策
+            
+            NSDictionary* status = _statuses[indexPath.row];
+            if ([[status allKeys] containsObject:@"lending"]) {
+                NSDictionary* lending = status[@"lending"];
+                NSDictionary* book = lending[@"book"];
+                int bookId = ((NSNumber*)book[@"bookId"]).intValue;
+                // 貸している
+                [AlertHelper showYesNo:self title:@"確認" msg:@"この本は返却されましたか？" yesTitle:@"はい" noTitle:@"いいえ" yes:^{
+                    [Backend.shared deleteLending:bookId option:@{} callback:^(id responseObject, NSError *error) {
+                        if (error) {
+                            NSLog(@"Error - deleteLending: %@", error);
+                        }
+                        [self getBookRequests];
+                    }];
                 }];
             }
         }
