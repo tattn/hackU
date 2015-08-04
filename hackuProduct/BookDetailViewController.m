@@ -129,8 +129,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void)replyRequest:(BOOL)accepted {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared replyRequest:User.shared.userId bookId:bookId.intValue accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = ((NSNumber*)_book[@"bookId"]).intValue;
+    [Backend.shared replyRequest:User.shared.userId bookId:bookId accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
         }
@@ -138,6 +138,12 @@ typedef NS_ENUM (NSUInteger, Mode) {
             [APP_DELEGATE switchTabBarController:0];
         }
     }];
+    
+    if (accepted == YES) {
+        NSNumber* borrowerId = _user[@"userId"];
+        [Backend.shared updateBookInBookshelf:User.shared.userId bookId:bookId option:@{@"borrower_id":borrowerId} callback:^(id responseObject, NSError *error) {
+        }];
+    }
 }
 
 
@@ -146,8 +152,9 @@ typedef NS_ENUM (NSUInteger, Mode) {
 - (void) checkRequest:(UIButton*)btn {
     //FIXME: 自分以外の誰かがリクエストしている時もボタンが押せなくなる.現在はそれが仕様.
     [Backend.shared getRequest:_userId option:@{} callback:^(id responseObject, NSError *error) {
-        NSArray* books = responseObject[@"books"];
-        [books enumerateObjectsUsingBlock:^(NSDictionary* book, NSUInteger idx, BOOL *stop) {
+        NSArray* reqs = responseObject[@"requests"];
+        [reqs enumerateObjectsUsingBlock:^(NSDictionary* req, NSUInteger idx, BOOL *stop) {
+            NSDictionary* book = req[@"book"];
             NSNumber* bookId = book[@"bookId"];
             if ([bookId isEqualToNumber: _bookshelf[@"book"][@"bookId"]]) {
                 [btn setTitle:@"リクエスト中" forState:UIControlStateNormal];

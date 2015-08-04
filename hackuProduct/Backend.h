@@ -89,6 +89,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/my/request] New Request API
 - (void)getRequestIsent: DEFAULT_PARAM2;
+- (void)deleteRequestIsent:(int)bookId DEFAULT_PARAM;
 // === [/my/request] end
 
 // === [/users/:user_id/request] Request API
