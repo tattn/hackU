@@ -13,7 +13,7 @@
 
 @interface BookShelfCollectionViewController ()
 
-@property NSMutableArray* books;
+@property NSMutableArray* bookshelves;
 @property int userId;
 
 @property (strong, readwrite, nonatomic) REMenu *menu;
@@ -21,6 +21,10 @@
 typedef NS_ENUM (int, SortType) {
     kSortTypeTitleAsc,
     kSortTypeTitleDesc,
+    kSortTypeDateDesc,
+    kSortTypeDateAsc,
+    kSortTypeAddDesc,
+    kSortTypeAddAsc,
 };
 
 @property SortType sortType;
@@ -66,15 +70,44 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                          [self sort:kSortTypeTitleAsc];
                                                      }];
     
-    REMenuItem *sortTitleDesc = [[REMenuItem alloc] initWithTitle:@"タイトルで降順に並び替え"
+//    REMenuItem *sortTitleDesc = [[REMenuItem alloc] initWithTitle:@"タイトルで降順に並び替え"
+//                                                      image:nil
+//                                           highlightedImage:nil
+//                                                     action:^(REMenuItem *item) {
+//                                                         [self sort:kSortTypeTitleDesc];
+//                                                     }];
+    
+    REMenuItem *sortDateDesc = [[REMenuItem alloc] initWithTitle:@"発売日の新しい順に並び替え"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [self sort:kSortTypeTitleDesc];
+                                                         [self sort:kSortTypeDateDesc];
                                                      }];
-
+    
+    REMenuItem *sortDateAsc = [[REMenuItem alloc] initWithTitle:@"発売日の古い順に並び替え"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [self sort:kSortTypeDateAsc];
+                                                     }];
+    
+    REMenuItem *sortAddDesc = [[REMenuItem alloc] initWithTitle:@"本棚への登録の新しい順に並び替え"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [self sort:kSortTypeAddDesc];
+                                                     }];
+    
+    REMenuItem *sortAddAsc = [[REMenuItem alloc] initWithTitle:@"本棚への登録の古い順に並び替え"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [self sort:kSortTypeAddAsc];
+                                                     }];
+    
+    
 //https://github.com/romaonthego/REMenu/blob/master/REMenuExample/REMenuExample/Classes/Controllers/NavigationViewController.m
-    self.menu = [[REMenu alloc] initWithItems:@[sortTitleAsc, sortTitleDesc]];
+    self.menu = [[REMenu alloc] initWithItems:@[sortTitleAsc, sortDateDesc, sortDateAsc, sortAddDesc, sortAddAsc]];
     self.menu.cornerRadius = 4;
     self.menu.shadowRadius = 4;
     self.menu.shadowColor = [UIColor blackColor];
@@ -124,24 +157,46 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     switch (sortType) {
         case kSortTypeTitleAsc:  [self sortByTitleAsc]; break;
         case kSortTypeTitleDesc: [self sortByTitleDesc]; break;
+        case kSortTypeDateDesc: [self sortByDateDesc]; break;
+        case kSortTypeDateAsc: [self sortByDateAsc]; break;
+        case kSortTypeAddDesc: [self sortByCreatedAtDesc]; break;
+        case kSortTypeAddAsc: [self sortByCreatedAtAsc]; break;
     }
     [self.collectionView reloadData];
 }
 
 - (void)sortByTitleAsc {
-    NSArray* books = [_books sortedArrayUsingSelector:@selector(compareTitle:)];
-    _books = [books mutableCopy];
-    [self.collectionView reloadData];
+    NSArray* bookshelves = [_bookshelves sortedArrayUsingSelector:@selector(compareTitle:)];
+    _bookshelves = [bookshelves mutableCopy];
 }
 
 - (void)sortByTitleDesc {
-    NSArray* books = [_books sortedArrayUsingSelector:@selector(compareTitleInv:)];
-    _books = [books mutableCopy];
-    [self.collectionView reloadData];
+    NSArray* bookshelves = [_bookshelves sortedArrayUsingSelector:@selector(compareTitleInv:)];
+    _bookshelves = [bookshelves mutableCopy];
+}
+
+- (void)sortByDateDesc {
+    NSArray* bookshelves = [_bookshelves sortedArrayUsingSelector:@selector(comparePublicationDateInv:)];
+    _bookshelves = [bookshelves mutableCopy];
+}
+
+- (void)sortByDateAsc {
+    NSArray* bookshelves = [_bookshelves sortedArrayUsingSelector:@selector(comparePublicationDate:)];
+    _bookshelves = [bookshelves mutableCopy];
+}
+
+- (void)sortByCreatedAtDesc {
+    NSArray* bookshelves = [_bookshelves sortedArrayUsingSelector:@selector(compareCreatedAtInv:)];
+    _bookshelves = [bookshelves mutableCopy];
+}
+
+- (void)sortByCreatedAtAsc {
+    NSArray* bookshelves = [_bookshelves sortedArrayUsingSelector:@selector(compareCreatedAt:)];
+    _bookshelves = [bookshelves mutableCopy];
 }
 
 - (void)getBookshelf {
-    _books = [NSMutableArray array];
+    _bookshelves = [NSMutableArray array];
     [Backend.shared getBookshelf:_userId option:@{} callback:^(NSDictionary* res, NSError *error) {
         if (error) {
             NSLog(@"Error - getBookshelf: %@", error);
@@ -149,8 +204,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
         else {
             NSArray* bookshelves = res[@"bookshelves"];
             [bookshelves enumerateObjectsUsingBlock:^(NSDictionary* bookshelf, NSUInteger idx, BOOL *stop) {
-                NSDictionary* book = bookshelf[@"book"];
-                [_books addObject:[Book initWithDic:book]];
+                [_bookshelves addObject:[Bookshelf initWithDic:bookshelf]];
             }];
             
             [self sort:_sortType];
@@ -167,14 +221,15 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.books.count;
+    return self.bookshelves.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    if (_books.count <= 0) return cell; // 非同期処理バグの一時的な対処
-    NSString* coverImageUrl = ((Book*)self.books[indexPath.row])->coverImageUrl;
+    if (_bookshelves.count <= 0) return cell; // 非同期処理バグの一時的な対処
+    Bookshelf* bookshelf = _bookshelves[indexPath.row];
+    NSString* coverImageUrl = bookshelf->book->coverImageUrl;
     [cell.bookImage my_setImageWithURL:coverImageUrl];
     
     return cell;
@@ -182,8 +237,9 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    if (_books.count <= 0) return; // 非同期処理バグの一時的な対処
-    [BookDetailViewController showForRemovingBookFromBookshelf:self book:_books[indexPath.row]];
+    if (_bookshelves.count <= 0) return; // 非同期処理バグの一時的な対処
+    Bookshelf* bookshelf = _bookshelves[indexPath.row];
+    [BookDetailViewController showForRemovingBookFromBookshelf:self book:bookshelf->book];
 }
 /*
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
