@@ -106,7 +106,7 @@
                         <outletCollection property="gestureRecognizers" destination="cae-Fc-fHU" appends="YES" id="KFv-sc-fhT"/>
                     </connections>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分の招待コード" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-uV-5PJ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分の招待コード（タップでコピー↓）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPO-uV-5PJ">
                     <rect key="frame" x="30" y="247" width="540" height="15"/>
                     <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

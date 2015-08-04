@@ -103,7 +103,6 @@
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-nA-SV4" userLabel="ActionView">
                     <rect key="frame" x="200" y="436" width="200" height="100"/>
-                    <color key="backgroundColor" red="0.50173611110000005" green="0.50173611110000005" blue="0.50173611110000005" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="1ua-BC-RCc"/>
                     </constraints>

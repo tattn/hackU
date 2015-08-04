@@ -244,10 +244,10 @@ static NSString* TimelineCellID = @"TimelineCell";
             NSNumber* accepted = req[@"accepted"];
             
             if ([accepted  isEqual: @YES]) {
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが%@のリクエストを許可しました。", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが「%@」のリクエストを許可しました。", user[@"fullname"], book[@"title"]];
             }
             else {
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが%@のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんが「%@」のリクエストを拒否しました。", user[@"fullname"], book[@"title"]];
             }
         }
         else {
@@ -260,19 +260,19 @@ static NSString* TimelineCellID = @"TimelineCell";
                 NSDictionary* lending = status[@"lending"];
                 NSDictionary* user = lending[@"borrower"];
                 NSDictionary* book = lending[@"book"];
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんに%@を貸しています。", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんに「%@」を貸しています。", user[@"fullname"], book[@"title"]];
             }
             else if ([[status allKeys] containsObject:@"borrow"]) {
                 NSDictionary* borrow = status[@"borrow"];
                 NSDictionary* user = borrow[@"lender"];
                 NSDictionary* book = borrow[@"book"];
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから%@を借りています", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから「%@」を借りています", user[@"fullname"], book[@"title"]];
             }
             else {
                 NSDictionary* borrow = status[@"request"];
                 NSDictionary* user = borrow[@"receiver"];
                 NSDictionary* book = borrow[@"book"];
-                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんへ%@をリクエストしています", user[@"fullname"], book[@"title"]];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんへ「%@」をリクエストしています", user[@"fullname"], book[@"title"]];
             }
         }
         
