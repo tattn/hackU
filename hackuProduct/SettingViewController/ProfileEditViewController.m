@@ -61,6 +61,12 @@
                 NSLog(@"Upload error: %@", error);
                 [Toast show:self.view message:@"画像のアップロードに失敗しました"];
             }
+            else {
+                //FIXME: ちょうどいいキャッシュ削除のタイミングを考える
+                SDImageCache *imageCache = [SDImageCache sharedImageCache];
+                [imageCache clearMemory];
+                [imageCache clearDisk];
+            }
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }];
