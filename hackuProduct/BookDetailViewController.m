@@ -102,11 +102,6 @@ typedef NS_ENUM (NSUInteger, Mode) {
         btn.frame = CGRectMake(0, y, _actionView.frame.size.width, ButtonHeight);
         [_actionView addSubview:btn];
     }];
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    scrollView.frame = self.view.bounds;
-    scrollView.bounces = NO;
-    
 }
 
 - (void)addBookToBookshelf {
