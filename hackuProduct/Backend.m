@@ -323,6 +323,11 @@ MAKE_PARAM(@{@"token":self.accessToken})
     [self GET:@"my/request/sent" parameters:param DEFAULT_CALLBACK];
 }
 
+- (void)deleteRequestIsent:(int)bookId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId)}));
+    [self PUT:@"my/request/sent" parameters:param DEFAULT_CALLBACK];
+}
+
 // === [/my/request] end
 
 // === [/users/:user_id/request] Request API

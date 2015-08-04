@@ -7,6 +7,7 @@
 #import "BookDetailViewController.h"
 #import "TimelineCell.h"
 #import "UIImageViewHelper.h"
+#import "AlertHelper.h"
 
 @implementation NotificationCell
 @end
@@ -246,13 +247,26 @@ static NSString* TimelineCellID = @"TimelineCell";
             NSDictionary* req = _replies[indexPath.row];
             NSDictionary* book = req[@"book"];
             NSNumber* accepted = req[@"accepted"];
+            int bookId = ((NSNumber*)book[@"bookId"]).intValue;
             if ([accepted isEqual: @YES]) {
-                [SNS postToLine:@""];
+                [Backend.shared deleteRequestIsent:bookId option:@{} callback:^(id responseObject, NSError *error) {
+                    if (error) {
+                        NSLog(@"deleteRequestIsent: %@", error);
+                    }
+                    else {
+                        [AlertHelper showYesNo:self title:@"確認" msg:@"LINEに移動します。よろしいですか？" yesTitle:@"はい" yes:^{
+                            [SNS postToLine:@""];
+                        }];
+                        [self getBookRequests];
+                    }
+                }];
             }
             else {
-                int bookId = ((NSNumber*)book[@"bookId"]).intValue;
-                [Backend.shared deleteRequest:User.shared.userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
-                    [_tableView reloadData];
+                [Backend.shared deleteRequestIsent:bookId option:@{} callback:^(id responseObject, NSError *error) {
+                    if (error) {
+                        NSLog(@"deleteRequestIsent: %@", error);
+                    }
+                    [self getBookRequests];
                 }];
             }
         }
