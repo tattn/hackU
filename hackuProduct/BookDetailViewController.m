@@ -27,7 +27,7 @@
 
 @property NSArray* buttons;
 
-@property NSDictionary* book;
+@property Book* book;
 @property NSDictionary* bookshelf;
 @property int userId;
 @property NSDictionary* user;
@@ -70,30 +70,30 @@ typedef NS_ENUM (NSUInteger, Mode) {
     UIColor *amazonButtonColor = [UIColor colorWithRed:253/255.0 green:196/255.0 blue:79/255.0 alpha:1.0];
     _amazonUrlButton.backgroundColor = amazonButtonColor;
     
-    if (_book[@"title"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+    if ([_book->title isEqual: @""]) {
         _titleLabel.text = @"No infomation";
-    }else{_titleLabel.text = _book[@"title"];}
+    }else{_titleLabel.text = _book->title;}
     
-    if (_book[@"author"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+    if ([_book->author isEqual: @""]) {
         _authorLabel.text = @"No infomation";
-    }else{_authorLabel.text = _book[@"author"];}
+    }else{_authorLabel.text = _book->author;}
     
-    if (_book[@"manufacturer"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+    if ([_book->manufacturer isEqual: @""]) {
         _publisherLabel.text = @"No infomation";
-    }else{_publisherLabel.text = _book[@"manufacturer"];}
+    }else{_publisherLabel.text = _book->manufacturer;}
     
-    if (_book[@"publicationDate"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+    if ([_book->publicationDateStr isEqual: @""]) {
         _publishDateLabel.text = @"No infomation";
-    }else{_publishDateLabel.text = _book[@"publicationDate"];}
+    }else{_publishDateLabel.text = _book->publicationDateStr;}
     
-    if ([_book[@"amazonUrl"]  isEqual: @""]) {
+    if ([_book->amazonUrl isEqual: @""]) {
         [_amazonUrlButton setTitle:@"No infomation" forState:UIControlStateNormal];
         _amazonUrlButton.backgroundColor = [UIColor whiteColor];
         _amazonUrlButton.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:13.0f];
         [_amazonUrlButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }else{_amazonUrlButton.titleLabel.text = @"Amazonで買う";}
     
-    [_bookImage my_setImageWithURL: _book[@"coverImageUrl"]];
+    [_bookImage my_setImageWithURL: _book->coverImageUrl];
     
     const float ButtonHeight = 45;
     const float SectionHeight = _actionView.frame.size.height / _buttons.count;
@@ -105,15 +105,15 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void)addBookToBookshelf {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
         [APP_DELEGATE switchTabBarController:2];
     }];
 }
 
 - (void)removeBookFromBookshelf {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared deleteBookInBookshelf:User.shared.userId bookId: bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared deleteBookInBookshelf:User.shared.userId bookId: bookId option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - deleteBookInBookshelf: %@", error);
         }
@@ -124,8 +124,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void)requestBook {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared addRequest:_userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared addRequest:_userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
         }
@@ -136,7 +136,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void)replyRequest:(BOOL)accepted {
-    int bookId = ((NSNumber*)_book[@"bookId"]).intValue;
+    int bookId = _book->bookId;
     [Backend.shared replyRequest:User.shared.userId bookId:bookId accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
@@ -241,7 +241,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 
 #pragma mark - show methods
 
-+ (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
++ (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(Book*)book {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeAddingBookToBookshelf;
     vc.book = book;
@@ -254,7 +254,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
++ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(Book*)book {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeRemovingBookFromBookshelf;
     vc.book = book;
@@ -283,7 +283,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForAcceptingBook:(UIViewController*)parent book:(NSDictionary*)book sender:(NSDictionary*)sender {
++ (void)showForAcceptingBook:(UIViewController*)parent book:(Book*)book sender:(NSDictionary*)sender {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeAcceptingBook;
     vc.book = book;
@@ -303,8 +303,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (IBAction)amazonUrlButton:(UIButton *)sender {
-    NSString *amazonUrl = _book[@"amazonUrl"];
-    NSURL *url = [NSURL URLWithString:amazonUrl];
+    NSURL *url = [NSURL URLWithString:_book->amazonUrl];
     [[UIApplication sharedApplication] openURL:url];
 }
 @end
