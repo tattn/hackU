@@ -122,7 +122,17 @@ static NSString* TimelineCellID = @"TimelineCell";
             [borrows enumerateObjectsUsingBlock:^(id borrow, NSUInteger idx, BOOL *stop) {
                 [_statuses addObject:@{@"borrow":borrow}];
             }];
-            [_tableView reloadData];
+            
+            [Backend.shared getRequestIsent:@{} callback:^(id responseObject, NSError *error) {
+                NSArray* reqs = responseObject[@"requests"];
+                [reqs enumerateObjectsUsingBlock:^(id req, NSUInteger idx, BOOL *stop) {
+                    if (!req[@"accepted"]) {
+                        [_statuses addObject:@{@"request":req}];
+                    }
+                }];
+                [_tableView reloadData];
+            }];
+            
         }];
     }];
 }
@@ -252,11 +262,17 @@ static NSString* TimelineCellID = @"TimelineCell";
                 NSDictionary* book = lending[@"book"];
                 cell.msgLabel.text = [NSString stringWithFormat:@"%@さんに%@を貸しています。", user[@"fullname"], book[@"title"]];
             }
-            else {
+            else if ([[status allKeys] containsObject:@"borrow"]) {
                 NSDictionary* borrow = status[@"borrow"];
                 NSDictionary* user = borrow[@"lender"];
                 NSDictionary* book = borrow[@"book"];
                 cell.msgLabel.text = [NSString stringWithFormat:@"%@さんから%@を借りています", user[@"fullname"], book[@"title"]];
+            }
+            else {
+                NSDictionary* borrow = status[@"request"];
+                NSDictionary* user = borrow[@"receiver"];
+                NSDictionary* book = borrow[@"book"];
+                cell.msgLabel.text = [NSString stringWithFormat:@"%@さんへ%@をリクエストしています", user[@"fullname"], book[@"title"]];
             }
         }
         
