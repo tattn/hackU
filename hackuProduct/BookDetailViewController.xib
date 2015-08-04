@@ -104,6 +104,10 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-nA-SV4" userLabel="ActionView">
                     <rect key="frame" x="88" y="503" width="200" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="1ua-BC-RCc"/>
+                        <constraint firstAttribute="height" constant="100" id="JAZ-px-0nx"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,7 +120,6 @@
                 <constraint firstAttribute="centerX" secondItem="tOl-1O-Tcr" secondAttribute="centerX" id="CVO-jm-yLq"/>
                 <constraint firstItem="RQa-1h-khA" firstAttribute="centerY" secondItem="zr0-8R-Feg" secondAttribute="centerY" id="D0x-vQ-8WW"/>
                 <constraint firstAttribute="trailing" secondItem="zr0-8R-Feg" secondAttribute="trailing" constant="8" id="FwI-Wu-eub"/>
-                <constraint firstAttribute="trailing" secondItem="8Jh-nA-SV4" secondAttribute="trailing" constant="87" id="MJi-MJ-NT7"/>
                 <constraint firstAttribute="centerX" secondItem="8Jh-nA-SV4" secondAttribute="centerX" id="MYl-8x-K5a"/>
                 <constraint firstAttribute="trailing" secondItem="iQh-P8-5f0" secondAttribute="trailing" constant="24" id="Pbo-0j-2sx"/>
                 <constraint firstItem="TvM-dk-jbB" firstAttribute="top" secondItem="tOl-1O-Tcr" secondAttribute="bottom" constant="8" id="T7r-I5-ggD"/>
@@ -137,7 +140,6 @@
                 <constraint firstItem="yEX-e1-VDx" firstAttribute="leading" secondItem="RQa-1h-khA" secondAttribute="trailing" constant="9" id="lsl-38-Mh6"/>
                 <constraint firstItem="zr0-8R-Feg" firstAttribute="top" secondItem="yEX-e1-VDx" secondAttribute="bottom" constant="4" id="mQs-qg-qk5"/>
                 <constraint firstItem="zr0-8R-Feg" firstAttribute="leading" secondItem="DEu-9r-3pz" secondAttribute="leading" constant="8" id="ndK-g4-HIo"/>
-                <constraint firstItem="8Jh-nA-SV4" firstAttribute="leading" secondItem="DEu-9r-3pz" secondAttribute="leading" constant="88" id="oSx-cI-S8x"/>
                 <constraint firstAttribute="trailing" secondItem="TvM-dk-jbB" secondAttribute="trailing" constant="18" id="q1a-7o-tfb"/>
                 <constraint firstItem="yEX-e1-VDx" firstAttribute="top" secondItem="TvM-dk-jbB" secondAttribute="bottom" constant="8" id="qT0-XN-vLR"/>
                 <constraint firstAttribute="centerX" secondItem="TvM-dk-jbB" secondAttribute="centerX" id="sYd-Ir-Rbg"/>
