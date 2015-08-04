@@ -65,16 +65,24 @@ typedef NS_ENUM (NSUInteger, Mode) {
     
     self.navigationController.navigationBarHidden = NO;
     
-    _titleLabel.text = _book[@"title"];
-    _authorLabel.text = _book[@"author"];
-    _publisherLabel.text = _book[@"manufacturer"];
-    
     _amazonUrlButton.layer.cornerRadius = 8;
     _amazonUrlButton.clipsToBounds = YES;
     UIColor *amazonButtonColor = [UIColor colorWithRed:253/255.0 green:196/255.0 blue:79/255.0 alpha:1.0];
     _amazonUrlButton.backgroundColor = amazonButtonColor;
     
-    if (_book[@"publicationDate"] == (id)[NSNull null]) {
+    if (_book[@"title"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+        _titleLabel.text = @"No infomation";
+    }else{_titleLabel.text = _book[@"title"];}
+    
+    if (_book[@"author"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+        _authorLabel.text = @"No infomation";
+    }else{_authorLabel.text = _book[@"author"];}
+    
+    if (_book[@"manufacturer"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
+        _publisherLabel.text = @"No infomation";
+    }else{_publisherLabel.text = _book[@"manufacturer"];}
+    
+    if (_book[@"publicationDate"] == (id)[NSNull null] || [_book[@"author"]  isEqual: @""]) {
         _publishDateLabel.text = @"No infomation";
     }else{_publishDateLabel.text = _book[@"publicationDate"];}
     
