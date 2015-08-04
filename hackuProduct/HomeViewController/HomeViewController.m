@@ -87,7 +87,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 
 - (void)getBookRequests {
-    [Backend.shared getRequest:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared getRequest:My.shared.user->userId option:@{} callback:^(id responseObject, NSError *error) {
         _requests = [NSMutableArray array];
         NSArray* reqs = responseObject[@"requests"];
         [reqs enumerateObjectsUsingBlock:^(id req, NSUInteger idx, BOOL *stop) {

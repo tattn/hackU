@@ -138,7 +138,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     
 //TODO: 再表示するたびにデータベースに問い合わせをするのは良くないかも、重かったら必要なときだけ更新するように変える
 //    if (_userId != User.shared.userId) {
-        _userId = User.shared.userId;
+        _userId = My.shared.user->userId;
         [self getBookshelf];
 //    }
 }

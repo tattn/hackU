@@ -143,7 +143,7 @@ MAKE_PARAM(@{@"token":self.accessToken})
 
 - (void)updateUser:(int)userId DEFAULT_PARAM {
     [self PUT:USERID_URL(userId) parameters:option TRIGGER_CALLBACK({
-        [User.shared update:option];
+        [My.shared.user update:option];
     })];
 }
 
@@ -187,7 +187,7 @@ MAKE_PARAM(@{@"token":self.accessToken})
     [self POST:AUTH_LOGIN_URL parameters:param TRIGGER_CALLBACK({
         _accessToken = responseObject[@"token"];
         NSDictionary* user = responseObject[@"users"];
-        [User.shared update:user];
+        [My.shared.user update:user];
     })];
 }
 
@@ -195,7 +195,7 @@ MAKE_PARAM(@{@"token":self.accessToken})
     MAKE_TOKEN_PARAM();
     [self POST:AUTH_LOGOUT_URL parameters:param TRIGGER_CALLBACK({
         _accessToken = nil;
-        [User.shared reset];
+        [My.shared.user reset];
     })];
 }
 
@@ -364,32 +364,32 @@ MAKE_PARAM(@{@"token":self.accessToken})
 - (void)getFriend: DEFAULT_PARAM2 {
     [SVProgressHUD showWithStatus:@"友達情報の読み込み中"];
     MAKE_TOKEN_PARAM();
-    [self GET:FRIEND_URL(User.shared.userId) parameters:param DEFAULT_CALLBACK];
+    [self GET:FRIEND_URL(My.shared.user->userId) parameters:param DEFAULT_CALLBACK];
 }
 
 - (void)addFriend:(NSString*)invitationCode DEFAULT_PARAM {
     MAKE_PARAM_WITH_TOKEN((@{@"invitation_code":invitationCode}));
-    [self POST:FRIEND_URL(User.shared.userId) parameters:param DEFAULT_CALLBACK];
+    [self POST:FRIEND_URL(My.shared.user->userId) parameters:param DEFAULT_CALLBACK];
 }
 
 - (void)deleteFriend:(long)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self DELETE:FRIENDID_URL(User.shared.userId, friendId) parameters:param DEFAULT_CALLBACK];
+    [self DELETE:FRIENDID_URL(My.shared.user->userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
 
 - (void)getNewFriend: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
-    [self GET:FRIEND_NEW_URL(User.shared.userId) parameters:param DEFAULT_CALLBACK];
+    [self GET:FRIEND_NEW_URL(My.shared.user->userId) parameters:param DEFAULT_CALLBACK];
 }
 
 - (void)allowNewFriend:(int)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self PUT:FRIEND_NEWID_URL(User.shared.userId, friendId) parameters:param DEFAULT_CALLBACK];
+    [self PUT:FRIEND_NEWID_URL(My.shared.user->userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
 
 - (void)rejectNewFriend:(int)friendId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
-    [self DELETE:FRIEND_NEWID_URL(User.shared.userId, friendId) parameters:param DEFAULT_CALLBACK];
+    [self DELETE:FRIEND_NEWID_URL(My.shared.user->userId, friendId) parameters:param DEFAULT_CALLBACK];
 }
 
 // === [/users/:user_id/frined] end

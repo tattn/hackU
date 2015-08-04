@@ -27,7 +27,7 @@
                                    action:@selector(saveAccountEditView)];
     self.navigationItem.rightBarButtonItems = @[saveButton];
     
-    self.emailEdit.text = User.shared.email;
+    self.emailEdit.text = My.shared.user->email;
 }
 
 - (void)dismissAccountEditView {
@@ -49,7 +49,7 @@
     }
     
     //TODO: パスワードの更新を行う
-    [Backend.shared updateUser:User.shared.userId option:@{
+    [Backend.shared updateUser:My.shared.user->userId option:@{
         @"email": _emailEdit.text,
     } callback:^(id responseObject, NSError *error) {
         if (error) {

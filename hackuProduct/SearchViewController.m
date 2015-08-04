@@ -254,7 +254,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSIndexPath *path = [self.tableView indexPathForRowAtPoint:p];
     NSDictionary *book = _books[path.row];
     NSNumber *bookId = book[@"bookId"];
-    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
+    [Backend.shared addBookToBookshelf:My.shared.user->userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
         [Toast show:_mainView message:@"本棚に登録しました"];
     }];
 }

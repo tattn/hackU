@@ -9,22 +9,37 @@
 #ifndef hackuProduct_User_h
 #define hackuProduct_User_h
 
-@interface User: NSObject
+@interface User: NSObject {
+    
+@public
+    int userId;
+    NSString* email;
+    NSString* firstname;
+    NSString* lastname;
+    NSString* fullname;
+    NSString* school;
+    NSString* comment;
+    int bookNum;
+    int lendNum;
+    int borrowNum;
+}
 
-+ (instancetype)shared;
-
-@property int userId;
-@property NSString* email;
-@property NSString* firstname;
-@property NSString* lastname;
-@property NSString* school;
-@property NSString* comment;
-@property NSNumber* bookNum;
-@property NSNumber* lendNum;
-@property NSNumber* borrowNum;
 
 - (void)update:(NSDictionary*)user;
 - (void)reset;
++(instancetype)initWithDic:(NSDictionary*)dic;
+
+- (NSComparisonResult) compareName:(User*)_user;
+- (NSComparisonResult) compareBookNum:(User*)_user;
+- (NSComparisonResult) compareBookNumInv:(User*)_user;
+
+@end
+
+@interface My: NSObject
+
+@property User* user;
+    
++ (instancetype)shared;
 
 @end
 

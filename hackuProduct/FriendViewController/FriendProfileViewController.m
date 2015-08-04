@@ -7,7 +7,7 @@
 
 @interface FriendProfileViewController ()
 
-@property NSDictionary* user;
+@property User* user;
 
 @end
 
@@ -22,18 +22,18 @@
     self.friendImage.layer.masksToBounds = YES;
     self.friendImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.friendImage.layer.borderWidth = 5;
-    [self.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(_user[@"userId"]) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
+    [self.friendImage my_setImageWithURL:PROFILE_IMAGE_URL(_user->userId) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
     self.bookShelfButton.layer.cornerRadius = 8;
     self.bookShelfButton.clipsToBounds = YES;
     self.blockButton.layer.cornerRadius = 8;
     self.blockButton.clipsToBounds = YES;
     
-    self.friendNameLabel.text = _user[@"fullname"];
-    self.friendWordLabel.text = _user[@"comment"];
-    self.registerNumberLabel.text = ((NSNumber*)_user[@"bookNum"]).stringValue;
-    self.rentNumberLabel.text = ((NSNumber*)_user[@"lendNum"]).stringValue;
-    self.borrowNumberLabel.text = ((NSNumber*)_user[@"borrowNum"]).stringValue;
+    self.friendNameLabel.text = _user->fullname;
+    self.friendWordLabel.text = _user->comment;
+    self.registerNumberLabel.text = [NSNumber numberWithInt:_user->bookNum].stringValue;
+    self.rentNumberLabel.text = [NSNumber numberWithInt:_user->lendNum].stringValue;
+    self.borrowNumberLabel.text = [NSNumber numberWithInt:_user->borrowNum].stringValue;
     
 }
 
@@ -44,23 +44,22 @@
 
 - (IBAction)bookShelfButton:(UIButton *)sender {
     FriendBookShelfCollectionViewController *vc = [FriendBookShelfCollectionViewController new];
-    NSString *title = [NSString stringWithFormat:@"%@ の本棚", _user[@"fullname"]];
+    NSString *title = [NSString stringWithFormat:@"%@ の本棚", _user->fullname];
     vc.title = title;
-    vc.userId = ((NSNumber*)_user[@"userId"]).intValue;
+    vc.userId = _user->userId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)blockButton:(UIButton *)sender {
     [AlertHelper showYesNo:self title:@"フレンドのブロック" msg:@"フレンドをブロックします。本当によろしいですか？"
                   yesTitle:@"ブロック" noTitle:@"キャンセル" yes:^() {
-                      NSNumber* userId = _user[@"userId"];
-                      [Backend.shared addBlacklist:userId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+                      [Backend.shared addBlacklist:_user->userId option:@{} callback:^(id responseObject, NSError *error) {
                       }];
                   } no:^() {
                   }];
 }
 
-+ (void)show:(UIViewController*)parent user:(NSDictionary*)user {
++ (void)show:(UIViewController*)parent user:(User*)user {
     FriendProfileViewController* vc = [FriendProfileViewController new];
     vc.user = user;
     [parent.navigationController pushViewController:vc animated:YES];

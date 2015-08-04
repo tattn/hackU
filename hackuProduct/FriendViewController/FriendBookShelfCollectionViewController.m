@@ -59,7 +59,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                            action:nil];
     self.navigationItem.backBarButtonItem = btn;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithImage:[[UIImage imageNamed:@"SortIcon"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)]
                                               style:UIBarButtonItemStylePlain
                                               target:self

@@ -107,14 +107,14 @@ typedef NS_ENUM (NSUInteger, Mode) {
 
 - (void)addBookToBookshelf {
     int bookId = _book->bookId;
-    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared addBookToBookshelf:My.shared.user->userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
         [APP_DELEGATE switchTabBarController:2];
     }];
 }
 
 - (void)removeBookFromBookshelf {
     int bookId = _book->bookId;
-    [Backend.shared deleteBookInBookshelf:User.shared.userId bookId: bookId option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared deleteBookInBookshelf:My.shared.user->userId bookId: bookId option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - deleteBookInBookshelf: %@", error);
         }
@@ -138,7 +138,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 
 - (void)replyRequest:(BOOL)accepted {
     int bookId = _book->bookId;
-    [Backend.shared replyRequest:User.shared.userId bookId:bookId accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared replyRequest:My.shared.user->userId bookId:bookId accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
         }
@@ -154,8 +154,6 @@ typedef NS_ENUM (NSUInteger, Mode) {
                 NSLog(@"Error - addLending: %@", error);
             }
         }];
-//        [Backend.shared updateBookInBookshelf:User.shared.userId bookId:bookId option:@{@"borrower_id":borrowerId} callback:^(id responseObject, NSError *error) {
-//        }];
     }
 }
 
