@@ -166,14 +166,19 @@ MAKE_PARAM(@{@"token":self.accessToken})
 
 // === [/users] end
 
-// === [/my/invitation_code] InvitationCode API
+// === [/my] My API
 
 - (void)getInvitationCode: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
     [self GET:@"my/invitation_code" parameters:param DEFAULT_CALLBACK];
 }
 
-// === [/my/invitation_code] end
+- (void)searchBookInFriends: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self GET:@"my/friends/bookshelves/search" parameters:param DEFAULT_CALLBACK];
+}
+
+// === [/my] end
 
 // === [/auth] Auth API
 

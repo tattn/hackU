@@ -41,9 +41,10 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)uploadProfileImage:(int)userId image:(UIImage*)img DEFAULT_PARAM;
 // === [/users] end
 
-// === [/my/invitation_code] InvitationCode API
+// === [/my] My API
 - (void)getInvitationCode: DEFAULT_PARAM2;
-// === [/my/invitation_code] end
+- (void)searchBookInFriends: DEFAULT_PARAM2;
+// === [/my] end
 
 // === [/auth] Auth API
 - (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM;

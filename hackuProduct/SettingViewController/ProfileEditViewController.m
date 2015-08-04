@@ -25,7 +25,7 @@
     self.profileImageButton.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImageButton.layer.borderWidth = 5;
     
-    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(User.shared.userId)];
+    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(User.shared.userId) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
     self.firstname.text = User.shared.firstname;
     self.lastname.text = User.shared.lastname;
@@ -60,6 +60,12 @@
             if (error) {
                 NSLog(@"Upload error: %@", error);
                 [Toast show:self.view message:@"画像のアップロードに失敗しました"];
+            }
+            else {
+                //FIXME: ちょうどいいキャッシュ削除のタイミングを考える
+                SDImageCache *imageCache = [SDImageCache sharedImageCache];
+                [imageCache clearMemory];
+                [imageCache clearDisk];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
