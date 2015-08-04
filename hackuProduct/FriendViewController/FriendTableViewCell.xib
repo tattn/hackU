@@ -28,7 +28,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-ie-P5J">
-                        <rect key="frame" x="67" y="8" width="299" height="35"/>
+                        <rect key="frame" x="67" y="8" width="244" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="299" id="43N-U8-ZJd"/>
                             <constraint firstAttribute="height" constant="31" id="o6r-ml-6F1"/>
@@ -59,27 +59,71 @@
                             </mask>
                         </variation>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconFriendBooks" translatesAutoresizingMaskIntoConstraints="NO" id="Fak-Co-iHe">
+                        <rect key="frame" x="311" y="22" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="5w8-42-hSf"/>
+                            <constraint firstAttribute="width" constant="20" id="LdI-kd-Ep4"/>
+                            <constraint firstAttribute="width" constant="25" id="X6C-JI-B6q"/>
+                            <constraint firstAttribute="height" constant="25" id="bz1-AX-7vg"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="X6C-JI-B6q"/>
+                                <exclude reference="bz1-AX-7vg"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="num" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUd-8v-lod">
+                        <rect key="frame" x="331" y="22" width="35" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Nn8-Dw-BkK"/>
+                            <constraint firstAttribute="width" constant="35" id="dON-ef-LRZ"/>
+                            <constraint firstAttribute="height" constant="25" id="iI4-ED-TLH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="11"/>
+                        <color key="textColor" red="0.50173611110000005" green="0.50173611110000005" blue="0.50173611110000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iI4-ED-TLH"/>
+                            </mask>
+                        </variation>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QtZ-ie-P5J" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5b3-yt-oQV"/>
+                    <constraint firstItem="wUd-8v-lod" firstAttribute="leading" secondItem="Fak-Co-iHe" secondAttribute="trailing" id="5Xk-Jk-fXJ"/>
+                    <constraint firstItem="Fak-Co-iHe" firstAttribute="leading" secondItem="QtZ-ie-P5J" secondAttribute="trailing" id="C2Q-GK-1pf"/>
                     <constraint firstAttribute="trailingMargin" secondItem="KkW-eS-ruT" secondAttribute="trailing" constant="8" id="GAK-1P-3Ay"/>
                     <constraint firstItem="Xwr-Y9-GlT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="Hsw-uq-nSL"/>
+                    <constraint firstItem="wUd-8v-lod" firstAttribute="leading" secondItem="Fak-Co-iHe" secondAttribute="trailing" id="I0l-h7-H0J"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="top" secondItem="Fak-Co-iHe" secondAttribute="bottom" id="Meh-fB-zWc"/>
+                    <constraint firstItem="wUd-8v-lod" firstAttribute="leading" secondItem="Fak-Co-iHe" secondAttribute="trailing" id="OJo-h6-kYs"/>
+                    <constraint firstItem="wUd-8v-lod" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="RFV-oz-ROp"/>
                     <constraint firstAttribute="bottomMargin" secondItem="QtZ-ie-P5J" secondAttribute="bottom" constant="12" id="U0E-Aq-9hg"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="top" secondItem="wUd-8v-lod" secondAttribute="bottom" id="UHg-Mj-JJe"/>
                     <constraint firstItem="Xwr-Y9-GlT" firstAttribute="bottom" secondItem="KkW-eS-ruT" secondAttribute="bottom" id="Yad-MW-Jjm"/>
                     <constraint firstAttribute="bottomMargin" secondItem="QtZ-ie-P5J" secondAttribute="bottom" constant="8" id="cHh-a5-z7c"/>
+                    <constraint firstItem="KkW-eS-ruT" firstAttribute="top" secondItem="Fak-Co-iHe" secondAttribute="bottom" constant="2" id="h1I-dp-Uh8"/>
                     <constraint firstItem="QtZ-ie-P5J" firstAttribute="leading" secondItem="Xwr-Y9-GlT" secondAttribute="trailing" constant="8" id="lrA-yH-ctX"/>
                     <constraint firstItem="Xwr-Y9-GlT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="pZv-Wd-vcj"/>
                     <constraint firstItem="QtZ-ie-P5J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tXs-k8-K7V"/>
                     <constraint firstItem="KkW-eS-ruT" firstAttribute="leading" secondItem="Xwr-Y9-GlT" secondAttribute="trailing" constant="8" id="vXa-NS-u4r"/>
+                    <constraint firstItem="wUd-8v-lod" firstAttribute="leading" secondItem="Fak-Co-iHe" secondAttribute="trailing" id="ytq-gO-aBV"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="U0E-Aq-9hg"/>
+                        <exclude reference="h1I-dp-Uh8"/>
+                        <exclude reference="5Xk-Jk-fXJ"/>
+                        <exclude reference="OJo-h6-kYs"/>
+                        <exclude reference="ytq-gO-aBV"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="firendNameLabel" destination="QtZ-ie-P5J" id="u5K-da-Nl7"/>
+                <outlet property="friendBookNumLabel" destination="wUd-8v-lod" id="x6i-lG-Z1h"/>
                 <outlet property="friendCommentLabel" destination="KkW-eS-ruT" id="3k6-Pg-Q5C"/>
                 <outlet property="friendImage" destination="Xwr-Y9-GlT" id="Kee-4L-WCf"/>
             </connections>
@@ -87,6 +131,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="IconFriendBooks" width="24" height="24"/>
         <image name="friendImage" width="211" height="211"/>
     </resources>
 </document>

@@ -70,6 +70,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     UIColor *amazonButtonColor = [UIColor colorWithRed:253/255.0 green:196/255.0 blue:79/255.0 alpha:1.0];
     _amazonUrlButton.backgroundColor = amazonButtonColor;
     
+    //(hoge == (id)[NSNull null])みたいなのが必要？
     if ([_book->title isEqual: @""]) {
         _titleLabel.text = @"No infomation";
     }else{_titleLabel.text = _book->title;}
@@ -102,7 +103,6 @@ typedef NS_ENUM (NSUInteger, Mode) {
         btn.frame = CGRectMake(0, y, _actionView.frame.size.width, ButtonHeight);
         [_actionView addSubview:btn];
     }];
-    
 }
 
 - (void)addBookToBookshelf {
