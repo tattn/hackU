@@ -3,6 +3,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LoginViewController.h"
 #import "Backend.h"
+#import "Toast.h"
 
 @interface LoginViewController ()
 
@@ -86,7 +87,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
     [backend login:email password:pass option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             //TODO: ログインに失敗したことをユーザーに通知する、テキストフィールドを赤枠にする
-            
+            [Toast show:self.view message:@"メールアドレスかパスワードが間違っています"];
             NSLog(@"Login error: %@", error);
         }
         else {
