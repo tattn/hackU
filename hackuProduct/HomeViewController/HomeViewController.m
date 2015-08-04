@@ -174,7 +174,7 @@ static NSString* TimelineCellID = @"TimelineCell";
             NSDictionary* bookshelf = timeline[@"data"][@"bookshelf"];
             NSDictionary* book = bookshelf[@"book"];
             NSDictionary* user = bookshelf[@"user"];
-            [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(bookshelf[@"user_id"])];
+            [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(bookshelf[@"user_id"]) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
             cell.friendNameLabel.text = [NSString stringWithFormat:@"%@ %@", user[@"lastname"], user[@"firstname"]];
             [cell.friendBookImage my_setImageWithURL:book[@"cover_image_url"]];
             cell.addBookInfoLabel.text = [NSString stringWithFormat:@"本棚に「%@」を追加しました", book[@"title"]];
