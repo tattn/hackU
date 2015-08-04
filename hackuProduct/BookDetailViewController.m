@@ -28,7 +28,7 @@
 @property NSArray* buttons;
 
 @property Book* book;
-@property NSDictionary* bookshelf;
+@property Bookshelf* bookshelf;
 @property int userId;
 @property NSDictionary* user;
 
@@ -49,7 +49,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [super viewDidLoad];
     
     if (_mode == kModeRequestingBook) {
-        _book = _bookshelf[@"book"];
+        _book = _bookshelf->book;
         //FIXME: ユーザーデータをローカルに保存したほうがいいかも、ただし更新タイミングを考慮する必要がある
         [Backend.shared getUser:_userId option:@{} callback:^(id res, NSError *error) {
             _user = res[@"user"];
@@ -169,7 +169,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
         [reqs enumerateObjectsUsingBlock:^(NSDictionary* req, NSUInteger idx, BOOL *stop) {
             NSDictionary* book = req[@"book"];
             NSNumber* bookId = book[@"bookId"];
-            if ([bookId isEqualToNumber: _bookshelf[@"book"][@"bookId"]]) {
+            if (bookId.intValue == _bookshelf->book->bookId) {
                 [btn setTitle:@"リクエスト中" forState:UIControlStateNormal];
                 btn.enabled = NO;
             }
@@ -178,8 +178,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void) checkLending:(UIButton*)btn {
-    NSNumber* borrowerId = _bookshelf[@"borrowerId"];
-    if (![borrowerId isEqualToNumber:@0]) {
+    int borrowerId = _bookshelf->borrowerId;
+    if (borrowerId != 0) {
         [btn setTitle:@"貸出中" forState:UIControlStateNormal];
         btn.enabled = NO;
     }
@@ -268,11 +268,11 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf {
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(Bookshelf*)bookshelf {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeRequestingBook;
     vc.bookshelf = bookshelf;
-    vc.userId = ((NSNumber*)bookshelf[@"userId"]).intValue;
+    vc.userId = bookshelf->userId;
     UIButton* btn = [vc createButton:@"借りたい"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
