@@ -78,6 +78,7 @@
         NSFontAttributeName: [UIFont fontWithName:@"HiraKakuProN-W6" size:20.0f],
     };
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HiraKakuProN-W6" size:14.0f]} forState:UIControlStateNormal];
 
     self.tabBarController = [UITabBarController new];
     self.tabBarController.delegate = self;

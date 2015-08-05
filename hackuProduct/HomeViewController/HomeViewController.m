@@ -41,6 +41,10 @@ static NSString* TimelineCellID = @"TimelineCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //FIXME: dirty hack
+    UIFont *font = [UIFont fontWithName:@"HiraKakuProN-W6" size:14.0f];
+    [_segmentedControl setTitleTextAttributes:@{UITextAttributeFont:font} forState:UIControlStateNormal];
+    
     _mode = kModeTimeline;
     _tableView.delegate = self;
     _tableView.dataSource = self;
