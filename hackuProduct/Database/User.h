@@ -19,6 +19,9 @@
 @property NSString* lastname;
 @property NSString* school;
 @property NSString* comment;
+@property NSNumber* bookNum;
+@property NSNumber* lendNum;
+@property NSNumber* borrowNum;
 
 - (void)update:(NSDictionary*)user;
 - (void)reset;

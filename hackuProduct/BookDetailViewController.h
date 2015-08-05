@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Bookshelf.h"
 
 @interface BookDetailViewController : UIViewController
 
-+ (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(NSDictionary*)book;
++ (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(Book*)book;
 
-+ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book;
++ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(Book*)book;
 
-+ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf;
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(Bookshelf*)bookshelf;
 
-+ (void)showForAcceptingBook:(UIViewController*)parent book:(NSDictionary*)book sender:(NSDictionary*)sender;
++ (void)showForAcceptingBook:(UIViewController*)parent book:(Book*)book sender:(NSDictionary*)sender;
 
 @end

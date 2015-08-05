@@ -12,14 +12,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" id="5W3-Rw-gSD" customClass="NotificationCell">
-            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="60" id="5W3-Rw-gSD" customClass="NotificationCell">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5W3-Rw-gSD" id="16E-0i-0SW">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="□□□さんから本のリクエストが届いています。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-KP-DHB">
-                        <rect key="frame" x="8" y="7" width="358" height="28"/>
+                        <rect key="frame" x="8" y="0.0" width="358" height="60"/>
                         <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -27,9 +27,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="bKM-KP-DHB" firstAttribute="trailing" secondItem="16E-0i-0SW" secondAttribute="trailingMargin" id="CHa-br-sln"/>
-                    <constraint firstItem="bKM-KP-DHB" firstAttribute="top" secondItem="16E-0i-0SW" secondAttribute="topMargin" constant="-1" id="GdT-xv-dlB"/>
                     <constraint firstItem="bKM-KP-DHB" firstAttribute="leading" secondItem="16E-0i-0SW" secondAttribute="leadingMargin" id="Kh8-KR-GSO"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="bKM-KP-DHB" secondAttribute="bottom" constant="0.5" id="XWb-0d-AM9"/>
+                    <constraint firstItem="bKM-KP-DHB" firstAttribute="top" secondItem="16E-0i-0SW" secondAttribute="top" id="f0c-fM-KmQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bKM-KP-DHB" secondAttribute="bottom" constant="-9" id="zqt-80-PUS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

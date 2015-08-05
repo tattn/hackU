@@ -27,8 +27,8 @@
 
 @property NSArray* buttons;
 
-@property NSDictionary* book;
-@property NSDictionary* bookshelf;
+@property Book* book;
+@property Bookshelf* bookshelf;
 @property int userId;
 @property NSDictionary* user;
 
@@ -49,7 +49,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [super viewDidLoad];
     
     if (_mode == kModeRequestingBook) {
-        _book = _bookshelf[@"book"];
+        _book = _bookshelf->book;
         //FIXME: ユーザーデータをローカルに保存したほうがいいかも、ただし更新タイミングを考慮する必要がある
         [Backend.shared getUser:_userId option:@{} callback:^(id res, NSError *error) {
             _user = res[@"user"];
@@ -65,27 +65,36 @@ typedef NS_ENUM (NSUInteger, Mode) {
     
     self.navigationController.navigationBarHidden = NO;
     
-    _titleLabel.text = _book[@"title"];
-    _authorLabel.text = _book[@"author"];
-    _publisherLabel.text = _book[@"manufacturer"];
-    
     _amazonUrlButton.layer.cornerRadius = 8;
     _amazonUrlButton.clipsToBounds = YES;
     UIColor *amazonButtonColor = [UIColor colorWithRed:253/255.0 green:196/255.0 blue:79/255.0 alpha:1.0];
     _amazonUrlButton.backgroundColor = amazonButtonColor;
     
-    if (_book[@"publicationDate"] == (id)[NSNull null]) {
-        _publishDateLabel.text = @"No infomation";
-    }else{_publishDateLabel.text = _book[@"publicationDate"];}
+    //(hoge == (id)[NSNull null])みたいなのが必要？
+    if ([_book->title isEqual: @""]) {
+        _titleLabel.text = @"No infomation";
+    }else{_titleLabel.text = _book->title;}
     
-    if ([_book[@"amazonUrl"]  isEqual: @""]) {
+    if ([_book->author isEqual: @""]) {
+        _authorLabel.text = @"No infomation";
+    }else{_authorLabel.text = _book->author;}
+    
+    if ([_book->manufacturer isEqual: @""]) {
+        _publisherLabel.text = @"No infomation";
+    }else{_publisherLabel.text = _book->manufacturer;}
+    
+    if ([_book->publicationDateStr isEqual: @""]) {
+        _publishDateLabel.text = @"No infomation";
+    }else{_publishDateLabel.text = _book->publicationDateStr;}
+    
+    if ([_book->amazonUrl isEqual: @""]) {
         [_amazonUrlButton setTitle:@"No infomation" forState:UIControlStateNormal];
         _amazonUrlButton.backgroundColor = [UIColor whiteColor];
         _amazonUrlButton.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:13.0f];
         [_amazonUrlButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }else{_amazonUrlButton.titleLabel.text = @"Amazonで買う";}
     
-    [_bookImage my_setImageWithURL: _book[@"coverImageUrl"]];
+    [_bookImage my_setImageWithURL: _book->coverImageUrl];
     
     const float ButtonHeight = 45;
     const float SectionHeight = _actionView.frame.size.height / _buttons.count;
@@ -94,19 +103,18 @@ typedef NS_ENUM (NSUInteger, Mode) {
         btn.frame = CGRectMake(0, y, _actionView.frame.size.width, ButtonHeight);
         [_actionView addSubview:btn];
     }];
-    
 }
 
 - (void)addBookToBookshelf {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared addBookToBookshelf:User.shared.userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
         [APP_DELEGATE switchTabBarController:2];
     }];
 }
 
 - (void)removeBookFromBookshelf {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared deleteBookInBookshelf:User.shared.userId bookId: bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared deleteBookInBookshelf:User.shared.userId bookId: bookId option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - deleteBookInBookshelf: %@", error);
         }
@@ -117,8 +125,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void)requestBook {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared addRequest:_userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared addRequest:_userId bookId:bookId option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
         }
@@ -129,8 +137,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void)replyRequest:(BOOL)accepted {
-    NSNumber* bookId = _book[@"bookId"];
-    [Backend.shared replyRequest:User.shared.userId bookId:bookId.intValue accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
+    int bookId = _book->bookId;
+    [Backend.shared replyRequest:User.shared.userId bookId:bookId accepted:accepted option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error - requestBook: %@", error);
         }
@@ -138,6 +146,17 @@ typedef NS_ENUM (NSUInteger, Mode) {
             [APP_DELEGATE switchTabBarController:0];
         }
     }];
+    
+    if (accepted == YES) {
+        int borrowerId = ((NSNumber*)_user[@"userId"]).intValue;
+        [Backend.shared addLending:bookId borrowerId:borrowerId option:@{} callback:^(id responseObject, NSError *error) {
+            if (error) {
+                NSLog(@"Error - addLending: %@", error);
+            }
+        }];
+//        [Backend.shared updateBookInBookshelf:User.shared.userId bookId:bookId option:@{@"borrower_id":borrowerId} callback:^(id responseObject, NSError *error) {
+//        }];
+    }
 }
 
 
@@ -146,10 +165,11 @@ typedef NS_ENUM (NSUInteger, Mode) {
 - (void) checkRequest:(UIButton*)btn {
     //FIXME: 自分以外の誰かがリクエストしている時もボタンが押せなくなる.現在はそれが仕様.
     [Backend.shared getRequest:_userId option:@{} callback:^(id responseObject, NSError *error) {
-        NSArray* books = responseObject[@"books"];
-        [books enumerateObjectsUsingBlock:^(NSDictionary* book, NSUInteger idx, BOOL *stop) {
+        NSArray* reqs = responseObject[@"requests"];
+        [reqs enumerateObjectsUsingBlock:^(NSDictionary* req, NSUInteger idx, BOOL *stop) {
+            NSDictionary* book = req[@"book"];
             NSNumber* bookId = book[@"bookId"];
-            if ([bookId isEqualToNumber: _bookshelf[@"book"][@"bookId"]]) {
+            if (bookId.intValue == _bookshelf->book->bookId) {
                 [btn setTitle:@"リクエスト中" forState:UIControlStateNormal];
                 btn.enabled = NO;
             }
@@ -158,8 +178,8 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (void) checkLending:(UIButton*)btn {
-    NSNumber* borrowerId = _bookshelf[@"borrowerId"];
-    if (![borrowerId isEqualToNumber:@0]) {
+    int borrowerId = _bookshelf->borrowerId;
+    if (borrowerId != 0) {
         [btn setTitle:@"貸出中" forState:UIControlStateNormal];
         btn.enabled = NO;
     }
@@ -222,7 +242,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 
 #pragma mark - show methods
 
-+ (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
++ (void)showForAddingBookToBookshelf:(UIViewController*)parent book:(Book*)book {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeAddingBookToBookshelf;
     vc.book = book;
@@ -235,7 +255,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(NSDictionary*)book {
++ (void)showForRemovingBookFromBookshelf:(UIViewController*)parent book:(Book*)book {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeRemovingBookFromBookshelf;
     vc.book = book;
@@ -248,11 +268,11 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(NSDictionary*)bookshelf {
++ (void)showForRequestingBook:(UIViewController*)parent bookshelf:(Bookshelf*)bookshelf {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeRequestingBook;
     vc.bookshelf = bookshelf;
-    vc.userId = ((NSNumber*)bookshelf[@"userId"]).intValue;
+    vc.userId = bookshelf->userId;
     UIButton* btn = [vc createButton:@"借りたい"
                                color:[UIColor whiteColor]
                              bgColor: [UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]
@@ -264,7 +284,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
     [parent.navigationController pushViewController:vc animated: true];
 }
 
-+ (void)showForAcceptingBook:(UIViewController*)parent book:(NSDictionary*)book sender:(NSDictionary*)sender {
++ (void)showForAcceptingBook:(UIViewController*)parent book:(Book*)book sender:(NSDictionary*)sender {
     BookDetailViewController *vc = [BookDetailViewController new];
     vc.mode = kModeAcceptingBook;
     vc.book = book;
@@ -284,8 +304,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 }
 
 - (IBAction)amazonUrlButton:(UIButton *)sender {
-    NSString *amazonUrl = _book[@"amazonUrl"];
-    NSURL *url = [NSURL URLWithString:amazonUrl];
+    NSURL *url = [NSURL URLWithString:_book->amazonUrl];
     [[UIApplication sharedApplication] openURL:url];
 }
 @end

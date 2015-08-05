@@ -166,14 +166,19 @@ MAKE_PARAM(@{@"token":self.accessToken})
 
 // === [/users] end
 
-// === [/my/invitation_code] InvitationCode API
+// === [/my] My API
 
 - (void)getInvitationCode: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
     [self GET:@"my/invitation_code" parameters:param DEFAULT_CALLBACK];
 }
 
-// === [/my/invitation_code] end
+- (void)searchBookInFriends: DEFAULT_PARAM2 {
+    MAKE_TOKEN_PARAM();
+    [self GET:@"my/friends/bookshelves/search" parameters:param DEFAULT_CALLBACK];
+}
+
+// === [/my] end
 
 // === [/auth] Auth API
 
@@ -285,6 +290,11 @@ MAKE_PARAM(@{@"token":self.accessToken})
     [self GET:LEND_URL parameters:param DEFAULT_CALLBACK];
 }
 
+- (void)addLending:(int)bookId borrowerId:(int)borrowerId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId), @"borrower_id":INT2NS(borrowerId)}));
+    [self POST:LEND_URL parameters:param DEFAULT_CALLBACK];
+}
+
 - (void)deleteLending:(int)bookId DEFAULT_PARAM {
     MAKE_TOKEN_PARAM();
     [self DELETE:LENDID_URL(bookId) parameters:param DEFAULT_CALLBACK];
@@ -316,6 +326,11 @@ MAKE_PARAM(@{@"token":self.accessToken})
 - (void)getRequestIsent: DEFAULT_PARAM2 {
     MAKE_TOKEN_PARAM();
     [self GET:@"my/request/sent" parameters:param DEFAULT_CALLBACK];
+}
+
+- (void)deleteRequestIsent:(int)bookId DEFAULT_PARAM {
+    MAKE_PARAM_WITH_TOKEN((@{@"book_id":INT2NS(bookId)}));
+    [self PUT:@"my/request/sent" parameters:param DEFAULT_CALLBACK];
 }
 
 // === [/my/request] end

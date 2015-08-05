@@ -26,11 +26,21 @@
     self.profileImageButton.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImageButton.layer.borderWidth = 5;
     
-    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(User.shared.userId)];
+    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(User.shared.userId) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
     self.firstname.text = User.shared.firstname;
     self.lastname.text = User.shared.lastname;
     self.word.text = User.shared.comment;
+    self.myBooksNumLabel.text = User.shared.bookNum.stringValue;
+    self.myLendNumLabel.text = User.shared.lendNum.stringValue;
+    self.myBorrowNumLabel.text = User.shared.borrowNum.stringValue;
+    
+    [Backend.shared getUser:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
+        NSDictionary* user = responseObject[@"user"];
+        self.myBooksNumLabel.text = ((NSNumber*)user[@"bookNum"]).stringValue;
+        self.myLendNumLabel.text = ((NSNumber*)user[@"lendNum"]).stringValue;
+        self.myBorrowNumLabel.text = ((NSNumber*)user[@"borrowNum"]).stringValue;
+    }];
     
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc]
                               initWithTitle:@"キャンセル"
@@ -61,6 +71,12 @@
             if (error) {
                 NSLog(@"Upload error: %@", error);
                 [Toast show:self.view message:@"画像のアップロードに失敗しました"];
+            }
+            else {
+                //FIXME: ちょうどいいキャッシュ削除のタイミングを考える
+                SDImageCache *imageCache = [SDImageCache sharedImageCache];
+                [imageCache clearMemory];
+                [imageCache clearDisk];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
         }];

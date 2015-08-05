@@ -41,9 +41,10 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 - (void)uploadProfileImage:(int)userId image:(UIImage*)img DEFAULT_PARAM;
 // === [/users] end
 
-// === [/my/invitation_code] InvitationCode API
+// === [/my] My API
 - (void)getInvitationCode: DEFAULT_PARAM2;
-// === [/my/invitation_code] end
+- (void)searchBookInFriends: DEFAULT_PARAM2;
+// === [/my] end
 
 // === [/auth] Auth API
 - (void)login:(NSString*)email password:(NSString*)password DEFAULT_PARAM;
@@ -77,6 +78,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/my/lend] Lend API
 - (void)getLending: DEFAULT_PARAM2;
+- (void)addLending:(int)bookId borrowerId:(int)borrowerId DEFAULT_PARAM;
 - (void)deleteLending:(int)bookId DEFAULT_PARAM;
 // === [/my/lend] end
 
@@ -88,6 +90,7 @@ typedef void (^CompletionBlock)(id responseObject, NSError *error);
 
 // === [/my/request] New Request API
 - (void)getRequestIsent: DEFAULT_PARAM2;
+- (void)deleteRequestIsent:(int)bookId DEFAULT_PARAM;
 // === [/my/request] end
 
 // === [/users/:user_id/request] Request API

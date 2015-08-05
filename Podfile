@@ -9,6 +9,8 @@ target 'hackuProduct' do
 	pod 'SIAlertView'
 	pod 'SVProgressHUD'
 	pod 'CLImageEditor'
+	pod 'Parse'
+	pod 'REMenu', '~> 1.10'
 end
 
 target 'hackuProductTests' do

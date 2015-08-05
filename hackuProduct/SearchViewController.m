@@ -7,6 +7,7 @@
 #import "Backend.h"
 #import "BarcodeView.h"
 #import "Toast.h"
+#import "Book.h"
 
 @implementation SearchResultCell
 @end
@@ -60,9 +61,8 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     _searchStart = 0;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -117,8 +117,8 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     _searchStart++; // 次の検索結果へ
     _searchEnd = YES;
     
+    NSNumber* start = [NSNumber numberWithInt:_searchStart];
     if (_mode == kSearchModeAddingBookToBookshelf) {
-        NSNumber* start = [NSNumber numberWithInt:_searchStart];
         [Backend.shared searchBook:@{@"title":_searchBar.text, @"amazon":@"", @"start":start} callback:^(id res, NSError *error) {
             if (error) {
                 NSLog(@"Error - searchBook: %@", error);
@@ -134,22 +134,18 @@ static NSString* SearchResultCellId = @"SearchResultCell";
         }];
     }
     else if (_mode == kSearchModeRequest) {
-        _bookshelves = [NSMutableArray array];
-        [Backend.shared getFriend:@{} callback:^(id res, NSError *error) {
-            NSArray* friends = res[@"users"];
-            [friends enumerateObjectsUsingBlock:^(id friend, NSUInteger idx, BOOL *stop) {
-                int friendId = ((NSNumber*)friend[@"userId"]).intValue;
-                [Backend.shared searchBookInBookshelf:friendId option:@{@"title":_searchBar.text} callback:^(id res2, NSError *error) {
-                    NSArray* bookshelves = res2[@"bookshelves"];
-                    if (bookshelves.count > 0) {
-                        [_bookshelves addObjectsFromArray:bookshelves];
-                        if (idx == friends.count - 1) {
-                            [_tableView reloadData];
-                            _searchEnd = NO;
-                        }
-                    }
-                }];
-            }];
+        [Backend.shared searchBookInFriends:@{@"title":_searchBar.text, @"start":start} callback:^(id responseObject, NSError *error) {
+            if (error) {
+                NSLog(@"Error - searchBookInFriends: %@", error);
+            }
+            else {
+                NSArray* bookshelves = responseObject[@"bookshelves"];
+                if (bookshelves.count > 0) {
+                    [_bookshelves addObjectsFromArray:bookshelves];
+                    [_tableView reloadData];
+                    _searchEnd = NO;
+                }
+            }
         }];
     }
 }
@@ -210,10 +206,12 @@ static NSString* SearchResultCellId = @"SearchResultCell";
             [BookDetailViewController showForRequestingBook:self bookshelf:_bookshelves[indexPath.row]];
             break;
             
-        case kSearchModeAddingBookToBookshelf:
+        case kSearchModeAddingBookToBookshelf: {
             if (_books.count <= 0) return; // 非同期処理関係のバグの対応
-            [BookDetailViewController showForAddingBookToBookshelf:self book:_books[indexPath.row]];
+            Book* book = [Book initWithDic:_books[indexPath.row]];
+            [BookDetailViewController showForAddingBookToBookshelf:self book:book];
             break;
+        }
             
         default:
             break;
@@ -221,6 +219,15 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    switch (_mode) {
+        case kSearchModeRequest:
+            if (_bookshelves.count <= 0) return; // 非同期処理関係のバグの対応
+            break;
+        case kSearchModeAddingBookToBookshelf:
+            if (_books.count <= 0) return; // 非同期処理関係のバグの対応
+            break;
+    }
+    
     //一番下までスクロールしたかどうか
     if (_tableView.contentOffset.y >= (_tableView.contentSize.height - _tableView.bounds.size.height)) {
         if (!_searchEnd) {
