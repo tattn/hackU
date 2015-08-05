@@ -81,6 +81,7 @@ typedef NS_ENUM (int, SortType) {
                                                          [self sort:kSortTypeNumAsc];
                                                      }];
     
+    
 //https://github.com/romaonthego/REMenu/blob/master/REMenuExample/REMenuExample/Classes/Controllers/NavigationViewController.m
     self.menu = [[REMenu alloc] initWithItems:@[sortNameAsc, sortNumDesc, sortNumAsc]];
     self.menu.cornerRadius = 4;
@@ -109,6 +110,11 @@ typedef NS_ENUM (int, SortType) {
         _userId = My.shared.user->userId;
         [self getAllFriends];
 //    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if ([self.menu isOpen]) [self.menu close];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -277,7 +283,7 @@ typedef NS_ENUM (int, SortType) {
         
         NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend->fullname];
         friendBookShelfCollectionVC.title = title;
-        friendBookShelfCollectionVC.userId = friend->userId;
+        friendBookShelfCollectionVC.user = friend;
         
         [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
     }

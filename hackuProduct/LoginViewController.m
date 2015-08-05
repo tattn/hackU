@@ -5,6 +5,7 @@
 #import "Backend.h"
 #import "Toast.h"
 #import <Parse/Parse.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface LoginViewController ()
 
@@ -56,6 +57,11 @@ typedef NS_ENUM (NSUInteger, kMode) {
 //    if (email && pass) {
 //        [self tryLogin:email password:pass];
 //    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [SVProgressHUD dismiss];
 }
 
 - (IBAction)login:(id)sender {

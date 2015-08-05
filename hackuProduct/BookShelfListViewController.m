@@ -1,21 +1,25 @@
+//
+//  BookShelfListViewController.m
+//  hackuProduct
+//
+//  Created by Tanaka Tatsuya on 2015/08/05.
+//  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
+//
 
-#import "BookShelfCollectionViewController.h"
-#import "BookShelfCell.h"
+#import "BookShelfListViewController.h"
+#import "BookShelfListCell.h"
 #import "Backend.h"
-#import "LoginViewController.h"
 #import "User.h"
+#import "Bookshelf.h"
 #import "UIImageViewHelper.h"
 #import "SearchViewController.h"
 #import "BookDetailViewController.h"
-#import "BookShelfListViewController.h"
 #import <REMenu/REMenu.h>
-#import "Book.h"
 
-
-@interface BookShelfCollectionViewController ()
+@interface BookShelfListViewController ()
 
 @property NSMutableArray* bookshelves;
-@property int userId;
+@property User* user;
 
 @property (strong, readwrite, nonatomic) REMenu *menu;
 
@@ -30,39 +34,56 @@ typedef NS_ENUM (int, SortType) {
 
 @property SortType sortType;
 
+typedef NS_ENUM (int, ListType) {
+    kListTypeMyBookshelf,
+    kListTypeFriendBookshelf,
+};
+
+@property ListType listType;
+
 @end
 
-@implementation BookShelfCollectionViewController
+@implementation BookShelfListViewController
 
-static NSString * const reuseIdentifier = @"BookShelfCell";
-
-- (id)init {
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    CGRect screenSize = [[UIScreen mainScreen] bounds];
-    NSUInteger space = 15;
-    CGSize listCellSize = CGSizeMake((screenSize.size.width - space * 4) / 3,
-                                     ((screenSize.size.width - space * 4) / 3) * 1.5f);
-    [flowLayout setItemSize:listCellSize];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    return [super initWithCollectionViewLayout: flowLayout];
-}
+static NSString * const reuseIdentifier = @"BookShelfListCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIColor *backColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1.0];
-    self.collectionView.backgroundColor = backColor;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new]; // 余分なCellのセパレータを表示しないための処理
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithImage:[UIImage imageNamed:@"IconAddButton"]
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(didTapAddBook:)];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+    UINib *nib = [UINib nibWithNibName:reuseIdentifier bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:reuseIdentifier];
+    
+    //戻るボタンの表示変更
+    UIBarButtonItem* btn = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:nil
+                                                           action:nil];
+    self.navigationItem.backBarButtonItem = btn;
+    
+    UIBarButtonItem* item = [[UIBarButtonItem alloc]
                                               initWithImage:[[UIImage imageNamed:@"SortIcon"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)]
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(didTapSort:)];
+    
+    if (_listType == kListTypeMyBookshelf) {
+        self.navigationItem.leftBarButtonItem = item;
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = item;
+    }
+    
     
     REMenuItem *sortTitleAsc = [[REMenuItem alloc] initWithTitle:@"タイトル順"
                                                       image:nil
@@ -106,16 +127,15 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                          [self sort:kSortTypeAddAsc];
                                                      }];
     
-    REMenuItem *showList = [[REMenuItem alloc] initWithTitle:@"リスト表示"
+    REMenuItem *showTile = [[REMenuItem alloc] initWithTitle:@"タイル表示"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [BookShelfListViewController showForMyBookshelf:self];
+                                                         [self.navigationController popViewControllerAnimated:YES];
                                                      }];
     
-    
 //https://github.com/romaonthego/REMenu/blob/master/REMenuExample/REMenuExample/Classes/Controllers/NavigationViewController.m
-    self.menu = [[REMenu alloc] initWithItems:@[sortTitleAsc, sortDateDesc, sortDateAsc, sortAddDesc, sortAddAsc, showList]];
+    self.menu = [[REMenu alloc] initWithItems:@[sortTitleAsc, sortDateDesc, sortDateAsc, sortAddDesc, sortAddAsc, showTile]];
     self.menu.cornerRadius = 4;
     self.menu.shadowRadius = 4;
     self.menu.shadowColor = [UIColor blackColor];
@@ -131,24 +151,12 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
         badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
     };
     
-    UINib *nib = [UINib nibWithNibName:@"BookShelfCell" bundle:nil];
-    [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
-    
     _sortType = kSortTypeTitleAsc;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-//TODO: 再表示するたびにデータベースに問い合わせをするのは良くないかも、重かったら必要なときだけ更新するように変える
-//    if (_userId != User.shared.userId) {
-        _userId = My.shared.user->userId;
-        [self getBookshelf];
-//    }
+    [self getBookshelf];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -175,7 +183,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
         case kSortTypeAddDesc: [self sortByCreatedAtDesc]; break;
         case kSortTypeAddAsc: [self sortByCreatedAtAsc]; break;
     }
-    [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)sortByTitleAsc {
@@ -210,7 +218,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (void)getBookshelf {
     _bookshelves = [NSMutableArray array];
-    [Backend.shared getBookshelf:_userId option:@{} callback:^(NSDictionary* res, NSError *error) {
+    [Backend.shared getBookshelf:_user->userId option:@{} callback:^(NSDictionary* res, NSError *error) {
         if (error) {
             NSLog(@"Error - getBookshelf: %@", error);
         }
@@ -225,59 +233,63 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     }];
 }
 
+#pragma mark - Table view data source
 
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.bookshelves.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _bookshelves.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    BookShelfCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BookShelfListCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     if (_bookshelves.count <= 0) return cell; // 非同期処理バグの一時的な対処
+
     Bookshelf* bookshelf = _bookshelves[indexPath.row];
-    NSString* coverImageUrl = bookshelf->book->coverImageUrl;
-    [cell.bookImage my_setImageWithURL:coverImageUrl];
+    Book* book = bookshelf->book;
+    cell.titleLabel.text = book->title;
+    [cell.bookImage my_setImageWithURL:book->coverImageUrl];
     
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_bookshelves.count <= 0) return; // 非同期処理バグの一時的な対処
+    
     Bookshelf* bookshelf = _bookshelves[indexPath.row];
-    [BookDetailViewController showForRemovingBookFromBookshelf:self book:bookshelf->book];
-}
-/*
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGRect screenSize = [[UIScreen mainScreen] bounds];
-    NSUInteger space = 15;
-    NSUInteger bar = 64;
-    CGSize listCellSize = CGSizeMake((screenSize.size.width - space * 4) / 3,
-                                     (screenSize.size.height - bar - space * 4) / 3);
-    return listCellSize;
-}
- */
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(20, 15, 20, 15);
-}
-/*
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10.0;
+    if (_listType == kListTypeMyBookshelf) {
+        [BookDetailViewController showForRemovingBookFromBookshelf:self book:bookshelf->book];
+    }
+    else {
+        [BookDetailViewController showForRequestingBook:self bookshelf:bookshelf];
+    }
+    
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 30.0;
+#pragma mark - Showing
+
++ (void)showForMyBookshelf:(UIViewController*)parent {
+    BookShelfListViewController* vc = [BookShelfListViewController new];
+    vc.listType = kListTypeMyBookshelf;
+    vc.user = My.shared.user;
+    vc.title = @"本棚";
+    [parent.navigationController pushViewController:vc animated:YES];
 }
-*/
+
++ (void)showForFriendBookshelf:(UIViewController*)parent user:(User*)user {
+    BookShelfListViewController* vc = [BookShelfListViewController new];
+    vc.listType = kListTypeFriendBookshelf;
+    vc.user = user;
+    vc.title = [NSString stringWithFormat:@"%@ の本棚", user->fullname];
+    [parent.navigationController pushViewController:vc animated:YES];
+}
+
 @end

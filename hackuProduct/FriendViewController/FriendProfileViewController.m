@@ -46,7 +46,7 @@
     FriendBookShelfCollectionViewController *vc = [FriendBookShelfCollectionViewController new];
     NSString *title = [NSString stringWithFormat:@"%@ の本棚", _user->fullname];
     vc.title = title;
-    vc.userId = _user->userId;
+    vc.user = _user;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

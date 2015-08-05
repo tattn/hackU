@@ -157,6 +157,7 @@ MAKE_PARAM(@{@"token":self.accessToken})
 }
 
 - (void)uploadProfileImage:(int)userId image:(UIImage*)img DEFAULT_PARAM {
+    [SVProgressHUD showWithStatus:@"画像のアップロード中"];
     MAKE_TOKEN_PARAM();
     [self POST:ICON_URL(userId) parameters:param MULTIPART_CALLBACK(
     NSData* imgData = UIImagePNGRepresentation(img);
@@ -398,6 +399,7 @@ MAKE_PARAM(@{@"token":self.accessToken})
 // === [/my/timeline] Timeline API
 
 - (void)getTimeline: DEFAULT_PARAM2 {
+    [SVProgressHUD showWithStatus:@"タイムライン取得中"];
     MAKE_TOKEN_PARAM();
     [self GET:TIMELINE_URL parameters:param DEFAULT_CALLBACK];
 }

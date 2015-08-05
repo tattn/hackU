@@ -1,8 +1,9 @@
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface FriendBookShelfCollectionViewController : UICollectionViewController
 
-@property int userId;
+@property User* user;
 
 @end
