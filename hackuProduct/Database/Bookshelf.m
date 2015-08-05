@@ -26,6 +26,22 @@
     return bookshelf;
 }
 
+// FIXME: 時間がないので作成した
++(instancetype)initWithDic2:(NSDictionary*)dic {
+    Bookshelf* bookshelf = [Bookshelf new];
+    bookshelf->userId = [bookshelf getInt:dic[@"user_id"]];
+    bookshelf->borrowerId = [bookshelf getInt:dic[@"borrower_id"]];
+    bookshelf->rate = [bookshelf getInt:dic[@"rate"]];
+    bookshelf->book = [Book initWithDic2:dic[@"book"]];
+    NSString* createdAt = dic[@"created_at"];
+    if (createdAt != (id)[NSNull null]) {
+        NSDateFormatter* dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSZZ"];
+        bookshelf->createdAt = [dateFormatter dateFromString:createdAt];
+    }
+    return bookshelf;
+}
+
 - (int)getInt:(NSNumber*)num {
     if (num == (id)[NSNull null]) {
         return -1;

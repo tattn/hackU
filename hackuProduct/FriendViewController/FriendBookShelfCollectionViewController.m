@@ -59,13 +59,13 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                            action:nil];
     self.navigationItem.backBarButtonItem = btn;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithImage:[[UIImage imageNamed:@"SortIcon"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)]
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(didTapSort:)];
     
-    REMenuItem *sortTitleAsc = [[REMenuItem alloc] initWithTitle:@"タイトルで昇順に並び替え"
+    REMenuItem *sortTitleAsc = [[REMenuItem alloc] initWithTitle:@"タイトル順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
@@ -79,28 +79,28 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 //                                                         [self sort:kSortTypeTitleDesc];
 //                                                     }];
     
-    REMenuItem *sortDateDesc = [[REMenuItem alloc] initWithTitle:@"発売日の新しい順に並び替え"
+    REMenuItem *sortDateDesc = [[REMenuItem alloc] initWithTitle:@"発売日の新しい順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
                                                          [self sort:kSortTypeDateDesc];
                                                      }];
     
-    REMenuItem *sortDateAsc = [[REMenuItem alloc] initWithTitle:@"発売日の古い順に並び替え"
+    REMenuItem *sortDateAsc = [[REMenuItem alloc] initWithTitle:@"発売日の古い順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
                                                          [self sort:kSortTypeDateAsc];
                                                      }];
     
-    REMenuItem *sortAddDesc = [[REMenuItem alloc] initWithTitle:@"本棚への登録の新しい順に並び替え"
+    REMenuItem *sortAddDesc = [[REMenuItem alloc] initWithTitle:@"登録の新しい順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
                                                          [self sort:kSortTypeAddDesc];
                                                      }];
     
-    REMenuItem *sortAddAsc = [[REMenuItem alloc] initWithTitle:@"本棚への登録の古い順に並び替え"
+    REMenuItem *sortAddAsc = [[REMenuItem alloc] initWithTitle:@"登録の古い順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {

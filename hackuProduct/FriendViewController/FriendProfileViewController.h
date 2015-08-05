@@ -1,5 +1,6 @@
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface FriendProfileViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *friendImage;
@@ -13,6 +14,6 @@
 - (IBAction)bookShelfButton:(UIButton *)sender;
 - (IBAction)blockButton:(UIButton *)sender;
 
-+ (void)show:(UIViewController*)parent user:(NSDictionary*)user;
++ (void)show:(UIViewController*)parent user:(User*)user;
 
 @end

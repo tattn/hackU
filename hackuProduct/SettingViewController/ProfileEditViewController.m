@@ -25,16 +25,13 @@
     self.profileImageButton.layer.borderColor = [UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0].CGColor;
     self.profileImageButton.layer.borderWidth = 5;
     
-    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(User.shared.userId) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
+    [self.profileImage my_setImageWithURL:PROFILE_IMAGE_URL(My.shared.user->userId) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
-    self.firstname.text = User.shared.firstname;
-    self.lastname.text = User.shared.lastname;
-    self.word.text = User.shared.comment;
-    self.myBooksNumLabel.text = User.shared.bookNum.stringValue;
-    self.myLendNumLabel.text = User.shared.lendNum.stringValue;
-    self.myBorrowNumLabel.text = User.shared.borrowNum.stringValue;
+    self.firstname.text = My.shared.user->firstname;
+    self.lastname.text = My.shared.user->lastname;
+    self.word.text = My.shared.user->comment;
     
-    [Backend.shared getUser:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared getUser:My.shared.user->userId option:@{} callback:^(id responseObject, NSError *error) {
         NSDictionary* user = responseObject[@"user"];
         self.myBooksNumLabel.text = ((NSNumber*)user[@"bookNum"]).stringValue;
         self.myLendNumLabel.text = ((NSNumber*)user[@"lendNum"]).stringValue;
@@ -61,12 +58,12 @@
 }
 
 - (void)saveProfileEditView {
-    [Backend.shared updateUser:User.shared.userId option:@{
+    [Backend.shared updateUser:My.shared.user->userId option:@{
         @"firstname": _firstname.text,
         @"lastname": _lastname.text,
         @"comment": _word.text,
     } callback:^(id responseObject, NSError *error) {
-        [Backend.shared uploadProfileImage:User.shared.userId image:self.profileImage.image option:@{} callback:^(id responseObject, NSError *error) {
+        [Backend.shared uploadProfileImage:My.shared.user->userId image:self.profileImage.image option:@{} callback:^(id responseObject, NSError *error) {
             if (error) {
                 NSLog(@"Upload error: %@", error);
                 [Toast show:self.view message:@"画像のアップロードに失敗しました"];

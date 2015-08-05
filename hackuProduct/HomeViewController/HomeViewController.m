@@ -87,7 +87,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 
 - (void)getBookRequests {
-    [Backend.shared getRequest:User.shared.userId option:@{} callback:^(id responseObject, NSError *error) {
+    [Backend.shared getRequest:My.shared.user->userId option:@{} callback:^(id responseObject, NSError *error) {
         _requests = [NSMutableArray array];
         NSArray* reqs = responseObject[@"requests"];
         [reqs enumerateObjectsUsingBlock:^(id req, NSUInteger idx, BOOL *stop) {
@@ -294,12 +294,13 @@ static NSString* TimelineCellID = @"TimelineCell";
     
     if (_mode == kModeTimeline) {
         // バックエンド側の調整が必要
-//        NSDictionary *timeline = _timelines[indexPath.row];
-//        NSString *type = timeline[@"type"];
-//        if ([type isEqualToString: @"bookshelf"]) {
+        NSDictionary *timeline = _timelines[indexPath.row];
+        NSString *type = timeline[@"type"];
+        if ([type isEqualToString: @"bookshelf"]) {
 //            NSDictionary* bookshelf = timeline[@"data"][@"bookshelf"];
-//            [BookDetailViewController showForRequestingBook:self bookshelf:bookshelf];
-//        }
+            Bookshelf* bookshelf = [Bookshelf initWithDic2: timeline[@"data"][@"bookshelf"]];
+            [BookDetailViewController showForRequestingBook:self bookshelf:bookshelf];
+        }
     }
     else if (_mode == kModeNotification) {
         if (indexPath.section == 0) {

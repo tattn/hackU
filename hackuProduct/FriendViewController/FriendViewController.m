@@ -8,11 +8,23 @@
 #import "Backend.h"
 #import "User.h"
 #import "UIImageViewHelper.h"
+#import <REMenu/REMenu.h>
 
 @interface FriendViewController ()
 
 @property NSMutableArray* friends;
+@property NSMutableArray* is_new;
 @property int userId;
+
+@property (strong, readwrite, nonatomic) REMenu *menu;
+
+typedef NS_ENUM (int, SortType) {
+    kSortTypeNameAsc,
+    kSortTypeNumDesc,
+    kSortTypeNumAsc,
+};
+
+@property SortType sortType;
 
 @end
 
@@ -41,6 +53,52 @@
                                                            target:nil
                                                            action:nil];
     self.navigationItem.backBarButtonItem = btn;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithImage:[[UIImage imageNamed:@"SortIcon"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)]
+                                              style:UIBarButtonItemStylePlain
+                                              target:self
+                                              action:@selector(didTapSort:)];
+    
+    REMenuItem *sortNameAsc = [[REMenuItem alloc] initWithTitle:@"名前順"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [self sort:kSortTypeNameAsc];
+                                                     }];
+    
+    REMenuItem *sortNumDesc = [[REMenuItem alloc] initWithTitle:@"本の多い順"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [self sort:kSortTypeNumDesc];
+                                                     }];
+    
+    REMenuItem *sortNumAsc = [[REMenuItem alloc] initWithTitle:@"本の少ない順"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [self sort:kSortTypeNumAsc];
+                                                     }];
+    
+//https://github.com/romaonthego/REMenu/blob/master/REMenuExample/REMenuExample/Classes/Controllers/NavigationViewController.m
+    self.menu = [[REMenu alloc] initWithItems:@[sortNameAsc, sortNumDesc, sortNumAsc]];
+    self.menu.cornerRadius = 4;
+    self.menu.shadowRadius = 4;
+    self.menu.shadowColor = [UIColor blackColor];
+    self.menu.shadowOffset = CGSizeMake(0, 1);
+    self.menu.shadowOpacity = 1;
+    self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
+    self.menu.imageOffset = CGSizeMake(5, -1);
+    self.menu.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:15.0f];
+    self.menu.textColor = [UIColor whiteColor];
+    self.menu.waitUntilAnimationIsComplete = NO;
+    self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
+        badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
+        badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
+    };
+    
+    _sortType = kSortTypeNameAsc;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,7 +106,7 @@
     
     //TODO: 表示するたびにデータベースに問い合わせをするのは良くないかも、必要なときだけ更新するように変更する
 //    if (_userId != User.shared.userId) {
-        _userId = User.shared.userId;
+        _userId = My.shared.user->userId;
         [self getAllFriends];
 //    }
 }
@@ -57,8 +115,39 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)didTapSort:(id)selector {
+    if ([self.menu isOpen]) [self.menu close];
+    [self.menu showFromNavigationController:self.navigationController];
+}
+
+- (void)sort:(SortType)sortType {
+    _sortType = sortType;
+    switch (sortType) {
+        case kSortTypeNameAsc:  [self sortByNumAsc]; break;
+        case kSortTypeNumDesc: [self sortByNumDesc]; break;
+        case kSortTypeNumAsc: [self sortByNumAsc]; break;
+    }
+    [self.tableView reloadData];
+}
+
+- (void)sortByNameAsc {
+    NSArray* friends = [_friends sortedArrayUsingSelector:@selector(compareName:)];
+    _friends = [friends mutableCopy];
+}
+
+- (void)sortByNumDesc {
+    NSArray* friends = [_friends sortedArrayUsingSelector:@selector(compareBookNumInv:)];
+    _friends = [friends mutableCopy];
+}
+
+- (void)sortByNumAsc {
+    NSArray* friends = [_friends sortedArrayUsingSelector:@selector(compareBookNum:)];
+    _friends = [friends mutableCopy];
+}
+
 - (void)getAllFriends {
     _friends = [NSMutableArray array];
+    _is_new = [NSMutableArray array];
     [Backend.shared getNewFriend:@{} callback:^(NSDictionary* res, NSError *error) {
         if (error) {
         }
@@ -78,10 +167,10 @@
 }
 
 - (void)addFriends:(NSArray*)users new:(NSNumber*)new {
-    [users enumerateObjectsUsingBlock:^(NSDictionary *user, NSUInteger idx, BOOL *stop) {
-        NSMutableDictionary *friend = [@{@"new":new} mutableCopy];
-        [friend addEntriesFromDictionary:user];
-        [_friends addObject:friend];
+    [users enumerateObjectsUsingBlock:^(NSDictionary *responseObject, NSUInteger idx, BOOL *stop) {
+        User* user = [User initWithDic:responseObject];
+        [_is_new addObject:new];
+        [_friends addObject:user];
     }];
 }
 
@@ -119,8 +208,8 @@
 
 - (void)showBadge {
     __block int num = 0;
-    [_friends enumerateObjectsUsingBlock:^(NSDictionary *friend, NSUInteger idx, BOOL *stop) {
-        if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
+    [_is_new enumerateObjectsUsingBlock:^(NSNumber* is_new, NSUInteger idx, BOOL *stop) {
+        if ([is_new isEqual: @YES]) {
             num++;
         }
     }];
@@ -155,16 +244,16 @@
     FriendTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell" forIndexPath:indexPath];
     if (_friends.count <= 0) return cell; // 非同期処理バグの一時的な対処
     
-    NSDictionary* friend = _friends[indexPath.row];
-    cell.firendNameLabel.text = friend[@"fullname"];
-    cell.friendCommentLabel.text = friend[@"comment"];
-    cell.friendBookNumLabel.text = ((NSNumber*)friend[@"bookNum"]).stringValue;
-    [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL2(friend[@"userId"]) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
+    User* friend = _friends[indexPath.row];
+    cell.firendNameLabel.text = friend->fullname;
+    cell.friendCommentLabel.text = friend->comment;
+    cell.friendBookNumLabel.text = [NSNumber numberWithInt:friend->bookNum].stringValue;
+    [cell.friendImage my_setImageWithURL:PROFILE_IMAGE_URL(friend->userId) defaultImage:[UIImage imageNamed:@"ProfileImageDefault"]];
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFriendIcon:)];
     [cell.friendImage addGestureRecognizer:tapGesture];
     
-    if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
+    if ([_is_new[indexPath.row] isEqual: @YES]) {
         cell.backgroundColor = [UIColor yellowColor];
     }
     else {
@@ -182,13 +271,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_friends.count <= 0) return; // 非同期処理バグの一時的な対処
     
-    NSDictionary* friend = _friends[indexPath.row];
-    if ([(NSNumber*)friend[@"new"] isEqual: @NO]) {
+    User* friend = _friends[indexPath.row];
+    if ([_is_new[indexPath.row] isEqual: @NO]) {
         FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
         
-        NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend[@"fullname"]];
+        NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend->fullname];
         friendBookShelfCollectionVC.title = title;
-        friendBookShelfCollectionVC.userId = ((NSNumber*)friend[@"userId"]).intValue;
+        friendBookShelfCollectionVC.userId = friend->userId;
         
         [self.navigationController pushViewController:friendBookShelfCollectionVC animated:YES];
     }
@@ -197,20 +286,19 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_friends.count <= 0) return @[]; // 非同期処理バグの一時的な対処
     
-    NSDictionary* friend = _friends[indexPath.row];
-    if ([(NSNumber*)friend[@"new"] isEqual: @YES]) {
+    if ([_is_new[indexPath.row] isEqual: @YES]) {
         // 拒否ボタン
         UITableViewRowAction *rejectAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"拒否"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                    NSDictionary* friend = _friends[indexPath.row];
-                    [self rejectNewFriendById:((NSNumber*)friend[@"userId"]).intValue];
+                    User* friend = _friends[indexPath.row];
+                    [self rejectNewFriendById:friend->userId];
         }];
         
         // 許可ボタン
         UITableViewRowAction *allowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"許可"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                    NSDictionary* friend = _friends[indexPath.row];
-                    [self allowNewFriendById:((NSNumber*)friend[@"userId"]).intValue];
+                    User* friend = _friends[indexPath.row];
+                    [self allowNewFriendById:friend->userId];
         }];
         return @[rejectAction, allowAction];
     }
@@ -218,15 +306,15 @@
         // 削除ボタン
         UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"削除"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                    NSDictionary* friend = _friends[indexPath.row];
-                    [self deleteFriendById:((NSNumber*)friend[@"userId"]).intValue];
+                    User* friend = _friends[indexPath.row];
+                    [self deleteFriendById:friend->userId];
         }];
         
         // ブロックボタン
         UITableViewRowAction *blockAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"ブロック"
                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                    NSDictionary* friend = _friends[indexPath.row];
-                    [self blockFriendById:((NSNumber*)friend[@"userId"]).intValue];
+                    User* friend = _friends[indexPath.row];
+                    [self blockFriendById:friend->userId];
         }];
         return @[deleteAction, blockAction];
     }

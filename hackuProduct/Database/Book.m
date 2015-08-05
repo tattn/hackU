@@ -32,6 +32,31 @@
     return book;
 }
 
+//FIXME: 時間がないので作成した
++(instancetype)initWithDic2:(NSDictionary*)dic {
+    Book* book = [Book new];
+    book->bookId = [book getInt:dic[@"id"]];
+    book->title = [book getStr:dic[@"title"]];
+    book->isbn = [book getStr:dic[@"isbn"]];
+    book->author = [book getStr:dic[@"author"]];
+    book->publisher = [book getStr:dic[@"publisher"]];
+    book->manufacturer = [book getStr:dic[@"manufacturer"]];
+    book->genreId = [book getInt:dic[@"genre_id"]];
+    book->coverImageUrl = [book getStr:dic[@"cover_image_url"]];
+    book->salesrank = [book getInt:dic[@"salesrank"]];
+    book->publicationDateStr = [book getStr:dic[@"publication_date"]];
+    if (![book->publicationDateStr  isEqual: @""]) {
+        NSDateFormatter* dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSZZ"];
+        book->publicationDate = [dateFormatter dateFromString:book->publicationDateStr];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        book->publicationDateStr = [dateFormatter stringFromDate:book->publicationDate];
+    }
+    book->amazonUrl = [book getStr:dic[@"amazon_url"]];
+    return book;
+}
+
 - (int)getInt:(NSNumber*)num {
     if (num == (id)[NSNull null]) {
         return -1;
