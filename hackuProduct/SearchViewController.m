@@ -34,6 +34,10 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //FIXME: dirty hack
+    UIFont *font = [UIFont fontWithName:@"HiraKakuProN-W6" size:14.0f];
+    [_searchSegmentControl setTitleTextAttributes:@{UITextAttributeFont:font} forState:UIControlStateNormal];
+    
     self.searchBar.placeholder = @"タイトル, 著者, ISBN...";
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
     self.searchBar.delegate = self;
