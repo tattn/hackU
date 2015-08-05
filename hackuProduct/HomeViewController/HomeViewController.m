@@ -9,6 +9,7 @@
 #import "UIImageViewHelper.h"
 #import "AlertHelper.h"
 #import "Book.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation NotificationCell
 @end
@@ -21,6 +22,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
 };
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @property kMode mode;
 
@@ -54,8 +56,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self getTimeline];
-    [self getBookRequests];
+    [self segmentChanged:kModeTimeline];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,13 +64,16 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
-    _mode = sender.selectedSegmentIndex;
-    
-    //TODO: バックエンドとの接続
-    if (_mode == kModeTimeline) {
+    [self changeMode:sender.selectedSegmentIndex];
+}
+
+- (void)changeMode:(kMode)mode {
+    _mode =mode;
+    _segmentedControl.selectedSegmentIndex = mode;
+    if (mode == kModeTimeline) {
         [self getTimeline];
     }
-    else if (_mode == kModeNotification) {
+    else if (mode == kModeNotification) {
         [self getBookRequests];
     }
 }
@@ -111,6 +115,7 @@ static NSString* TimelineCellID = @"TimelineCell";
 }
 
 - (void)getBookStatuses {
+    [SVProgressHUD showWithStatus:@"通知取得中"];
     [Backend.shared getLending:@{} callback:^(id responseObject, NSError *error) {
         _statuses = [NSMutableArray array];
         NSArray* lendings = responseObject[@"lendings"];
