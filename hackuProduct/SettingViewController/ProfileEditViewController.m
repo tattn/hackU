@@ -4,8 +4,9 @@
 #import "Backend.h"
 #import "Toast.h"
 #import "UIImageViewHelper.h"
+#import <CLImageEditor/CLImageEditor.h>
 
-@interface ProfileEditViewController ()
+@interface ProfileEditViewController () <CLImageEditorDelegate>
 
 @end
 
@@ -74,9 +75,24 @@
     
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
+    editor.delegate = self;
+    
+    [picker pushViewController:editor animated:YES];
+}
+
+- (void)imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+{
+    [self.profileImage setImage:image];
+    [editor dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)imagePickerController :(UIImagePickerController *)picker
         didFinishPickingImage :(UIImage *)image editingInfo :(NSDictionary *)editingInfo {
-    NSLog(@"selected");
     [self.profileImage setImage:image];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

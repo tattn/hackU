@@ -8,6 +8,7 @@ target 'hackuProduct' do
 	pod 'SDWebImage', '~>3.7'
 	pod 'SIAlertView'
 	pod 'SVProgressHUD'
+	pod 'CLImageEditor'
 end
 
 target 'hackuProductTests' do
