@@ -5,6 +5,7 @@
 #import "Toast.h"
 #import "UIImageViewHelper.h"
 #import <CLImageEditor/CLImageEditor.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface ProfileEditViewController () <CLImageEditorDelegate>
 
@@ -65,9 +66,11 @@
         @"comment": _word.text,
     } callback:^(id responseObject, NSError *error) {
         [Backend.shared uploadProfileImage:My.shared.user->userId image:self.profileImage.image option:@{} callback:^(id responseObject, NSError *error) {
+            [SVProgressHUD dismiss];
             if (error) {
                 NSLog(@"Upload error: %@", error);
-                [Toast show:self.view message:@"画像のアップロードに失敗しました"];
+                [Toast show:self.view message:@"画像のサイズが大きすぎます"];
+                return;
             }
             else {
                 //FIXME: ちょうどいいキャッシュ削除のタイミングを考える
@@ -75,6 +78,7 @@
                 [imageCache clearMemory];
                 [imageCache clearDisk];
             }
+            
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }];
