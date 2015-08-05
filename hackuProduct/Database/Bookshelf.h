@@ -20,6 +20,7 @@
 }
 
 +(instancetype)initWithDic:(NSDictionary*)dic;
++(instancetype)initWithDic2:(NSDictionary*)dic;
 
 - (NSComparisonResult) compareTitle:(Bookshelf*)_book;
 - (NSComparisonResult) compareTitleInv:(Bookshelf*)_book;
