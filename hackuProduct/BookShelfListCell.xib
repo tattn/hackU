@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HiraginoKakuGothic.ttc">
+            <string>HiraKakuProN-W3</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookShelfListCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="BookShelfListCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookShelfListCell" id="KGk-i7-Jjw" customClass="BookShelfListCell">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzJ-h8-shf">
+                        <rect key="frame" x="56" y="8" width="318" height="43.5"/>
+                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fef-7n-uu2">
+                        <rect key="frame" x="0.0" y="0.0" width="40" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="fef-7n-uu2" secondAttribute="height" multiplier="2:3" id="qcr-hv-uin"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="fef-7n-uu2" secondAttribute="bottom" constant="-8.5" id="44O-mt-ahk"/>
+                    <constraint firstItem="lzJ-h8-shf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="4e7-Ua-5hc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lzJ-h8-shf" secondAttribute="trailing" constant="-8" id="URU-Dy-lZz"/>
+                    <constraint firstItem="lzJ-h8-shf" firstAttribute="leading" secondItem="fef-7n-uu2" secondAttribute="trailing" constant="16" id="WaA-aW-8tW"/>
+                    <constraint firstItem="fef-7n-uu2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Yzr-0q-xcY"/>
+                    <constraint firstItem="fef-7n-uu2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="c2F-r0-9LQ"/>
+                    <constraint firstItem="lzJ-h8-shf" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="pbn-Bl-feb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bookImage" destination="fef-7n-uu2" id="X0g-vd-qIL"/>
+                <outlet property="titleLabel" destination="lzJ-h8-shf" id="Il1-L8-xbn"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="279"/>
+        </tableViewCell>
+    </objects>
+</document>

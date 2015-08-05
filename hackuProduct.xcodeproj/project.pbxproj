@@ -44,6 +44,9 @@
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4A7A12081B71050B00277161 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A12071B71050B00277161 /* Book.m */; };
 		4A7A120B1B71118D00277161 /* Bookshelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A120A1B71118D00277161 /* Bookshelf.m */; };
+		4A7A12111B71C72900277161 /* BookShelfListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A12101B71C72900277161 /* BookShelfListViewController.m */; };
+		4A7A12191B71CDC900277161 /* BookShelfListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A12171B71CDC900277161 /* BookShelfListCell.m */; };
+		4A7A121A1B71CDC900277161 /* BookShelfListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A7A12181B71CDC900277161 /* BookShelfListCell.xib */; };
 		4A901A8B1B62A15800C8FE1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A901A8A1B62A15800C8FE1C /* Settings.bundle */; };
 		4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A901A901B62D65000C8FE1C /* LicenseViewController.m */; };
 		4A965B031B68217000F7ABE6 /* SNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A965B021B68217000F7ABE6 /* SNS.m */; };
@@ -133,6 +136,11 @@
 		4A7A12071B71050B00277161 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		4A7A12091B71117100277161 /* Bookshelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookshelf.h; sourceTree = "<group>"; };
 		4A7A120A1B71118D00277161 /* Bookshelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookshelf.m; sourceTree = "<group>"; };
+		4A7A120F1B71C72900277161 /* BookShelfListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookShelfListViewController.h; sourceTree = "<group>"; };
+		4A7A12101B71C72900277161 /* BookShelfListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookShelfListViewController.m; sourceTree = "<group>"; };
+		4A7A12161B71CDC900277161 /* BookShelfListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookShelfListCell.h; sourceTree = "<group>"; };
+		4A7A12171B71CDC900277161 /* BookShelfListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookShelfListCell.m; sourceTree = "<group>"; };
+		4A7A12181B71CDC900277161 /* BookShelfListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookShelfListCell.xib; sourceTree = "<group>"; };
 		4A7D29421B68CB6F009D0B7E /* UIImageViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewHelper.h; sourceTree = "<group>"; };
 		4A901A8A1B62A15800C8FE1C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4A901A8F1B62D65000C8FE1C /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
@@ -213,6 +221,11 @@
 				17B7B9D11B53D2E8009A8752 /* BookShelfCollectionViewController.h */,
 				17B7B9D21B53D2E8009A8752 /* BookShelfCollectionViewController.m */,
 				17B7B9D31B53D2E8009A8752 /* BookShelfCollectionViewController.xib */,
+				4A7A120F1B71C72900277161 /* BookShelfListViewController.h */,
+				4A7A12101B71C72900277161 /* BookShelfListViewController.m */,
+				4A7A12161B71CDC900277161 /* BookShelfListCell.h */,
+				4A7A12171B71CDC900277161 /* BookShelfListCell.m */,
+				4A7A12181B71CDC900277161 /* BookShelfListCell.xib */,
 				4A901A931B6392D000C8FE1C /* FriendViewController */,
 				17B7B9A41B52CA74009A8752 /* Images.xcassets */,
 				17B7B9A61B52CA74009A8752 /* LaunchScreen.xib */,
@@ -466,6 +479,7 @@
 				4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */,
 				174D1E621B675BF1007BB81C /* AccountEditViewController.xib in Resources */,
 				17BD60431B6DE2F8002C84B2 /* TimelineCell.xib in Resources */,
+				4A7A121A1B71CDC900277161 /* BookShelfListCell.xib in Resources */,
 				4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */,
 				17B7B9D51B53D2E8009A8752 /* BookShelfCollectionViewController.xib in Resources */,
 				17B7B9D01B53D16F009A8752 /* BookShelfCell.xib in Resources */,
@@ -536,6 +550,7 @@
 				4AC1031D1B67EBFA004B3E75 /* User.m in Sources */,
 				4AEE8C9A1B66BD6E00865AFF /* ImprovedViewController.m in Sources */,
 				175EC6621B5A9F5600752BE6 /* FriendBookShelfCollectionViewController.m in Sources */,
+				4A7A12191B71CDC900277161 /* BookShelfListCell.m in Sources */,
 				4A965B031B68217000F7ABE6 /* SNS.m in Sources */,
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
@@ -557,6 +572,7 @@
 				4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */,
 				174D1E611B675BF1007BB81C /* AccountEditViewController.m in Sources */,
 				4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */,
+				4A7A12111B71C72900277161 /* BookShelfListViewController.m in Sources */,
 				17B7B9D41B53D2E8009A8752 /* BookShelfCollectionViewController.m in Sources */,
 				17BD60421B6DE2F8002C84B2 /* TimelineCell.m in Sources */,
 				4AB78D231B59988D00B27BEC /* Backend.m in Sources */,

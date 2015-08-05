@@ -4,6 +4,7 @@
 #import "Backend.h"
 #import "UIImageViewHelper.h"
 #import "BookDetailViewController.h"
+#import "BookShelfListViewController.h"
 #import <REMenu/REMenu.h>
 #import "Bookshelf.h"
 
@@ -106,9 +107,17 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                      action:^(REMenuItem *item) {
                                                          [self sort:kSortTypeAddAsc];
                                                      }];
+    
+    REMenuItem *showList = [[REMenuItem alloc] initWithTitle:@"リスト表示"
+                                                      image:nil
+                                           highlightedImage:nil
+                                                     action:^(REMenuItem *item) {
+                                                         [BookShelfListViewController showForFriendBookshelf:self user:_user];
+                                                     }];
+    
 
 //https://github.com/romaonthego/REMenu/blob/master/REMenuExample/REMenuExample/Classes/Controllers/NavigationViewController.m
-    self.menu = [[REMenu alloc] initWithItems:@[sortTitleAsc, sortDateDesc, sortDateAsc, sortAddDesc, sortAddAsc]];
+    self.menu = [[REMenu alloc] initWithItems:@[sortTitleAsc, sortDateDesc, sortDateAsc, sortAddDesc, sortAddAsc, showList]];
     self.menu.cornerRadius = 4;
     self.menu.shadowRadius = 4;
     self.menu.shadowColor = [UIColor blackColor];
@@ -134,6 +143,11 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getBookshelf];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if ([self.menu isOpen]) [self.menu close];
 }
 
 - (void)didTapSort:(id)selector {
@@ -186,7 +200,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (void)getBookshelf {
     _bookshelves = [NSMutableArray array];
-    [Backend.shared getBookshelf:_userId option:@{} callback:^(NSDictionary* res, NSError *error) {
+    [Backend.shared getBookshelf:_user->userId option:@{} callback:^(NSDictionary* res, NSError *error) {
         if (error) {
             NSLog(@"Error - getBookshelf: %@", error);
         }
