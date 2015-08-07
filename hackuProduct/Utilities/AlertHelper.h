@@ -8,7 +8,6 @@
 
 #ifndef hackuProduct_AlertHelper_h
 #define hackuProduct_AlertHelper_h
-#import <UIKit/UIKit.h>
 
 @interface AlertHelper: NSObject
 

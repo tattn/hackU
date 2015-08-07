@@ -9,8 +9,6 @@
 #ifndef hackuProduct_ImprovedViewController_h
 #define hackuProduct_ImprovedViewController_h
 
-#import <UIKit/UIKit.h>
-
 @interface ImprovedViewController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property UITapGestureRecognizer *tapGestureForKeyboard;

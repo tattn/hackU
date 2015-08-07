@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Book.h"
 
 @implementation Book

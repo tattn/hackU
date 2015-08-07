@@ -9,8 +9,6 @@
 #ifndef hackuProduct_SettingViewController_h
 #define hackuProduct_SettingViewController_h
 
-#import <UIKit/UIKit.h>
-
 @interface SettingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

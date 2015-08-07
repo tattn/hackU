@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "User.h"
 
 @interface BookShelfListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>

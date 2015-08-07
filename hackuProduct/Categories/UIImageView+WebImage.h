@@ -9,7 +9,6 @@
 #ifndef hackuProduct_UIImageViewHelper_h
 #define hackuProduct_UIImageViewHelper_h
 
-#import <UIKit/UIKit.h>
 #import "SDWebImage/UIImageView+WebCache.h"
 
 @interface UIImageView (WebImage)

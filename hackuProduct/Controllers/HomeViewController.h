@@ -1,6 +1,4 @@
 
-#import <UIKit/UIKit.h>
-
 @interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

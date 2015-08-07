@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Kazusa Sakamoto. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Bookshelf.h"
 
 @implementation Bookshelf

@@ -15,4 +15,9 @@
 #define PROFILE_IMAGE_URL(userId) [NSString stringWithFormat:@"http://160.16.70.40/bookshare/api/v1/users/%d/icon", userId]
 #define PROFILE_IMAGE_URL2(userId) [NSString stringWithFormat:@"http://160.16.70.40/bookshare/api/v1/users/%@/icon", userId]
 
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
 #endif

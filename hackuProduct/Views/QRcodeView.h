@@ -6,8 +6,6 @@
 //  Copyright (c) 2015年 Tatsuya Tanaka. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface QRcodeView : UIImageView
 
 - (void)setString:(NSString*)str;
