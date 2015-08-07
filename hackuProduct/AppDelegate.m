@@ -1,6 +1,6 @@
 
 #import "AppDelegate.h"
-#import "BookShelfCollectionViewController.h"
+#import "BookShelfController.h"
 #import "FriendViewController.h"
 #import "SettingViewController.h"
 #import "LoginViewController.h"
@@ -38,7 +38,7 @@
 
     HomeViewController *homeVC = [HomeViewController new];
     FriendViewController *friendVC = [FriendViewController new];
-    BookShelfCollectionViewController *bookShelfCollectionVC = [BookShelfCollectionViewController new];
+    BookShelfController *bookShelfCollectionVC = [BookShelfController new];
     SearchViewController *searchVC = [SearchViewController new];
     SettingViewController *settingVC = [SettingViewController new];
 

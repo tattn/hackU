@@ -1,7 +1,7 @@
 
 #import "FriendViewController.h"
 #import "FriendTableViewCell.h"
-#import "FriendBookShelfCollectionViewController.h"
+#import "FriendBookShelfController.h"
 #import "FriendProfileViewController.h"
 #import "AddFriendViewController.h"
 #import "AlertHelper.h"
@@ -279,7 +279,7 @@ typedef NS_ENUM (int, SortType) {
     
     User* friend = _friends[indexPath.row];
     if ([_is_new[indexPath.row] isEqual: @NO]) {
-        FriendBookShelfCollectionViewController *friendBookShelfCollectionVC = [[FriendBookShelfCollectionViewController alloc] init];
+        FriendBookShelfController *friendBookShelfCollectionVC = [[FriendBookShelfController alloc] init];
         
         NSString *title = [NSString stringWithFormat:@"%@ の本棚", friend->fullname];
         friendBookShelfCollectionVC.title = title;

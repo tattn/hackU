@@ -12,7 +12,7 @@
 #import "Backend.h"
 #import "User.h"
 #import "AlertHelper.h"
-#import "BookShelfCollectionViewController.h"
+#import "BookShelfController.h"
 
 @interface BookDetailViewController ()
 

@@ -1,38 +1,19 @@
 
-#import "BookShelfCollectionViewController.h"
+#import "BookShelfController.h"
 #import "BookShelfCell.h"
 #import "Backend.h"
 #import "LoginViewController.h"
-#import "User.h"
 #import "UIImageViewHelper.h"
 #import "SearchViewController.h"
 #import "BookDetailViewController.h"
 #import "BookShelfListViewController.h"
-#import <REMenu/REMenu.h>
 #import "Book.h"
 
 
-@interface BookShelfCollectionViewController ()
-
-@property NSMutableArray* bookshelves;
-@property int userId;
-
-@property (strong, readwrite, nonatomic) REMenu *menu;
-
-typedef NS_ENUM (int, SortType) {
-    kSortTypeTitleAsc,
-    kSortTypeTitleDesc,
-    kSortTypeDateDesc,
-    kSortTypeDateAsc,
-    kSortTypeAddDesc,
-    kSortTypeAddAsc,
-};
-
-@property SortType sortType;
-
+@interface BookShelfController ()
 @end
 
-@implementation BookShelfCollectionViewController
+@implementation BookShelfController
 
 static NSString * const reuseIdentifier = @"BookShelfCell";
 
@@ -68,7 +49,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [self sort:kSortTypeTitleAsc];
+                                                         [self sort:kBookshelfSortTypeTitleAsc];
                                                      }];
     
 //    REMenuItem *sortTitleDesc = [[REMenuItem alloc] initWithTitle:@"タイトルで降順に並び替え"
@@ -82,28 +63,28 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [self sort:kSortTypeDateDesc];
+                                                         [self sort:kBookshelfSortTypeDateDesc];
                                                      }];
     
     REMenuItem *sortDateAsc = [[REMenuItem alloc] initWithTitle:@"発売日の古い順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [self sort:kSortTypeDateAsc];
+                                                         [self sort:kBookshelfSortTypeDateAsc];
                                                      }];
     
     REMenuItem *sortAddDesc = [[REMenuItem alloc] initWithTitle:@"登録の新しい順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [self sort:kSortTypeAddDesc];
+                                                         [self sort:kBookshelfSortTypeAddDesc];
                                                      }];
     
     REMenuItem *sortAddAsc = [[REMenuItem alloc] initWithTitle:@"登録の古い順"
                                                       image:nil
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
-                                                         [self sort:kSortTypeAddAsc];
+                                                         [self sort:kBookshelfSortTypeAddAsc];
                                                      }];
     
     REMenuItem *showList = [[REMenuItem alloc] initWithTitle:@"リスト表示"
@@ -134,7 +115,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     UINib *nib = [UINib nibWithNibName:@"BookShelfCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
     
-    _sortType = kSortTypeTitleAsc;
+    _sortType = kBookshelfSortTypeTitleAsc;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,10 +126,8 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [super viewWillAppear:animated];
     
 //TODO: 再表示するたびにデータベースに問い合わせをするのは良くないかも、重かったら必要なときだけ更新するように変える
-//    if (_userId != User.shared.userId) {
-        _userId = My.shared.user->userId;
-        [self getBookshelf];
-//    }
+    if (!_user) _user = My.shared.user;
+    [self getBookshelf];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -165,15 +144,15 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
     [self.menu showFromNavigationController:self.navigationController];
 }
 
-- (void)sort:(SortType)sortType {
+- (void)sort:(BookshelfSortType)sortType {
     _sortType = sortType;
     switch (sortType) {
-        case kSortTypeTitleAsc:  [self sortByTitleAsc]; break;
-        case kSortTypeTitleDesc: [self sortByTitleDesc]; break;
-        case kSortTypeDateDesc: [self sortByDateDesc]; break;
-        case kSortTypeDateAsc: [self sortByDateAsc]; break;
-        case kSortTypeAddDesc: [self sortByCreatedAtDesc]; break;
-        case kSortTypeAddAsc: [self sortByCreatedAtAsc]; break;
+        case kBookshelfSortTypeTitleAsc:  [self sortByTitleAsc]; break;
+        case kBookshelfSortTypeTitleDesc: [self sortByTitleDesc]; break;
+        case kBookshelfSortTypeDateDesc: [self sortByDateDesc]; break;
+        case kBookshelfSortTypeDateAsc: [self sortByDateAsc]; break;
+        case kBookshelfSortTypeAddDesc: [self sortByCreatedAtDesc]; break;
+        case kBookshelfSortTypeAddAsc: [self sortByCreatedAtAsc]; break;
     }
     [self.collectionView reloadData];
 }
@@ -210,7 +189,7 @@ static NSString * const reuseIdentifier = @"BookShelfCell";
 
 - (void)getBookshelf {
     _bookshelves = [NSMutableArray array];
-    [Backend.shared getBookshelf:_userId option:@{} callback:^(NSDictionary* res, NSError *error) {
+    [Backend.shared getBookshelf:_user->userId option:@{} callback:^(NSDictionary* res, NSError *error) {
         if (error) {
             NSLog(@"Error - getBookshelf: %@", error);
         }

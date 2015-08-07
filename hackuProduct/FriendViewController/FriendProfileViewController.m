@@ -1,6 +1,6 @@
 
 #import "FriendProfileViewController.h"
-#import "FriendBookShelfCollectionViewController.h"
+#import "FriendBookShelfController.h"
 #import "AlertHelper.h"
 #import "Backend.h"
 #import "UIImageViewHelper.h"
@@ -43,7 +43,7 @@
 
 
 - (IBAction)bookShelfButton:(UIButton *)sender {
-    FriendBookShelfCollectionViewController *vc = [FriendBookShelfCollectionViewController new];
+    FriendBookShelfController *vc = [FriendBookShelfController new];
     NSString *title = [NSString stringWithFormat:@"%@ の本棚", _user->fullname];
     vc.title = title;
     vc.user = _user;
