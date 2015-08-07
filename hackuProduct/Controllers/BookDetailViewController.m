@@ -7,7 +7,7 @@
 //
 
 #import "BookDetailViewController.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import <RMUniversalAlert.h>
 #import "Backend.h"
 #import "User.h"

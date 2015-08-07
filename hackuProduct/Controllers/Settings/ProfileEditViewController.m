@@ -3,7 +3,7 @@
 #import "User.h"
 #import "Backend.h"
 #import "Toast.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import <CLImageEditor/CLImageEditor.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 

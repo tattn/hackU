@@ -7,7 +7,7 @@
 #import "AlertHelper.h"
 #import "Backend.h"
 #import "User.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import <REMenu/REMenu.h>
 
 @interface FriendViewController ()

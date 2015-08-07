@@ -2,7 +2,7 @@
 #import "FriendBookShelfController.h"
 #import "BookShelfCell.h"
 #import "Backend.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import "BookDetailViewController.h"
 #import "BookShelfListViewController.h"
 #import <REMenu/REMenu.h>

@@ -6,7 +6,7 @@
 #import "SNS.h"
 #import "BookDetailViewController.h"
 #import "TimelineCell.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import "AlertHelper.h"
 #import "Book.h"
 #import <SVProgressHUD/SVProgressHUD.h>

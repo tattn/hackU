@@ -3,7 +3,7 @@
 #import "BookShelfCell.h"
 #import "Backend.h"
 #import "LoginViewController.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import "SearchViewController.h"
 #import "BookDetailViewController.h"
 #import "BookShelfListViewController.h"

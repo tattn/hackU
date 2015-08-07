@@ -2,7 +2,7 @@
 #import "SearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "BookDetailViewController.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import "User.h"
 #import "Backend.h"
 #import "BarcodeView.h"

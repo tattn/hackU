@@ -11,7 +11,7 @@
 #import "Backend.h"
 #import "User.h"
 #import "Bookshelf.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 #import "SearchViewController.h"
 #import "BookDetailViewController.h"
 #import <REMenu/REMenu.h>

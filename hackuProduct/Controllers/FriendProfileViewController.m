@@ -3,7 +3,7 @@
 #import "FriendBookShelfController.h"
 #import "AlertHelper.h"
 #import "Backend.h"
-#import "UIImageViewHelper.h"
+#import "UIImageView+WebImage.h"
 
 @interface FriendProfileViewController ()
 
