@@ -8,7 +8,7 @@
 
 #import "BookDetailViewController.h"
 #import "UIImageView+WebImage.h"
-#import <RMUniversalAlert.h>
+#import <RMUniversalAlert/RMUniversalAlert.h>
 #import "Backend.h"
 #import "User.h"
 #import "AlertHelper.h"

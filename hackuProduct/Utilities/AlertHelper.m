@@ -7,7 +7,7 @@
 //
 
 #import "AlertHelper.h"
-#import <RMUniversalAlert.h>
+#import <RMUniversalAlert/RMUniversalAlert.h>
 #import <SIAlertView/SIAlertView.h>
 
 @implementation AlertHelper

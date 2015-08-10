@@ -31,7 +31,6 @@
 		17B7B9F41B593BFB009A8752 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		17BD60421B6DE2F8002C84B2 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BD60401B6DE2F8002C84B2 /* TimelineCell.m */; };
 		17BD60431B6DE2F8002C84B2 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */; };
-		4A220D651B6B54F0003B469B /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A220D641B6B54F0003B469B /* Toast.m */; };
 		4A220D681B6CAE81003B469B /* QRcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A220D671B6CAE81003B469B /* QRcodeView.m */; };
 		4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */; };
 		4A3576061B6944100025BD73 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3576051B6944100025BD73 /* BookDetailViewController.m */; };
@@ -58,7 +57,7 @@
 		4AEE8C8E1B6548A200865AFF /* HomeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEE8C8D1B6548A200865AFF /* HomeViewCell.xib */; };
 		4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */; };
 		4AEE8C9A1B66BD6E00865AFF /* ImprovedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */; };
-		AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */; };
+		DF8008A2CD40C0C452FFD08F /* Pods_hackuProduct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C9D6675BC3927253BC92D1 /* Pods_hackuProduct.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,8 +111,6 @@
 		17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
 		1838465C38D31AE895EAA4BD /* Pods-hackuProduct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.release.xcconfig"; sourceTree = "<group>"; };
 		42D7E9A1590D7C82A85E7BB1 /* Pods-hackuProduct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.debug.xcconfig"; sourceTree = "<group>"; };
-		4A220D631B6B54F0003B469B /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
-		4A220D641B6B54F0003B469B /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		4A220D661B6CAE81003B469B /* QRcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRcodeView.h; sourceTree = "<group>"; };
 		4A220D671B6CAE81003B469B /* QRcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRcodeView.m; sourceTree = "<group>"; };
 		4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -145,6 +142,7 @@
 		4A965B021B68217000F7ABE6 /* SNS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNS.m; sourceTree = "<group>"; };
 		4AB78D221B59988D00B27BEC /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		4AB78D241B5998A100B27BEC /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
+		4ABB53461B768E9E00B53301 /* hackuProduct-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hackuProduct-Bridging-Header.h"; sourceTree = "<group>"; };
 		4AC1031C1B67EBFA004B3E75 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4AC1031E1B67EC03004B3E75 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4AC2D4BC1B63AB3300F80E61 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
@@ -160,7 +158,7 @@
 		4AEE8C911B65CAAC00865AFF /* BlocklistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocklistViewController.m; sourceTree = "<group>"; };
 		4AEE8C981B66B99600865AFF /* ImprovedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImprovedViewController.h; sourceTree = "<group>"; };
 		4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImprovedViewController.m; sourceTree = "<group>"; };
-		6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hackuProduct.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C9D6675BC3927253BC92D1 /* Pods_hackuProduct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackuProduct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				175EC6751B636A2B00752BE6 /* QuartzCore.framework in Frameworks */,
-				AAC24D2FF1BAC2A6BAC36CC4 /* libPods-hackuProduct.a in Frameworks */,
+				DF8008A2CD40C0C452FFD08F /* Pods_hackuProduct.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +213,7 @@
 				17B7B99C1B52CA74009A8752 /* AppDelegate.m */,
 				17B7B9A41B52CA74009A8752 /* Images.xcassets */,
 				17B7B9A61B52CA74009A8752 /* LaunchScreen.xib */,
+				4ABB53461B768E9E00B53301 /* hackuProduct-Bridging-Header.h */,
 				17B7B9971B52CA74009A8752 /* Supporting Files */,
 				4A901A8A1B62A15800C8FE1C /* Settings.bundle */,
 			);
@@ -252,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				175EC6741B636A2B00752BE6 /* QuartzCore.framework */,
-				6DCF3306E3D04AAC6FC1D63E /* libPods-hackuProduct.a */,
+				74C9D6675BC3927253BC92D1 /* Pods_hackuProduct.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -323,8 +322,6 @@
 				4A965B021B68217000F7ABE6 /* SNS.m */,
 				4AB78D221B59988D00B27BEC /* Backend.m */,
 				4AB78D241B5998A100B27BEC /* Backend.h */,
-				4A220D631B6B54F0003B469B /* Toast.h */,
-				4A220D641B6B54F0003B469B /* Toast.m */,
 				4AEE8C981B66B99600865AFF /* ImprovedViewController.h */,
 				4AEE8C991B66BD6E00865AFF /* ImprovedViewController.m */,
 				4A3576091B69DC5B0025BD73 /* AlertHelper.h */,
@@ -394,6 +391,7 @@
 				17B7B9911B52CA74009A8752 /* Frameworks */,
 				17B7B9921B52CA74009A8752 /* Resources */,
 				A5885FD061CD8E895092E4E1 /* Copy Pods Resources */,
+				939F7A9442A1CD12852F3EDA /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -496,6 +494,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		939F7A9442A1CD12852F3EDA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A5885FD061CD8E895092E4E1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -541,7 +554,6 @@
 				17B7B99D1B52CA74009A8752 /* AppDelegate.m in Sources */,
 				4ADD13BF1B60B22D00A0D7B6 /* SettingViewController.m in Sources */,
 				4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */,
-				4A220D651B6B54F0003B469B /* Toast.m in Sources */,
 				174D1E5C1B666C2E007BB81C /* ProfileEditViewController.m in Sources */,
 				4A35760B1B69DF1B0025BD73 /* AlertHelper.m in Sources */,
 				4A220D681B6CAE81003B469B /* QRcodeView.m in Sources */,
@@ -679,14 +691,18 @@
 			baseConfigurationReference = 42D7E9A1590D7C82A85E7BB1 /* Pods-hackuProduct.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "hackuProduct/Supporting Files/hackuProduct-Prefix.pch";
 				INFOPLIST_FILE = "hackuProduct/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "hackuProduct/hackuProduct-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -695,14 +711,17 @@
 			baseConfigurationReference = 1838465C38D31AE895EAA4BD /* Pods-hackuProduct.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "hackuProduct/Supporting Files/hackuProduct-Prefix.pch";
 				INFOPLIST_FILE = "hackuProduct/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "hackuProduct/hackuProduct-Bridging-Header.h";
 			};
 			name = Release;
 		};

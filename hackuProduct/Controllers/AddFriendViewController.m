@@ -3,7 +3,7 @@
 #import "User.h"
 #import "Backend.h"
 #import "QRcodeView.h"
-#import "Toast.h"
+#import <TTToast/TTToast-Swift.h>
 
 @interface AddFriendViewController ()
 
@@ -84,7 +84,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
         _cameraView.frame = CGRectMake(0, 0, size.width, size.height);
         [self.view layoutIfNeeded];
         [_cameraView start:kBarcodeModeQRcode];
-        [Toast show:self.view message:@"相手のQRコードにかざして下さい。"];
+        [TTToast show:self.view message:@"相手のQRコードにかざして下さい。"];
     }
 }
 
@@ -103,11 +103,11 @@ typedef NS_ENUM (NSUInteger, Mode) {
     Backend* backend = Backend.shared;
     [backend addFriend:code option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
-            [Toast show:self.view message:@"招待コードが間違っています"];
+            [TTToast show:self.view message:@"招待コードが間違っています"];
             NSLog(@"addFriend error: %@\n", error);
         }
         else {
-            [Toast show:self.view message:@"申請しました"];
+            [TTToast show:self.view message:@"申請しました"];
             [self close];
         }
     }];
@@ -120,7 +120,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 - (IBAction)touchInvitationCode:(UITapGestureRecognizer *)sender {
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
     [pb setValue:_myInvitationLabel.text forPasteboardType:@"public.utf8-plain-text"];
-    [Toast show:self.view message:@"自分の招待コードをクリップボードにコピーしました"];
+    [TTToast show:self.view message:@"自分の招待コードをクリップボードにコピーしました"];
 }
 
 #pragma mark - item bar buttons

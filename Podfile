@@ -1,8 +1,9 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+platform :ios, '8.0'
+use_frameworks!
 
 target 'hackuProduct' do
-	platform :ios, '7.0'
+	platform :ios, '8.0'
 	pod "AFNetworking", "~> 2.0"
 	pod 'RMUniversalAlert'
 	pod 'SDWebImage', '~>3.7'
@@ -11,6 +12,7 @@ target 'hackuProduct' do
 	pod 'CLImageEditor'
 	pod 'Parse'
 	pod 'REMenu', '~> 1.10'
+	pod 'TTToast', '~> 0.0.1'
 end
 
 target 'hackuProductTests' do

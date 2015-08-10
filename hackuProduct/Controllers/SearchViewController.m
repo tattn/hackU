@@ -6,8 +6,8 @@
 #import "User.h"
 #import "Backend.h"
 #import "BarcodeView.h"
-#import "Toast.h"
 #import "Book.h"
+#import <TTToast/TTToast-Swift.h>
 
 @implementation SearchResultCell
 @end
@@ -83,7 +83,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
         [_tableView removeFromSuperview];
         [_mainView addSubview:_barcodeView];
         [_barcodeView start:kBarcodeModeBarcode];
-        [Toast show:_mainView message:@"本のバーコードにかざして下さい。"];
+        [TTToast show:_mainView message:@"本のバーコードにかざして下さい。"];
     }
     _searchSegmentControl.selectedSegmentIndex = mode;
 }
@@ -259,7 +259,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSDictionary *book = _books[path.row];
     NSNumber *bookId = book[@"bookId"];
     [Backend.shared addBookToBookshelf:My.shared.user->userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
-        [Toast show:_mainView message:@"本棚に登録しました"];
+        [TTToast show:_mainView message:@"本棚に登録しました"];
     }];
 }
 

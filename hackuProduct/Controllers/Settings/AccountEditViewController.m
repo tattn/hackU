@@ -2,7 +2,7 @@
 #import "AccountEditViewController.h"
 #import "Backend.h"
 #import "User.h"
-#import <RMUniversalAlert.h>
+#import <RMUniversalAlert/RMUniversalAlert.h>
 
 @interface AccountEditViewController ()
 

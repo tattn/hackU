@@ -2,10 +2,10 @@
 #import "ProfileEditViewController.h"
 #import "User.h"
 #import "Backend.h"
-#import "Toast.h"
 #import "UIImageView+WebImage.h"
 #import <CLImageEditor/CLImageEditor.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <TTToast/TTToast-Swift.h>
 
 @interface ProfileEditViewController () <CLImageEditorDelegate>
 
@@ -69,7 +69,7 @@
             [SVProgressHUD dismiss];
             if (error) {
                 NSLog(@"Upload error: %@", error);
-                [Toast show:self.view message:@"画像のサイズが大きすぎます"];
+                [TTToast show:self.view message:@"画像のサイズが大きすぎます"];
                 return;
             }
             else {

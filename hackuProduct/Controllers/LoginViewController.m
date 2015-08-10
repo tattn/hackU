@@ -2,9 +2,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LoginViewController.h"
 #import "Backend.h"
-#import "Toast.h"
 #import <Parse/Parse.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <TTToast/TTToast-Swift.h>
+
+//@interface Config
+//@end
 
 @interface LoginViewController ()
 
@@ -61,6 +64,9 @@ typedef NS_ENUM (NSUInteger, kMode) {
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [SVProgressHUD dismiss];
+    [TTToast show:self.view message:@"テストメッセージ" config:^(TTToastConfig* config) {
+        config.backgroundColor = [UIColor whiteColor];
+    }];
 }
 
 - (IBAction)login:(id)sender {
@@ -93,7 +99,7 @@ typedef NS_ENUM (NSUInteger, kMode) {
     [backend login:email password:pass option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
             //TODO: ログインに失敗したことをユーザーに通知する、テキストフィールドを赤枠にする
-            [Toast show:self.view message:@"メールアドレスかパスワードが間違っています"];
+            [TTToast show:self.view message:@"メールアドレスかパスワードが間違っています"];
             NSLog(@"Login error: %@", error);
         }
         else {
