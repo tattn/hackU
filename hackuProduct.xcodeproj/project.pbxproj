@@ -31,12 +31,10 @@
 		17B7B9F41B593BFB009A8752 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		17BD60421B6DE2F8002C84B2 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BD60401B6DE2F8002C84B2 /* TimelineCell.m */; };
 		17BD60431B6DE2F8002C84B2 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */; };
-		4A220D681B6CAE81003B469B /* QRcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A220D671B6CAE81003B469B /* QRcodeView.m */; };
 		4A2FE1AF1B6780C600D129DC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */; };
 		4A3576061B6944100025BD73 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3576051B6944100025BD73 /* BookDetailViewController.m */; };
 		4A3576081B6944450025BD73 /* BookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3576071B6944450025BD73 /* BookDetailViewController.xib */; };
 		4A35760B1B69DF1B0025BD73 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A35760A1B69DF1B0025BD73 /* AlertHelper.m */; };
-		4A35760F1B6A49190025BD73 /* BarcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A35760E1B6A49190025BD73 /* BarcodeView.m */; };
 		4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C63851B5F746800AA233C /* LoginViewController.m */; };
 		4A5C63891B5F752C00AA233C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5C63881B5F752C00AA233C /* LoginViewController.xib */; };
 		4A7A12081B71050B00277161 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A12071B71050B00277161 /* Book.m */; };
@@ -111,8 +109,6 @@
 		17BD60411B6DE2F8002C84B2 /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
 		1838465C38D31AE895EAA4BD /* Pods-hackuProduct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.release.xcconfig"; sourceTree = "<group>"; };
 		42D7E9A1590D7C82A85E7BB1 /* Pods-hackuProduct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackuProduct.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hackuProduct/Pods-hackuProduct.debug.xcconfig"; sourceTree = "<group>"; };
-		4A220D661B6CAE81003B469B /* QRcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRcodeView.h; sourceTree = "<group>"; };
-		4A220D671B6CAE81003B469B /* QRcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRcodeView.m; sourceTree = "<group>"; };
 		4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		4A3576041B6944100025BD73 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
 		4A3576051B6944100025BD73 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
@@ -120,8 +116,6 @@
 		4A3576091B69DC5B0025BD73 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
 		4A35760A1B69DF1B0025BD73 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		4A35760C1B6A0A920025BD73 /* hackuProduct-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hackuProduct-Prefix.pch"; sourceTree = "<group>"; };
-		4A35760D1B6A49190025BD73 /* BarcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeView.h; sourceTree = "<group>"; };
-		4A35760E1B6A49190025BD73 /* BarcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeView.m; sourceTree = "<group>"; };
 		4A5C63851B5F746800AA233C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4A5C63871B5F748200AA233C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4A5C63881B5F752C00AA233C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -306,10 +300,6 @@
 				4A7A12161B71CDC900277161 /* BookShelfListCell.h */,
 				4A7A12171B71CDC900277161 /* BookShelfListCell.m */,
 				4A7A12181B71CDC900277161 /* BookShelfListCell.xib */,
-				4A35760D1B6A49190025BD73 /* BarcodeView.h */,
-				4A35760E1B6A49190025BD73 /* BarcodeView.m */,
-				4A220D661B6CAE81003B469B /* QRcodeView.h */,
-				4A220D671B6CAE81003B469B /* QRcodeView.m */,
 				4A2FE1AE1B6780C600D129DC /* SearchResultCell.xib */,
 			);
 			path = Views;
@@ -426,12 +416,13 @@
 		17B7B98C1B52CA74009A8752 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Kazusa Sakamoto";
 				TargetAttributes = {
 					17B7B9931B52CA74009A8752 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 7UUL3DK9Y3;
+						DevelopmentTeam = X3Q8DP844F;
 					};
 					17B7B9AC1B52CA75009A8752 = {
 						CreatedOnToolsVersion = 6.2;
@@ -556,7 +547,6 @@
 				4AEE8C921B65CAAC00865AFF /* BlocklistViewController.m in Sources */,
 				174D1E5C1B666C2E007BB81C /* ProfileEditViewController.m in Sources */,
 				4A35760B1B69DF1B0025BD73 /* AlertHelper.m in Sources */,
-				4A220D681B6CAE81003B469B /* QRcodeView.m in Sources */,
 				4AC2D4BF1B63AB3300F80E61 /* AddFriendViewController.m in Sources */,
 				4A7A12081B71050B00277161 /* Book.m in Sources */,
 				174D1E571B6629D2007BB81C /* SearchViewController.m in Sources */,
@@ -566,7 +556,6 @@
 				17B7B99A1B52CA74009A8752 /* main.m in Sources */,
 				174D1E111B660CA9007BB81C /* FriendProfileViewController.m in Sources */,
 				17B7B9EA1B570D43009A8752 /* FriendViewController.m in Sources */,
-				4A35760F1B6A49190025BD73 /* BarcodeView.m in Sources */,
 				4A901A911B62D65000C8FE1C /* LicenseViewController.m in Sources */,
 				174D1E611B675BF1007BB81C /* AccountEditViewController.m in Sources */,
 				4A5C63861B5F746800AA233C /* LoginViewController.m in Sources */,
@@ -699,6 +688,7 @@
 				GCC_PREFIX_HEADER = "hackuProduct/Supporting Files/hackuProduct-Prefix.pch";
 				INFOPLIST_FILE = "hackuProduct/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-160.16.70.40.hackuProduct";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "hackuProduct/hackuProduct-Bridging-Header.h";
@@ -719,6 +709,7 @@
 				GCC_PREFIX_HEADER = "hackuProduct/Supporting Files/hackuProduct-Prefix.pch";
 				INFOPLIST_FILE = "hackuProduct/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-160.16.70.40.hackuProduct";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "hackuProduct/hackuProduct-Bridging-Header.h";

@@ -10,9 +10,10 @@ target 'hackuProduct' do
 	pod 'SIAlertView'
 	pod 'SVProgressHUD'
 	pod 'CLImageEditor'
-	pod 'Parse'
+	# pod 'Parse'
 	pod 'REMenu', '~> 1.10'
 	pod 'TTToast', '~> 0.0.1'
+	pod 'TTScanView', '~> 0.0.1'
 end
 
 target 'hackuProductTests' do

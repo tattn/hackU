@@ -1,8 +1,7 @@
 
 #import "ImprovedViewController.h"
-#import "BarcodeView.h"
 
-@interface AddFriendViewController : ImprovedViewController <BarcodeDelegate>
+@interface AddFriendViewController : ImprovedViewController
 @property (weak, nonatomic) IBOutlet UIButton *friendApplyButton;
 
 @end

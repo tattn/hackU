@@ -2,18 +2,19 @@
 #import "AddFriendViewController.h"
 #import "User.h"
 #import "Backend.h"
-#import "QRcodeView.h"
+//#import "QRcodeView.h"
 #import <TTToast/TTToast-Swift.h>
+#import <TTScanView/TTScanView.h>
+#import <TTScanView/TTScanView-Swift.h>
 
-@interface AddFriendViewController ()
+@interface AddFriendViewController () <TTScanDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *invitationCode;
 @property (weak, nonatomic) IBOutlet UIView *qrOrCameraView;
 @property (weak, nonatomic) IBOutlet UIButton *qrButton;
 @property (weak, nonatomic) IBOutlet UILabel *myInvitationLabel;
 
-@property QRcodeView* qrCodeView;
-@property BarcodeView* cameraView;
+@property TTScanView* scanView;
 
 typedef NS_ENUM (NSUInteger, Mode) {
     kModeQR,
@@ -43,18 +44,17 @@ typedef NS_ENUM (NSUInteger, Mode) {
     self.navigationItem.rightBarButtonItems = @[btn];
     
     CGSize size = _qrOrCameraView.frame.size;
-    _qrCodeView = [QRcodeView new];
-    _qrCodeView.frame = CGRectMake(0, 0, size.width, size.height);
-    _qrCodeView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _cameraView = [BarcodeView new];
-    _cameraView.frame = CGRectMake(0, 0, size.width, size.height);
-    _cameraView.delegate = self;
-    [_cameraView setupCamera];
+    _scanView = [TTScanView new];
+    _scanView.frame = CGRectMake(0, 0, size.width, size.height);
+    _scanView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _scanView.delegate = self;
+//    [_scanView setupCamera];
+    [_qrOrCameraView addSubview:_scanView];
     
     [Backend.shared getInvitationCode:@{} callback:^(id responseObject, NSError *error) {
         NSString* invitationCode = responseObject[@"invitation_code"];
         _myInvitationLabel.text = invitationCode;
-        [_qrCodeView setString:invitationCode];
+        [_scanView showQRcode:invitationCode];
     }];
 }
 
@@ -72,25 +72,21 @@ typedef NS_ENUM (NSUInteger, Mode) {
     
     if (_mode == kModeQR) {
         [_qrButton setTitle:@"QRコードを読み取る" forState:UIControlStateNormal];
-        [_cameraView removeFromSuperview];
-        [_qrOrCameraView addSubview:_qrCodeView];
-        [_cameraView stop];
+        [_scanView showQRcode:_myInvitationLabel.text];
+        [self.view layoutIfNeeded];
     }
     else { // _mode == kModeCamera
         [_qrButton setTitle:@"QRコードを表示する" forState:UIControlStateNormal];
-        [_qrCodeView removeFromSuperview];
-        [_qrOrCameraView addSubview:_cameraView];
-        CGSize size = _qrOrCameraView.frame.size;
-        _cameraView.frame = CGRectMake(0, 0, size.width, size.height);
+        [_scanView showCamera: TTScanViewCameraTypeQRcode];
         [self.view layoutIfNeeded];
-        [_cameraView start:kBarcodeModeQRcode];
         [TTToast show:self.view message:@"相手のQRコードにかざして下さい。"];
     }
 }
 
-#pragma mark - barcode delegate
+#pragma mark - scanview delegate
 
-- (void)detectedBarcode:(NSString *)code {
+
+- (void)detectedCode:(NSString *)code {
     _invitationCode.text = code;
     [self changeMode:kModeQR];
 }

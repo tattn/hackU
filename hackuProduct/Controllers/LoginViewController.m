@@ -2,7 +2,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LoginViewController.h"
 #import "Backend.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <TTToast/TTToast-Swift.h>
 
@@ -64,9 +64,6 @@ typedef NS_ENUM (NSUInteger, kMode) {
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [SVProgressHUD dismiss];
-    [TTToast show:self.view message:@"テストメッセージ" config:^(TTToastConfig* config) {
-        config.backgroundColor = [UIColor whiteColor];
-    }];
 }
 
 - (IBAction)login:(id)sender {
@@ -103,10 +100,10 @@ typedef NS_ENUM (NSUInteger, kMode) {
             NSLog(@"Login error: %@", error);
         }
         else {
-            PFUser *user = [PFUser user];
-            user.username = email;
-            user.password = pass;
-            [PFUser logInWithUsername:email password:pass];
+//            PFUser *user = [PFUser user];
+//            user.username = email;
+//            user.password = pass;
+//            [PFUser logInWithUsername:email password:pass];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:email forKey:@"LoginEmail"];
@@ -128,17 +125,17 @@ typedef NS_ENUM (NSUInteger, kMode) {
             NSLog(@"Signup error");
         }
         else {
-            PFUser *user = [PFUser user];
-            user.username = email;
-            user.password = pass;
-            
-            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    [PFUser logInWithUsername:email password:pass];
-                }else{
-                    NSLog(@"Parse Signup error");
-                }
-            }];
+//            PFUser *user = [PFUser user];
+//            user.username = email;
+//            user.password = pass;
+//            
+//            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                if (!error) {
+//                    [PFUser logInWithUsername:email password:pass];
+//                }else{
+//                    NSLog(@"Parse Signup error");
+//                }
+//            }];
             [self tryLogin:email password:pass];
         }
     }];

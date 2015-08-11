@@ -6,7 +6,7 @@
 #import "LoginViewController.h"
 #import "HomeViewController.h"
 #import "SearchViewController.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -19,8 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [Parse setApplicationId:@"n3giGyxTaQClMezovu0s6Zm2ZwtiVBD5TlLYOQKf"
-                  clientKey:@"6IGF2OOl2KlPvxzBLvqyqCjV42pR7oABaweroQnN"];
+//    [Parse setApplicationId:@"n3giGyxTaQClMezovu0s6Zm2ZwtiVBD5TlLYOQKf"
+//                  clientKey:@"6IGF2OOl2KlPvxzBLvqyqCjV42pR7oABaweroQnN"];
     
     // Register for Push Notitications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
@@ -95,13 +95,13 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
+//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//    [currentInstallation setDeviceTokenFromData:deviceToken];
+//    [currentInstallation saveInBackground];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+//    [PFPush handlePush:userInfo];
 }
 
 - (UIViewController*)switchTabBarController:(NSInteger)selectedViewIndex

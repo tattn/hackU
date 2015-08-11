@@ -5,17 +5,18 @@
 #import "UIImageView+WebImage.h"
 #import "User.h"
 #import "Backend.h"
-#import "BarcodeView.h"
 #import "Book.h"
 #import <TTToast/TTToast-Swift.h>
+#import <TTScanView/TTScanView-Swift.h>
+#import <TTScanView/TTScanView.h>
 
 @implementation SearchResultCell
 @end
 
-@interface SearchViewController ()
+@interface SearchViewController () <TTScanDelegate>
 
 @property UITableView* tableView;
-@property BarcodeView* barcodeView;
+@property TTScanView* scanView;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UISwitch *searchSwitch;
 
@@ -53,11 +54,10 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     _tableView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);
     _tableView.tableFooterView = [UIView new]; // 余分なCellのセパレータを表示しないための処理
     
-    _barcodeView = [BarcodeView new];
-    _barcodeView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);
-    _barcodeView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _barcodeView.delegate = self;
-    [_barcodeView setupCamera];
+    _scanView = [TTScanView new];
+    _scanView.frame = CGRectMake(0, 0, _mainView.frame.size.width, _mainView.frame.size.height);
+    _scanView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _scanView.delegate = self;
     
     [_searchSegmentControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     
@@ -76,13 +76,13 @@ static NSString* SearchResultCellId = @"SearchResultCell";
 
 - (void)changeMainView:(long)mode { //FIXME: must use enum
     if(mode == 0) {
-        [_barcodeView removeFromSuperview];
+        [_scanView removeFromSuperview];
         [_mainView addSubview:_tableView];
-        [_barcodeView stop];
+        [_scanView stop];
     }else {
         [_tableView removeFromSuperview];
-        [_mainView addSubview:_barcodeView];
-        [_barcodeView start:kBarcodeModeBarcode];
+        [_mainView addSubview:_scanView];
+        [_scanView showCamera:TTScanViewCameraTypeBarcode];
         [TTToast show:_mainView message:@"本のバーコードにかざして下さい。"];
     }
     _searchSegmentControl.selectedSegmentIndex = mode;
@@ -96,7 +96,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     [self searchBook:self.searchBar.text];
 }
 
-- (void)detectedBarcode:(NSString *)code {
+- (void)detectedCode:(NSString *)code {
     [self changeMainView:0];
     [self searchBook:code];
 }
