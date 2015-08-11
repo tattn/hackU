@@ -7,7 +7,7 @@ target 'hackuProduct' do
 	pod "AFNetworking", "~> 2.0"
 	pod 'RMUniversalAlert'
 	pod 'SDWebImage', '~>3.7'
-	pod 'SIAlertView'
+	pod 'SIAlertView', :git => 'https://github.com/tattn/SIAlertView.git'
 	pod 'SVProgressHUD'
 	pod 'CLImageEditor'
 	# pod 'Parse'

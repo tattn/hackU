@@ -22,20 +22,6 @@
 
 + (void)showYesNo:(UIViewController*)parent title:(NSString*)title msg:(NSString*)msg yesTitle:(NSString*)yesTitle noTitle:(NSString*)noTitle yes:(void (^)())yes no:(void (^)())no {
 
-//    [RMUniversalAlert showAlertInViewController:parent
-//                                      withTitle:title
-//                                        message:msg
-//                              cancelButtonTitle:noTitle
-//                         destructiveButtonTitle:yesTitle
-//                              otherButtonTitles:@[]
-//                                       tapBlock:^(RMUniversalAlert *alert, NSInteger buttonIndex){
-//                                           if (buttonIndex == alert.cancelButtonIndex) {
-//                                               no();
-//                                           } else if (buttonIndex == alert.destructiveButtonIndex) {
-//                                               yes();
-//                                           }
-//                                       }];
-    
     [[SIAlertView appearance] setMessageFont:[UIFont fontWithName:@"HiraKakuProN-W6" size:11.0f]];
     [[SIAlertView appearance] setTitleFont:[UIFont fontWithName:@"HiraKakuProN-W6" size:18.0f]];
     [[SIAlertView appearance] setButtonFont:[UIFont fontWithName:@"HiraKakuProN-W6" size:11.0f]];
@@ -44,7 +30,11 @@
     [[SIAlertView appearance] setMessageColor:[UIColor whiteColor]];
     [[SIAlertView appearance] setViewBackgroundColor:[UIColor colorWithRed:0.22 green:0.80 blue:0.49 alpha:1.0]];
     [[SIAlertView appearance] setButtonColor:[UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0]];
+    [[SIAlertView appearance] setDestructiveButtonColor:[UIColor colorWithHue:0.3 saturation:0.6 brightness:1.0 alpha:1.0]];
     [[SIAlertView appearance] setCornerRadius:12];
+    [SIAlertView appearance].buttonBackgroundColor = [UIColor whiteColor];
+    [SIAlertView appearance].cancelButtonBackgroundColor = [UIColor whiteColor];
+    [SIAlertView appearance].destructiveButtonBackgroundColor = [UIColor whiteColor];
 //    [[SIAlertView appearance] setShadowRadius:0];
 //    [[SIAlertView appearance] setBackgroundStyle:SIAlertViewBackgroundStyleGradient];
 //    [[SIAlertView appearance] setTransitionStyle:SIAlertViewTransitionStyleSlideFromTop];
