@@ -79,7 +79,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
         [_qrButton setTitle:@"QRコードを表示する" forState:UIControlStateNormal];
         [_scanView showCamera: TTScanViewCameraTypeQRcode];
         [self.view layoutIfNeeded];
-        [TTToast show:self.view message:@"相手のQRコードにかざして下さい。"];
+        [TTToast show:@"相手のQRコードにかざして下さい。"];
     }
 }
 
@@ -99,11 +99,11 @@ typedef NS_ENUM (NSUInteger, Mode) {
     Backend* backend = Backend.shared;
     [backend addFriend:code option:@{} callback:^(id responseObject, NSError *error) {
         if (error) {
-            [TTToast show:self.view message:@"招待コードが間違っています"];
+            [TTToast show:@"招待コードが間違っています"];
             NSLog(@"addFriend error: %@\n", error);
         }
         else {
-            [TTToast show:self.view message:@"申請しました"];
+            [TTToast show:@"申請しました"];
             [self close];
         }
     }];
@@ -116,7 +116,7 @@ typedef NS_ENUM (NSUInteger, Mode) {
 - (IBAction)touchInvitationCode:(UITapGestureRecognizer *)sender {
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
     [pb setValue:_myInvitationLabel.text forPasteboardType:@"public.utf8-plain-text"];
-    [TTToast show:self.view message:@"自分の招待コードをクリップボードにコピーしました"];
+    [TTToast show:@"自分の招待コードをクリップボードにコピーしました"];
 }
 
 #pragma mark - item bar buttons

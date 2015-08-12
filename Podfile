@@ -12,7 +12,7 @@ target 'hackuProduct' do
 	pod 'CLImageEditor'
 	# pod 'Parse'
 	pod 'REMenu', '~> 1.10'
-	pod 'TTToast', '~> 0.0.1'
+	pod 'TTToast', '~> 0.0.3'
 	pod 'TTScanView', '~> 0.0.1'
 end
 

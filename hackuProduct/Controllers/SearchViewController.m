@@ -7,8 +7,8 @@
 #import "Backend.h"
 #import "Book.h"
 #import <TTToast/TTToast-Swift.h>
-#import <TTScanView/TTScanView-Swift.h>
 #import <TTScanView/TTScanView.h>
+#import <TTScanView/TTScanView-Swift.h>
 
 @implementation SearchResultCell
 @end
@@ -83,7 +83,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
         [_tableView removeFromSuperview];
         [_mainView addSubview:_scanView];
         [_scanView showCamera:TTScanViewCameraTypeBarcode];
-        [TTToast show:_mainView message:@"本のバーコードにかざして下さい。"];
+        [TTToast show:@"本のバーコードにかざして下さい。" view:_mainView];
     }
     _searchSegmentControl.selectedSegmentIndex = mode;
 }
@@ -259,7 +259,7 @@ static NSString* SearchResultCellId = @"SearchResultCell";
     NSDictionary *book = _books[path.row];
     NSNumber *bookId = book[@"bookId"];
     [Backend.shared addBookToBookshelf:My.shared.user->userId bookId:bookId.intValue option:@{} callback:^(id responseObject, NSError *error){
-        [TTToast show:_mainView message:@"本棚に登録しました"];
+        [TTToast show:@"本棚に登録しました" view:_mainView];
     }];
 }
 

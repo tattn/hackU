@@ -69,7 +69,7 @@
             [SVProgressHUD dismiss];
             if (error) {
                 NSLog(@"Upload error: %@", error);
-                [TTToast show:self.view message:@"画像のサイズが大きすぎます"];
+                [TTToast show:@"画像のサイズが大きすぎます"];
                 return;
             }
             else {
