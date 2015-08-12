@@ -9,7 +9,7 @@
 #import "BlocklistViewController.h"
 #import "Backend.h"
 #import "FriendTableViewCell.h"
-#import "RMUniversalAlert.h"
+#import <RMUniversalAlert/RMUniversalAlert.h>
 
 @interface BlocklistViewController ()
 
